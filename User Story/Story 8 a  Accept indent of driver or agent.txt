@@ -1,0 +1,35 @@
+Title: Merchant is able to Accept indent created by Driver/Agent and pass it to Admin. 
+
+Description : 
+       As a Merchant,I should have ability to Accept the indent created by the Driver/Agent
+	   
+	   Form should have following details:
+		 1. Driver/Agent Details
+		 2. Product Details
+		 3. Approval Section
+		 4. Update Section
+									
+Acceptance Criteria:
+		
+		Below mandatory data is required Accept the indent form. 
+			1. Driver/Agent name: char, Format (Salutation, Firstname, Middle name and Last name) validation  
+			   required.  
+			2. Driver/Agent contact details: int, multiple fields for cell phone, office phone (max three)  
+			   validation required. 
+			3. Driver/Agent email id: varchar, multiple fields (max three), validation required.
+			4. Details of Products(Fruits and Vegetables): varchar, search field should be displayed where user 
+			   can search for the product and select the product. 
+			5. Selected product should be displayed along with the designated unique product number one below the 
+			   other.  
+
+	        Note: Salutation and Middle name may not be mandatory. 
+		
+		Approval Section
+		Accept : On click of Accept set the Radio Button field to true and notify through application to Driver/Agent saying that indent is approved and pass it to Admin.
+		
+		Update: he has ability to update Any Indent details which was received by driver .			
+		
+Action Result:	
+		Show success message stating that the creation of indent is approved. 
+    	Driver/Agent will be notified once approved.
+		Show validation message if any of acceptance criteria is not fulfilled.  

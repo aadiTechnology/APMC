@@ -1,0 +1,25 @@
+
+Title: Merchant Should Received notification of vehicle is arrived at the gate.
+
+Description:
+    As a Marchant,I want to received notificaion that, the vehicle is arrived at the gate.
+	
+	Form should have following details:
+	1)Vehicle Number
+	2)Driver Details
+	
+Acceptance Criteria:
+		
+		Below mandatory data is required in notificaion message.
+		
+		1)Driver/Agent name: char, Format (Salutation, Firstname, Middle name and Last name) validation required.  
+		2)Driver/Agent contact details: int, multiple fields for cell phone, office phone (max three)  
+			   validation required. 
+	    3)Driver/Agent email id: varchar, multiple fields (max three), validation required.
+		4)Vehicle Details: vehicle number,varchar validation required.
+		5)Entry Time : varchar
+					
+Action Result:
+		Show notificaion message stating that the vehicle is arrived at the gate successfully through app to merchant.
+    	Show validation message if any of acceptance criteria is not fulfilled.
+    

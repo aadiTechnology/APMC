@@ -1,0 +1,27 @@
+Title: Barcode Scan at exit gate
+
+Description:
+    As a Exit Gate Operator,I have to scan barcode and get payment(Cess tax) from buyer for sending signal to boom barrier open.
+	
+	Form should have following details:
+	1)Scanner
+	2)Payment Mode
+	
+	 Barcode may contain Merchant Id,Product name,Product Cost,Cess Tax.
+	
+Acceptance Criteria:
+	
+	Below details are displayed after scanned.  
+		1)Merchant Id: varchar.
+		2)Product Details(Fruits and Vegetables ): varchar.
+		4)Cess Tax: double (As per rate tax will calculate)
+		
+		The payment mode may contain following criteria.
+		1. Cash 
+		2. Online Payment(Using Google Pay, Phone Pay)
+		3. Crdit/Debit card
+						
+Action Result:
+        Show Success message stating that the barcode scan successfully.
+    	Show validation message if any of acceptance criteria is not fulfilled.
+    	

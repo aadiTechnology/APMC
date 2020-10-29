@@ -1,0 +1,37 @@
+Title: Merchant Should create QR code and send .
+
+Description:
+
+	As a Marchant,I want to create QR code and send it to the driver's mobile number to pass the entry gate.
+Prerequisite:
+		Indent was created to generate QR Code by Driver/Agent/Merchant. 
+		
+		Form should have following details:
+		1)Product Details
+		2)Driver Details
+		3)Vehicle Details
+		4)Supplier Details
+		5)Generate Button 
+		  
+Acceptance Criteria:
+
+		Below mandatory data is required to Generate the QR code.
+		 1)Order Id : varchar
+		 2)Product details & its weight (Fruits and Vegetables ): varchar. 
+		 3)Driver/Agent name: char, Format (Salutation, Firstname, Middle name and Last name) validation required.  
+		 4)Driver/Agent contact details: int, multiple fields for cell phone, office phone (max three)  
+			   validation required. 
+	     5)Driver/Agent email id: varchar, multiple fields (max three), validation required.
+		 6)Vehicle Details: vehicle number,varchar validation required.
+		 7)Supplier Name:char
+		 8)Supplier Number:int,multiple fields for cell phone, office phone (max three)  
+			   validation required.
+							
+		Generate Button: Generate the new QR code based on Indent details.
+		The QR code will send on driver's Whatsapp Number.
+		Note: after one scan the QR code will disable automatically.
+			
+Action Result:
+
+		Show success message stating that the QR code is created as well as send successfully on drivers mobile number.
+		Show validation message if any of acceptance criteria is not fulfilled.  

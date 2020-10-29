@@ -1,0 +1,43 @@
+(Gate Operator)
+
+Title: Entry Get Operator verify indent 
+
+
+Prerequisite:
+		The QR Code should available to driver which is coming from merchant .
+
+Description:
+	1. As an Entry Gate Operator, I'm able to verify the indent details  against QR Code which was recived by driver.
+	2. also able to update Arrived time of vehical, vehical weight  against the Indent
+	3. able to generate the peyment recipet which contain details of arrival time ,weight And vehical entry fee .
+	4. After verification with peyment ,weight & indent details then able to send signal to open boom barrier ..
+				
+			
+		Entry Get Form need details as below:
+			 Vehical No (Auto gen), Entry time (Auto gen / manual), Merchant Id (Auto gen) ,Weight, Entry Fee 
+		
+			Save Button & Reset Button
+		
+			Acceptance Criteria:
+			
+			1.Once a QR Code Scan on gate then same QR Code is invalid for next time
+			
+			2.Below mandatory input data is required to fill the form. 
+						Scan QR code:(auto fill) Merchant ID,Entry Time ,Vehical No
+						1.Merchant ID :(Auto fill)
+						2.Vehical No: (Auto fill) 
+						3.Entry time: (required field ) 
+						4.Weight : ( Required field , only enter integer ) 
+						5 Entry Fee  :( Required field , only enter integer ) 
+			
+			3. Save : after click Save button then save the data and send single to open boom barrier
+			4. reset: After Click Reset button then Editable Fields are blank 
+				 
+						 
+			
+		Action Result :
+				
+				1. After submite and collect entery fee then vehical will get entry into APMC 
+				2.otherwise not open Boom Barries.
+				3.Show validation message if any of acceptance criteria is not fulfilled.
+				4. also generate the peyment recipet.

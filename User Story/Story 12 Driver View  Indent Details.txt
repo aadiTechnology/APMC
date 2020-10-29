@@ -1,0 +1,27 @@
+driver
+
+Title: Driver View  Indent Details
+
+Prerequisite: After Create indent list by merchant and send QR code to driver
+
+Description: As a Driver I want to View Indent Details for verification . 
+			
+			
+			
+			Acceptance Criteria:
+	
+			Indent Deails list as below:(Only View)
+				
+			1. Order No
+			2. Material Name 
+			3. Material Weight 
+			4. ETA Time 
+			5. Driver Name
+			6. Driver No 
+			7. Vehicle No 
+			8. Supplier Name 
+			9. Supplier No 
+			
+		
+		Action Result :
+			Driver  only view Indent Details.

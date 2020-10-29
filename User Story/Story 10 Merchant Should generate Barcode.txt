@@ -1,0 +1,35 @@
+Title: Merchant Should generate Barcode for Buyer.
+
+Description:
+
+		As a Marchant,I want to generate Barcode based on product rate & cess tax for Buyer to get the permission for exit  at the gate.
+		
+		Form should have following details:
+		1)Merchant Details.
+		2)Product Details
+		3)Create Button
+					
+Acceptance Criteria:
+
+		Below mandatory data is required to fill the form. 
+			1. Merchant's name: char,Format(Salutation, Firstname, middle name and Last name) validation 
+			   required.  
+			2. Merchant's contact details: int, multiple fields for cell phone, office phone (max three), fax,  
+			   validation required. 
+			3. Merchant's email id: varchar, multiple fields (max three), validation required.
+			4. Stall Details: Varchar,Stall Number,validation required.
+			5. Vehicle Details: vehicle number,varchar validation required.
+		    6. Details of Products,Rate & weight  (Fruits and Vegetables ): nvarchar. 
+		    7. Order Id : varchar
+			8. Buyer Name: varchar	
+			9. Buyer Contact details:int,Mobile Number	
+			10. Barcode: it will generate against order varchar,validation required.
+			
+			Note: after one scan the barcode will disable automatically.
+						
+		Create Section : Merchant will create the order and generate the barcode based on product and its cess tax.
+		Update Section: Character field-In case of Change this field should be required.
+			
+Action Result:
+		Show Success message stating that the generating of barcode is successfully and pass it to Buyer through app. 
+    	Show validation message if any of acceptance criteria is not fulfilled.     

@@ -1,0 +1,33 @@
+Registration
+
+Tittle: Merchant Registration.
+
+Discription: As a merchant I need to regsiter myself to facilitate my entry in APMC.
+
+Prerequisite: 
+User is able to download mobile app from app store. Andriod and iOS. User should be able to see the Sign up page and should be able to click it and navigated to the Sign up form.
+
+Form should have following details:
+1. Details of Merchant
+2. Stall details
+3. Details of Product (Fruits and Vegetables) to be sold
+
+Acceptance Criteria:
+
+1. Below mandatory input data is required to fill the form. 
+	1. Merchant's name: char, Format (Salutation, Firstname, middle name and Last name) validation required.  
+	2. Merchant's contact details: int, multiple fields for cell phone, office phone (max three), fax,  validation required. 
+	3. Merchant's email id: varchar, multiple fields (max three), validation required.
+	4. Stall Details: Varchar
+	5. Details of Products (Fruits and Vegetables): varchar, serach field should be displayed where user can serach for the product and select the product. 
+	    Selected product should be displayed along with the designated unique product number one below the other.  
+
+	Note: Salutation and Middle name may not be mandatory. 
+
+2. Display "Add" button. "Add" button should be disabled untill acceptance criteria is fullfilled. 
+3. Display "Cancel" button. If user clicks "Cancel" button at any point of time confirmation message should be displayed.
+3. Display "Update" button. It should be disabled untill the Registration is done. Once Admin accept the registration, this button should be active. 
+
+Result: 
+Show success message stating that the registration is done and pending with the Admin for approval. User will be notified once approved/ rejected. 
+Show validation message if any of acceptance criteria is not fulfilled.

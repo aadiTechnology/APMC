@@ -1,0 +1,24 @@
+(Admin)
+
+Title: Admin Send Notification
+
+Description: As a Admin I want to send notification to all Merchant, Drivers and Transporter for any Updates regarding
+		 taxes,parking ,rules etc . 
+			
+			Form need details as below:
+			 Opretor to Notify (All, Merchant , Driver, Transporter), Notice ,Upload file 
+			
+			
+			Send button and  Reset button.
+			
+			Acceptance Criteria:
+			Input data field to enter 
+			
+			1. Opretor to Notify (Dropdown): All ,Merchant, Driver, Transporter
+			2. Notice/msg  : (Required Field,multiline textarea )
+			3. Upload : (validation of file upload control,  attachment photo ,pdf, doc)
+			4. send : save the data as well as send notification 
+			5. reset: After Click Reset button then Fields are blank 
+
+		Action Result :
+		After Send button click it will show  Notication send succesfully MSG otherwise show Validation MSG.

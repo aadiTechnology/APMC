@@ -1,0 +1,22 @@
+(Admin)
+
+Title: Admin Send Reminder
+
+Description: As a Admin I want to send Reminder  to  Merchant for Due Payment Details against indent . 
+			
+			Form need details as below:
+			 Merchant Name (All ,by name ,by ID (?)),Reminder msg
+			
+			
+			Send button and  Reset button.
+			
+			Acceptance Criteria:
+			Input data field to enter 
+			
+			1. Merchant Name : //AutoFill// ( all, name,id  required field)
+			2. Reminder Notice/msg  : (Required Field)
+			3. Send Button : After Click Send button save the data in db & send Notification 
+			4. Reset Button : After Click reset button all field is clear.
+			
+		Action Result :
+		After Click Send Reminder button it will show reminder send succesfully MSG, otherwise show Validation MSG.

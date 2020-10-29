@@ -1,0 +1,28 @@
+Title: Collect Fine for extra Hours at parking 
+
+Description:
+    As a Exit Gate Operator,i have to collect fine from Driver/Agent for extra parking hours 
+	
+	Form should have following details:
+	1) Entry Gate Receipt.
+	2)Vehicle Number 
+	3) Entry Time
+	if the time exeeds more than 3 hours the extra charge will aplicable as per hours rate.
+	if vehicle is park under no parking then extra charge will aplicable.
+	
+Acceptance Criteria:
+	
+	Below mandatory input data is required to fill the form. 
+		1)Vehicle Details: vehicle number,varchar validation required.
+		2)Entry Time:varchar
+		
+		The payment mode may contain following criteria.
+		1. Cash 
+		2. Online Payment(Using Google Pay, Phone Pay)
+		3. Crdit/Debit card
+						
+Action Result:
+     
+	    Show Success message stating that the payment for extra parking hours are collected successfully.
+    	Driver/Agent will be get fee Receipt once Payment accepted and boom barrier will open.
+		Show validation message if any of acceptance criteria is not fulfilled.

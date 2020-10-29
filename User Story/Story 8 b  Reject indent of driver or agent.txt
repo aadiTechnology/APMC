@@ -1,0 +1,35 @@
+Title: Merchant is able to Reject indent created by Driver/Agent. 
+
+Description : 
+       As a Merchant,I should have ability to Reject the indent created by the Driver/Agent
+	   
+	   Form should have following details:
+		 1. Driver/Agent Details
+		 2. Product Details
+		 3. Reject Button
+		 4. Commet
+									
+Acceptance Criteria:
+		
+		Below mandatory data is required the indent form. 
+			1. Driver/Agent name: char, Format (Salutation, Firstname, Middle name and Last name) validation  
+			   required.  
+			2. Driver/Agent contact details: int, multiple fields for cell phone, office phone (max three)  
+			   validation required. 
+			3. Driver/Agent email id: varchar, multiple fields (max three), validation required.
+			4. Details of Products(Fruits and Vegetables): varchar, search field should be displayed where user 
+			   can search for the product and select the product. 
+			5. Selected product should be displayed along with the designated unique product number one below the 
+			   other.  
+
+	        Note: Salutation and Middle name may not be mandatory. 
+		
+		Reject Button
+		Reject : On Selection of the Radio Button comment box should enable and notify through application to Driver/Agent with Rejection comments saying that indent creation is rejected
+		
+		Comment Box : For Rejection Comment.
+		
+Action Result:	
+		Driver/Agent will be notified once Rejected.
+		Show validation message if any of rejection criteria is not fulfilled.  
+		

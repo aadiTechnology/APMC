@@ -1,0 +1,36 @@
+Title: Create Indent .
+
+Prerequisite:
+		First Admin Approved the Regsration then merchant create indent.
+		
+	
+Description : As a Merchant I want to save Indent with supplier, driver  & vehicle details to notify APMC Admin   . 
+
+			Form need following details:
+				 Indent Details
+					Order No, Material Name , Material Weight (kg) , ETA Time
+				 Other Details
+					Driver Name,Driver No , Vehicle No, Supplier Name,Supplier No  
+				
+				Submit and  Reset button.
+			
+			Acceptance Criteria:
+			
+			Input data field to enter 
+			
+			1. Order No : (Required field) 
+			2. Material Name : (Enter only char. required field)
+			3. Material Weight (kg) : (Required field) 
+			4. ETA Time : (Not required field)
+			5. Driver Name:(Enter only char. required field)
+			6. Driver No : (Enter only Int, required field)
+			7. Vehicle No : (Not Required field) 
+			8. Supplier Name : (Not required field)
+			9. Supplier No : (Not required field)
+
+		Add: save the indent details 
+		Update: update the details, if any field data change 
+		
+		
+		Action Result :
+		After submiting  details to show succesfully Alert otherwise show Validation .

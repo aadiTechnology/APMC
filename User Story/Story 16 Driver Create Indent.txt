@@ -1,0 +1,39 @@
+Title: Create Indent by driver .
+
+Description : 
+      As a Driver,I want to create Indent with personal & vehicle details to notify Merchant. 
+     
+   	 Form should have following details:
+		1)Merchant Details.
+		2)Product Details
+		3)Driver Details
+		4)Add Section
+		5)Update Section
+			
+Acceptance Criteria:
+			
+			Below mandatory input data is required to fill the form. 
+			Operator To Select dropdown (Merchant or Driver)			
+
+			1. Merchant's name: Auto fill 
+			2. Merchant's contact details: Auto fill
+			3. Merchant's email id: Auto fill
+			4. Stall Details: Auto fill
+			5. Driver/Agent name: char, Format (Salutation, Firstname, Middle name and Last name) validation  
+			   required.  
+			6. Driver/Agent contact details: int, multiple fields for cell phone, office phone (max three)  
+			   validation required. 
+			7. Driver/Agent email id: varchar, multiple fields (max three), validation required.
+			8. Vehicle Details: vehicle number,varchar validation required.
+		        9. Product details & its weight(Fruits and Vegetables ): Autosearch and multiselections.
+		        10. Order Id : varchar
+		        11. Supplier Name:char, Format (Salutation, Firstname, Middle name and Last name) 
+		       12. Supplier Number:int, multiple fields for cell phone, office phone (max three) 
+ 
+			    
+		Add Button: save the indent details and send the notification to merchant for approval(add the data into Indent)
+		Update Button: update the details, if any field data change
+		
+Action Result :
+		Show success message stating that the indent created successfully.
+    	Show validation message if any of acceptance criteria is not fulfilled.

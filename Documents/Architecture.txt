@@ -1,0 +1,10 @@
+#2cabe3
+Mobile Appllication
+
+Notes:
+1.Hybrid App - web and angular code / android host 
+2.Framework 
+3.Notification to mobile - Azure functions need for it. Post/pull base mechnism 
+4.Send data from API in jason format
+5..net core or normal is almost same.
+6.CLI 

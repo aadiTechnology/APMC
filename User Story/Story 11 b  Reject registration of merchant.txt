@@ -1,0 +1,36 @@
+Title: Reject registration of Merchant.
+
+Description :
+
+        As a Admin,I should have ability to Reject the  Merchant details /Product details
+		
+		Form should have following details:
+		1. Merchant Details
+		2. Product Details
+		3. Reject Section	
+		4. Comment Box
+        		  
+Acceptance Criteria:
+				
+		Below mandatory input data is required to fill the form. 
+			1. Merchant's name: char,Format(Salutation, Firstname, middle name and Last name) validation 
+			   required.  
+			2. Merchant's Address: varchar,Format(Survey No,Building Name,Building No,Road Name,Area Name,Nearest 
+			   Landmark,Pin Code)validation required.
+			3. Merchant's contact details: int, multiple fields for cell phone, office phone (max three), fax,  
+			   validation required. 
+			4. Merchant's email id: varchar, multiple fields (max three), validation required.
+			5. Stall Details: Varchar
+			6. Details of Products (Fruits and Vegetables): varchar, serach field should be displayed where user 
+			   can serach for the product and select the product. 
+				Selected product should be displayed along with the designated unique product number one below the other.  
+
+		Reject : On click of Reject set the Radio button field to false and notify through application to Merchant 
+		         with Rejection comments saying that registration is rejected. 
+		Comment Box : For Rejection Comment.
+				
+Action Result:
+		
+		Show Failed message stating that the registration of Merchant is Rejected. 
+    	Merchant will be notified once Rejected.
+		Show validation message if any of Rejection criteria is not fulfilled. 

@@ -1,0 +1,36 @@
+Title: Login Functionality.
+
+Description:
+	
+	As a registered user,I am able to login with a user id and password so I can securely access my profile online.
+		
+Prerequisite: 
+		User is able to download mobile app from app store. Andriod and iOS. User should be able to see the Login page and navigated to the login form.
+		
+		Form should have following details:
+		
+		1)Username/user id
+		2)Password 
+		3)Login Button
+		4)Reset Button
+		
+		  
+Acceptance Criteria:
+
+		Below mandatory input data is required to fill the form.
+		1)Username /user id : varchar,registered email-Id or registered Mobile number , Validation required(Specific Email Id,Specific Mobile Number )
+		2)Password : nvarchar,Validation required(At least 7 char, 1 number, 1 uppercase letter, 1 lowercase 
+				  letter, 1 special character) 
+		
+		Login Button: Login the account if the details are validate
+		Reset Button: reset all the input fields. 
+							
+		Note: change your password every 90 days for security reason.
+			
+Action Result:
+
+		Show success message stating that the Login is successfully.
+		Show validation message like,
+		My  Username/user id is incorrect – display an error message.
+		my password doesn’t match – display an error message.
+		my password has expired – display an error message.
