@@ -50,7 +50,7 @@ namespace MyProject.WebAPI.Controllers
         //    //return RepositoryWrapper.Employee.FindByCondition(x => x.Id.Equals(2));            
 
         //}
-        [HttpGet]
+        [HttpGet("GetEmployees")]
         public IActionResult GetEmployees([FromQuery] EmployeeParameters employeeParameters)
         {
             var employees = RepositoryWrapper.Employee.GetEmployees(employeeParameters);
