@@ -1,0 +1,252 @@
+<ion-card>
+  <ion-card-content>
+    <ion-grid>
+      <form
+        novalidate
+        autocomplete="off"
+        name="RegistrationForm"
+        #RegistrationForm="ngForm"
+        (ngSubmit)="register(RegistrationForm)"
+      >
+        <ion-row>
+          <ion-col size="12" size-sm size-md size-lg size-xl>
+            <ion-item>
+              <ion-label>Role</ion-label>
+              <ion-select>
+                <ion-select-option value="brown">Admin</ion-select-option>
+                <ion-select-option value="blonde">Merchant</ion-select-option>
+                <ion-select-option value="black">Driver</ion-select-option>
+                <ion-select-option value="red">Gate Operator</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+          <ion-col size="12" size-sm size-md size-lg size-xl>
+            <ion-item>
+              <ion-label position="floating">First Name</ion-label>
+              <ion-input
+                type="text"
+                [(ngModel)]="user.firstName"
+                required
+                pattern="[a-zA-Z ]*"
+                #FiledFirstName="ngModel"
+                name="FiledFirstName"
+                [ngClass]="{'has-error': FiledFirstName.invalid && (FiledFirstName.dirty || FiledFirstName.touched || RegistrationForm.submitted) }"
+              ></ion-input>
+              <div
+                *ngIf="FiledFirstName.invalid && (FiledFirstName.dirty || FiledFirstName.touched || RegistrationForm.submitted)"
+                class="text-danger"
+              >
+                <div [hidden]="!FiledFirstName.errors.required">
+                  First name is required
+                </div>
+                <div [hidden]="!FiledFirstName.errors.pattern">
+                  Enter valid first name
+                </div>
+              </div>
+            </ion-item>
+          </ion-col>
+          <ion-col size="12" size-sm size-md size-lg size-xl>
+            <ion-item>
+              <ion-label position="floating">Last Name</ion-label>
+              <ion-input
+                type="text"
+                [(ngModel)]="user.lastName"
+                required
+                pattern="[a-zA-Z ]*"
+                #FiledLastName="ngModel"
+                name="FiledLastName"
+                [ngClass]="{'has-error': FiledLastName.invalid && (FiledLastName.dirty || FiledLastName.touched || RegistrationForm.submitted) }"
+              ></ion-input>
+              <div
+                *ngIf="FiledLastName.invalid && (FiledLastName.dirty || FiledLastName.touched || RegistrationForm.submitted)"
+                class="text-danger"
+              >
+                <div [hidden]="!FiledLastName.errors.required">
+                  Last name is required
+                </div>
+                <div [hidden]="!FiledLastName.errors.pattern">
+                  Enter valid last name
+                </div>
+              </div>
+            </ion-item>
+          </ion-col>
+          <ion-col size="12" size-sm size-md size-lg size-xl>
+            <ion-item>
+              <ion-label position="floating">Mobile Number</ion-label>
+              <ion-input
+                type="text"
+                [(ngModel)]="user.mobileNumber"
+                required
+                pattern="[0-9]*"
+                maxlength="10"
+                #FieldMobileNumber="ngModel"
+                name="FieldMobileNumber"
+                [ngClass]="{'has-error': FieldMobileNumber.invalid && (FieldMobileNumber.dirty || FieldMobileNumber.touched || RegistrationForm.submitted) }"
+              ></ion-input>
+              <div
+                *ngIf="FieldMobileNumber.invalid && (FieldMobileNumber.dirty || FieldMobileNumber.touched || RegistrationForm.submitted)"
+                class="text-danger"
+              >
+                <div [hidden]="!FieldMobileNumber.errors.required">
+                  Mobile number is required
+                </div>
+                <div [hidden]="!FieldMobileNumber.errors.pattern">
+                  Enter valide mobile number
+                </div>
+              </div>
+            </ion-item>
+          </ion-col>
+          <ion-col size="12" size-sm size-md size-lg size-xl>
+            <ion-item>
+              <ion-label position="floating">Email</ion-label>
+              <ion-input
+                type="text"
+                [(ngModel)]="user.email"
+                required
+                #FieldEmail="ngModel"
+                name="FieldEmail"
+                [ngClass]="{'has-error': FieldEmail.invalid && (FieldEmail.dirty || FieldEmail.touched || RegistrationForm.submitted) }"
+              ></ion-input>
+              <div
+                *ngIf="FieldEmail.invalid && (FieldEmail.dirty || FieldEmail.touched || RegistrationForm.submitted)"
+                class="text-danger"
+              >
+                <div [hidden]="!FieldEmail.errors.required">
+                  Email id is required
+                </div>
+                <div [hidden]="!FieldEmail.errors.pattern">
+                  Enter valid email id
+                </div>
+              </div>
+            </ion-item>
+          </ion-col>
+          <ion-col size="12" size-sm size-md size-lg size-xl>
+            <ion-item>
+              <ion-label position="floating">User Name</ion-label>
+              <ion-input
+                type="text"
+                [(ngModel)]="user.userName"
+                required
+                pattern="[a-zA-Z ]*"
+                #FieldUserName="ngModel"
+                name="FieldUserName"
+                [ngClass]="{'has-error': FieldUserName.invalid && (FieldUserName.dirty || FieldUserName.touched || RegistrationForm.submitted) }"
+              ></ion-input>
+              <div
+                *ngIf="FieldUserName.invalid && (FieldUserName.dirty || FieldUserName.touched || RegistrationForm.submitted)"
+                class="text-danger"
+              >
+                <div [hidden]="!FieldUserName.errors.required">
+                  User name is required
+                </div>
+                <div [hidden]="!FieldUserName.errors.pattern">
+                  Enter valid user name
+                </div>
+              </div>
+            </ion-item>
+          </ion-col>
+          <ion-col size="12" size-sm size-md size-lg size-xl>
+            <ion-item>
+              <ion-label position="floating">Password</ion-label>
+              <ion-input
+                type="password"
+                [(ngModel)]="user.password"
+                required
+                [ngClass]="{'has-error': FieldPassword.invalid && (FieldPassword.dirty || FieldPassword.touched || RegistrationForm.submitted) }"
+                #FieldPassword="ngModel"
+                #FieldPasswordInput
+                name="FieldPassword"
+              >
+              </ion-input>
+              <ion-icon
+                end
+                (click)="togglePasswordShow(FieldPasswordInput)"
+                [hidden]="showPassword"
+                name="eye-off-outline"
+              ></ion-icon>
+              <ion-icon
+                end
+                (click)="togglePasswordShow(FieldPasswordInput)"
+                [hidden]="!showPassword"
+                name="eye-outline"
+              ></ion-icon>
+
+              <div
+                *ngIf="FieldPassword.invalid && (FieldPassword.dirty || FieldPassword.touched || RegistrationForm.submitted)"
+                class="text-danger"
+              >
+                <div [hidden]="!FieldPassword.errors.required">
+                  Password is required
+                </div>
+              </div>
+            </ion-item>
+          </ion-col>
+          <ion-col size="12" size-sm size-md size-lg size-xl>
+            <ion-item>
+              <ion-label position="floating">Confirm Password</ion-label>
+
+              <ion-input
+                type="password"
+                [(ngModel)]="user.confirmPassword"
+                required
+                [ngClass]="{'has-error': FieldConfirmPassword.invalid && (FieldConfirmPassword.dirty || FieldConfirmPassword.touched || RegistrationForm.submitted) }"
+                #FieldConfirmPassword="ngModel"
+                #FieldConfirmPasswordInput
+                name="FieldConfirmPassword"
+              >
+              </ion-input>
+              <ion-icon
+                (click)="toggleConfirmPasswordShow(FieldConfirmPasswordInput)"
+                class="show-option"
+                item-right
+                [hidden]="showConfirmPassword"
+                name="eye-off-outline"
+              ></ion-icon>
+              <ion-icon
+                (click)="toggleConfirmPasswordShow(FieldConfirmPasswordInput)"
+                class="hide-option"
+                right
+                [hidden]="!showConfirmPassword"
+                name="eye-outline"
+              ></ion-icon>
+              <div
+                *ngIf="FieldConfirmPassword.invalid && (FieldConfirmPassword.dirty || FieldConfirmPassword.touched || RegistrationForm.submitted)"
+                class="text-danger"
+              >
+                <div [hidden]="!FieldConfirmPassword.errors.required">
+                  Confirm password is required
+                </div>
+              </div>
+              <div
+                *ngIf="!checkPassword() && !FieldConfirmPassword?.errors?.required"
+                class="invalid-feedback"
+                style="display: block;"
+              >
+                <span class="fa fa-exclamation-circle"></span>
+                Password mismatch
+              </div>
+            </ion-item>
+          </ion-col>
+          <ion-col size="6" size-sm size-md size-lg size-xl>
+            <button
+              type="submit"
+              value="Register"
+              class="btn btn-primary btn-block"
+            >
+              Register
+            </button>
+          </ion-col>
+          <ion-col size="6" size-sm size-md size-lg size-xl>
+            <button
+              type="reset"
+              value="Reset"
+              class="btn btn-secondary btn-block"
+            >
+              Reset
+            </button>
+          </ion-col>
+        </ion-row>
+      </form>
+    </ion-grid>
+  </ion-card-content>
+</ion-card>

@@ -11,6 +11,7 @@ namespace MyProject.Repository
         private RepositoryContext _repoContext;
         private IEmployeeRepository _employee;
         private IAppUsersRepository _appUsers;
+        private IStallDetailsRepository _stallDetails;
         
         public IEmployeeRepository Employee
         {
@@ -62,6 +63,27 @@ namespace MyProject.Repository
             }
 
         }
+
+        public IStallDetailsRepository StallDetails
+        {
+            get
+            {
+                if (_stallDetails == null)
+                {
+                    _stallDetails = new StallDetailsRepository(_repoContext);
+                }
+                return _stallDetails;
+            }
+            set
+            {
+                if (_stallDetails == null)
+                {
+                    _stallDetails = new StallDetailsRepository(_repoContext);
+                };
+            }
+
+        }
+
         public RepositoryWarpper(RepositoryContext repositoryContext)
         {
             _repoContext = repositoryContext;

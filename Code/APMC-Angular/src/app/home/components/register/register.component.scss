@@ -1,0 +1,12 @@
+ion-card {
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+  ion-card-content {
+    overflow: hidden;
+    overflow-y: auto;
+    ::-webkit-scrollbar {
+      display: none;
+    }
+  }
+}
