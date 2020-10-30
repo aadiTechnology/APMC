@@ -10,5 +10,4 @@ export class LoginLayoutComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {}
-
 }
