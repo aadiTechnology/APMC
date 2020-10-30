@@ -4,6 +4,8 @@ import { LoginComponent } from './home/components/login/login.component';
 import { RegisterComponent } from './home/components/register/register.component';
 import { LoginLayoutComponent } from './shared/layouts/login-layout/login-layout.component';
 import { MainLayoutComponent } from './shared/layouts/main-layout/main-layout.component';
+import { SignupComponent } from './home/components/signup/signup.component';
+
 
 const routes: Routes = [
   {
@@ -32,6 +34,14 @@ const routes: Routes = [
         component: RegisterComponent,
         data: {
           title: 'Register',
+          prelod: true,
+        },
+      },
+      {
+        path: 'signUp',
+        component: SignupComponent,
+        data: {
+          title: 'SignUp',
           prelod: true,
         },
       },
