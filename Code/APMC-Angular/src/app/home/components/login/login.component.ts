@@ -9,7 +9,7 @@ import { HomeService } from '../../home.service';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  user: { UserName: string; Password: string };
+  user: { UserName:string; Password:string };
   showPassword: boolean;
   constructor(private homeService: HomeService, private router: Router) {
     this.user = {
@@ -20,12 +20,16 @@ export class LoginComponent implements OnInit {
   ngOnInit() {}
   login(form: NgForm, user) {
     if (form.valid) {
+      console.log(form.value)
       this.homeService.login(user).subscribe((arg) => {
         if (arg) {
           sessionStorage.setItem('AccessToken', arg.token);
           this.router.navigate(['/merchant']);
         }
       });
+    }
+    else{
+      console.log(form.value)
     }
   }
 

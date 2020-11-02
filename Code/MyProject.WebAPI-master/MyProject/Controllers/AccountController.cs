@@ -29,7 +29,7 @@ namespace MyProject.WebAPI.Controllers
         public ITokenManager TokenMgr { get; set; }
 
         [HttpPost("Register")]
-        public ActionResult<UserDto> Register(RegisterDto registerDto)
+        public ActionResult<UserDto> Register([FromBody]RegisterDto registerDto)
         {
             using var hmac = new HMACSHA512();
             var user = new AppUsers

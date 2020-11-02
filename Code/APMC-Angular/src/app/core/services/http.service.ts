@@ -39,7 +39,10 @@ export class HttpService {
       .set('Cache-control', 'no-store')
       .set('Expires', '0')
       .set('Pragma', 'no-cache')
-      .set('Access-Control-Expose-Headers', '*');
+      .set('Access-Control-Expose-Headers', '*')
+      .set('Content-Type', 'application/json')
+      .set('Accept', 'application/json')
+      .set('Content-Type', 'application/x-www-form-urlencoded');
     return this.httpRequest(
       this.http.get(environment.api + url, { headers: headers })
     ) as Observable<T>;
@@ -51,10 +54,10 @@ export class HttpService {
    * @param data payload to send
    */
   post<T, M>(url: string, data: M): Observable<T> {
-    const formData: any = new FormData();
-    formData.append('RequestData', JSON.stringify(data));
+    //const formData: any = new FormData();
+    //formData.append('RequestData', JSON.stringify(data));
     return this.httpRequest(
-      this.http.post(environment.api + url, formData, this.getHttpHeader())
+      this.http.post(environment.api + url, data, this.getHttpHeader())
     ).pipe(map((response: T) => response)) as Observable<T>;
   }
 
@@ -64,20 +67,21 @@ export class HttpService {
    * @param data payload to send
    */
   postAnonymous<T>(url: string, data: T): Observable<any> {
-    const formData: any = new FormData();
-    formData.append('RequestData', JSON.stringify(data));
-    const headers = new HttpHeaders()
-      .set('Cache-control', 'no-cache')
-      .set('Cache-control', 'no-store')
-      .set('Expires', '0')
-      .set('Pragma', 'no-cache')
-      .set('Access-Control-Expose-Headers', '*');
-    return this.httpRequest(
-      this.http.post(environment.api + url, formData, {
-        headers: headers,
-      })
-    ).pipe(map((response: any) => response)) as Observable<any>;
-  }
+    // const formData: any = new FormData();
+    // formData.append('RequestData', JSON.stringify(data));
+     const headers = new HttpHeaders()
+       .set('Cache-control', 'no-cache')
+      // .set('Cache-control', 'no-store')
+       //.set('Expires', '0')
+     //  .set('Pragma', 'no-cache')
+       .set('Content-Type', 'application/json')
+      // .set('Access-Control-Expose-Headers', '*');
+     return this.httpRequest(
+       this.http.post(environment.api + url, data, {
+         headers: headers,
+       })
+     ).pipe(map((response: any) => response)) as Observable<any>;
+   }
 
   uploadDocument<T>(url: string, data: T): Observable<any> {
     const formData: any = new FormData();
