@@ -139,5 +139,6 @@
   "defaultProject": "APMCUI",
   "cli": {
     "analytics": "2fc027d6-ad5c-497b-b833-59119dd86655"
+   // "analytics": "a85c16a6-87a2-4681-8898-d63aac665a2d"
   }
 }
