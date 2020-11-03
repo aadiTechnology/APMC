@@ -1,49 +1,30 @@
-ion-card {
-  padding-top: 80px;
-  max-height: 100%;
-  display: flex;
-  flex-direction: column;
-  ion-card-content {
-    overflow: hidden;
-    overflow-y: auto;
-    ::-webkit-scrollbar {
-      display: none;
-    }
-  }
-}
-
-#container {
+.divider-text {
+  position: relative;
   text-align: center;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+.divider-text span {
+  padding: 7px;
+  font-size: 12px;
+  position: relative;   
+  z-index: 2;
+}
+.divider-text:after {
+  content: "";
   position: absolute;
+  width: 100%;
+  border-bottom: 1px solid #ddd;
+  top: 55%;
   left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: #757a7d8a;
-  
+  z-index: 1;
 }
 
-.text-danger{
-  color: red;
+.btn-facebook {
+  background-color: #405D9D;
+  color: #fff;
 }
-
-.right {
-  margin-left: auto !important;
-
+.btn-twitter {
+  background-color: #42AEEC;
+  color: #fff;
 }
-
-.login_btn{
-  color: black;
-  background-color: #8fd95c;
-  width: 100px;
-  padding: 13px;
-  font-weight: bold;
-  font-size: large;
-  }
-  
-  .login_btn:hover{
-  color: black;
-  background-color:  #8fd95c;
-  border-color: black;
-  }
-  

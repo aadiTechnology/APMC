@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
+import { CommonService } from '../../common.service';
 
 @Component({
   selector: 'app-register',
@@ -6,10 +9,48 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
+  user: {
+    roleId:number;
+    firstName: string;
+    lastName: string;
+    mobileNumber: string;
+    email: string;
+    userName: string;
+    password: string;
+    confirmPassword: string;
+  };
+  constructor(private commonService: CommonService,private router: Router
+    ) {
+    this.user = {
+      roleId:null,
+      firstName: null,
+      lastName: null,
+      mobileNumber: null,
+      email: null,
+      userName: null,
+      password: null,
+      confirmPassword: null,
+    };
 
-  constructor() { }
+   }
 
   ngOnInit(): void {
   }
-
+  checkPassword() {
+    return this.user.password === this.user.confirmPassword ? true : false;
+  }
+ signup(form: NgForm,user) {
+    if (form.valid) {
+      console.log(form.value)
+      this.commonService.signup(user).subscribe((arg) => {
+        if (arg) {
+          sessionStorage.setItem('AccessToken', arg.token);
+          this.router.navigate(['/merchant']);
+        }
+      });
+    }
+    else{
+      console.log(form.value)
+    }
+ }
 }

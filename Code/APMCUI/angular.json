@@ -116,7 +116,9 @@
               "tsconfig.spec.json",
               "e2e/tsconfig.json"
             ],
-            "exclude": ["**/node_modules/**"]
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         },
         "e2e": {
@@ -134,5 +136,8 @@
       }
     }
   },
-  "defaultProject": "APMCUI"
+  "defaultProject": "APMCUI",
+  "cli": {
+    "analytics": "a85c16a6-87a2-4681-8898-d63aac665a2d"
+  }
 }
