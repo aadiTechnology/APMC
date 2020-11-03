@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 import { CommonFeatureRoutingModule } from './common-feature-routing.module';
@@ -19,7 +20,10 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { FormsModule } from '@angular/forms';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatInputModule} from '@angular/material/input';
+
+
 @NgModule({
   declarations: [CommonFeatureComponent, LoginComponent, RegisterComponent],
   imports: [
@@ -40,6 +44,8 @@ import { FormsModule } from '@angular/forms';
     MatMenuModule,
     MatFormFieldModule,
     FormsModule,
+    MatTabsModule,
+    MatInputModule
   ],
 })
 export class CommonFeatureModule {}

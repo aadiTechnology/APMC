@@ -23,6 +23,7 @@ import { FormsModule } from '@angular/forms';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from './shared/shared.module';
+import { MatTabsModule } from '@angular/material/tabs';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -46,6 +47,7 @@ import { SharedModule } from './shared/shared.module';
     RouterModule,
     MatGridListModule,
     SharedModule,
+    MatTabsModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
     }),
