@@ -1,18 +1,12 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using MyProject.Contracts;
+using MyProject.Entities.DataTransferObjects;
+using MyProject.Entities.Models;
+using MyProject.Security.Auth;
 using System.Collections.Generic;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
-using AutoMapper;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using MyProject.Contracts;
-using MyProject.Entities.Models;
-using MyProject.Security;
-using MyProject.Entities.DataTransferObjects;
-using MyProject.Security.Auth;
 
 namespace MyProject.WebAPI.Controllers
 {
@@ -54,15 +48,15 @@ namespace MyProject.WebAPI.Controllers
         [HttpPost("Login")]
         public ActionResult<UserDto> Login(LoginDto loginDto)
         {
-            //var user = RepositoryWrapper.AppUsers.GetUsers(loginDto);
-            //if (user == null) return Unauthorized("Invalid User Name provided.");
+            var user = RepositoryWrapper.AppUsers.GetUsers(loginDto);
+            if (user == null) return Unauthorized("Invalid User Name provided.");
 
-            //using var hmac = new HMACSHA512(user.PasswordSalt);
-            //var computHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(loginDto.Password));
-            //for (int i = 0; i < computHash.Length; i++)
-            //{
-            //    if (computHash[i] != user.PasswordHash[i]) return Unauthorized("Invalid Password provided.");
-            //}
+            using var hmac = new HMACSHA512(user.PasswordSalt);
+            var computHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(loginDto.Password));
+            for (int i = 0; i < computHash.Length; i++)
+            {
+                if (computHash[i] != user.PasswordHash[i]) return Unauthorized("Invalid Password provided.");
+            }
 
             return new UserDto
             {
