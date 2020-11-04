@@ -1,5 +1,4 @@
-USE [master]
-GO
+
 /****** Object:  Database [APMC]    Script Date: 28/10/2020 12:22:41 PM ******/
 CREATE DATABASE [APMC]
  CONTAINMENT = NONE

@@ -4,17 +4,23 @@
   }
     
  .card{
-    height: 575px;
+    height: auto;
     margin-top: auto;
     margin-bottom: auto;
     width: 400px;
     
  }
+ .card-header h2{
+    text-align: center;
+    color: #28a745;
+    font:bold 25px arial;
+    }
+    
 
 .input-group-prepend span{
     width: 50px;
     background-color:#65af68;
-    color: black;
+    color: white;
     border:0 !important;
 }
 .input:focus{
@@ -26,4 +32,22 @@
     align-items: center;
     padding-left: 11px;
 }
+.text-danger{
+    margin-top: -11px !important;
+    text-align: center;
+  }
 
+  .placeholder{
+    position: absolute;
+    top: 5px;
+    bottom: 0;
+    height: 24px;
+    font-size: 25px;
+    margin: auto;
+    right: 25px;
+}
+
+.input-placeholder {
+  position: relative;
+  width: 250px;
+}

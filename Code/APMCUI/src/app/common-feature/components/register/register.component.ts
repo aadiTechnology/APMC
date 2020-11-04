@@ -9,6 +9,7 @@ import { CommonService } from '../../common.service';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
+  hide: boolean = true;
   user: {
     roleId:number;
     firstName: string;
@@ -36,6 +37,10 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  myFunction(){
+    this.hide = !this.hide;
+  }
+  
   checkPassword() {
     return this.user.password === this.user.confirmPassword ? true : false;
   }

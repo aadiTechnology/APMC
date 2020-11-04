@@ -1,8 +1,8 @@
 <div class="container">
 	<div class="d-flex justify-content-center h-100">
 		<div class="card">
-			<div class=" mx-auto">
-				<h3>Sign Up</h3>
+			<div class=" card-header">
+				<h2>Sign Up</h2>
 				<div class="">
 			</div>
 			</div>
@@ -47,9 +47,9 @@
                           #FiledFirstName="ngModel"
                            name="FiledFirstName"
 			             	[ngClass]="{'has-error': FiledFirstName.invalid && (FiledFirstName.dirty || 
-			               	FiledFirstName.touched) }">
+			               	FiledFirstName.touched || SignupForm.submitted) }">
 			</div>
-                <div *ngIf="FiledFirstName.invalid && (FiledFirstName.dirty || FiledFirstName.touched)"
+                <div *ngIf="FiledFirstName.invalid && (FiledFirstName.dirty || FiledFirstName.touched || SignupForm.submitted)"
                    class="text-danger" >
                 <div [hidden]="!FiledFirstName.errors.required">
                   First Name is required
@@ -152,6 +152,7 @@
 				<div class="input-group-prepend">
 					<span class="material-icons"><i class="fas fa-key">vpn_key</i></span>
 				</div>
+				<span class="input-placeholder">
 					<input type="password" class="form-control" placeholder="Password" [(ngModel)]="user.password"
 					required
 					 maxlength="8"
@@ -159,8 +160,9 @@
 					   [ngClass]="{'has-error': FieldPassword.invalid && (FieldPassword.dirty || FieldPassword.touched || SignupForm.submitted) }"
 						#FieldPassword="ngModel"
 						  #FieldPasswordInput
-						  name="FieldPassword">	
-						  					 
+						  name="FieldPassword" [type]="hide ? 'password' : 'text'"  >
+						  <mat-icon class="placeholder" (click)="myFunction()">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>  
+					  </span>								 
 			</div>
 			  <div *ngIf="FieldPassword.invalid && (FieldPassword.dirty || FieldPassword.touched || SignupForm.submitted)"
                  class="text-danger">
@@ -175,6 +177,7 @@
 				<div class="input-group-prepend">
 		 			<span class="material-icons"><i class="fas fa-user">vpn_key</i></span>
 				</div>
+				<span class="input-placeholder">
 					<input type="password" class="form-control" placeholder="Confirm Password"
 					 [(ngModel)]="user.confirmPassword"
 			    		required
@@ -183,7 +186,10 @@
 						    FieldConfirmPassword.touched || SignupForm.submitted) }"
 						     #FieldConfirmPassword="ngModel"
 						      #FieldConfirmPasswordInput
-						       name="FieldConfirmPassword">
+							   name="FieldConfirmPassword"
+							   [type]="hide ? 'password' : 'text'"  >
+					<mat-icon class="placeholder" (click)="myFunction()">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>  
+				</span>				 
 			 </div>
 				<div *ngIf="FieldConfirmPassword.invalid && (FieldConfirmPassword.dirty || FieldConfirmPassword.touched || SignupForm.submitted)"
                 class="text-danger">
@@ -196,7 +202,8 @@
                 style="display: block;">
                 <span class="fa fa-exclamation-circle"></span>
                 Password Mismatch
-              </div>
+			  </div><br>
+			  
                     <div class="input-group form-group">
 					<div class="mx-auto">
                         <input type="submit" value="Register" class="btn btn-success">&nbsp;&nbsp;&nbsp;
