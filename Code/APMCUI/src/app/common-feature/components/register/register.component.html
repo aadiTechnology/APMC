@@ -16,7 +16,7 @@
           <div class="input-group form-group">
             <div class="input-group-prepend">
               <span class="input-group-text bg-success"
-                ><i class="fas fa-user text-white"></i
+                ><i class="fas fa-users text-white"></i
               ></span>
             </div>
             <select
@@ -26,8 +26,8 @@
               #FieldRole="ngModel"
               [(ngModel)]="user.roleId"
             >
-              <option value="null" selected disabled hidden
-                >--Choose a Role--</option
+              <option  value="null" selected disabled hidden
+                >Select a Role</option
               >
               <option value="0">Admin</option>
               <option value="1">Merchant</option>
@@ -69,10 +69,10 @@
             class="text-danger"
           >
             <div [hidden]="!FiledFirstName.errors.required">
-              First Name is required
+              First name is required
             </div>
             <div [hidden]="!FiledFirstName.errors.pattern">
-              Enter valid First Name
+              Enter valid first name
             </div>
           </div>
 
@@ -101,17 +101,17 @@
             class="text-danger"
           >
             <div [hidden]="!FiledLastName.errors.required">
-              Last Name is required
+              Last name is required
             </div>
             <div [hidden]="!FiledLastName.errors.pattern">
-              Enter valid Last Name
+              Enter valid last name
             </div>
           </div>
 
           <div class="input-group form-group">
             <div class="input-group-prepend">
               <span class="input-group-text bg-success"
-                ><i class="fas fa-user text-white"></i
+                ><i class="fas fa-phone text-white"></i
               ></span>
             </div>
             <input
@@ -133,17 +133,17 @@
             class="text-danger"
           >
             <div [hidden]="!FieldMobileNumber.errors.required">
-              Mobile Number is required
+              Mobile number is required
             </div>
             <div [hidden]="!FieldMobileNumber.errors.pattern">
-              Enter valide Mobile Number
+              Enter valide mobile number
             </div>
           </div>
 
           <div class="input-group form-group">
             <div class="input-group-prepend">
               <span class="input-group-text bg-success"
-                ><i class="fas fa-user text-white"></i
+                ><i class="fas fa-at text-white"></i
               ></span>
             </div>
             <input
@@ -164,10 +164,10 @@
             class="text-danger"
           >
             <div [hidden]="!FieldEmail.errors.required">
-              Email Id is required
+              Email id is required
             </div>
             <div [hidden]="!FieldEmail.errors.pattern">
-              Enter valid Email Id
+              Enter valid email id
             </div>
           </div>
           <div class="input-group form-group">
@@ -179,10 +179,9 @@
             <input
               type="text"
               class="form-control"
-              placeholder="User Name"
+              placeholder="User Id"
               [(ngModel)]="user.userName"
               required
-              pattern="[a-zA-Z ]*"
               #FieldUserName="ngModel"
               name="FieldUserName"
               [ngClass]="{'has-error': FieldUserName.invalid && (FieldUserName.dirty || FieldUserName.touched
@@ -194,18 +193,22 @@
             class="text-danger"
           >
             <div [hidden]="!FieldUserName.errors.required">
-              User Name is required
+              User id is required
             </div>
-            <div [hidden]="!FieldUserName.errors.pattern">
-              Enter valid User Name
-            </div>
+            
           </div>
+          <span class="float-right" style="color: red;">
+          <mat-icon matTooltip="Password should 8 characters minimum,at least 1 uppercase, 1 lowercase and 1 number">informative</mat-icon>
+          </span>
+
+
           <div class="input-group form-group">
             <div class="input-group-prepend">
               <span class="input-group-text bg-success"
-                ><i class="fas fa-user text-white"></i
+                ><i class="fas fa-key text-white"></i
               ></span>
             </div>
+            
             <!-- <span class="input-placeholder"> -->
             <input
               type="password"
@@ -242,8 +245,7 @@
             class="text-danger"
           >
             <div [hidden]="!FieldPassword.errors.pattern">
-              Eight characters minimum,at least 1 uppercase, 1 lowercase and 1
-              number
+               Password required min 8 characters
             </div>
             <div [hidden]="!FieldPassword.errors.required">
               Password is required
@@ -252,7 +254,7 @@
           <div class="input-group form-group">
             <div class="input-group-prepend">
               <span class="input-group-text bg-success"
-                ><i class="fas fa-user text-white"></i
+                ><i class="fas fa-key text-white"></i
               ></span>
             </div>
             <!-- <span class="input-placeholder"> -->
@@ -291,7 +293,7 @@
             class="text-danger"
           >
             <div [hidden]="!FieldConfirmPassword.errors.required">
-              Confirm Password is required
+              Confirm password is required
             </div>
           </div>
           <div
@@ -300,7 +302,7 @@
             style="display: block;"
           >
             <span class="fa fa-exclamation-circle"></span>
-            Password Mismatch
+            Password mismatch
           </div>
           <br />
 
@@ -308,10 +310,10 @@
             <div class="mx-auto">
               <input
                 type="submit"
-                value="Register"
+                value="Sign Up"
                 class="btn btn-success"
               />&nbsp;&nbsp;&nbsp;
-              <input type="reset" value="Cancel" class="btn btn-danger" />
+              <input type="reset" value="Cancel" class="btn btn-danger"  (click)="cancelMethod('user')" >
             </div>
           </div>
         </form>

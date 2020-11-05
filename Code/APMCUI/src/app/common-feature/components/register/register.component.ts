@@ -58,4 +58,10 @@ export class RegisterComponent implements OnInit {
       console.log(form.value)
     }
  }
+
+ cancelMethod(user: string) {
+  if(confirm("Are you sure you want to cancel all details...?")) {
+    this.router.navigate(['/login']);;
+  }
+}
 }
