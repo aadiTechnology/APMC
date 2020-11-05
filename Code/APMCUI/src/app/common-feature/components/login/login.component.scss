@@ -1,56 +1,51 @@
-.box{
-  text-align: center;
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
- 
-}
+// .box {
+//   text-align: center;
+//   position: absolute;
+//   left: 0;
+//   right: 0;
+//   top: 50%;
+//   transform: translateY(-50%);
+// }
 
-.card{
-height: 370px;
-margin-top: auto;
-margin-bottom: auto;
-width: 400px;
-//background-color: rgba(0,0,0,0.5) !important;
-}
+// .card {
+//   height: 370px;
+//   margin-top: auto;
+//   margin-bottom: auto;
+//   width: 400px;
+//   //background-color: rgba(0,0,0,0.5) !important;
+// }
 
-.card-header h3{
-color: black;
-}
+// .card-header h3 {
+//   color: black;
+// }
 
+// .input-group-prepend span {
+//   width: 50px;
+//   background-color: #65af68;
+//   color: black;
+//   border: 0 !important;
+// }
 
+// input:focus {
+//   outline: 0 0 0 0 !important;
+//   box-shadow: 0 0 0 0 !important;
+// }
 
-.input-group-prepend span{
-width: 50px;
-background-color: #65af68;;
-color: black;
-border:0 !important;
-}
+// .remember {
+//   color: black;
+// }
 
-input:focus{
-outline: 0 0 0 0  !important;
-box-shadow: 0 0 0 0 !important;
+// .remember input {
+//   width: 20px;
+//   height: 20px;
+//   margin-left: 15px;
+//   margin-right: 5px;
+// }
 
-}
+// .links {
+//   color: black;
+// }
 
-.remember{
-color: black;
-}
-
-.remember input
-{
-width: 20px;
-height: 20px;
-margin-left: 15px;
-margin-right: 5px;
-}
-
-.links{
-color: black;
-}
-
-.links a{
-margin-left: 4px;
-}
+// .links a {
+//   margin-left: 4px;
+// }

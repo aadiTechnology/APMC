@@ -1,218 +1,321 @@
 <div class="container">
-	<div class="d-flex justify-content-center h-100">
-		<div class="card">
-			<div class=" card-header">
-				<h2>Sign Up</h2>
-				<div class="">
-			</div>
-			</div>
-			<div class="card-body">
-				<form novalidate
-				autocomplete="off"
-				  name="SignupForm"
-				    #SignupForm="ngForm"
-				     (ngSubmit)="signup(SignupForm,user)">
-				
-			<div class="input-group form-group">
-				<div class="input-group-prepend">
-					<span class="material-icons"><i class="fas fa-user">person_search</i></span>
-				</div>
-					<select class="form-control" 
-					name="FieldRole" 
-					required #FieldRole="ngModel"
-					 [(ngModel)]="user.roleId" >
-		    			<option  value="null" selected disabled hidden >--Choose a Role--</option>
-						<option value="0">Admin</option>
-						<option value="1">Merchant</option>
-						<option value="2">Driver</option>
-						<option value="3">Gate Operator</option>
-			        </select>
-			</div>
-			<div *ngIf="FieldRole.invalid && (FieldRole.dirty || FieldRole.touched || SignupForm.submitted)"
-                class="text-danger">              
-              <div [hidden]="!FieldRole.errors.required">
-               Role is required
-              </div>
-			</div>
-			
-			<div class="input-group form-group">
-				<div class="input-group-prepend">
-					<span class="material-icons"><i class="fas fa-user">person</i></span>
-				</div>
-                    <input type="text" class="form-control" placeholder="First Name"
-                     type="text"
-                      [(ngModel)]="user.firstName"
-                        required
-                		 pattern="[a-zA-Z ]*"
-                          #FiledFirstName="ngModel"
-                           name="FiledFirstName"
-			             	[ngClass]="{'has-error': FiledFirstName.invalid && (FiledFirstName.dirty || 
-			               	FiledFirstName.touched || SignupForm.submitted) }">
-			</div>
-                <div *ngIf="FiledFirstName.invalid && (FiledFirstName.dirty || FiledFirstName.touched || SignupForm.submitted)"
-                   class="text-danger" >
-                <div [hidden]="!FiledFirstName.errors.required">
-                  First Name is required
-				</div>
-                <div [hidden]="!FiledFirstName.errors.pattern">
-                  Enter valid First Name
-				</div>
-              </div>	
-                   
-            <div class="input-group form-group">
-				<div class="input-group-prepend">
-					<span class="material-icons"><i class="fas fa-user">person</i></span>
-				</div>
-					<input type="text" class="form-control" placeholder="Last Name"
-						[(ngModel)]="user.lastName"
-                         required
-                          pattern="[a-zA-Z ]*"
-                           #FiledLastName="ngModel"
-                            name="FiledLastName"
-							 [ngClass]="{'has-error': FiledLastName.invalid && (FiledLastName.dirty || FiledLastName.touched 
-							 || SignupForm.submitted) }">	  </div>
-			  
-				 <div *ngIf="FiledLastName.invalid && (FiledLastName.dirty || FiledLastName.touched || SignupForm.submitted)"
-				    class="text-danger">
-                  <div [hidden]="!FiledLastName.errors.required" >
-                    Last Name is required 
-                  </div>
-                   <div [hidden]="!FiledLastName.errors.pattern">
-                    Enter valid Last Name
-                   </div>
-                 </div>
-		
-		    <div class="input-group form-group">
-				<div class="input-group-prepend">
-					<span class="material-icons"><i class="fas fa-user">call</i></span>
-				</div>
-					<input type="text" class="form-control" placeholder="Mobile No"
-						[(ngModel)]="user.mobileNumber"
-                          required
-                           pattern="[0-9]*"
-                            maxlength="10"
-                              #FieldMobileNumber="ngModel"
-                                name="FieldMobileNumber"
-								[ngClass]="{'has-error': FieldMobileNumber.invalid && (FieldMobileNumber.dirty || FieldMobileNumber.touched 
-								|| SignupForm.submitted) }" >						
-			</div>
-				<div *ngIf="FieldMobileNumber.invalid && (FieldMobileNumber.dirty || FieldMobileNumber.touched || SignupForm.submitted)"
-                  class="text-danger">
-                <div [hidden]="!FieldMobileNumber.errors.required">
-                  Mobile Number is required
-                </div>
-                <div [hidden]="!FieldMobileNumber.errors.pattern">
-                  Enter valide Mobile Number
-                </div>
-              </div>
+  <div class="d-flex justify-content-center h-100">
+    <div class="card">
+      <div class="card-header">
+        <h2>Sign Up</h2>
+        <div class=""></div>
+      </div>
+      <div class="card-body">
+        <form
+          novalidate
+          autocomplete="off"
+          name="SignupForm"
+          #SignupForm="ngForm"
+          (ngSubmit)="signup(SignupForm,user)"
+        >
+          <div class="input-group form-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text bg-success"
+                ><i class="fas fa-user text-white"></i
+              ></span>
+            </div>
+            <select
+              class="form-control"
+              name="FieldRole"
+              required
+              #FieldRole="ngModel"
+              [(ngModel)]="user.roleId"
+            >
+              <option value="null" selected disabled hidden
+                >--Choose a Role--</option
+              >
+              <option value="0">Admin</option>
+              <option value="1">Merchant</option>
+              <option value="2">Driver</option>
+              <option value="3">Gate Operator</option>
+            </select>
+          </div>
+          <div
+            *ngIf="FieldRole.invalid && (FieldRole.dirty || FieldRole.touched || SignupForm.submitted)"
+            class="text-danger"
+          >
+            <div [hidden]="!FieldRole.errors.required">
+              Role is required
+            </div>
+          </div>
 
           <div class="input-group form-group">
-				<div class="input-group-prepend">
-					<span class="material-icons"><i class="fas fa-user">alternate_email</i></span>
-				</div>
-		     		<input type="text" class="form-control" placeholder="Email Id"[(ngModel)]="user.email"
-						required
-			    		  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
-				  		    #FieldEmail="ngModel"
-						     name="FieldEmail"
-							[ngClass]="{'has-error': FieldEmail.invalid && (FieldEmail.dirty || FieldEmail.touched 
-							|| SignupForm.submitted) }">
-		   </div>
-			  <div *ngIf="FieldEmail.invalid && (FieldEmail.dirty || FieldEmail.touched || SignupForm.submitted)"
-                 class="text-danger">
-               <div [hidden]="!FieldEmail.errors.required">
-                  Email Id is required
-               </div>
-               <div [hidden]="!FieldEmail.errors.pattern">
-                  Enter valid Email Id
-               </div>
-              </div>
-		  <div class="input-group form-group">
-				<div class="input-group-prepend">
-					<span class="material-icons"><i class="fas fa-user">person</i></span>
-				</div>
-					<input type="text" class="form-control" placeholder="User Name" [(ngModel)]="user.userName"
-				 	required
-					 pattern="[a-zA-Z ]*"
-					  #FieldUserName="ngModel"
-						name="FieldUserName"
-						[ngClass]="{'has-error': FieldUserName.invalid && (FieldUserName.dirty || FieldUserName.touched
-						 || SignupForm.submitted) }" >
-		   </div>
-		   		<div *ngIf="FieldUserName.invalid && (FieldUserName.dirty || FieldUserName.touched || SignupForm.submitted)"
-		  			 class="text-danger" >
-                <div [hidden]="!FieldUserName.errors.required">
-						User Name is required
-				 </div>
-				  <div [hidden]="!FieldUserName.errors.pattern">
-						Enter valid User Name
-				  </div>
-				</div>
-			<div class="input-group form-group">
-				<div class="input-group-prepend">
-					<span class="material-icons"><i class="fas fa-key">vpn_key</i></span>
-				</div>
-				<span class="input-placeholder">
-					<input type="password" class="form-control" placeholder="Password" [(ngModel)]="user.password"
-					required
-					 maxlength="8"
-					  pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d*\w]{8,}$"
-					   [ngClass]="{'has-error': FieldPassword.invalid && (FieldPassword.dirty || FieldPassword.touched || SignupForm.submitted) }"
-						#FieldPassword="ngModel"
-						  #FieldPasswordInput
-						  name="FieldPassword" [type]="hide ? 'password' : 'text'"  >
-						  <mat-icon class="placeholder" (click)="myFunction()">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>  
-					  </span>								 
-			</div>
-			  <div *ngIf="FieldPassword.invalid && (FieldPassword.dirty || FieldPassword.touched || SignupForm.submitted)"
-                 class="text-danger">
-              	<div [hidden]="!FieldPassword.errors.pattern">
-                Eight characters minimum,at least 1 uppercase, 1 lowercase and 1 number
-              	</div>
-                <div [hidden]="!FieldPassword.errors.required">
-                 Password is required
-                </div>
-              </div>
-             <div class="input-group form-group">
-				<div class="input-group-prepend">
-		 			<span class="material-icons"><i class="fas fa-user">vpn_key</i></span>
-				</div>
-				<span class="input-placeholder">
-					<input type="password" class="form-control" placeholder="Confirm Password"
-					 [(ngModel)]="user.confirmPassword"
-			    		required
-						  maxlength="8"
-						   [ngClass]="{'has-error': FieldConfirmPassword.invalid && (FieldConfirmPassword.dirty ||
-						    FieldConfirmPassword.touched || SignupForm.submitted) }"
-						     #FieldConfirmPassword="ngModel"
-						      #FieldConfirmPasswordInput
-							   name="FieldConfirmPassword"
-							   [type]="hide ? 'password' : 'text'"  >
-					<mat-icon class="placeholder" (click)="myFunction()">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>  
-				</span>				 
-			 </div>
-				<div *ngIf="FieldConfirmPassword.invalid && (FieldConfirmPassword.dirty || FieldConfirmPassword.touched || SignupForm.submitted)"
-                class="text-danger">
-                <div [hidden]="!FieldConfirmPassword.errors.required">
-                  Confirm Password is required
-                </div>
-                </div>
-              <div  *ngIf="!checkPassword() && !FieldConfirmPassword?.errors?.required"
-                class="invalid-feedback"
-                style="display: block;">
-                <span class="fa fa-exclamation-circle"></span>
-                Password Mismatch
-			  </div><br>
-			  
-                    <div class="input-group form-group">
-					<div class="mx-auto">
-                        <input type="submit" value="Register" class="btn btn-success">&nbsp;&nbsp;&nbsp;
-                        <input type="reset" value="Cancel" class="btn btn-danger">
-					</div>
-					</div>
-				</form>
-			</div>
-			
-		</div>
-	</div>
+            <div class="input-group-prepend">
+              <span class="input-group-text bg-success"
+                ><i class="fas fa-user text-white"></i
+              ></span>
+            </div>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="First Name"
+              type="text"
+              [(ngModel)]="user.firstName"
+              required
+              pattern="[a-zA-Z ]*"
+              #FiledFirstName="ngModel"
+              name="FiledFirstName"
+              [ngClass]="{'has-error': FiledFirstName.invalid && (FiledFirstName.dirty ||
+			               	FiledFirstName.touched || SignupForm.submitted) }"
+            />
+          </div>
+          <div
+            *ngIf="FiledFirstName.invalid && (FiledFirstName.dirty || FiledFirstName.touched || SignupForm.submitted)"
+            class="text-danger"
+          >
+            <div [hidden]="!FiledFirstName.errors.required">
+              First Name is required
+            </div>
+            <div [hidden]="!FiledFirstName.errors.pattern">
+              Enter valid First Name
+            </div>
+          </div>
 
+          <div class="input-group form-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text bg-success"
+                ><i class="fas fa-user text-white"></i
+              ></span>
+            </div>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Last Name"
+              [(ngModel)]="user.lastName"
+              required
+              pattern="[a-zA-Z ]*"
+              #FiledLastName="ngModel"
+              name="FiledLastName"
+              [ngClass]="{'has-error': FiledLastName.invalid && (FiledLastName.dirty || FiledLastName.touched
+							 || SignupForm.submitted) }"
+            />
+          </div>
+
+          <div
+            *ngIf="FiledLastName.invalid && (FiledLastName.dirty || FiledLastName.touched || SignupForm.submitted)"
+            class="text-danger"
+          >
+            <div [hidden]="!FiledLastName.errors.required">
+              Last Name is required
+            </div>
+            <div [hidden]="!FiledLastName.errors.pattern">
+              Enter valid Last Name
+            </div>
+          </div>
+
+          <div class="input-group form-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text bg-success"
+                ><i class="fas fa-user text-white"></i
+              ></span>
+            </div>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Mobile No"
+              [(ngModel)]="user.mobileNumber"
+              required
+              pattern="[0-9]*"
+              maxlength="10"
+              #FieldMobileNumber="ngModel"
+              name="FieldMobileNumber"
+              [ngClass]="{'has-error': FieldMobileNumber.invalid && (FieldMobileNumber.dirty || FieldMobileNumber.touched
+								|| SignupForm.submitted) }"
+            />
+          </div>
+          <div
+            *ngIf="FieldMobileNumber.invalid && (FieldMobileNumber.dirty || FieldMobileNumber.touched || SignupForm.submitted)"
+            class="text-danger"
+          >
+            <div [hidden]="!FieldMobileNumber.errors.required">
+              Mobile Number is required
+            </div>
+            <div [hidden]="!FieldMobileNumber.errors.pattern">
+              Enter valide Mobile Number
+            </div>
+          </div>
+
+          <div class="input-group form-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text bg-success"
+                ><i class="fas fa-user text-white"></i
+              ></span>
+            </div>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Email Id"
+              [(ngModel)]="user.email"
+              required
+              pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+              #FieldEmail="ngModel"
+              name="FieldEmail"
+              [ngClass]="{'has-error': FieldEmail.invalid && (FieldEmail.dirty || FieldEmail.touched
+							|| SignupForm.submitted) }"
+            />
+          </div>
+          <div
+            *ngIf="FieldEmail.invalid && (FieldEmail.dirty || FieldEmail.touched || SignupForm.submitted)"
+            class="text-danger"
+          >
+            <div [hidden]="!FieldEmail.errors.required">
+              Email Id is required
+            </div>
+            <div [hidden]="!FieldEmail.errors.pattern">
+              Enter valid Email Id
+            </div>
+          </div>
+          <div class="input-group form-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text bg-success"
+                ><i class="fas fa-user text-white"></i
+              ></span>
+            </div>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="User Name"
+              [(ngModel)]="user.userName"
+              required
+              pattern="[a-zA-Z ]*"
+              #FieldUserName="ngModel"
+              name="FieldUserName"
+              [ngClass]="{'has-error': FieldUserName.invalid && (FieldUserName.dirty || FieldUserName.touched
+						 || SignupForm.submitted) }"
+            />
+          </div>
+          <div
+            *ngIf="FieldUserName.invalid && (FieldUserName.dirty || FieldUserName.touched || SignupForm.submitted)"
+            class="text-danger"
+          >
+            <div [hidden]="!FieldUserName.errors.required">
+              User Name is required
+            </div>
+            <div [hidden]="!FieldUserName.errors.pattern">
+              Enter valid User Name
+            </div>
+          </div>
+          <div class="input-group form-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text bg-success"
+                ><i class="fas fa-user text-white"></i
+              ></span>
+            </div>
+            <!-- <span class="input-placeholder"> -->
+            <input
+              type="password"
+              class="border-right-0 form-control"
+              placeholder="Password"
+              [(ngModel)]="user.password"
+              required
+              maxlength="8"
+              pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d*\w]{8,}$"
+              [ngClass]="{'has-error': FieldPassword.invalid && (FieldPassword.dirty || FieldPassword.touched || SignupForm.submitted) }"
+              #FieldPassword="ngModel"
+              #FieldPasswordInput
+              name="FieldPassword"
+              [type]="hide ? 'password' : 'text'"
+            />
+            <!-- <mat-icon class="placeholder" (click)="myFunction()"
+              >{{hide ? 'visibility_off' : 'visibility'}}</mat-icon
+            > -->
+            <div class="border rounded-right border-left-0 input-group-prepend">
+              <span
+                (click)="myFunction()"
+                class="bg-transparent input-group-text text-black-50"
+                ><i
+                  [class.fa-eye-slash]="hide"
+                  [class.fa-eye]="!hide"
+                  class="fas fa-lg"
+                ></i
+              ></span>
+            </div>
+            <!-- </span> -->
+          </div>
+          <div
+            *ngIf="FieldPassword.invalid && (FieldPassword.dirty || FieldPassword.touched || SignupForm.submitted)"
+            class="text-danger"
+          >
+            <div [hidden]="!FieldPassword.errors.pattern">
+              Eight characters minimum,at least 1 uppercase, 1 lowercase and 1
+              number
+            </div>
+            <div [hidden]="!FieldPassword.errors.required">
+              Password is required
+            </div>
+          </div>
+          <div class="input-group form-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text bg-success"
+                ><i class="fas fa-user text-white"></i
+              ></span>
+            </div>
+            <!-- <span class="input-placeholder"> -->
+            <input
+              type="password"
+              class="border-right-0 form-control"
+              placeholder="Confirm Password"
+              [(ngModel)]="user.confirmPassword"
+              required
+              maxlength="8"
+              [ngClass]="{'has-error': FieldConfirmPassword.invalid && (FieldConfirmPassword.dirty ||
+						    FieldConfirmPassword.touched || SignupForm.submitted) }"
+              #FieldConfirmPassword="ngModel"
+              #FieldConfirmPasswordInput
+              name="FieldConfirmPassword"
+              [type]="hide ? 'password' : 'text'"
+            />
+            <!-- <mat-icon class="placeholder" (click)="myFunction()"
+              >{{hide ? 'visibility_off' : 'visibility'}}</mat-icon
+            > -->
+            <div class="border rounded-right border-left-0 input-group-prepend">
+              <span
+                (click)="myFunction()"
+                class="bg-transparent input-group-text text-black-50"
+                ><i
+                  [class.fa-eye-slash]="hide"
+                  [class.fa-eye]="!hide"
+                  class="fas fa-lg"
+                ></i
+              ></span>
+            </div>
+            <!-- </span> -->
+          </div>
+          <div
+            *ngIf="FieldConfirmPassword.invalid && (FieldConfirmPassword.dirty || FieldConfirmPassword.touched || SignupForm.submitted)"
+            class="text-danger"
+          >
+            <div [hidden]="!FieldConfirmPassword.errors.required">
+              Confirm Password is required
+            </div>
+          </div>
+          <div
+            *ngIf="!checkPassword() && !FieldConfirmPassword?.errors?.required"
+            class="invalid-feedback"
+            style="display: block;"
+          >
+            <span class="fa fa-exclamation-circle"></span>
+            Password Mismatch
+          </div>
+          <br />
+
+          <div class="input-group form-group">
+            <div class="mx-auto">
+              <input
+                type="submit"
+                value="Register"
+                class="btn btn-success"
+              />&nbsp;&nbsp;&nbsp;
+              <input type="reset" value="Cancel" class="btn btn-danger" />
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
