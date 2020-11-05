@@ -55,7 +55,7 @@ namespace MyProject.WebAPI.Controllers
             var computHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(loginDto.Password));
             for (int i = 0; i < computHash.Length; i++)
             {
-                if (computHash[i] != user.PasswordHash[i]) return Unauthorized("Invalid Password provided.");
+               if (computHash[i] != user.PasswordHash[i]) return Unauthorized("Invalid Password provided.");
             }
 
             return new UserDto
@@ -71,6 +71,24 @@ namespace MyProject.WebAPI.Controllers
             return await RepositoryWrapper.AppUserRoles.GetAllUserRolls();
         }
 
+        [HttpPost("GetUserDataById")]
+        public ActionResult<LoginUserDto> GetUsersById(int Id)
+        {
+            var user = RepositoryWrapper.AppUsers.GetUsersById(Id);
+            if (user == null) return Unauthorized("User ID Not Found.");
+
+            return new LoginUserDto
+            {
+                Id = user.Id,
+                UserName = user.UserName,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                MobileNo = user.MobileNo,
+                Email = user.Email,
+                RoleId = user.RoleId
+
+            };
+        }
 
     }
 }

@@ -12,7 +12,8 @@ namespace MyProject.Repository
         private IEmployeeRepository _employee;
         private IAppUsersRepository _appUsers;
         private IStallDetailsRepository _stallDetails;
-        
+        private IProductCategoryRepository _productCategory;
+
         public IEmployeeRepository Employee
         {
             get
@@ -42,7 +43,7 @@ namespace MyProject.Repository
                     _appUsers = new AppUsersRepository(_repoContext);
                 };
             }
-            
+
         }
         public IAppUsersRepository AppUserRoles
         {
@@ -79,6 +80,25 @@ namespace MyProject.Repository
                 if (_stallDetails == null)
                 {
                     _stallDetails = new StallDetailsRepository(_repoContext);
+                };
+            }
+
+        }
+        public IProductCategoryRepository ProductCategory
+        {
+            get
+            {
+                if (_productCategory == null)
+                {
+                    _productCategory = new ProductCategoryRepository(_repoContext);
+                }
+                return _productCategory;
+            }
+            set
+            {
+                if (_productCategory == null)
+                {
+                    _productCategory = new ProductCategoryRepository(_repoContext);
                 };
             }
 

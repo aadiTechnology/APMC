@@ -24,5 +24,11 @@ namespace MyProject.WebAPI.Controllers
         {
             return await RepositoryWrapper.StallDetails.GetAllStallDetails();
         }
+
+        [HttpGet("GetAllProductCategory")]
+        public async Task<IEnumerable<ProductCategory>> GetAllProductCategory()
+        {
+            return await RepositoryWrapper.ProductCategory.GetAllProductCategory();
+        }
     }
 }
