@@ -11,6 +11,7 @@
                               <input [(ngModel)]="selected"
                                    placeholder="Product Category"
                                    name="category"
+                                   autocomplete="off"
                                    [typeahead]="states"
                                    [typeaheadMultipleSearch]="true"
                                    typeaheadMultipleSearchDelimiters=",|"
