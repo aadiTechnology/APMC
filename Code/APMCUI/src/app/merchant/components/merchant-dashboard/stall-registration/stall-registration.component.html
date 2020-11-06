@@ -6,27 +6,18 @@
 			</div>
 			<div class="card-body">
 				<form>
+                         <div class=" form-group">
+                              <pre class="card-header">Category: {{selected | json}}</pre>
+                              <input [(ngModel)]="selected"
+                                   placeholder="Product Category"
+                                   name="category"
+                                   [typeahead]="states"
+                                   [typeaheadMultipleSearch]="true"
+                                   typeaheadMultipleSearchDelimiters=",|"
+                                   class="form-control">
+                         </div>
                     
-                    <div class="input-group form-group">
-					
-                            <select class="form-control" id="sel1">
-                              <option  value="null" selected disabled hidden >Stall Category</option>
-                              <option value="Fruits">Fruits</option>
-                                <option value="Vegetables">Vegetables</option>
-                                <option value="Flowers">Flowers</option>
-                                <option value="Dry Fruits ">Dry Fruits </option>
-                                <option value="Spices">Spices</option>
-                                <option value="Fertilizers & Manures">Fertilizers & Manures</option>
-                                <option value="Dairy">Dairy</option>
-                                <option value="Packaging Material">Packaging Material</option>
-                                <option value="sausage">Farm Equipments</option>
-                                <option value="Spinach">Grains</option>
-                                <option value="Spinach">Fishery</option>
-                                <option value="Spinach">Pulses</option>
-                                <option value="Spinach">Cereals</option>
-                            </select>
-                    </div>
-                    <div class="input-group form-group">
+                 <div class="input-group form-group">
 						
                             <select class="form-control" id="sel1">
                               <option  value="null" selected disabled hidden >Stall No</option>

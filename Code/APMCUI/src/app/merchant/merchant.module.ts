@@ -1,17 +1,21 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 import { MerchantRoutingModule } from './merchant-routing.module';
 import { MerchantComponent } from './merchant.component';
 import { MerchantDashboardComponent } from './components/merchant-dashboard/merchant-dashboard.component';
 import { StallRegistrationComponent } from './components/merchant-dashboard/stall-registration/stall-registration.component';
 
+import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
+
 
 @NgModule({
   declarations: [MerchantComponent, MerchantDashboardComponent, StallRegistrationComponent],
   imports: [
-    CommonModule,
-    MerchantRoutingModule
+    CommonModule,FormsModule,
+    MerchantRoutingModule,
+    TypeaheadModule.forRoot()
   ]
 })
 export class MerchantModule { }
