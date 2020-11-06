@@ -8,10 +8,11 @@ import { MerchantDashboardComponent } from './components/merchant-dashboard/merc
 import { StallRegistrationComponent } from './components/merchant-dashboard/stall-registration/stall-registration.component';
 
 import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
+import { CreatIndentComponent } from './components/merchant-dashboard/creat-indent/creat-indent.component';
 
 
 @NgModule({
-  declarations: [MerchantComponent, MerchantDashboardComponent, StallRegistrationComponent],
+  declarations: [MerchantComponent, MerchantDashboardComponent, StallRegistrationComponent, CreatIndentComponent],
   imports: [
     CommonModule,FormsModule,
     MerchantRoutingModule,

@@ -1,0 +1,51 @@
+<div class="container box">
+	<div class="d-flex justify-content-center h-100">
+		<div class="card">
+			<div class="card-header">
+				<h3>Create Indent</h3>
+			</div>
+			<div class="card-body">
+				<form>
+                         <div class=" form-group">
+                              <pre class="card-header">Category: {{selected | json}}</pre>
+                              <input [(ngModel)]="selected"
+                                   placeholder="Driver Name"
+                                   name="category"
+                                   autocomplete="off"
+                                   [typeahead]="states"
+                                   [typeaheadMultipleSearch]="true"
+                                   typeaheadMultipleSearchDelimiters=" |"
+                                   class="form-control">
+                         </div>
+              
+		<div class="input-group form-group">
+						<div class="input-group-prepend">
+						
+						</div>
+                         <input type="txt" class="form-control" placeholder="Driver Number">
+        </div>
+        <div class="input-group form-group">
+           
+             <input type="txt" class="form-control" placeholder="Supplier Name">
+        </div>
+        <div class="input-group form-group">
+            
+             <input type="txt" class="form-control" placeholder="Supplier Number">
+        </div>
+        <div class="input-group form-group">
+            
+             <input type="email" class="form-control" placeholder="Email">
+        </div>
+        <div class="input-group form-group">
+            <div class="mx-auto">
+                <input type="submit" value="Send" class="btn btn-success">&nbsp;&nbsp;&nbsp;
+                <input type="reset" value="Cancel" class="btn btn-danger">
+            </div>
+            </div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+
