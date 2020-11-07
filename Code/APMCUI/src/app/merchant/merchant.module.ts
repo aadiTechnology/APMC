@@ -9,10 +9,11 @@ import { StallRegistrationComponent } from './components/merchant-dashboard/stal
 
 import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { CreatIndentComponent } from './components/merchant-dashboard/creat-indent/creat-indent.component';
 
 
 @NgModule({
-  declarations: [MerchantComponent, MerchantDashboardComponent, StallRegistrationComponent],
+  declarations: [MerchantComponent, MerchantDashboardComponent, StallRegistrationComponent, CreatIndentComponent],
   imports: [
     CommonModule,FormsModule,
     MerchantRoutingModule,
