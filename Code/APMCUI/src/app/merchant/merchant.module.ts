@@ -8,6 +8,7 @@ import { MerchantDashboardComponent } from './components/merchant-dashboard/merc
 import { StallRegistrationComponent } from './components/merchant-dashboard/stall-registration/stall-registration.component';
 
 import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
   imports: [
     CommonModule,FormsModule,
     MerchantRoutingModule,
-    TypeaheadModule.forRoot()
+    TypeaheadModule.forRoot(),
+    ModalModule.forRoot(),
   ]
 })
 export class MerchantModule { }

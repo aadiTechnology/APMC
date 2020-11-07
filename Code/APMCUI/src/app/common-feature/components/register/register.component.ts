@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { BsModalService } from 'ngx-bootstrap/modal';
 import { CommonService } from '../../common.service';
 
 @Component({
@@ -20,7 +21,7 @@ export class RegisterComponent implements OnInit {
     password: string;
     confirmPassword: string;
   };
-  constructor(private commonService: CommonService,private router: Router
+  constructor(private commonService: CommonService,private router: Router,private modalService: BsModalService
     ) {
     this.user = {
       roleId:null,
