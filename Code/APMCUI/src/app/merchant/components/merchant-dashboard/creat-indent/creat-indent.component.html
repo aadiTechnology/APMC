@@ -1,13 +1,105 @@
-<div class="container box">
-	<div class="d-flex justify-content-center h-100">
-		<div class="card">
-			<div class="card-header">
-				<h3>Create Indent</h3>
+	<div class="card">
+			<div class="card-header text-center text-success">
+				<h3 class="mb-0">Create Indent</h3>
 			</div>
 			<div class="card-body">
 				<form>
+                         <div class="input-group form-group">
+						<div class="input-group-prepend">
+                              </div>
+                             <span class="badge badge-success">OrderId:0001</span>
+                        </div>
+
+                        <div class="input-group form-group">
+                         <select class="form-control" id="sel1">
+                           <option  value="null" selected disabled hidden >Select Product</option>
+                           <option id="0">Apple</option>
+                           <option id="1">Orange</option>
+                           <option id="2">Banana</option>
+                           <option id="3">Onion</option>
+                           <option id="4">Potato</option>
+                           <option id="5">Garlic</option>
+                           <option id="6">Methi </option>
+                           <option id="7">Palak</option>
+                           <option id="8">Gavar</option>
+                           <option id="9">Bhendi</option>
+                         </select>
+                 </div>
+
+                 <div class="input-group form-group">
+                  <span class = "label label-default">Quantity</span>
+                  
+                  <span class = "label label-default pull-right">Quantity Units</span>
+                </div>
+                  <div class="input-group form-group">  
+                  <input type="txt" 
+                    class="form-control"
+                    pattern="[0-9]*" 
+                    placeholder="Quantity"             
+                    [(ngModel)]="quser.squantity"
+                    required
+                    pattern="[0-9]*"
+                    maxlength="10"
+                    #Quantity="ngModel"
+                    name="Quantity"
+                    [ngClass]="{'has-error': Quantity.invalid && (Quantity.dirty || Quantity.touched
+                                              ) }"
+                  > &nbsp; &nbsp;
+                             
+                 
+                    <select class="form-control" id="sel2">
+                      <option  value="null" selected disabled hidden >Quantity Units</option>
+                      <option>gram</option>
+                      <option>Kilogram</option>
+                      <option>Dozen</option>
+                    </select>
+                    
+                 </div>
+                    <div
+                    *ngIf="Quantity.invalid && (Quantity.dirty || Quantity.touched )"
+                    class="text-danger"
+                  >
+                    <div [hidden]="!Quantity.errors.required">
+                      Quantity is required
+                    </div>
+                    <div [hidden]="!Quantity.errors.pattern">
+                      Enter valid Quantity
+                    </div>
+                
+            </div>
+            <div>
+               <a  (click)="onProductSelect()" class="btn text-info"
+               ><i class="fa fa-plus"></i
+               ></a>
+               </div>
+               <table class="table table-sm table-bordered">
+               <tr>
+               
+               <th>Product Name</th>
+               <th>Quantity</th>
+               <th>Quantity Units</th>
+               <th>Edit</th>
+               <th>Delete</th>
+               </tr>
+              
+               <tr >
+              
+               <td>Apple</td>
+               <td>1</td>
+               <td>Dozen</td>
+               <td><a class="btn text-info"
+                    ><i class="fa fa-edit"></i
+                    ></a></td>
+               <td>
+               <a (click)="removeProduct() " class="btn text-info"
+               ><i class="fa fa-trash"></i
+               ></a>
+               </td>
+
+               </tr>
+               </table>
                          <div class=" form-group">
-                              <pre class="card-header">Category: {{selected | json}}</pre>
+                            
                               <input [(ngModel)]="selected"
                                    placeholder="Driver Name"
                                    name="category"
@@ -20,32 +112,34 @@
               
 		<div class="input-group form-group">
 						<div class="input-group-prepend">
-						
-						</div>
+                              </div>
                          <input type="txt" class="form-control" placeholder="Driver Number">
+         </div>
+       
+         <div class="input-group form-group">
+          <div class="input-group-prepend">
+           </div>
+           <input type="txt" class="form-control" placeholder="Vehicle Number">
+         </div>
+        
+         <div class="input-group form-group">
+           <input type="txt" class="form-control" placeholder="Supplier Name">
         </div>
         <div class="input-group form-group">
-           
-             <input type="txt" class="form-control" placeholder="Supplier Name">
+            <input type="txt" class="form-control" placeholder="Supplier Number">
         </div>
-        <div class="input-group form-group">
-            
-             <input type="txt" class="form-control" placeholder="Supplier Number">
-        </div>
-        <div class="input-group form-group">
-            
-             <input type="email" class="form-control" placeholder="Email">
-        </div>
+        
+        <pre class="card-header">Category: {{quser | json}}</pre><br>
         <div class="input-group form-group">
             <div class="mx-auto">
-                <input type="submit" value="Send" class="btn btn-success">&nbsp;&nbsp;&nbsp;
+                <input type="submit" value="Save" class="btn btn-success">&nbsp;&nbsp;&nbsp;
                 <input type="reset" value="Cancel" class="btn btn-danger">
             </div>
+           
             </div>
 				</form>
 			</div>
 		</div>
-	</div>
-</div>
+	
 
 

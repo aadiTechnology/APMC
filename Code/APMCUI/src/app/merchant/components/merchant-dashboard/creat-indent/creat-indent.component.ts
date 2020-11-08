@@ -8,14 +8,26 @@ import { Component, OnInit } from '@angular/core';
 export class CreatIndentComponent implements OnInit {
 
   selected: string;
+  quser:{ 
+    squantity:number;
+  }
   states = [
     'Rama Driver',
     'Raju Driver',
     'Balu Driver'
   ];
-  constructor() { }
+  constructor() {
+    this.quser={
+      squantity:null,
+    }
+   }
 
   ngOnInit(): void {
   }
-
+  onProductSelect(){
+    
+  }
+  removeProduct(){
+    
+  }
 }
