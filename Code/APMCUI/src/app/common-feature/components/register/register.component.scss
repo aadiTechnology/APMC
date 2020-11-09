@@ -1,9 +1,4 @@
-.input-group-prepend span{
-    width: 50px;
-    background-color:#65af68;
-    color: white;
-    border:0 !important;
-}
+
 
 .text-danger{
     margin-top: -10px !important;
@@ -37,14 +32,16 @@
 	display:none;
 	content:attr(data-tip);
 	position:absolute;
-	top:35px;
+	top:-60px;
 	left:0px;
 	padding:5px 8px;
-	background:rgb(95, 162, 216);
-	color:white;
+	background:silver;
+	color:black;
 	z-index:9;
 	font-size: 1em;
 	height:60px;
+	width: 75% !important;
+	margin-left: 15% !important;
 	line-height:18px;
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;

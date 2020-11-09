@@ -2,7 +2,7 @@
     <div class="card">
       <div class="card-header text-center text-success">
         <h3 class="mb-0">Sign Up</h3>
-        <div class=""></div>
+       
       </div>
       <div class="card-body">
         <form
@@ -196,13 +196,13 @@
             </div>
             </div>
 
-          <div class="input-group form-group"  data-tip="Password should 8 characters minimum,at least 1 uppercase, 1 lowercase and 1 number" >
+            <div class="input-group form-group"  data-toggle="tooltip" data-placement="top" data-tip="Password should 8 characters minimum,at least 1 uppercase, 1 lowercase & 1 number" >
             <div class="input-group-prepend">
               <span class="input-group-text bg-success"
                 ><i class="fas fa-key text-white"></i
               ></span>
             </div>
-          
+            
             <input
               type="password"
               class="border-right-0 form-control"
@@ -217,6 +217,7 @@
               name="FieldPassword"
               [type]="hide ? 'password' : 'text'"
             />
+
             <div class="border rounded-right border-left-0 input-group-prepend">
               <span
                 (click)="myFunction()"
@@ -227,7 +228,9 @@
                   class="fas fa-lg"
                 ></i
               ></span>
+             
             </div>
+            
           </div>
                   
           <div
@@ -300,10 +303,11 @@
                 type="submit"
                 value="Sign Up"
                 class="btn btn-success"
+                (click)="regMethod('user')"
               />&nbsp;&nbsp;&nbsp;
-              <input type="reset" value="Cancel" class="btn btn-danger"  (click)="cancelMethod('user')" >
+              <input type="reset" value="Cancel" class="btn btn-danger" (click)="cancelMethod('user')" >
             </div>
-            
+           
           </div>
           
         </form>
