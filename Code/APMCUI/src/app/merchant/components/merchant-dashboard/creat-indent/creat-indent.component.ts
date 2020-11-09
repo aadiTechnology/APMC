@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { from } from 'rxjs';
 
 @Component({
   selector: 'app-creat-indent',
@@ -9,7 +11,14 @@ export class CreatIndentComponent implements OnInit {
 
   selected: string;
   quser:{ 
+    productlist:number;
     squantity:number;
+    driverName:string;
+    driverNumber:number;
+    vhclNumber:number
+    suplierName:string;
+    suplierNumber:number;
+
   }
   states = [
     'Rama Driver',
@@ -18,7 +27,13 @@ export class CreatIndentComponent implements OnInit {
   ];
   constructor() {
     this.quser={
+      productlist:null,   
       squantity:null,
+      driverName:null,
+      driverNumber:null,
+      vhclNumber:null,
+      suplierName:null,
+      suplierNumber:null,
     }
    }
 
@@ -30,4 +45,12 @@ export class CreatIndentComponent implements OnInit {
   removeProduct(){
     
   }
+  createIndent(form:NgForm,quser){
+    if (form.valid) {
+      console.log(form.value);
+
+  }else{
+    console.log(form.value);
+  }
+}
 }

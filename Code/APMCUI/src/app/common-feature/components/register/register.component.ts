@@ -58,7 +58,11 @@ export class RegisterComponent implements OnInit {
       console.log(form.value)
     }
  }
-
+ regMethod(user: string) {
+  if(confirm("Are you sure you want redirect to login page...?")) {
+    this.router.navigate(['/login']);;
+  }
+}
  cancelMethod(user: string) {
   if(confirm("Are you sure you want to cancel all details...?")) {
     this.router.navigate(['/login']);;

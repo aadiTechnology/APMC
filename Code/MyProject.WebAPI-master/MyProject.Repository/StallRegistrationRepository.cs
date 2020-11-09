@@ -59,8 +59,9 @@ namespace MyProject.Repository
         }
         public async Task<IEnumerable<StallRegistration>> GetAllStallRegistration()
         {
-            return await _repositoryContext.StallRegistration.ToListAsync();
-          //  return await _repositoryContext.StallRegistration.Where(a => a.IsApproved == false).ToListAsync();
+           // return await _repositoryContext.StallRegistration.ToListAsync();
+            return await _repositoryContext.StallRegistration.Where(a => a.IsApproved == false &&  a.IsRejected == false).ToListAsync();
+            //  return await _repositoryContext.StallRegistration.Where(a => a.IsApproved == false).ToListAsync();
 
         }
         public StallRegistrationRepository(RepositoryContext repositoryContext)
