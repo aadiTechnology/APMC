@@ -37,7 +37,7 @@ steps:
   displayName: 'Create migration'
   inputs:
     script: 'dotnet-ef migrations script -i -o $(Build.ArtifactStagingDirectory)\migrations\scripts.sql'
-    workingDirectory: '$(Build.SourcesDirectory)/APMC'
+    workingDirectory: '$(Build.SourcesDirectory)/Code/MyProject.WebAPI-master/'
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
