@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { StallRegistrationComponent } from './stall-registration.component';
+import { CreatIndentComponent } from './creat-indent.component';
 
-describe('StallRegistrationComponent', () => {
-  let component: StallRegistrationComponent;
-  let fixture: ComponentFixture<StallRegistrationComponent>;
+describe('CreatIndentComponent', () => {
+  let component: CreatIndentComponent;
+  let fixture: ComponentFixture<CreatIndentComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ StallRegistrationComponent ]
+      declarations: [ CreatIndentComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(StallRegistrationComponent);
+    fixture = TestBed.createComponent(CreatIndentComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

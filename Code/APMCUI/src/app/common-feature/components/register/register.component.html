@@ -1,8 +1,7 @@
-<div class="container">
-  <div class="d-flex justify-content-center h-100">
+
     <div class="card">
-      <div class="card-header">
-        <h2>Sign Up</h2>
+      <div class="card-header text-center text-success">
+        <h3 class="mb-0">Sign Up</h3>
         <div class=""></div>
       </div>
       <div class="card-body">
@@ -12,7 +11,7 @@
           name="SignupForm"
           #SignupForm="ngForm"
           (ngSubmit)="signup(SignupForm,user)"
-        >
+        >      
           <div class="input-group form-group">
             <div class="input-group-prepend">
               <span class="input-group-text bg-success"
@@ -195,21 +194,15 @@
             <div [hidden]="!FieldUserName.errors.required">
               User id is required
             </div>
-            
-          </div>
-          <span class="float-right" style="color: red;">
-          <mat-icon matTooltip="Password should 8 characters minimum,at least 1 uppercase, 1 lowercase and 1 number">informative</mat-icon>
-          </span>
+            </div>
 
-
-          <div class="input-group form-group">
+          <div class="input-group form-group"  data-tip="Password should 8 characters minimum,at least 1 uppercase, 1 lowercase and 1 number" >
             <div class="input-group-prepend">
               <span class="input-group-text bg-success"
                 ><i class="fas fa-key text-white"></i
               ></span>
             </div>
-            
-            <!-- <span class="input-placeholder"> -->
+          
             <input
               type="password"
               class="border-right-0 form-control"
@@ -224,9 +217,6 @@
               name="FieldPassword"
               [type]="hide ? 'password' : 'text'"
             />
-            <!-- <mat-icon class="placeholder" (click)="myFunction()"
-              >{{hide ? 'visibility_off' : 'visibility'}}</mat-icon
-            > -->
             <div class="border rounded-right border-left-0 input-group-prepend">
               <span
                 (click)="myFunction()"
@@ -238,8 +228,8 @@
                 ></i
               ></span>
             </div>
-            <!-- </span> -->
           </div>
+                  
           <div
             *ngIf="FieldPassword.invalid && (FieldPassword.dirty || FieldPassword.touched || SignupForm.submitted)"
             class="text-danger"
@@ -257,7 +247,7 @@
                 ><i class="fas fa-key text-white"></i
               ></span>
             </div>
-            <!-- <span class="input-placeholder"> -->
+            
             <input
               type="password"
               class="border-right-0 form-control"
@@ -272,9 +262,7 @@
               name="FieldConfirmPassword"
               [type]="hide ? 'password' : 'text'"
             />
-            <!-- <mat-icon class="placeholder" (click)="myFunction()"
-              >{{hide ? 'visibility_off' : 'visibility'}}</mat-icon
-            > -->
+           
             <div class="border rounded-right border-left-0 input-group-prepend">
               <span
                 (click)="myFunction()"
@@ -286,7 +274,7 @@
                 ></i
               ></span>
             </div>
-            <!-- </span> -->
+           
           </div>
           <div
             *ngIf="FieldConfirmPassword.invalid && (FieldConfirmPassword.dirty || FieldConfirmPassword.touched || SignupForm.submitted)"
@@ -305,7 +293,7 @@
             Password mismatch
           </div>
           <br />
-
+          
           <div class="input-group form-group">
             <div class="mx-auto">
               <input
@@ -315,9 +303,10 @@
               />&nbsp;&nbsp;&nbsp;
               <input type="reset" value="Cancel" class="btn btn-danger"  (click)="cancelMethod('user')" >
             </div>
+            
           </div>
+          
         </form>
       </div>
     </div>
-  </div>
-</div>
+ 

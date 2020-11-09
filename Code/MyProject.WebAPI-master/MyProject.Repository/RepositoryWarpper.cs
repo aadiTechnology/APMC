@@ -45,7 +45,7 @@ namespace MyProject.Repository
                     _appUsers = new AppUsersRepository(_repoContext);
                 };
             }
-
+            
         }
         public IAppUsersRepository AppUserRoles
         {

@@ -32,11 +32,6 @@ namespace MyProject.Repository
             //return FindByCondition(x=>x.UserName == loginDto.UserName);
         }
 
-        public AppUsers GetUsersById(int Id)
-        {
-            return _repositoryContext.AppUsers.SingleOrDefault(x => x.Id == Id);
-        }
-
         public async Task<IEnumerable<AppUserRoles>> GetAllUserRolls()
         {
             return await _repositoryContext.AppUserRoles.ToListAsync();

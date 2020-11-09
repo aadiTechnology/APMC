@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using MyProject.Contracts;
 using MyProject.Entities.DataTransferObjects;
 using MyProject.Entities.Models;
@@ -24,7 +23,7 @@ namespace MyProject.WebAPI.Controllers
         public ITokenManager TokenMgr { get; set; }
 
         [HttpPost("Register")]
-        public ActionResult<UserDto> Register([FromBody]RegisterDto registerDto)
+        public void Register([FromBody]RegisterDto registerDto)
         {
             using var hmac = new HMACSHA512();
             var user = new AppUsers
@@ -39,39 +38,29 @@ namespace MyProject.WebAPI.Controllers
                 RoleId = registerDto.RoleId
             };
             RepositoryWrapper.AppUsers.Register(user);
-            return new UserDto
-            {
-                UserName = user.UserName,
-                Token = TokenMgr.GetToken(user.UserName, registerDto.Password)
-            };
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="loginDto"></param>
-        /// <returns></returns>
+
         [HttpPost("Login")]
         public ActionResult<UserDto> Login(LoginDto loginDto)
         {
-            var user = RepositoryWrapper.AppUsers.GetUsers(loginDto);
-            if (user == null) return Unauthorized("Invalid User Name provided.");
+            AppUsers appUsers = RepositoryWrapper.AppUsers.GetUsers(loginDto);
+            if (appUsers == null) return Unauthorized("Invalid User Name provided.");
 
-            using var hmac = new HMACSHA512(user.PasswordSalt);
+            using var hmac = new HMACSHA512(appUsers.PasswordSalt);
             var computHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(loginDto.Password));
             for (int i = 0; i < computHash.Length; i++)
             {
-               if (computHash[i] != user.PasswordHash[i]) return Unauthorized("Invalid Password provided.");
+                if (computHash[i] != appUsers.PasswordHash[i]) return Unauthorized("Invalid Password provided.");
             }
 
             return new UserDto
             {
                 UserName = loginDto.UserName,
-                Token = TokenMgr.GetToken(loginDto.UserName, loginDto.Password)
+                Token = TokenMgr.GetToken(loginDto.UserName, loginDto.Password, ((Roles)appUsers.RoleId).ToString())
             };
         }
 
         [HttpGet("GetAllUserRolls")]
-        [Authorize(Roles = "Merchant")]
         public async Task<IEnumerable<AppUserRoles>> GetAllUserRolls()
         {
             return await RepositoryWrapper.AppUserRoles.GetAllUserRolls();
