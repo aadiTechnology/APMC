@@ -5,7 +5,7 @@ using System.Text;
 
 namespace MyProject.Entities.DataTransferObjects
 {
-    public class StallRegisterDto
+    public class StallRegistrationDto
     {
         [Required]
         public int Id { get; set; }
@@ -20,12 +20,15 @@ namespace MyProject.Entities.DataTransferObjects
         [Required]
         public bool IsRejected { get; set; }
         [Required]
-        public int ApproveBy { get; set; }
-        [Required]
         public DateTime CreatedDate { get; set; }
-        [Required]
-        public DateTime ApprovedDate { get; set; }
-        [Required]
+
+        //[Required]
+        //public int Category { get; set; }
+
+        public int[] Category { get;  set; }
+
+        public int ApproveBy { get; set; }
+        public DateTime ApprovedDate { get; set; }    
         public string RejectReason { get; set; }
     }
 }

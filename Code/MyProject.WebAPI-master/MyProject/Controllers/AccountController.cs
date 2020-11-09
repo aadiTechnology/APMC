@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using MyProject.Contracts;
 using MyProject.Entities.DataTransferObjects;
 using MyProject.Entities.Models;
@@ -44,7 +45,11 @@ namespace MyProject.WebAPI.Controllers
                 Token = TokenMgr.GetToken(user.UserName, registerDto.Password)
             };
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="loginDto"></param>
+        /// <returns></returns>
         [HttpPost("Login")]
         public ActionResult<UserDto> Login(LoginDto loginDto)
         {
@@ -66,6 +71,7 @@ namespace MyProject.WebAPI.Controllers
         }
 
         [HttpGet("GetAllUserRolls")]
+        [Authorize(Roles = "Merchant")]
         public async Task<IEnumerable<AppUserRoles>> GetAllUserRolls()
         {
             return await RepositoryWrapper.AppUserRoles.GetAllUserRolls();
@@ -75,7 +81,7 @@ namespace MyProject.WebAPI.Controllers
         public ActionResult<LoginUserDto> GetUsersById(int Id)
         {
             var user = RepositoryWrapper.AppUsers.GetUsersById(Id);
-            if (user == null) return Unauthorized("User ID Not Found.");
+            if (user == null) return Unauthorized("User ID Not Found Enter valid Id.");
 
             return new LoginUserDto
             {

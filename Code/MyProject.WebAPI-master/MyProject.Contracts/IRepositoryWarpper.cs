@@ -14,6 +14,8 @@ namespace MyProject.Contracts
         IAppUsersRepository AppUserRoles { get; set; }
         IStallDetailsRepository StallDetails { get; set; }
         IProductCategoryRepository ProductCategory { get; set; }
+        IStallRegistrationRepository StallRegistration { get; set; }
+        IStallProductCategoriesRepository StallProductCategories { get; set; }
         void Save();
     }
 }
