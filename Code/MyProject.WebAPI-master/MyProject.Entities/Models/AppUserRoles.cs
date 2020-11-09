@@ -10,5 +10,14 @@ namespace MyProject.Entities.Models
         public string RoleName { get; set; }
 
     }
+    public enum Roles
+    {
+        Admin = 1,
+        Merchant=2,
+        Driver=3,
+        GateOperator=4,
+        Agent=5,
+        Transporter=6
+    }
 }
 
