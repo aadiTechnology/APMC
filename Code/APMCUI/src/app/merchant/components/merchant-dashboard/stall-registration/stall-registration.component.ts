@@ -1,4 +1,4 @@
-import { Component, OnInit, TemplateRef  } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
@@ -6,11 +6,11 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 @Component({
   selector: 'app-stall-registration',
   templateUrl: './stall-registration.component.html',
-  styleUrls: ['./stall-registration.component.scss']
+  styleUrls: ['./stall-registration.component.scss'],
 })
 export class StallRegistrationComponent implements OnInit {
   selected: string;
-  productCAtergory  = [
+  productCAtergory = [
     'Fruits',
     'Vegetables',
     'Flowers',
@@ -24,36 +24,29 @@ export class StallRegistrationComponent implements OnInit {
     'Fishery',
     'Pulses',
     'Cereals',
-    ];
+  ];
 
-    stallreg: {
-      stallno:number;
-      productcategory: string;
-      
-    };
+  stallreg: {
+    stallno: number;
+    productcategory: string;
+  };
 
-    modalRef: BsModalRef;
+  modalRef: BsModalRef;
   message: string;
-  
- 
-  
-  constructor(private modalService: BsModalService,private router: Router) { 
-    this.stallreg={
-      stallno:null,
+
+  constructor(private modalService: BsModalService, private router: Router) {
+    this.stallreg = {
+      stallno: null,
       productcategory: null,
-    }
+    };
   }
-  
+
   openModal(template: TemplateRef<any>) {
-    this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
+    this.modalRef = this.modalService.show(template, { class: 'modal-sm' });
   }
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
-  stallregister(any){
-
-  }
-
+  stallregister(any) {}
 
   confirm(): void {
     this.message = 'Confirmed!';
@@ -64,5 +57,4 @@ export class StallRegistrationComponent implements OnInit {
     this.message = 'Declined!';
     this.modalRef.hide();
   }
-
 }

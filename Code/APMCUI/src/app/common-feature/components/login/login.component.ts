@@ -3,7 +3,6 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CommonService } from '../../common.service';
 
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -11,7 +10,7 @@ import { CommonService } from '../../common.service';
 })
 export class LoginComponent implements OnInit {
   user: { UserName: string; Password: string };
-  constructor(private commonService: CommonService,private router: Router) {
+  constructor(private commonService: CommonService, private router: Router) {
     this.user = {
       UserName: null,
       Password: null,

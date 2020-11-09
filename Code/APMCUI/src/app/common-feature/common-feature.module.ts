@@ -20,10 +20,9 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import {MatTabsModule} from '@angular/material/tabs';
-import {MatInputModule} from '@angular/material/input';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatInputModule } from '@angular/material/input';
 import { ModalModule } from 'ngx-bootstrap/modal';
-
 
 @NgModule({
   declarations: [CommonFeatureComponent, LoginComponent, RegisterComponent],
@@ -47,7 +46,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     FormsModule,
     MatTabsModule,
     MatInputModule,
-    ModalModule.forRoot(),
+    // ModalModule.forRoot(),
   ],
 })
 export class CommonFeatureModule {}
