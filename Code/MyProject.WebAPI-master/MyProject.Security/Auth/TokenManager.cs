@@ -12,9 +12,9 @@ namespace MyProject.Security.Auth
         {
             this.jwtAuthenticationManager = jwtAuthenticationManager;
         }
-        public string GetToken(string username, string password)
+        public string GetToken(string username, string password,string role)
         {
-            var token = jwtAuthenticationManager.Authenticate(username, password);
+            var token = jwtAuthenticationManager.Authenticate(username, password,role);
             return token;
         }
     }

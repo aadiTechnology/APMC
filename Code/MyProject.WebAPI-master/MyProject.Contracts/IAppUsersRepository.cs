@@ -9,6 +9,7 @@ namespace MyProject.Contracts
     {
         AppUsers Register(AppUsers appUsers);
         AppUsers GetUsers(LoginDto loginDto);
+        AppUsers GetUsersById(int Id);
         Task<IEnumerable<AppUserRoles>> GetAllUserRolls();
     }
 }

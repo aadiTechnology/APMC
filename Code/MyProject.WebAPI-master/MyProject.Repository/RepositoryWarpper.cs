@@ -12,7 +12,10 @@ namespace MyProject.Repository
         private IEmployeeRepository _employee;
         private IAppUsersRepository _appUsers;
         private IStallDetailsRepository _stallDetails;
-        
+        private IProductCategoryRepository _productCategory;
+        private IStallRegistrationRepository _stallRegistration;
+        private IStallProductCategoriesRepository _stallProductCategories;
+
         public IEmployeeRepository Employee
         {
             get
@@ -83,7 +86,64 @@ namespace MyProject.Repository
             }
 
         }
+        public IProductCategoryRepository ProductCategory
+        {
+            get
+            {
+                if (_productCategory == null)
+                {
+                    _productCategory = new ProductCategoryRepository(_repoContext);
+                }
+                return _productCategory;
+            }
+            set
+            {
+                if (_productCategory == null)
+                {
+                    _productCategory = new ProductCategoryRepository(_repoContext);
+                };
+            }
 
+        }
+        public IStallRegistrationRepository StallRegistration
+        {
+            get
+            {
+                if (_stallRegistration == null)
+                {
+                    _stallRegistration = new StallRegistrationRepository(_repoContext);
+                }
+                return _stallRegistration;
+            }
+            set
+            {
+                if (_stallRegistration == null)
+                {
+                    _stallRegistration = new StallRegistrationRepository(_repoContext);
+                };
+            }
+
+        }
+
+        public IStallProductCategoriesRepository StallProductCategories
+        {
+            get
+            {
+                if (_stallProductCategories == null)
+                {
+                    _stallProductCategories = new StallProductCategoriesRepository(_repoContext);
+                }
+                return _stallProductCategories;
+            }
+            set
+            {
+                if (_stallProductCategories == null)
+                {
+                    _stallProductCategories = new StallProductCategoriesRepository(_repoContext);
+                };
+            }
+
+        }
         public RepositoryWarpper(RepositoryContext repositoryContext)
         {
             _repoContext = repositoryContext;

@@ -9,5 +9,6 @@ namespace MyProject.Contracts
    public interface IStallDetailsRepository:IRepositoryBase<StallDetails>
     {
         Task<IEnumerable<StallDetails>> GetAllStallDetails();
+        StallDetails UpdateStallAssigned(int StallId);
     }
 }
