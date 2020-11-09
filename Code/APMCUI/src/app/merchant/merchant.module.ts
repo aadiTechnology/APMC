@@ -7,7 +7,9 @@ import { MerchantComponent } from './merchant.component';
 import { MerchantDashboardComponent } from './components/merchant-dashboard/merchant-dashboard.component';
 import { StallRegistrationComponent } from './components/merchant-dashboard/stall-registration/stall-registration.component';
 
+
 import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
+import { ModalModule } from 'ngx-bootstrap/modal';
 import { CreatIndentComponent } from './components/merchant-dashboard/creat-indent/creat-indent.component';
 
 
@@ -16,7 +18,8 @@ import { CreatIndentComponent } from './components/merchant-dashboard/creat-inde
   imports: [
     CommonModule,FormsModule,
     MerchantRoutingModule,
-    TypeaheadModule.forRoot()
+    TypeaheadModule.forRoot(),
+    ModalModule.forRoot(),
   ]
 })
 export class MerchantModule { }
