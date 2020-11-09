@@ -66,6 +66,12 @@ namespace MyProject.WebAPI.Controllers
             return await RepositoryWrapper.AppUserRoles.GetAllUserRolls();
         }
 
+        /// <summary>
+        /// GetUsersById() - Need the parameter User Id to pass For which Data is needed
+        /// </summary>
+        /// <param> int Id </param>
+        /// <returns>Returns Contact Details, name, email, RoleId of input id from AppUsers Table</returns>
+        ///<Aurthor>Sumeet Tanaji Kemse</Aurthor>
         [HttpPost("GetUserDataById")]
         public ActionResult<LoginUserDto> GetUsersById(int Id)
         {
