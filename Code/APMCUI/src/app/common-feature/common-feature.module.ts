@@ -22,6 +22,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatInputModule} from '@angular/material/input';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 
 @NgModule({
@@ -45,7 +46,8 @@ import {MatInputModule} from '@angular/material/input';
     MatFormFieldModule,
     FormsModule,
     MatTabsModule,
-    MatInputModule
+    MatInputModule,
+    ModalModule.forRoot(),
   ],
 })
 export class CommonFeatureModule {}

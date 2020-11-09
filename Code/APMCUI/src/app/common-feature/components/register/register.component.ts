@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { CommonService } from '../../common.service';
 
 @Component({
@@ -20,7 +21,9 @@ export class RegisterComponent implements OnInit {
     password: string;
     confirmPassword: string;
   };
-  constructor(private commonService: CommonService,private router: Router
+  modalRef: BsModalRef;
+  message: string;
+  constructor(private modalService: BsModalService,private commonService: CommonService,private router: Router
     ) {
     this.user = {
       roleId:null,
@@ -34,7 +37,9 @@ export class RegisterComponent implements OnInit {
     };
 
    }
-
+   openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
+  }
   ngOnInit(): void {
   }
   myFunction(){
@@ -58,14 +63,15 @@ export class RegisterComponent implements OnInit {
       console.log(form.value)
     }
  }
- regMethod(user: string) {
-  if(confirm("Are you sure you want redirect to login page...?")) {
-    this.router.navigate(['/login']);;
+ 
+  confirm(): void {
+    this.message = 'Confirmed!';
+    this.router.navigate(['/merchant']);
+    this.modalRef.hide();
+  }
+  decline(): void {
+    this.message = 'Declined!';
+    this.modalRef.hide();
   }
 }
- cancelMethod(user: string) {
-  if(confirm("Are you sure you want to cancel all details...?")) {
-    this.router.navigate(['/login']);;
-  }
-}
-}
+

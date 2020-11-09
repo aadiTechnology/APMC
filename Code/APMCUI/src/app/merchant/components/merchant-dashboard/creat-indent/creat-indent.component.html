@@ -174,8 +174,16 @@
                     name="VehicleNumber">
          </div>
          <div class="input-group form-group" >
-          <input type="txt" class="form-control" 
-                   placeholder="Date And Time">
+        
+            
+            <input class="form-control "
+            placeholder="Date and Time"
+             matInput [matDatepicker]="picker">
+            <mat-datepicker-toggle matSuffix [for]="picker" style="color: blue;"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+         
+      
+          
     </div>
         
          <div class="input-group form-group">

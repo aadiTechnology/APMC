@@ -303,11 +303,18 @@
                 type="submit"
                 value="Sign Up"
                 class="btn btn-success"
-                (click)="regMethod('user')"
+              
               />&nbsp;&nbsp;&nbsp;
-              <input type="reset" value="Cancel" class="btn btn-danger" (click)="cancelMethod('user')" >
+              <input type="reset" value="Cancel" class="btn btn-danger" (click)="openModal(template)" >
             </div>
-           
+            <ng-template #template>
+              <div class="modal-body text-center">
+              <h3 class="mx-auto">Confirm Cancellation </h3>
+                <p>Do you want to cancel Stall Registration ?</p>
+                <button type="button" class="btn btn-default" (click)="confirm()" >Yes</button>
+                <button type="button" class="btn btn-primary" (click)="decline()" >No</button>
+              </div>
+            </ng-template>
           </div>
           
         </form>
