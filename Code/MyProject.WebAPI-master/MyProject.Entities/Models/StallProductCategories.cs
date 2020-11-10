@@ -9,5 +9,6 @@ namespace MyProject.Entities.Models
         public int Id { get; set; }
         public int StallRegistrationId { get; set; }
         public int Category { get; set; }
+       // public int[] Category { get; private set; }
     }
 }

@@ -23,7 +23,7 @@ namespace MyProject.Entities
 
         public DbSet<StallProductCategories> StallProductCategories { get; set; }
         public DbSet<IndentDetails> IndentDetails { get; set; }
-
+        public DbSet<IndentProducts> IndentProducts { get; set; }
 
     }
 }

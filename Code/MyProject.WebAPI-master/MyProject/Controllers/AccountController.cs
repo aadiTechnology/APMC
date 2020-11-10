@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using MyProject.Contracts;
 using MyProject.Entities.DataTransferObjects;
 using MyProject.Entities.Models;
@@ -22,6 +23,7 @@ namespace MyProject.WebAPI.Controllers
         public IRepositoryWrapper RepositoryWrapper { get; }
         public ITokenManager TokenMgr { get; set; }
 
+        [AllowAnonymous]
         [HttpPost("Register")]
         public ActionResult<UserDto> Register([FromBody]RegisterDto registerDto)
         {
@@ -41,27 +43,27 @@ namespace MyProject.WebAPI.Controllers
             return new UserDto
             {
                 UserName = user.UserName,
-                Token = TokenMgr.GetToken(user.UserName, registerDto.Password)
+                Token = TokenMgr.GetToken(user.UserName, registerDto.Password, ((Roles)registerDto.RoleId).ToString())
             };
         }
 
         [HttpPost("Login")]
         public ActionResult<UserDto> Login(LoginDto loginDto)
         {
-            var user = RepositoryWrapper.AppUsers.GetUsers(loginDto);
-            if (user == null) return Unauthorized("Invalid User Name provided.");
+            AppUsers appUsers = RepositoryWrapper.AppUsers.GetUsers(loginDto);
+            if (appUsers == null) return Unauthorized("Invalid User Name provided.");
 
-            using var hmac = new HMACSHA512(user.PasswordSalt);
+            using var hmac = new HMACSHA512(appUsers.PasswordSalt);
             var computHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(loginDto.Password));
             for (int i = 0; i < computHash.Length; i++)
             {
-                if (computHash[i] != user.PasswordHash[i]) return Unauthorized("Invalid Password provided.");
+                if (computHash[i] != appUsers.PasswordHash[i]) return Unauthorized("Invalid Password provided.");
             }
 
             return new UserDto
             {
                 UserName = loginDto.UserName,
-                Token = TokenMgr.GetToken(loginDto.UserName, loginDto.Password)
+                Token = TokenMgr.GetToken(loginDto.UserName, loginDto.Password, ((Roles)appUsers.RoleId).ToString())
             };
         }
 
@@ -71,6 +73,30 @@ namespace MyProject.WebAPI.Controllers
             return await RepositoryWrapper.AppUserRoles.GetAllUserRolls();
         }
 
+        /// <summary>
+        /// GetUsersById() - Need the parameter User Id to pass For which Data is needed
+        /// </summary>
+        /// <param> int Id </param>
+        /// <returns>Returns Contact Details, name, email, RoleId of input id from AppUsers Table</returns>
+        ///<Aurthor>Sumeet Tanaji Kemse</Aurthor>
+        [HttpPost("GetUserDataById")]
+        public ActionResult<LoginUserDto> GetUsersById(int Id)
+        {
+            var user = RepositoryWrapper.AppUsers.GetUsersById(Id);
+            if (user == null) return Unauthorized("User ID Not Found Enter valid Id.");
+
+            return new LoginUserDto
+            {
+                Id = user.Id,
+                UserName = user.UserName,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                MobileNo = user.MobileNo,
+                Email = user.Email,
+                RoleId = user.RoleId
+
+            };
+        }
 
     }
 }

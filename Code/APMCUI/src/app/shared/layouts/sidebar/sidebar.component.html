@@ -10,15 +10,27 @@
   <nav class="sidebar-menu pt-3 pb-3">
     <ul class="menu-items">
       <li>
-        <a href="#" routerLink="/dashboard" routerLinkActive="active">
+        <a
+          [routerLink]="['/merchant/stallregistration']"
+          routerLinkActive="active"
+        >
           <i class="fa fa-tv"></i>
           <span>Dashboard</span>
         </a>
       </li>
       <li>
-        <a href="#" routerLink="/stallregistration" routerLinkActive="active">
+        <a
+          [routerLink]="['/merchant/stallregistration']"
+          routerLinkActive="active"
+        >
           <i class="fa fa-tv"></i>
           <span>Stall Registration</span>
+        </a>
+      </li>
+      <li>
+        <a [routerLink]="['/merchant/creatindent']" routerLinkActive="active">
+          <i class="fa fa-tv"></i>
+          <span>Create Indent</span>
         </a>
       </li>
     </ul>

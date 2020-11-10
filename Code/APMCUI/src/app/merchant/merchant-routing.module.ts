@@ -5,17 +5,20 @@ import { StallRegistrationComponent } from './components/merchant-dashboard/stal
 
 import { MerchantComponent } from './merchant.component';
 
-const routes: Routes = [{ path: '', component: MerchantComponent,
-children: [
-  { path: '', redirectTo: 'stallregistration', pathMatch: 'full' },
-  { path: 'stallregistration', component: StallRegistrationComponent },
-  { path: 'creatindent', component: CreatIndentComponent },
-]
-
-}];
+const routes: Routes = [
+  {
+    path: '',
+    component: MerchantComponent,
+    children: [
+      { path: '', redirectTo: 'stallregistration', pathMatch: 'full' },
+      { path: 'stallregistration', component: StallRegistrationComponent },
+      { path: 'creatindent', component: CreatIndentComponent },
+    ],
+  },
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class MerchantRoutingModule { }
+export class MerchantRoutingModule {}

@@ -1,37 +1,5 @@
- .container{
-   height: 100%;
-   align-content: center;
-  }
-    
- .card{
-    height: auto;
-    margin-top: auto;
-    margin-bottom: auto;
-    width: 400px;
-    
- }
- .card-header h2{
-    text-align: center;
-    color: #28a745;
-    font:bold 25px arial;
-    }
-    
 
-.input-group-prepend span{
-    width: 50px;
-    background-color:#65af68;
-    color: white;
-    border:0 !important;
-}
-.input:focus{
-    outline: 0 0 0 0  !important;
-    box-shadow: 0 0 0 0 !important;
-}
-.material-icons{
-    display: flex;
-    align-items: center;
-    padding-left: 11px;
-}
+
 .text-danger{
     margin-top: -10px !important;
     margin-bottom: 10px;
@@ -64,14 +32,16 @@
 	display:none;
 	content:attr(data-tip);
 	position:absolute;
-	top:35px;
+	top:-60px;
 	left:0px;
 	padding:5px 8px;
-	background:rgb(95, 162, 216);
-	color:white;
+	background:silver;
+	color:black;
 	z-index:9;
 	font-size: 1em;
 	height:60px;
+	width: 75% !important;
+	margin-left: 15% !important;
 	line-height:18px;
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;

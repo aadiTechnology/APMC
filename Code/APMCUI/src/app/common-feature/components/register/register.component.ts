@@ -1,18 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { CommonService } from '../../common.service';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent implements OnInit {
   hide: boolean = true;
   user: {
-    roleId:number;
+    roleId: number;
     firstName: string;
     lastName: string;
     mobileNumber: string;
@@ -21,10 +21,15 @@ export class RegisterComponent implements OnInit {
     password: string;
     confirmPassword: string;
   };
-  constructor(private commonService: CommonService,private router: Router,private modalService: BsModalService
-    ) {
+  modalRef: BsModalRef;
+  message: string;
+  constructor(
+    private modalService: BsModalService,
+    private commonService: CommonService,
+    private router: Router
+  ) {
     this.user = {
-      roleId:null,
+      roleId: null,
       firstName: null,
       lastName: null,
       mobileNumber: null,
@@ -33,36 +38,42 @@ export class RegisterComponent implements OnInit {
       password: null,
       confirmPassword: null,
     };
-
-   }
-
-  ngOnInit(): void {
   }
-  myFunction(){
+  ngOnInit(): void {}
+
+  openModal(template: TemplateRef<any>): void {
+    this.modalRef = this.modalService.show(template, { class: 'modal-sm' });
+  }
+  myFunction(): void {
     this.hide = !this.hide;
   }
-  
-  checkPassword() {
+
+  checkPassword(): boolean {
     return this.user.password === this.user.confirmPassword ? true : false;
   }
- signup(form: NgForm,user) {
+
+  signup(form: NgForm, user): void {
     if (form.valid) {
-      console.log(form.value)
+      console.log(form.value);
       this.commonService.signup(user).subscribe((arg) => {
         if (arg) {
           sessionStorage.setItem('AccessToken', arg.token);
-          this.router.navigate(['/merchant']);
+          this.router.navigate(['/login']);
         }
       });
+    } else {
+      console.log(form.value);
     }
-    else{
-      console.log(form.value)
-    }
- }
-
- cancelMethod(user: string) {
-  if(confirm("Are you sure you want to cancel all details...?")) {
-    this.router.navigate(['/login']);;
   }
-}
+
+  confirm(): void {
+    this.message = 'Confirmed!';
+    this.router.navigate(['/login']);
+    this.modalRef.hide();
+  }
+
+  decline(): void {
+    this.message = 'Declined!';
+    this.modalRef.hide();
+  }
 }

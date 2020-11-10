@@ -24,7 +24,9 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from './shared/shared.module';
 import { MatTabsModule } from '@angular/material/tabs';
-import { BsModalService } from 'ngx-bootstrap/modal';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { ModalModule } from 'ngx-bootstrap/modal';
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -49,6 +51,8 @@ import { BsModalService } from 'ngx-bootstrap/modal';
     MatGridListModule,
     SharedModule,
     MatTabsModule,
+    MatDatepickerModule,
+    ModalModule.forRoot(),
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
     }),

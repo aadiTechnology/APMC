@@ -83,6 +83,9 @@ namespace MyProject.Entities.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("SurName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.ToTable("Employees");
@@ -146,6 +149,24 @@ namespace MyProject.Entities.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("IndentDetails");
+                });
+
+            modelBuilder.Entity("MyProject.Entities.Models.IndentProducts", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("IndentId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("IndentProducts");
                 });
 
             modelBuilder.Entity("MyProject.Entities.Models.ProductCategory", b =>

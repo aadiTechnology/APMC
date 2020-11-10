@@ -12,5 +12,6 @@ namespace MyProject.Entities.Models
         public string StallRegNo { get; set; }
         public string Area { get; set; }
         public bool IsAssigned { get; set; }
+
     }
 }

@@ -1,51 +1,242 @@
-<div class="container box">
-	<div class="d-flex justify-content-center h-100">
-		<div class="card">
-			<div class="card-header">
-				<h3>Create Indent</h3>
-			</div>
-			<div class="card-body">
-				<form>
-                         <div class=" form-group">
-                              <pre class="card-header">Category: {{selected | json}}</pre>
-                              <input [(ngModel)]="selected"
-                                   placeholder="Driver Name"
-                                   name="category"
-                                   autocomplete="off"
-                                   [typeahead]="states"
-                                   [typeaheadMultipleSearch]="true"
-                                   typeaheadMultipleSearchDelimiters=" |"
-                                   class="form-control">
-                         </div>
-              
-		<div class="input-group form-group">
-						<div class="input-group-prepend">
-						
-						</div>
-                         <input type="txt" class="form-control" placeholder="Driver Number">
+<div class="card">
+  <div class="card-header text-center text-success">
+    <h3 class="mb-0">Create Indent</h3>
+  </div>
+  <div class="card-body">
+    <form
+      novalidate
+      autocomplete="off"
+      name="CreateIndentForm"
+      #CreateIndentForm="ngForm"
+      (ngSubmit)="createIndent(CreateIndentForm,quser)"
+    >
+      <div class="input-group form-group">
+        <div class="input-group-prepend"></div>
+        <span class="badge badge-success">OrderId:0001</span>
+      </div>
+
+      <div class="input-group form-group">
+        <select
+          class="form-control"
+          name="FieldProductList"
+          required
+          #FieldProductList="ngModel"
+          [(ngModel)]="quser.productlist"
+        >
+          <option value="null" selected disabled hidden>Select Product</option>
+          <option id="0">Apple</option>
+          <option id="1">Orange</option>
+          <option id="2">Banana</option>
+          <option id="3">Onion</option>
+          <option id="4">Potato</option>
+          <option id="5">Garlic</option>
+          <option id="6">Methi </option>
+          <option id="7">Palak</option>
+          <option id="8">Gavar</option>
+          <option id="9">Bhendi</option>
+        </select>
+      </div>
+      <div
+        *ngIf="FieldProductList.invalid && (FieldProductList.dirty || FieldProductList.touched || CreateIndentForm.submitted)"
+        class="text-danger"
+      >
+        <div [hidden]="!FieldProductList.errors.required">
+          Product selection is required
         </div>
-        <div class="input-group form-group">
-           
-             <input type="txt" class="form-control" placeholder="Supplier Name">
+      </div>
+
+      <div class="input-group form-group">
+        <span class="label label-default">Quantity</span>
+
+        <span class="label label-default ml-auto pr-5">Quantity Units</span>
+      </div>
+      <div class="input-group form-group">
+        <input
+          type="txt"
+          class="form-control"
+          pattern="[0-9]*"
+          placeholder="Quantity"
+          [(ngModel)]="quser.squantity"
+          required
+          pattern="[0-9]*"
+          maxlength="10"
+          #Quantity="ngModel"
+          name="Quantity"
+          [ngClass]="{'has-error': Quantity.invalid && (Quantity.dirty || Quantity.touched
+                    || CreateIndentForm.submitted ) }"
+        />
+        &nbsp; &nbsp;
+
+        <select class="form-control" id="sel2">
+          <option value="null" selected disabled hidden>Quantity Units</option>
+          <option>gram</option>
+          <option>Kilogram</option>
+          <option>Dozen</option>
+        </select>
+      </div>
+      <div
+        *ngIf="Quantity.invalid && (Quantity.dirty || Quantity.touched || CreateIndentForm.submitted)"
+        class="text-danger"
+      >
+        <div [hidden]="!Quantity.errors.required">
+          Quantity is required
         </div>
-        <div class="input-group form-group">
-            
-             <input type="txt" class="form-control" placeholder="Supplier Number">
+        <div [hidden]="!Quantity.errors.pattern">
+          Enter valid Quantity
         </div>
-        <div class="input-group form-group">
-            
-             <input type="email" class="form-control" placeholder="Email">
+      </div>
+      <div>
+        <a (click)="onProductSelect()" class="btn text-info"
+          >Add <i class="fa fa-plus"></i
+        ></a>
+      </div>
+      <table class="table table-sm table-bordered">
+        <tr>
+          <th>Product Name</th>
+          <th>Quantity</th>
+          <th>Quantity Units</th>
+          <th>Action</th>
+          </tr>
+
+        <tr>
+          <td>Apple</td>
+          <td>1</td>
+          <td>Dozen</td>
+          <td>
+            <a (click)="removeProduct() " class="btn text-info"
+              ><i class="fa fa-trash"></i
+            ></a>
+          </td>
+        </tr>
+      </table>
+      <div class="form-group">
+        <input
+          type="text"
+          [(ngModel)]="quser.driverName"
+          placeholder="Driver Name"
+          required
+          name="category"
+          autocomplete="off"
+          [typeahead]="states"
+          [typeaheadMultipleSearch]="true"
+          typeaheadMultipleSearchDelimiters=" |"
+          class="form-control"
+          #DriverName="ngModel"
+          name="DriverName"
+          [ngClass]="{'has-error': DriverName.invalid && (DriverName.dirty || DriverName.touched || CreateIndentForm.submitted) }"
+        />
+      </div>
+      <div
+        *ngIf="DriverName.invalid && (DriverName.dirty || DriverName.touched || CreateIndentForm.submitted )"
+        class="text-danger"
+      >
+        <div [hidden]="!DriverName.errors.required">
+          Driver name is required
         </div>
-        <div class="input-group form-group">
-            <div class="mx-auto">
-                <input type="submit" value="Send" class="btn btn-success">&nbsp;&nbsp;&nbsp;
-                <input type="reset" value="Cancel" class="btn btn-danger">
-            </div>
-            </div>
-				</form>
-			</div>
-		</div>
-	</div>
+        <div [hidden]="!DriverName.errors.pattern">
+          Enter valid driver name
+        </div>
+      </div>
+      <div class="input-group form-group">
+        <div class="input-group-prepend"></div>
+        <input
+          type="txt"
+          class="form-control"
+          placeholder="Driver Number"
+          [(ngModel)]="quser.driverNumber"
+          required
+          pattern="[0-9]*"
+          maxlength="10"
+          #DriverNumber="ngModel"
+          name="DriverNumber"
+          [ngClass]="{'has-error': DriverNumber.invalid && (DriverNumber.dirty || DriverNumber.touched || CreateIndentForm.submitted) }"
+        />
+      </div>
+      <div
+        *ngIf="DriverNumber.invalid && (DriverNumber.dirty || DriverNumber.touched || CreateIndentForm.submitted )"
+        class="text-danger"
+      >
+        <div [hidden]="!DriverNumber.errors.required">
+          Driver mobile number is required
+        </div>
+        <div [hidden]="!DriverNumber.errors.pattern">
+          Enter valid drive mobile number
+        </div>
+      </div>
+
+      <div class="input-group form-group">
+        <div class="input-group-prepend"></div>
+        <input
+          type="txt"
+          class="form-control"
+          placeholder="Vehicle Number"
+          [(ngModel)]="quser.vhclNumber"
+          #VehicleNumber="ngModel"
+          name="VehicleNumber"
+        />
+      </div>
+      <div class="input-group form-group">
+        <input
+          class="form-control"
+          placeholder="Select Date"
+          matInput
+          [matDatepicker]="picker"
+        />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="picker"
+          style="color: blue;"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </div> 
+      <!-- <div class="input-group form-group">
+        <input
+          class="form-control"
+          placeholder="Select Time"
+          matInput
+          [matDatepicker]="picker"
+        />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="picker"
+          style="color: blue;"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </div> -->
+
+      <div class="input-group form-group">
+        <input
+          type="txt"
+          class="form-control"
+          placeholder="Supplier Name"
+          [(ngModel)]="quser.suplierName"
+          #SupplierName="ngModel"
+          name="#SupplierName"
+        />
+      </div>
+      <div class="input-group form-group">
+        <input
+          type="txt"
+          class="form-control"
+          placeholder="Supplier Number"
+          [(ngModel)]="quser.suplierNumber"
+          #SupplierNumber="ngModel"
+          name="SupplierNumber"
+        />
+      </div>
+
+      <!-- <pre class="card-header">Category: {{quser | json}}</pre> -->
+      <br />
+      <div class="input-group form-group">
+        <div class="mx-auto">
+          <input
+            type="submit"
+            value="Save"
+            class="btn btn-success"
+          />&nbsp;&nbsp;&nbsp;
+          <input type="reset" value="Cancel" class="btn btn-danger" />
+        </div>
+      </div>
+    </form>
+  </div>
 </div>
-
-

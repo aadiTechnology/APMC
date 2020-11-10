@@ -1,49 +1,8 @@
-.box{
-    text-align: center;
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-   
-  }
-  
-  .card{
-  height: auto;
-  margin-top: auto;
-  margin-bottom: auto;
-  width: 400px;
-  //background-color: rgba(0,0,0,0.5) !important;
-  }
-  
-  .card-header h3{
-  color: #28a745;
-  font:bold 25px arial;
-  }
-  
-  .text-danger{
-    margin-top: -11px !important;
-    text-align: center;
-  }
-  
-  
-  .input-group-prepend span{
-  width: 50px;
-  background-color: #65af68;;
-    color: white;
-  border:0 !important;
-  }
-  
-  input:focus{
-  outline: 0 0 0 0  !important;
-  box-shadow: 0 0 0 0 !important;
-  
-  }
-  
-  
-  select {
-    height: auto;
-    max-height: 200px;
-    overflow-x: hidden;
+.text-danger{
+  margin-top: -10px !important;
+  margin-bottom: 10px;
+}
 
-    }
+ 
+ 
+  
