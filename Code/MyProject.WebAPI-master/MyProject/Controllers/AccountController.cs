@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using MyProject.Contracts;
 using MyProject.Entities.DataTransferObjects;
 using MyProject.Entities.Models;
@@ -23,9 +22,8 @@ namespace MyProject.WebAPI.Controllers
         public IRepositoryWrapper RepositoryWrapper { get; }
         public ITokenManager TokenMgr { get; set; }
 
-        [AllowAnonymous]
         [HttpPost("Register")]
-        public ActionResult<UserDto> Register([FromBody]RegisterDto registerDto)
+        public void Register([FromBody]RegisterDto registerDto)
         {
             using var hmac = new HMACSHA512();
             var user = new AppUsers
@@ -40,11 +38,6 @@ namespace MyProject.WebAPI.Controllers
                 RoleId = registerDto.RoleId
             };
             RepositoryWrapper.AppUsers.Register(user);
-            return new UserDto
-            {
-                UserName = user.UserName,
-                Token = TokenMgr.GetToken(user.UserName, registerDto.Password, ((Roles)registerDto.RoleId).ToString())
-            };
         }
 
         [HttpPost("Login")]
