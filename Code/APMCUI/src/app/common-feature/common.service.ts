@@ -4,8 +4,7 @@ import { HttpService } from '../core/services/http.service';
 @Injectable({
   providedIn: 'root',
 })
-export class 
-CommonService {
+export class CommonService {
   isSidebarPinned = false;
   isSidebarToggeled = false;
   constructor(private httpService: HttpService) {}

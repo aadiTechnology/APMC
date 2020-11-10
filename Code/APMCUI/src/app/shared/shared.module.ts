@@ -9,6 +9,7 @@ import { NavbarComponent } from './layouts/navbar/navbar.component';
 import { SidebarComponent } from './layouts/sidebar/sidebar.component';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { ToastrModule } from 'ngx-toastr';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { ToastrModule } from 'ngx-toastr';
     HttpClientModule,
     CollapseModule.forRoot(),
     ToastrModule.forRoot(),
+    NgxSpinnerModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

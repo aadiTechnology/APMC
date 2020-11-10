@@ -2,6 +2,8 @@ import { Component, OnInit, TemplateRef } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { ToastrService } from 'ngx-toastr';
 import { CommonService } from '../../common.service';
 
 @Component({
@@ -26,7 +28,9 @@ export class RegisterComponent implements OnInit {
   constructor(
     private modalService: BsModalService,
     private commonService: CommonService,
-    private router: Router
+    private router: Router,
+    private ngxSpinnerService: NgxSpinnerService,
+    private toastr: ToastrService
   ) {
     this.user = {
       roleId: null,
@@ -53,16 +57,25 @@ export class RegisterComponent implements OnInit {
   }
 
   signup(form: NgForm, user): void {
+    this.ngxSpinnerService.show();
     if (form.valid) {
       console.log(form.value);
-      this.commonService.signup(user).subscribe((arg) => {
-        if (arg) {
-          sessionStorage.setItem('AccessToken', arg.token);
-          this.router.navigate(['/login']);
+      this.commonService.signup(user).subscribe(
+        (arg) => {
+          if (arg) {
+            this.router.navigate(['/login']);
+            this.toastr.success('Registration successful', 'Success');
+            this.ngxSpinnerService.hide();
+          }
+        },
+        (err) => {
+          this.toastr.success('Something went wrong', 'Error');
+          this.ngxSpinnerService.hide();
         }
-      });
+      );
     } else {
       console.log(form.value);
+      this.ngxSpinnerService.hide();
     }
   }
 
