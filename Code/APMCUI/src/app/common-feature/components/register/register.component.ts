@@ -58,7 +58,7 @@ export class RegisterComponent implements OnInit {
       this.commonService.signup(user).subscribe((arg) => {
         if (arg) {
           sessionStorage.setItem('AccessToken', arg.token);
-          this.router.navigate(['/merchant']);
+          this.router.navigate(['/login']);
         }
       });
     } else {
