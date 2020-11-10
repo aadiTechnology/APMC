@@ -87,7 +87,7 @@
       </div>
       <div>
         <a (click)="onProductSelect()" class="btn text-info"
-          ><i class="fa fa-plus"></i
+          >Add <i class="fa fa-plus"></i
         ></a>
       </div>
       <table class="table table-sm table-bordered">
@@ -95,17 +95,13 @@
           <th>Product Name</th>
           <th>Quantity</th>
           <th>Quantity Units</th>
-          <th>Edit</th>
-          <th>Delete</th>
-        </tr>
+          <th>Action</th>
+          </tr>
 
         <tr>
           <td>Apple</td>
           <td>1</td>
           <td>Dozen</td>
-          <td>
-            <a class="btn text-info"><i class="fa fa-edit"></i></a>
-          </td>
           <td>
             <a (click)="removeProduct() " class="btn text-info"
               ><i class="fa fa-trash"></i
@@ -182,7 +178,7 @@
       <div class="input-group form-group">
         <input
           class="form-control"
-          placeholder="Date and Time"
+          placeholder="Select Date"
           matInput
           [matDatepicker]="picker"
         />
@@ -192,7 +188,21 @@
           style="color: blue;"
         ></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
-      </div>
+      </div> 
+      <!-- <div class="input-group form-group">
+        <input
+          class="form-control"
+          placeholder="Select Time"
+          matInput
+          [matDatepicker]="picker"
+        />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="picker"
+          style="color: blue;"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </div> -->
 
       <div class="input-group form-group">
         <input
@@ -215,7 +225,7 @@
         />
       </div>
 
-      <pre class="card-header">Category: {{quser | json}}</pre>
+      <!-- <pre class="card-header">Category: {{quser | json}}</pre> -->
       <br />
       <div class="input-group form-group">
         <div class="mx-auto">
