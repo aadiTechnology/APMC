@@ -15,6 +15,7 @@ namespace MyProject.Repository
         private IProductCategoryRepository _productCategory;
         private IStallRegistrationRepository _stallRegistration;
         private IStallProductCategoriesRepository _stallProductCategories;
+        private IIndentRepository _indentDetails;
 
         public IEmployeeRepository Employee
         {
@@ -140,6 +141,25 @@ namespace MyProject.Repository
                 if (_stallProductCategories == null)
                 {
                     _stallProductCategories = new StallProductCategoriesRepository(_repoContext);
+                };
+            }
+
+        }
+        public IIndentRepository IndentDetails
+        {
+            get
+            {
+                if (_indentDetails == null)
+                {
+                    _indentDetails = new IndentRepository(_repoContext);
+                }
+                return _indentDetails;
+            }
+            set
+            {
+                if (_indentDetails == null)
+                {
+                    _indentDetails = new IndentRepository(_repoContext);
                 };
             }
 
