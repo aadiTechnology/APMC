@@ -29,6 +29,7 @@ CommonService {
     const loginUser = { UserName: user.UserName, Password: user.Password };
     return this.httpService.postAnonymous('Account/Login', loginUser);
   }
+
   signup(user): any {
     const registeruser = {
       UserName: user.userName,

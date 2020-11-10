@@ -45,7 +45,8 @@ import {MatInputModule} from '@angular/material/input';
     MatFormFieldModule,
     FormsModule,
     MatTabsModule,
-    MatInputModule
+    MatInputModule,
+    
   ],
 })
 export class CommonFeatureModule {}

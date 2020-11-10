@@ -24,6 +24,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from './shared/shared.module';
 import { MatTabsModule } from '@angular/material/tabs';
+import { BsModalService } from 'ngx-bootstrap/modal';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -52,7 +53,7 @@ import { MatTabsModule } from '@angular/material/tabs';
       enabled: environment.production,
     }),
   ],
-  providers: [],
+  providers: [BsModalService],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

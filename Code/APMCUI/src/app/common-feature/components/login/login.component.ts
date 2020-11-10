@@ -23,7 +23,9 @@ export class LoginComponent implements OnInit {
     if (form.valid) {
       this.commonService.login(user).subscribe((arg) => {
         if (arg) {
+          console.log(user.UserName,user.Password);
           sessionStorage.setItem('AccessToken', arg.token);
+          
           this.router.navigate(['/merchant']);
         }
       });
