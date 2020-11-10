@@ -60,9 +60,9 @@
           required
           pattern="[0-9]*"
           maxlength="10"
-          #Quantity="ngModel"
+          #FieldQuantity="ngModel"
           name="Quantity"
-          [ngClass]="{'has-error': Quantity.invalid && (Quantity.dirty || Quantity.touched
+          [ngClass]="{'has-error': FieldQuantity.invalid && (FieldQuantity.dirty || FieldQuantity.touched
                     || CreateIndentForm.submitted ) }"
         />
         &nbsp; &nbsp;
@@ -75,13 +75,13 @@
         </select>
       </div>
       <div
-        *ngIf="Quantity.invalid && (Quantity.dirty || Quantity.touched || CreateIndentForm.submitted)"
+        *ngIf="FieldQuantity.invalid && (FieldQuantity.dirty || FieldQuantity.touched || CreateIndentForm.submitted)"
         class="text-danger"
       >
-        <div [hidden]="!Quantity.errors.required">
+        <div [hidden]="!FieldQuantity.errors.required">
           Quantity is required
         </div>
-        <div [hidden]="!Quantity.errors.pattern">
+        <div [hidden]="!FieldQuantity.errors.pattern">
           Enter valid Quantity
         </div>
       </div>
@@ -99,9 +99,9 @@
           </tr>
 
         <tr>
-          <td>Apple</td>
-          <td>1</td>
-          <td>Dozen</td>
+          <td></td>
+          <td></td>
+          <td></td>
           <td>
             <a (click)="removeProduct() " class="btn text-info"
               ><i class="fa fa-trash"></i
@@ -121,19 +121,19 @@
           [typeaheadMultipleSearch]="true"
           typeaheadMultipleSearchDelimiters=" |"
           class="form-control"
-          #DriverName="ngModel"
-          name="DriverName"
-          [ngClass]="{'has-error': DriverName.invalid && (DriverName.dirty || DriverName.touched || CreateIndentForm.submitted) }"
+          #FieldDriverName="ngModel"
+          name="FieldDriverName"
+          [ngClass]="{'has-error': FieldDriverName.invalid && (FieldDriverName.dirty || FieldDriverName.touched || CreateIndentForm.submitted) }"
         />
       </div>
       <div
-        *ngIf="DriverName.invalid && (DriverName.dirty || DriverName.touched || CreateIndentForm.submitted )"
+        *ngIf="FieldDriverName.invalid && (FieldDriverName.dirty || FieldDriverName.touched || CreateIndentForm.submitted )"
         class="text-danger"
       >
-        <div [hidden]="!DriverName.errors.required">
+        <div [hidden]="!FieldDriverName.errors.required">
           Driver name is required
         </div>
-        <div [hidden]="!DriverName.errors.pattern">
+        <div [hidden]="!FieldDriverName.errors.pattern">
           Enter valid driver name
         </div>
       </div>
@@ -147,19 +147,19 @@
           required
           pattern="[0-9]*"
           maxlength="10"
-          #DriverNumber="ngModel"
-          name="DriverNumber"
-          [ngClass]="{'has-error': DriverNumber.invalid && (DriverNumber.dirty || DriverNumber.touched || CreateIndentForm.submitted) }"
+          #FieldDriverNumber="ngModel"
+          name="FieldDriverNumber"
+          [ngClass]="{'has-error': FieldDriverNumber.invalid && (FieldDriverNumber.dirty || FieldDriverNumber.touched || CreateIndentForm.submitted) }"
         />
       </div>
       <div
-        *ngIf="DriverNumber.invalid && (DriverNumber.dirty || DriverNumber.touched || CreateIndentForm.submitted )"
+        *ngIf="FieldDriverNumber.invalid && (FieldDriverNumber.dirty || FieldDriverNumber.touched || CreateIndentForm.submitted )"
         class="text-danger"
       >
-        <div [hidden]="!DriverNumber.errors.required">
+        <div [hidden]="!FieldDriverNumber.errors.required">
           Driver mobile number is required
         </div>
-        <div [hidden]="!DriverNumber.errors.pattern">
+        <div [hidden]="!FieldDriverNumber.errors.pattern">
           Enter valid drive mobile number
         </div>
       </div>
@@ -171,8 +171,8 @@
           class="form-control"
           placeholder="Vehicle Number"
           [(ngModel)]="quser.vhclNumber"
-          #VehicleNumber="ngModel"
-          name="VehicleNumber"
+          #FieldVehicleNumber="ngModel"
+          name="FieldVehicleNumber"
         />
       </div>
       <div class="input-group form-group">
@@ -210,8 +210,8 @@
           class="form-control"
           placeholder="Supplier Name"
           [(ngModel)]="quser.suplierName"
-          #SupplierName="ngModel"
-          name="#SupplierName"
+          #FieldSupplierName="ngModel"
+          name="#FieldSupplierName"
         />
       </div>
       <div class="input-group form-group">
@@ -220,8 +220,8 @@
           class="form-control"
           placeholder="Supplier Number"
           [(ngModel)]="quser.suplierNumber"
-          #SupplierNumber="ngModel"
-          name="SupplierNumber"
+          #FieldSupplierNumber="ngModel"
+          name="FieldSupplierNumber"
         />
       </div>
 
@@ -234,8 +234,23 @@
             value="Save"
             class="btn btn-success"
           />&nbsp;&nbsp;&nbsp;
-          <input type="reset" value="Cancel" class="btn btn-danger" />
+          <input type="reset"
+           value="Cancel" 
+           class="btn btn-danger"
+           (click)="openModal(template)" />
         </div>
+        <ng-template #template>
+          <div class="modal-body text-center">
+            <h3 class="mx-auto">Confirm Cancellation</h3>
+            <p>Are you sure ? You want to cancel Indent creation?</p>
+            <button type="button" class="btn btn-default" (click)="confirm()">
+              Yes
+            </button>
+            <button type="button" class="btn btn-primary" (click)="decline()">
+              No
+            </button>
+          </div>
+        </ng-template>
       </div>
     </form>
   </div>

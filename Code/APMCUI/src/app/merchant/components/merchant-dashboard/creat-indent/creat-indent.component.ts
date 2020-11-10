@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { Router } from '@angular/router';
+
 import { from } from 'rxjs';
 
 @Component({
@@ -21,7 +24,11 @@ export class CreatIndentComponent implements OnInit {
   };
   // what are states?
   states = ['Rama Driver', 'Raju Driver', 'Balu Driver'];
-  constructor() {
+  modalRef: BsModalRef;
+  message: string;
+  constructor(
+    private modalService: BsModalService,
+      private router: Router) {
     this.quser = {
       productlist: null,
       squantity: null,
@@ -34,6 +41,10 @@ export class CreatIndentComponent implements OnInit {
   }
 
   ngOnInit(): void {}
+  
+  openModal(template: TemplateRef<any>): void {
+    this.modalRef = this.modalService.show(template, { class: 'modal-sm' });
+  }
   onProductSelect(): void {}
   removeProduct(): void {}
   createIndent(form: NgForm, quser): void {
@@ -42,5 +53,16 @@ export class CreatIndentComponent implements OnInit {
     } else {
       console.log(form.value);
     }
+  }
+  
+  confirm(): void {
+    this.message = 'Confirmed!';
+    this.router.navigate(['/login']);
+    this.modalRef.hide();
+  }
+
+  decline(): void {
+    this.message = 'Declined!';
+    this.modalRef.hide();
   }
 }
