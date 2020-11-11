@@ -1,9 +1,12 @@
-﻿using MyProject.Contracts;
+﻿using Microsoft.EntityFrameworkCore;
+using MyProject.Contracts;
 using MyProject.Entities;
 using MyProject.Entities.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace MyProject.Repository
 {
@@ -42,6 +45,12 @@ namespace MyProject.Repository
             {
                 throw;
             }
+
+        }
+        public async Task<IEnumerable<IndentDetails>> GetOrderId()
+        {
+            //return await _repositoryContext.StallDetails.ToListAsync();
+            return await _repositoryContext.IndentDetails.Where(a => a.CreatedBy == 1).ToListAsync();
 
         }
     }

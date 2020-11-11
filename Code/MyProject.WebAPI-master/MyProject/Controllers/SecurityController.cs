@@ -32,7 +32,7 @@ namespace MyProject.WebAPI.Controllers
             //var token = jwtAuthenticationManager.Authenticate(userCred.UserName, userCred.Password);
             var token = _tokenManager.GetToken(userCred.UserName, userCred.Password,"");
             if (token == null)
-                return Unauthorized();
+                return Ok("Error: authenticate");
             return Ok(token);
         }
     }

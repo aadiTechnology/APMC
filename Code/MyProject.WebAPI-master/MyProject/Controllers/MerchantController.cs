@@ -35,12 +35,10 @@ namespace MyProject.WebAPI.Controllers
             return await RepositoryWrapper.StallDetails.GetAllStallDetails();
         }
 
-        /// <summary>
-        /// GetAllProductCategory - Dosent need any Parameter to pass returns the list of ProductCategory from master
-        /// </summary>
-        /// <param> </param>
-        /// <returns>Returns  the list of ProductCategory from master</returns>
-        ///<Aurthor>Sumeet Tanaji Kemse</Aurthor>
+   /// <summary>
+   /// 
+   /// </summary>
+   /// <returns></returns>
         [HttpGet("GetAllProductCategory")]
         public async Task<IEnumerable<ProductCategory>> GetAllProductCategory()
         {
@@ -66,11 +64,11 @@ namespace MyProject.WebAPI.Controllers
                 RepositoryWrapper.StallRegistration.StallRegistration(stallregisterDto.UserId, stallregisterDto.StallId);
                 RepositoryWrapper.StallProductCategories.StallProductCategories(stallregisterDto.Category.ToList(), stallregisterDto.StallId);
 
-                return Content("Stall Registered Sucessfully");
+                return Ok("Stall Registered Sucessfully");
             }
             catch (Exception ex)
             {
-                return Content("Failure in Stall Registration : " + ex);
+                return Ok("Error: Failure in Stall Registration : " + ex);
             }
         }
     }

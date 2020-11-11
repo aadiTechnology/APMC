@@ -42,5 +42,11 @@ namespace MyProject.WebAPI.Controllers
             RepositoryWrapper.IndentDetails.Update(indentDetails);
             return null;
         }
+
+        [HttpGet("GetOrderId")]
+        public async Task<IEnumerable<IndentDetails>> GetOrderId()
+        {
+            return await RepositoryWrapper.IndentDetails.GetOrderId();
+        }
     }
 }
