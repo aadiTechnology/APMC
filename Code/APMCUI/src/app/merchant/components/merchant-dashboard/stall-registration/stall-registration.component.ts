@@ -2,7 +2,8 @@ import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { MerchantService } from '../../../merchant.service';
-import {StallDetails} from '../../../entities/stall-details';
+import { StallDetails } from '../../../entities/stall-details';
+import { ProductCategory } from '../../../entities/product-category'
 
 @Component({
   selector: 'app-stall-registration',
@@ -11,23 +12,10 @@ import {StallDetails} from '../../../entities/stall-details';
 })
 export class StallRegistrationComponent implements OnInit {
   stalllist: any;
+  productCatergory:any;
 
   selected: string;
-  productCatergory = [
-    'Fruits',
-    'Vegetables',
-    'Flowers',
-    'Dry Fruits',
-    'Spices',
-    'Fertilizers & Manures',
-    'Dairy',
-    'Packaging Material',
-    'Farm Equipments',
-    'Grains',
-    'Fishery',
-    'Pulses',
-    'Cereals',
-  ];
+  
 
   p = { Id: 1, ProductName: 'Fishery' };
   selectedProducts: any[];
@@ -52,12 +40,14 @@ export class StallRegistrationComponent implements OnInit {
     this.selectedProducts = [
       { Id: 1, ProductName: 'Fishery' },
     ];
-
+   
     this.stalllist = new Array<StallDetails>();
+    this.productCatergory = new Array<ProductCategory>();
   }
 
   ngOnInit(): void {
     this.getAllStallDetails();
+    this.getGetAllProductCategory();
   }
   onProductSelect(event): void {
     if (event) {
@@ -75,7 +65,7 @@ export class StallRegistrationComponent implements OnInit {
     }
   }
 
-  //form
+  //Start form 
   stallregister(any) {
 
   }
@@ -97,9 +87,22 @@ export class StallRegistrationComponent implements OnInit {
   }
   // end cancel button pop
 
+    // start get form data
   getAllStallDetails() {
     this.merchantService.getAllStallDetails()
       .subscribe(result => { this.stalllist = result });
   }
+
+  getGetAllProductCategory() {
+    this.merchantService.getGetAllProductCategory()
+      .subscribe(result => { this.productCatergory = result });
+  }
+
+  GetUserDataById(id) {
+    
+  }
+
+    // end 
+
 
 }
