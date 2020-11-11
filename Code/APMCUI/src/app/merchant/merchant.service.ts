@@ -3,22 +3,21 @@ import { Injectable } from '@angular/core';
 import { HttpService } from '../core/services/http.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class MerchantService {
+  constructor(private httpService: HttpService) {}
 
-  constructor(private httpService: HttpService) { }
 
-getAllStallDetails(){
-  return this.httpService.get('Merchant/GetAllStallDetails');
-}          
+  getAllStallDetails():any{
+    return this.httpService.get('Merchant/GetAllStallDetails');
+  }   
 
-getGetAllProductCategory(){
-  return this.httpService.get('Merchant/GetAllProductCategory');
-}
+  getAllProductCategories(): any {
+    return this.httpService.get('Merchant/GetAllProductCategory');
+  }
 
-GetUserDataById(){
-  
-}
-
+  stallRegistration(data): any {
+    return this.httpService.post('Merchant/StallRegistration', data);
+  }
 }

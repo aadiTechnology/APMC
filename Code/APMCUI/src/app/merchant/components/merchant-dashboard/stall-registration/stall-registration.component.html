@@ -1,119 +1,140 @@
+<div class="card stall-register-box">
+  <div class="card-header text-center text-success">
+    <h3 class="mb-0">Stall Registration</h3>
+  </div>
+  <div class="card-body">
+    <form
+      novalidate
+      autocomplete="off"
+      name="StallRegisterForm"
+      #StallRegisterForm="ngForm"
+      (ngSubmit)="stallregister(StallRegisterForm)"
+    >
+      <div class="input-group form-group">
+        <input
+          type="txt"
+          class="form-control"
+          placeholder="First Name"
+          disabled
+        />
+      </div>
+      <div class="input-group form-group">
+        <input
+          type="txt"
+          class="form-control"
+          placeholder="Last Name"
+          disabled
+        />
+      </div>
+      <div class="input-group form-group">
+        <input
+          type="txt"
+          class="form-control"
+          placeholder="Mobile No"
+          disabled
+        />
+      </div>
+      <div class="input-group form-group">
+        <input type="email" class="form-control" placeholder="Email" disabled />
+      </div>
 
-		<div class="card stall-register-box">
-			<div class="card-header text-center text-success">
-				<h3 class="mb-0">Stall Registration</h3>
-			</div>
-			<div class="card-body">
-                    <form  
-                    novalidate
-                    autocomplete="off"
-                    name="StallRegisterForm"
-                    #StallRegisterForm="ngForm"
-                    (ngSubmit)="stallregister(StallRegisterForm)"
-                                       >
+      <div class="input-group form-group">
+        <select
+          class="form-control"
+          name="FieldStallno"
+          required
+          #FieldStallno="ngModel"
+          [(ngModel)]="stallreg.stallno"
+        >
+          <option value="null" selected disabled hidden>Stall No</option>
+          <option *ngFor="let StallData of stalllist" value={{StallData.id}}>{{StallData.stallNo}}</option>
+    
+        </select>
+      </div>
+      <div
+        *ngIf="FieldStallno.invalid && (FieldStallno.dirty || FieldStallno.touched || StallRegisterForm.submitted)"
+        class="text-danger"
+      >
+        <div [hidden]="!FieldStallno.errors.required">
+          Stall no is required
+        </div>
+      </div>
+      <div class="form-group">
+        <input
+          [(ngModel)]="selected"
+          placeholder="Product Category"
+          required
+          autocomplete="off"
+          [typeahead]= "productCategory"
+          typeaheadOptionField="category"
+          (typeaheadOnSelect)="onSelectcategory($event)"
+          [typeaheadMultipleSearch]="true"
+          typeaheadMultipleSearchDelimiters=" |"
+          class="form-control"
+          name="Pcategory"
+          #Pcategory="ngModel"
+        />
+      </div>
+      <div
+        *ngIf="Pcategory.invalid && (Pcategory.dirty || Pcategory.touched || StallRegisterForm.submitted)"
+        class="text-danger"
+      >
+        <div [hidden]="!Pcategory.errors.required">
+          Category is required
+        </div>
+      </div>
 
-                         <div class="input-group form-group" >
-                              <input type="txt" class="form-control" placeholder="First Name" disabled>
-                        </div>
-                         <div class="input-group form-group">
-                              <input type="txt" class="form-control" placeholder="Last Name" disabled>
-                         </div>
-                         <div class="input-group form-group">
-                              <input type="txt" class="form-control" placeholder="Mobile No" disabled>
-                         </div>
-                         <div class="input-group form-group">
-                              <input type="email" class="form-control" placeholder="Email" disabled>
-                         </div>
-                       
-                 <div class="input-group form-group">
-						
-                            <select class="form-control"
-                              name="FieldStallno"
-                              required
-                              #FieldStallno="ngModel"
-                              [(ngModel)]="stallreg.stallno"
-                              
-                             >
-                              <option value="null" selected disabled hidden >Stall No</option>
-                              <option *ngFor="let StallData of stalllist">{{StallData.stallNo}}</option>
-                              
-                            </select>
-                    </div>
-                    <div
-                    *ngIf="FieldStallno.invalid && (FieldStallno.dirty || FieldStallno.touched || StallRegisterForm.submitted)"
-                    class="text-danger">
-                    <div [hidden]="!FieldStallno.errors.required">
-                      Stall no is required
-                    </div>
-                  </div>
-                    <div class=" form-group">
-                        
-                         <input [(ngModel)]="selected"
-                              placeholder="Product Category"
-                              required
-                              autocomplete="off"
-                              [typeahead]="productCatergory "
-                              [typeaheadMultipleSearch]="true"
-                              typeaheadMultipleSearchDelimiters=" |"
-                              class="form-control" 
-                              name="Pcategory"
-                              #Pcategory="ngModel">
-                              
-                    </div>
-                    <div
-                    *ngIf="Pcategory.invalid && (Pcategory.dirty || Pcategory.touched || StallRegisterForm.submitted)"
-                    class="text-danger"
-                  >
-                    <div [hidden]="!Pcategory.errors.required">
-                     Category is required
-                    </div>
-                  </div>
-		
-                 <!-- <pre class="card-header">Category: {{selected | json}}</pre>-->
-                  <br>
-                  <div>
-                    <a (click)="onProductSelect(p)" class="btn text-info"
-                      ><i class="fa fa-plus"></i
-                    ></a>
-                  </div>
-                  <table class="table table-sm table-bordered">
-                    <tr>
-                      <th>Id</th>
-                      <th>Prodcut name</th>
-                      <th>action</th>
-                    </tr>
-                    <tr *ngFor="let item of selectedProducts">
-                      <td>{{item.Id}}</td>
-                      <td>{{item.ProductName}}</td>
-                      <td>
-                        <a (click)="removeProduct(item)" class="btn text-info"
-                          ><i class="fa fa-trash"></i
-                        ></a>
-                      </td>
-                    </tr>
-                  </table>
-                  
-                  
-                 
-                  
-        <div class="input-group form-group">
-            <div class="mx-auto">
-                <input type="submit" value="Send" class="btn btn-success">&nbsp;&nbsp;&nbsp;
-                <input type="reset" value="Cancel" class="btn btn-danger" (click)="openModal(template)">
-            </div>
-            <ng-template #template>
-               <div class="modal-body text-center">
-               <h3 class="mx-auto">Confirm Cancellation </h3>
-                 <p>Do you want to cancel Stall Registration ?</p>
-                 <button type="button" class="btn btn-default" (click)="confirm()" >Yes</button>
-                 <button type="button" class="btn btn-primary" (click)="decline()" >No</button>
-               </div>
-             </ng-template>
-            
-            </div>
-				</form>
-			</div>
-		</div>
+      <!--<pre class="card-header">Category: {{selected | json}}</pre>-->
 
+      <div>
+        <a (click)="onProductSelect(p)" class="btn text-info float-right"
+          ><i class="fa fa-plus">Add</i
+        ></a>
+      </div>
+      <table class="table table-sm table-bordered">
+        <tr>
+          <th>Id</th>
+          <th>Prodcut name</th>
+          <th>action</th>
+        </tr>
+        <tr *ngFor="let item of selectedProducts">
+          <td>{{item.Id}}</td>
+          <td>{{item.ProductName}}</td>
+          <td>
+            <a (click)="removeProduct(item)" class="btn text-info"
+              ><i class="fa fa-trash"></i
+            ></a>
+          </td>
+        </tr>
+      </table>
 
-
+      <div class="input-group form-group">
+        <div class="mx-auto">
+          <input
+            type="submit"
+            value="Send"
+            class="btn btn-success"
+          />&nbsp;&nbsp;&nbsp;
+          <input
+            type="reset"
+            value="Cancel"
+            class="btn btn-danger"
+            (click)="openModal(template)"
+          />
+        </div>
+        <ng-template #template>
+          <div class="modal-body text-center">
+            <h3 class="mx-auto">Confirm Cancellation</h3>
+            <p>Do you want to cancel Stall Registration ?</p>
+            <button type="button" class="btn btn-default" (click)="confirm()">
+              Yes
+            </button>
+            <button type="button" class="btn btn-primary" (click)="decline()">
+              No
+            </button>
+          </div>
+        </ng-template>
+      </div>
+    </form>
+  </div>
+</div>

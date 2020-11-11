@@ -26,6 +26,8 @@ import { SharedModule } from './shared/shared.module';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { BsModalService, ModalModule } from 'ngx-bootstrap/modal';
+//import { ModalModule } from 'ngx-bootstrap/modal';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [AppComponent],
@@ -55,6 +57,13 @@ import { BsModalService, ModalModule } from 'ngx-bootstrap/modal';
     ModalModule.forRoot(),
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
+    }),
+    ToastrModule.forRoot({
+      timeOut: 2500,
+      positionClass: 'toast-top-center',
+      preventDuplicates: true,
+      countDuplicates: false,
+      progressBar: true,
     }),
   ],
   providers: [BsModalService],

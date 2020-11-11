@@ -1,9 +1,14 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { MerchantService } from '../../../merchant.service';
 import { StallDetails } from '../../../entities/stall-details';
 import { ProductCategory } from '../../../entities/product-category'
+
+import { NgxSpinnerService } from 'ngx-spinner';
+import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
   selector: 'app-stall-registration',
@@ -15,7 +20,7 @@ export class StallRegistrationComponent implements OnInit {
   productCatergory:any;
 
   selected: string;
-  
+  productCategory = [];
 
   p = { Id: 1, ProductName: 'Fishery' };
   selectedProducts: any[];
@@ -29,26 +34,35 @@ export class StallRegistrationComponent implements OnInit {
   modalRef: BsModalRef; // cancel buton
   message: string;
 
-
-
-  constructor(private modalService: BsModalService, private router: Router, private merchantService: MerchantService) {
+  constructor(
+    private modalService: BsModalService,
+    private router: Router,
+    private merchantService: MerchantService,
+    private ngxSpinnerService: NgxSpinnerService,
+    private toastr: ToastrService
+  ) {
     this.stallreg = {
       stallno: null,
       productcategory: null
     };
-
     this.selectedProducts = [
       { Id: 1, ProductName: 'Fishery' },
     ];
-   
+
     this.stalllist = new Array<StallDetails>();
-    this.productCatergory = new Array<ProductCategory>();
+    this.productCategory = new Array<ProductCategory>();
+  }
+  //end form
+
+  openModal(template: TemplateRef<any>): void {
+    this.modalRef = this.modalService.show(template, { class: 'modal-sm' });
+  }
+  ngOnInit(): void {
+    this.getAllProductCategories();
+    this.getAllStallDetails();
   }
 
-  ngOnInit(): void {
-    this.getAllStallDetails();
-    this.getGetAllProductCategory();
-  }
+
   onProductSelect(event): void {
     if (event) {
       // if (this.selectedProducts.length === 0) {
@@ -65,15 +79,26 @@ export class StallRegistrationComponent implements OnInit {
     }
   }
 
-  //Start form 
-  stallregister(any) {
 
-  }
-  //end form
-
-  //cancel button pop
-  openModal(template: TemplateRef<any>) {
-    this.modalRef = this.modalService.show(template, { class: 'modal-sm' });
+  stallregister(form: NgForm): void {
+    this.ngxSpinnerService.show();
+    if (form.valid) {
+      const stallData = {};
+      this.merchantService.stallRegistration(stallData).subscribe(
+        (arg) => {
+          if (arg) {
+            this.toastr.success('Stall registration successful', 'Success');
+            this.ngxSpinnerService.hide();
+          }
+        },
+        (err) => {
+          this.toastr.success('Something went wrong', 'Error');
+          this.ngxSpinnerService.hide();
+        }
+      );
+    } else {
+      this.ngxSpinnerService.hide();
+    }
   }
 
   confirm(): void {
@@ -85,24 +110,25 @@ export class StallRegistrationComponent implements OnInit {
     this.message = 'Declined!';
     this.modalRef.hide();
   }
-  // end cancel button pop
 
-    // start get form data
   getAllStallDetails() {
     this.merchantService.getAllStallDetails()
-      .subscribe(result => { this.stalllist = result });
+      .subscribe((arg) =>{
+      if (arg) {
+        this.stalllist = arg;
+          }
+        });
   }
 
-  getGetAllProductCategory() {
-    this.merchantService.getGetAllProductCategory()
-      .subscribe(result => { this.productCatergory = result });
+  getAllProductCategories(): void {
+    this.merchantService.getAllProductCategories().subscribe((arg) => {
+      if (arg) {
+        this.productCategory = arg;
+      }
+    });
   }
 
-  GetUserDataById(id) {
-    
+  onSelectcategory(category){
+
   }
-
-    // end 
-
-
 }
