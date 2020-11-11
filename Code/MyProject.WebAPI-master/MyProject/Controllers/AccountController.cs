@@ -25,7 +25,7 @@ namespace MyProject.WebAPI.Controllers
 
         [AllowAnonymous]
         [HttpPost("Register")]
-        public ActionResult<UserDto> Register([FromBody]RegisterDto registerDto)
+        public IActionResult Register([FromBody]RegisterDto registerDto)
         {
             using var hmac = new HMACSHA512();
             var user = new AppUsers
@@ -39,12 +39,8 @@ namespace MyProject.WebAPI.Controllers
                 Email = registerDto.Email,
                 RoleId = registerDto.RoleId
             };
-            RepositoryWrapper.AppUsers.Register(user);
-            return new UserDto
-            {
-                UserName = user.UserName,
-                Token = TokenMgr.GetToken(user.UserName, registerDto.Password, ((Roles)registerDto.RoleId).ToString())
-            };
+            var result = RepositoryWrapper.AppUsers.Register(user);
+            return Ok("User register successfully");       
         }
 
         [HttpPost("Login")]
@@ -94,7 +90,6 @@ namespace MyProject.WebAPI.Controllers
                 MobileNo = user.MobileNo,
                 Email = user.Email,
                 RoleId = user.RoleId
-
             };
         }
 

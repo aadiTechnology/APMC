@@ -26,7 +26,7 @@ namespace MyProject.Security.Auth
                     new Claim(ClaimTypes.Name, username),
                     new Claim(ClaimTypes.Role,role)
                 }),
-                Expires = DateTime.UtcNow.AddSeconds(10),
+                Expires = DateTime.UtcNow.AddHours(10),
                 SigningCredentials = new SigningCredentials(
                         new SymmetricSecurityKey(tokenKey),
                         SecurityAlgorithms.HmacSha256Signature)
