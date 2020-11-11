@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using MyProject.Contracts;
 using MyProject.Entities.DataTransferObjects;
 using MyProject.Entities.Models;
@@ -23,6 +24,7 @@ namespace MyProject.WebAPI.Controllers
         public IRepositoryWrapper RepositoryWrapper { get; }
         public ITokenManager TokenMgr { get; set; }
 
+        [AllowAnonymous]
         /// <summary>
         /// 
         /// </summary>
