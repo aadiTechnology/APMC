@@ -1,209 +1,210 @@
-	<div class="card">
-			<div class="card-header text-center text-success">
-				<h3 class="mb-0">Create Indent</h3>
-			</div>
-			<div class="card-body">
-				<form novalidate
-                       autocomplete="off"
-                       name="CreateIndentForm"
-                       #CreateIndentForm="ngForm"
-                       (ngSubmit)="createIndent(CreateIndentForm,quser)"> 
-            <div class="input-group form-group">
-						              <div class="input-group-prepend">
-                              </div>
-                             <span class="badge badge-success">OrderId:0001</span>
-                         </div>
+<div class="card">
+  <div class="card-header text-center text-success">
+    <h3 class="mb-0">Create Indent</h3>
+  </div>
+  <div class="card-body">
+    <form novalidate autocomplete="off" name="CreateIndentForm" #CreateIndentForm="ngForm"
+      (ngSubmit)="createIndent(CreateIndentForm)">
+      <div class="input-group form-group">
+        <div class="input-group-prepend"></div>
+        <span class="badge badge-success">OrderId:0001</span>
+      </div>
 
-                        <div class="input-group form-group">
-                         <select class="form-control" 
-                         name="FieldProductList"
-                         required
-                         #FieldProductList="ngModel"
-                        [(ngModel)]="quser.productlist">
-                           <option  value="null" selected disabled hidden >Select Product</option>
-                           <option id="0">Apple</option>
-                           <option id="1">Orange</option>
-                           <option id="2">Banana</option>
-                           <option id="3">Onion</option>
-                           <option id="4">Potato</option>
-                           <option id="5">Garlic</option>
-                           <option id="6">Methi </option>
-                           <option id="7">Palak</option>
-                           <option id="8">Gavar</option>
-                           <option id="9">Bhendi</option>
-                         </select>
-                 </div>                
-             <div
-               *ngIf="FieldProductList.invalid && (FieldProductList.dirty || FieldProductList.touched || CreateIndentForm.submitted)"
-               class="text-danger">
-               <div [hidden]="!FieldProductList.errors.required">
-                 Product selection is required
-               </div>
-             </div>
-
-                 <div class="input-group form-group">
-                  <span class = "label label-default">Quantity</span>
-                  
-                  <span class = "label label-default ml-auto pr-5">Quantity Units</span>
-                </div>
-                  <div class="input-group form-group">  
-                  <input type="txt" 
-                    class="form-control"
-                    pattern="[0-9]*" 
-                    placeholder="Quantity"             
-                    [(ngModel)]="quser.squantity"
-                    required
-                    pattern="[0-9]*"
-                    maxlength="10"
-                    #Quantity="ngModel"
-                    name="Quantity"
-                    [ngClass]="{'has-error': Quantity.invalid && (Quantity.dirty || Quantity.touched
-                    || CreateIndentForm.submitted ) }"
-                  > &nbsp; &nbsp;
-                             
-                      <select class="form-control" id="sel2">
-                      <option  value="null" selected disabled hidden >Quantity Units</option>
-                      <option>gram</option>
-                      <option>Kilogram</option>
-                      <option>Dozen</option>
-                    </select>
-                    
-                 </div>
-                    <div
-                    *ngIf="Quantity.invalid && (Quantity.dirty || Quantity.touched || CreateIndentForm.submitted)"
-                    class="text-danger"
-                  >
-                    <div [hidden]="!Quantity.errors.required">
-                      Quantity is required
-                    </div>
-                    <div [hidden]="!Quantity.errors.pattern">
-                      Enter valid Quantity
-                    </div>
-                
-            </div>
-            <div>
-               <a  (click)="onProductSelect()" class="btn text-info"
-               ><i class="fa fa-plus"></i
-               ></a>
-               </div>
-               <table class="table table-sm table-bordered">
-               <tr>
-               
-               <th>Product Name</th>
-               <th>Quantity</th>
-               <th>Quantity Units</th>
-               <th>Edit</th>
-               <th>Delete</th>
-               </tr>
-              
-               <tr >
-              
-               <td>Apple</td>
-               <td>1</td>
-               <td>Dozen</td>
-               <td><a class="btn text-info"
-                    ><i class="fa fa-edit"></i
-                    ></a></td>
-               <td>
-               <a (click)="removeProduct() " class="btn text-info"
-               ><i class="fa fa-trash"></i
-               ></a>
-               </td>
-
-               </tr>
-               </table>
-                         <div class=" form-group">
-                              <input type="text"
-                               [(ngModel)]="quser.driverName"
-                                   placeholder="Driver Name"
-                                   required
-                                   name="category"
-                                   autocomplete="off"
-                                   [typeahead]="states"
-                                   [typeaheadMultipleSearch]="true"
-                                   typeaheadMultipleSearchDelimiters=" |"
-                                   class="form-control"
-                                   #DriverName="ngModel"
-                                   name="DriverName"
-                                  [ngClass]="{'has-error': DriverName.invalid && (DriverName.dirty || DriverName.touched || CreateIndentForm.submitted) }"
-                                   />
-                                  </div>
-                                <div
-                                *ngIf="DriverName.invalid && (DriverName.dirty || DriverName.touched || CreateIndentForm.submitted )"
-                                class="text-danger">
-                              <div [hidden]="!DriverName.errors.required">
-                            Driver name is required
-                            </div>
-                            <div [hidden]="!DriverName.errors.pattern">
-                            Enter valid driver name
-                            </div>
-                           </div>
-		<div class="input-group form-group">
-						<div class="input-group-prepend">
-                              </div>
-                         <input type="txt" class="form-control" 
-                         placeholder="Driver Number"
-                         [(ngModel)]="quser.driverNumber"
-                         required
-                         pattern="[0-9]*"
-                         maxlength="10"
-                         #DriverNumber="ngModel"
-                         name="DriverNumber"
-                        [ngClass]="{'has-error': DriverNumber.invalid && (DriverNumber.dirty || DriverNumber.touched || CreateIndentForm.submitted) }"
-                         />
-                        </div>
-                      <div
-                      *ngIf="DriverNumber.invalid && (DriverNumber.dirty || DriverNumber.touched || CreateIndentForm.submitted )"
-                      class="text-danger">
-                    <div [hidden]="!DriverNumber.errors.required">
-                  Driver mobile number is required
-                  </div>
-                  <div [hidden]="!DriverNumber.errors.pattern">
-                  Enter valid drive mobile number
-                  </div>
-                 </div>
+      <div class="input-group form-group">
+        <select class="form-control"
+         name="FieldProductCategory"
+          required
+           #FieldProductCategory="ngModel"
+          [(ngModel)]="merchantindent.productcategory">
+          <option value="null" selected disabled hidden>Select Product Category</option>
+          <option *ngFor="let pcategory of procategory" value="{{pcategory.id}}">{{pcategory.category}}</option>
          
-       
-         <div class="input-group form-group">
-          <div class="input-group-prepend">
-           </div>
-           <input type="txt" class="form-control" 
-                   placeholder="Vehicle Number"
-                   [(ngModel)]="quser.vhclNumber"
-                   #VehicleNumber="ngModel"
-                    name="VehicleNumber">
-         </div>
-         <div class="input-group form-group" >
-          <input type="txt" class="form-control" 
-                   placeholder="Date And Time">
-    </div>
-        
-         <div class="input-group form-group">
-           <input type="txt" class="form-control" 
-                  placeholder="Supplier Name"
-                  [(ngModel)]="quser.suplierName"
-                   #SupplierName="ngModel"
-                    name="#SupplierName">
+        </select>
+      </div>
+      <div
+        *ngIf="FieldProductCategory.invalid && (FieldProductCategory.dirty || FieldProductCategory.touched || CreateIndentForm.submitted)"
+        class="text-danger">
+        <div [hidden]="!FieldProductCategory.errors.required">
+          Product category is required
         </div>
-        <div class="input-group form-group">
-            <input type="txt" class="form-control"
-                placeholder="Supplier Number"
-                [(ngModel)]="quser.suplierNumber"
-                   #SupplierNumber="ngModel"
-                    name="SupplierNumber">
+      </div>
+      <div class="form-group">
+        <input type="text" [(ngModel)]="merchantindent.productlist" placeholder="Product List" required
+          pattern="[a-zA-Z ]*"
+           name="FieldProductList" 
+           autocomplete="off" [typeahead]="procategory"
+          [typeaheadMultipleSearch]="true" typeaheadMultipleSearchDelimiters=" |" class="form-control"
+          #FieldProductList="ngModel" name="FieldProductList"
+          [ngClass]="{'has-error': FieldProductList.invalid && (FieldProductList.dirty || FieldProductList.touched || CreateIndentForm.submitted) }" />
+      </div>
+      <div
+        *ngIf="FieldProductList.invalid && (FieldProductList.dirty || FieldProductList.touched || CreateIndentForm.submitted )"
+        class="text-danger">
+        <div [hidden]="!FieldProductList.errors.required">
+          Product selection is required
         </div>
+        <div [hidden]="!FieldProductList.errors.pattern">
+          Enter valid product
+        </div>
+      </div>
+        <div class="row">
+          <div class="col-6">
+            <span class="label label-default">Quantity</span>
+            <input type="txt" class="form-control" pattern="[0-9]*" placeholder="Quantity" pattern="[0-9]"
+              [(ngModel)]="merchantindent.productquantity" required pattern="[0-9]*" maxlength="10"
+              #FieldProductQuantity="ngModel" name="FieldProductQuantity" [ngClass]="{'has-error': FieldProductQuantity.invalid && (FieldProductQuantity.dirty || FieldProductQuantity.touched
+                || CreateIndentForm.submitted ) }"><br>
+            <div
+              *ngIf="FieldProductQuantity.invalid && (FieldProductQuantity.dirty || FieldProductQuantity.touched || CreateIndentForm.submitted)"
+              class="text-danger">
+              <div [hidden]="!FieldProductQuantity.errors.required">
+                Quantity is required
+              </div>
+              <div [hidden]="!FieldProductQuantity.errors.pattern">
+                Enter valid Quantity
+              </div>
+            </div>
+          </div>
+          <div class="col-6">
+            <span class="label label-default ml-auto pr-5">Units</span>
+
+            <select class="form-control" name="FieldProductQuantityUnits" required #FieldProductQuantityUnits="ngModel"
+              [(ngModel)]="merchantindent.productquantityunits">
+              <option value="null" selected disabled hidden>Quantity Units</option>
+              <option>gram</option>
+              <option>Kilogram</option>
+              <option>Dozen</option>
+            </select><br>
+            <div
+            *ngIf="FieldProductQuantityUnits.invalid && (FieldProductQuantityUnits.dirty || FieldProductQuantityUnits.touched || CreateIndentForm.submitted)"
+            class="text-danger">
+            <div [hidden]="!FieldProductQuantityUnits.errors.required">
+              Unit is required
+            </div>
+          </div>
+          </div>
+         
         
-        <pre class="card-header">Category: {{quser | json}}</pre><br>
-        <div class="input-group form-group">
-            <div class="mx-auto">
-                <input type="submit" value="Save" class="btn btn-success">&nbsp;&nbsp;&nbsp;
-                <input type="reset" value="Cancel" class="btn btn-danger">
-            </div>
-           
-            </div>
-				</form>
-			</div>
-		</div>
-	
+      </div>
+      <div class="float-right ">
+        <a (click)="onProductSelect(p)"
+         class="btn text-info ">Add <i class="fa fa-plus" ></i></a>
+      </div>
+      <table class="table table-sm table-bordered">
+        <tr>
+          <th>Product Name</th>
+          <th>Quantity</th>
+          <th>Quantity Units</th>
+          <th>Action</th>
+        </tr>
 
+        <tr *ngFor="let item of selectedProducts">
+          
+          <td>{{item.FieldProductCategory}}</td>
+          <td>{{item.FieldProductQuantity}}</td>
+          <td>{{item.FieldProductQuantityUnits}}</td>
+          <td>
+            <a (click)="removeProduct(item) " class="btn text-info"><i class="fa fa-trash"></i></a>
+          </td>
+        </tr>
+      </table>
+      <div class="form-group">
+        <input type="text" [(ngModel)]="merchantindent.driverName" placeholder="Driver Name" required name="category"
+          autocomplete="off" [typeahead]="driverlist" [typeaheadMultipleSearch]="true"
+          typeaheadMultipleSearchDelimiters=" |" class="form-control" #FieldDriverName="ngModel" name="FieldDriverName"
+          [ngClass]="{'has-error': FieldDriverName.invalid && (FieldDriverName.dirty || FieldDriverName.touched || CreateIndentForm.submitted) }" />
+      </div>
+      <div
+        *ngIf="FieldDriverName.invalid && (FieldDriverName.dirty || FieldDriverName.touched || CreateIndentForm.submitted )"
+        class="text-danger">
+        <div [hidden]="!FieldDriverName.errors.required">
+          Driver name is required
+        </div>
+        <div [hidden]="!FieldDriverName.errors.pattern">
+          Enter valid driver name
+        </div>
+      </div>
+      <div class="input-group form-group">
+        <div class="input-group-prepend"></div>
+        <input type="txt" class="form-control" placeholder="Driver Number" [(ngModel)]="merchantindent.driverNumber"
+          required pattern="[0-9]*" maxlength="10" #FieldDriverNumber="ngModel" name="FieldDriverNumber"
+          [ngClass]="{'has-error': FieldDriverNumber.invalid && (FieldDriverNumber.dirty || FieldDriverNumber.touched || CreateIndentForm.submitted) }" />
+      </div>
+      <div
+        *ngIf="FieldDriverNumber.invalid && (FieldDriverNumber.dirty || FieldDriverNumber.touched || CreateIndentForm.submitted )"
+        class="text-danger">
+        <div [hidden]="!FieldDriverNumber.errors.required">
+          Driver mobile number is required
+        </div>
+        <div [hidden]="!FieldDriverNumber.errors.pattern">
+          Enter valid drive mobile number
+        </div>
+      </div>
 
+      <div class="input-group form-group">
+        <div class="input-group-prepend"></div>
+        <input type="txt" class="form-control" placeholder="Vehicle Number" [(ngModel)]="merchantindent.vhclNumber"
+          #FieldVehicleNumber="ngModel" name="FieldVehicleNumber" />
+      </div>
+      <div class="input-group form-group">
+        <input class="form-control" 
+               placeholder="Select Date" 
+              [(ngModel)]="merchantindent.selectdte"
+               #FieldSelectDate="ngModel" 
+              matInput [matDatepicker]="picker" 
+              name="FieldSelectDate"
+              required
+              [ngClass]="{'has-error': FieldSelectDate.invalid && (FieldSelectDate.dirty || FieldSelectDate.touched 
+              || CreateIndentForm.submitted) }" >
+             <mat-datepicker-toggle matSuffix [for]="picker" style="color: blue;"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+      </div>
+      <div
+       *ngIf="FieldSelectDate.invalid && (FieldSelectDate.dirty || FieldSelectDate.touched || CreateIndentForm.submitted )"
+       class="text-danger">
+       <div [hidden]="!FieldSelectDate.errors.required">
+         Date is required
+       </div>
+       </div>
+     
+      <div class="input-group form-group">
+        <input type="time" id="appt" name="appt" class="form-control"
+        min="09:00" max="18:00" required>
+      </div>  
+      <div class="input-group form-group">
+      <input type="datetime-local" id="meeting-time" class="form-control"
+       name="meeting-time" value="2018-06-12T19:30"
+       min="2018-06-07T00:00" max="2018-06-14T00:00">
+      </div> 
+      <div class="input-group form-group">
+        <input type="txt" class="form-control" placeholder="Supplier Name" [(ngModel)]="merchantindent.suplierName"
+          #FieldSupplierName="ngModel" name="#FieldSupplierName" />
+      </div>
+      <div class="input-group form-group">
+        <input type="txt" class="form-control" placeholder="Supplier Number" maxlength="10" [(ngModel)]="merchantindent.suplierNumber"
+          #FieldSupplierNumber="ngModel" name="FieldSupplierNumber" />
+      </div>
+
+      <pre class="card-header">Category: {{merchantindent | json}}</pre>
+      <br />
+      <div class="input-group form-group">
+        <div class="mx-auto">
+          <input type="submit" value="Save" class="btn btn-success" />&nbsp;&nbsp;&nbsp;
+          <input type="reset" value="Cancel" class="btn btn-danger" (click)="openModal(template)" />
+        </div>
+        <ng-template #template>
+          <div class="modal-body text-center">
+            <h3 class="mx-auto">Confirm Cancellation</h3>
+            <p>Are you sure ? You want to cancel Indent creation?</p>
+            <button type="button" class="btn btn-default" (click)="confirm()">
+              Yes
+            </button>
+            <button type="button" class="btn btn-primary" (click)="decline()">
+              No
+            </button>
+          </div>
+        </ng-template>
+      </div>
+    </form>
+  </div>
+</div>

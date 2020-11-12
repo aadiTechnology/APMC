@@ -31,7 +31,7 @@ namespace MyProject.WebAPI.Controllers
         [HttpGet("GetAllStallRegistration")]
         public async Task<IEnumerable<StallRegistration>> GetAllStallRegistration()
         {
-            return await RepositoryWrapper.StallRegistration.GetAllStallRegistration();
+            return await RepositoryWrapper.StallRegistration.GetAllStallRegistration(); 
         }
 
         /// <summary>
@@ -53,16 +53,16 @@ namespace MyProject.WebAPI.Controllers
                 {
                     RepositoryWrapper.StallDetails.UpdateStallAssigned(stallregisterDto.StallId);
                     RepositoryWrapper.StallRegistration.UpdateStallRegistrationAdmin(stallregisterDto.Id, stallregisterDto.ApproveBy, stallregisterDto.IsApproved, stallregisterDto.IsRejected, stallregisterDto.RejectReason);
-                    return Content("Stall Update Sucessfully Approved");
+                    return Ok("StallRegistration Sucessfully Approved");
                 }
                 else if (stallregisterDto.IsRejected == true && stallregisterDto.IsApproved != true && stallregisterDto.RejectReason != null && stallregisterDto.RejectReason != "")
                 {
                     RepositoryWrapper.StallRegistration.UpdateStallRegistrationAdmin(stallregisterDto.Id, stallregisterDto.ApproveBy, stallregisterDto.IsApproved, stallregisterDto.IsRejected, stallregisterDto.RejectReason);
-                    return Content("Stall Update Sucessfully Rejected");
+                    return Ok("StallRegistration Rejected");
                 }
                 else
                 {
-                    return Content("Error: Approved and Rejected Both Should not be true at same time  Or If Rejected Enter Reject Reason Compulsory");
+                    return Ok("Error: Approved and Rejected Both Should not be true at same time  Or If Rejected Enter Reject Reason Compulsory");
                 }
 
 
@@ -70,7 +70,7 @@ namespace MyProject.WebAPI.Controllers
             }
             catch (Exception ex)
             {
-                return Content("Failure in Stall Update : " + ex);
+                return Ok("Error: Failure in Stall Update : " + ex);
             }
         }
     }

@@ -24,6 +24,12 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from './shared/shared.module';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { ToastrModule } from 'ngx-toastr';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { TimepickerModule } from 'ngx-bootstrap/timepicker';
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -48,9 +54,20 @@ import { MatTabsModule } from '@angular/material/tabs';
     MatGridListModule,
     SharedModule,
     MatTabsModule,
+    MatDatepickerModule,
+    ModalModule.forRoot(),
+    TimepickerModule.forRoot(),
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
     }),
+    ToastrModule.forRoot({
+      timeOut: 2500,
+      positionClass: 'toast-top-center',
+      preventDuplicates: true,
+      countDuplicates: false,
+      progressBar: true,
+    }),
+    // BsDropdownModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent],

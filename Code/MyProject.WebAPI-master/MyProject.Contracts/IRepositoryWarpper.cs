@@ -16,6 +16,7 @@ namespace MyProject.Contracts
         IProductCategoryRepository ProductCategory { get; set; }
         IStallRegistrationRepository StallRegistration { get; set; }
         IStallProductCategoriesRepository StallProductCategories { get; set; }
+        IIndentRepository IndentDetails { get; set; }
         void Save();
     }
 }

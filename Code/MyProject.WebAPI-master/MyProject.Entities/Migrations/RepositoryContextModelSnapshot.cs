@@ -151,6 +151,24 @@ namespace MyProject.Entities.Migrations
                     b.ToTable("IndentDetails");
                 });
 
+            modelBuilder.Entity("MyProject.Entities.Models.IndentProducts", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("IndentId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("IndentProducts");
+                });
+
             modelBuilder.Entity("MyProject.Entities.Models.ProductCategory", b =>
                 {
                     b.Property<int>("Id")

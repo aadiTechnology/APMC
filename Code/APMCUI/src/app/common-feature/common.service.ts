@@ -4,8 +4,7 @@ import { HttpService } from '../core/services/http.service';
 @Injectable({
   providedIn: 'root',
 })
-export class 
-CommonService {
+export class CommonService {
   isSidebarPinned = false;
   isSidebarToggeled = false;
   constructor(private httpService: HttpService) {}
@@ -41,4 +40,8 @@ CommonService {
     };
     return this.httpService.postAnonymous('Account/Register', registeruser);
   }
+  getAllUserRolls(): any {
+    return this.httpService.get('Account/GetAllUserRolls');
+  }
+  
 }

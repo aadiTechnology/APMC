@@ -7,6 +7,7 @@ namespace MyProject.Entities.DataTransferObjects
 {
     public class LoginDto
     {
+        
         [Required]
         public string UserName { get; set; }
         [Required]
