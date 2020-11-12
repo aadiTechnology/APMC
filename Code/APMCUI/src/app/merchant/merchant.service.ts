@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { HttpService } from '../core/services/http.service';
 
 @Injectable({
@@ -15,7 +16,7 @@ export class MerchantService {
     return this.httpService.get('Merchant/GetAllProductCategory');
   }
 
-  stallRegistration(data): any {
+  stallRegistration(data): Observable<any> {
     return this.httpService.post('Merchant/StallRegistration', data);
   }
   indentCreation(indentData){
