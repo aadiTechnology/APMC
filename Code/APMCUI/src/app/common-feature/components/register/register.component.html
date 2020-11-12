@@ -24,10 +24,8 @@
           [(ngModel)]="user.roleId"
         >
           <option value="null" selected disabled hidden>Select a Role</option>
-          <option value="0">Admin</option>
-          <option value="1">Merchant</option>
-          <option value="2">Driver</option>
-          <option value="3">Gate Operator</option>
+          <option *ngFor="let rolelist of Role" value="{{rolelist.Id}}">{{rolelist.roleName}}</option>
+          
         </select>
       </div>
       <div
@@ -142,7 +140,7 @@
           ></span>
         </div>
         <input
-          type="text"
+          type="email"
           class="form-control"
           placeholder="Email Id"
           [(ngModel)]="user.email"
@@ -153,17 +151,6 @@
           [ngClass]="{'has-error': FieldEmail.invalid && (FieldEmail.dirty || FieldEmail.touched
 							|| SignupForm.submitted) }"
         />
-      </div>
-      <div
-        *ngIf="FieldEmail.invalid && (FieldEmail.dirty || FieldEmail.touched || SignupForm.submitted)"
-        class="text-danger"
-      >
-        <div [hidden]="!FieldEmail.errors.required">
-          Email id is required
-        </div>
-        <div [hidden]="!FieldEmail.errors.pattern">
-          Enter valid email id
-        </div>
       </div>
       <div class="input-group form-group">
         <div class="input-group-prepend">
@@ -196,7 +183,7 @@
         class="input-group form-group"
         data-toggle="tooltip"
         data-placement="top"
-        data-tip="Password should 8 characters minimum,at least 1 uppercase, 1 lowercase & 1 number"
+        data-tip="Password should 8 characters minimum,at least 1 uppercase, 1 lowercase, 1 special character & 1 number"
       >
         <div class="input-group-prepend">
           <span class="input-group-text bg-success"
@@ -210,8 +197,7 @@
           placeholder="Password"
           [(ngModel)]="user.password"
           required
-          maxlength="8"
-          pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d*\w]{8,}$"
+          pattern="^(?=.*?[A-Z])(?=(.*[a-z]){1,})(?=(.*[\d]){1,})(?=(.*[\W]){1,})(?!.*\s).{8,}$"
           [ngClass]="{'has-error': FieldPassword.invalid && (FieldPassword.dirty || FieldPassword.touched || SignupForm.submitted) }"
           #FieldPassword="ngModel"
           #FieldPasswordInput
@@ -236,9 +222,7 @@
         *ngIf="FieldPassword.invalid && (FieldPassword.dirty || FieldPassword.touched || SignupForm.submitted)"
         class="text-danger"
       >
-        <div [hidden]="!FieldPassword.errors.pattern">
-          Password required min 8 characters
-        </div>
+       
         <div [hidden]="!FieldPassword.errors.required">
           Password is required
         </div>
@@ -256,7 +240,6 @@
           placeholder="Confirm Password"
           [(ngModel)]="user.confirmPassword"
           required
-          maxlength="8"
           [ngClass]="{'has-error': FieldConfirmPassword.invalid && (FieldConfirmPassword.dirty ||
 						    FieldConfirmPassword.touched || SignupForm.submitted) }"
           #FieldConfirmPassword="ngModel"
@@ -291,7 +274,7 @@
         style="display: block;"
       >
         <span class="fa fa-exclamation-circle"></span>
-        Password mismatch
+        Password and Confirm Password do not match.
       </div>
       <br />
 
@@ -304,7 +287,7 @@
             class="btn btn-success"
           />&nbsp;&nbsp;&nbsp;
           <input
-            type="reset"
+            type="button"
             value="Cancel"
             class="btn btn-danger"
             (click)="openModal(template)"

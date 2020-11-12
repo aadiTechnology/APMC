@@ -40,4 +40,8 @@ export class CommonService {
     };
     return this.httpService.postAnonymous('Account/Register', registeruser);
   }
+  getAllUserRolls(): any {
+    return this.httpService.get('Account/GetAllUserRolls');
+  }
+  
 }

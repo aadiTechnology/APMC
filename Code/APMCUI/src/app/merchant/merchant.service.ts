@@ -18,4 +18,7 @@ export class MerchantService {
   stallRegistration(data): any {
     return this.httpService.post('Merchant/StallRegistration', data);
   }
+  indentCreation(indentData){
+    return this.httpService.post('Indent/Add', indentData);
+  }
 }

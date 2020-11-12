@@ -28,6 +28,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { ToastrModule } from 'ngx-toastr';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { TimepickerModule } from 'ngx-bootstrap/timepicker';
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -54,6 +56,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
     MatTabsModule,
     MatDatepickerModule,
     ModalModule.forRoot(),
+    TimepickerModule.forRoot(),
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
     }),
