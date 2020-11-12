@@ -27,7 +27,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { ToastrModule } from 'ngx-toastr';
-
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -64,6 +64,7 @@ import { ToastrModule } from 'ngx-toastr';
       countDuplicates: false,
       progressBar: true,
     }),
+    // BsDropdownModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent],
