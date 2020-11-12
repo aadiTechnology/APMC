@@ -7,8 +7,12 @@ import { HttpService } from '../core/services/http.service';
 export class MerchantService {
   constructor(private httpService: HttpService) {}
 
-  getAllProductCategories(): any {
+  getAllStallDetails():any{
     return this.httpService.get('Merchant/GetAllStallDetails');
+  }   
+
+  getAllProductCategories(): any {
+    return this.httpService.get('Merchant/GetAllProductCategory');
   }
 
   stallRegistration(data): any {

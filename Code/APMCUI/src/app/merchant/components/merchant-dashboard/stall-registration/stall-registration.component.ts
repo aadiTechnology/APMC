@@ -6,31 +6,28 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { MerchantService } from '../../../merchant.service';
+import { StallDetails } from '../../../entities/stall-details';
+import { ProductCategory } from '../../../entities/product-category'
+
 @Component({
   selector: 'app-stall-registration',
   templateUrl: './stall-registration.component.html',
   styleUrls: ['./stall-registration.component.scss'],
 })
 export class StallRegistrationComponent implements OnInit {
+  stalllist: any;
+  productCategory:any;
+
   selected: string;
-  productCAtergory = [];
-  // [
-  //   'Fruits',
-  //   'Vegetables',
-  //   'Flowers',
-  //   'Dry Fruits',
-  //   'Spices',
-  //   'Fertilizers & Manures',
-  //   'Dairy',
-  //   'Packaging Material',
-  //   'Farm Equipments',
-  //   'Grains',
-  //   'Fishery',
-  //   'Pulses',
-  //   'Cereals',
-  // ];
+  productCatergory = [];
+  public sessionStorage = sessionStorage;
+
+  
+  p = { Id: 1, ProductName: 'Fishery' };
+  selectedProducts: any[];
 
   stallreg: {
+    id:number;
     stallno: number;
     productcategory: string;
   };
@@ -46,10 +43,18 @@ export class StallRegistrationComponent implements OnInit {
     private toastr: ToastrService
   ) {
     this.stallreg = {
+      id:null,
       stallno: null,
       productcategory: null,
     };
-    this.productCAtergory = new Array<any>();
+
+    this.selectedProducts = [
+      { Id: 1, ProductName: 'Fishery' },
+    ];
+
+    this.stalllist = new Array<StallDetails>();
+    this.productCategory = new Array<ProductCategory>();
+
   }
 
   openModal(template: TemplateRef<any>): void {
@@ -57,7 +62,25 @@ export class StallRegistrationComponent implements OnInit {
   }
   ngOnInit(): void {
     this.getAllProductCategories();
+    this.getAllStallDetails();
   }
+  
+  onProductSelect(event): void {
+    if (event) {
+      // if (this.selectedProducts.length === 0) {
+      this.selectedProducts.push(event);
+      // }
+    }
+  }
+  removeProduct(event): void {
+    if (this.selectedProducts.length !== 0) {
+      const index = this.selectedProducts.findIndex((x) => x.id === event.id);
+      if (index !== -1) {
+        this.selectedProducts.splice(index, 1);
+      }
+    }
+  }
+
 
   stallregister(form: NgForm): void {
     this.ngxSpinnerService.show();
@@ -90,10 +113,19 @@ export class StallRegistrationComponent implements OnInit {
     this.modalRef.hide();
   }
 
+  getAllStallDetails() {
+    this.merchantService.getAllStallDetails()
+      .subscribe((arg) =>{
+      if (arg) {
+        this.stalllist = arg;
+          }
+        });
+  }
+
   getAllProductCategories(): void {
     this.merchantService.getAllProductCategories().subscribe((arg) => {
       if (arg) {
-        this.productCAtergory = arg;
+        this.productCategory = arg;
       }
     });
   }
