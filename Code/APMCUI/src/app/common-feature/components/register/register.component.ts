@@ -5,6 +5,7 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { CommonService } from '../../common.service';
+import { AllAppUserRole } from '../../entities/userrole';
 
 @Component({
   selector: 'app-register',
@@ -12,6 +13,8 @@ import { CommonService } from '../../common.service';
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent implements OnInit {
+
+  Role:any;
   hide: boolean = true;
   user: {
     roleId: number;
@@ -25,6 +28,7 @@ export class RegisterComponent implements OnInit {
   };
   modalRef: BsModalRef;
   message: string;
+  
   constructor(
     private modalService: BsModalService,
     private commonService: CommonService,
@@ -42,8 +46,12 @@ export class RegisterComponent implements OnInit {
       password: null,
       confirmPassword: null,
     };
+    this.Role=new Array<AllAppUserRole>();
+
   }
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getAllUserRolls();
+  }
 
   openModal(template: TemplateRef<any>): void {
     this.modalRef = this.modalService.show(template, { class: 'modal-sm' });
@@ -51,6 +59,7 @@ export class RegisterComponent implements OnInit {
   myFunction(): void {
     this.hide = !this.hide;
   }
+  
 
   checkPassword(): boolean {
     return this.user.password === this.user.confirmPassword ? true : false;
@@ -88,5 +97,9 @@ export class RegisterComponent implements OnInit {
   decline(): void {
     this.message = 'Declined!';
     this.modalRef.hide();
+  }
+  getAllUserRolls(): void {
+    this.commonService.getAllUserRolls().subscribe(result => { this.Role = result });
+    
   }
 }
