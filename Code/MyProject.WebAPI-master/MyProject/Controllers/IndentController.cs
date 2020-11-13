@@ -15,6 +15,9 @@ namespace MyProject.WebAPI.Controllers
     //Author-Datta (Indent related methods)
     public class IndentController : ControllerBase
     {
+        public override void InitializeController()
+        {
+        }
         public IndentController(IRepositoryWrapper repositoryWrapper)
         {
             RepositoryWrapper = repositoryWrapper;
@@ -26,10 +29,17 @@ namespace MyProject.WebAPI.Controllers
         /// <param name="IndentDto"></param>
         /// <returns>Return Indent details if insert successfully</returns>
         [HttpPost("Add")]
-        public ActionResult<IndentDetails> Add([FromBody] IndentDto IndentDto)
+        public async Task<JsonResult> Add([FromBody] IndentDto IndentDto)
         {
-            RepositoryWrapper.IndentDetails.Add(IndentDto.IndentDetails, IndentDto.IndentProducts);
-            return null;
+            try
+            {
+                return await base.FinalizeSingle<IndentDetails>(RepositoryWrapper.IndentDetails.Add(IndentDto.IndentDetails, IndentDto.IndentProducts));
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            
         }
         /// <summary>
         /// Author-Datta(Update Indent isApproved)
@@ -41,12 +51,6 @@ namespace MyProject.WebAPI.Controllers
         {
             RepositoryWrapper.IndentDetails.Update(indentDetails);
             return null;
-        }
-
-        [HttpGet("GetOrderId")]
-        public async Task<IEnumerable<IndentDetails>> GetOrderId()
-        {
-            return await RepositoryWrapper.IndentDetails.GetOrderId();
         }
     }
 }

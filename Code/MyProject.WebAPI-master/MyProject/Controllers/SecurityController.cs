@@ -10,10 +10,15 @@ using MyProject.Security.Auth;
 
 namespace MyProject.WebAPI.Controllers
 {
+
     [Route("api/[controller]")]
     [ApiController]
     public class SecurityController : ControllerBase
     {
+        public override void InitializeController()
+        {
+
+        }
         //private readonly IJwtAuthenticationManager jwtAuthenticationManager;
 
         //public SecurityController(IJwtAuthenticationManager jwtAuthenticationManager)

@@ -11,12 +11,17 @@ using MyProject.Entities.Models;
 
 namespace MyProject.WebAPI.Controllers
 {
+
     [Route("api/[controller]")]
     [ApiController]
     [Authorize(Roles = "Merchant")]
     public class MerchantController : ControllerBase
     {
-       
+        public override void InitializeController()
+        {
+
+        }
+
         public MerchantController(IRepositoryWrapper repositoryWrapper)
         {
             RepositoryWrapper = repositoryWrapper;
