@@ -19,7 +19,6 @@ using Microsoft.IdentityModel.Tokens;
 using MyProject.Contracts;
 using MyProject.Security.Auth;
 using MyProject.WebAPI.Extensions;
-using MyProject.WebAPI.Filters;
 using NLog;
 
 namespace MyProject
@@ -43,12 +42,7 @@ namespace MyProject
             services.ConfigureAuthentication(key);
             services.ConfigureSqlServerContext(Configuration);
             services.AddAutoMapper(typeof(Startup));
-            services.AddSingleton<IJwtAuthenticationManager>(new JwtAuthenticationManager(key));
-            services.AddMvc(optins =>
-            {
-                optins.Filters.Add<DataOperationFilter>();
-            });
-            services.AddMvc().AddNewtonsoftJson();
+            services.AddSingleton<IJwtAuthenticationManager>(new JwtAuthenticationManager(key));           
             //services.AddSingleton<IJwtAuthenticationManager,JwtAuthenticationManager>();
             services.AddSingleton<ITokenManager,TokenManager>();
             services.AddCors(options =>
@@ -71,7 +65,7 @@ namespace MyProject
             {
                 app.UseDeveloperExceptionPage();
             }           
-            //app.ConfigureExceptionHandler(logger);
+            app.ConfigureExceptionHandler(logger);
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();

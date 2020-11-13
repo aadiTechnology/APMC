@@ -17,10 +17,6 @@ namespace MyProject.WebAPI.Controllers
     [ApiController]
     public class DataController : ControllerBase
     {
-        public override void InitializeController()
-        {
-
-        }
         public DataController(IRepositoryWrapper repositoryWrapper,ILoggerManager logger,IMapper mapper)
         {
             RepositoryWrapper = repositoryWrapper;

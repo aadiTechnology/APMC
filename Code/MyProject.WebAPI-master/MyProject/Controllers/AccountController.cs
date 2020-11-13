@@ -3,6 +3,7 @@ using MyProject.Contracts;
 using MyProject.Entities.DataTransferObjects;
 using MyProject.Entities.Models;
 using MyProject.Security.Auth;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
@@ -14,10 +15,6 @@ namespace MyProject.WebAPI.Controllers
     [ApiController]
     public class AccountController : ControllerBase
     {
-        public override void InitializeController()
-        {
-
-        }
         public AccountController(IRepositoryWrapper repositoryWrapper, ITokenManager tokenManager)
         {
             RepositoryWrapper = repositoryWrapper;
@@ -26,6 +23,11 @@ namespace MyProject.WebAPI.Controllers
         public IRepositoryWrapper RepositoryWrapper { get; }
         public ITokenManager TokenMgr { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="registerDto"></param>
+        /// <returns></returns>
         [HttpPost("Register")]
         public IActionResult Register([FromBody]RegisterDto registerDto)
         {
@@ -42,23 +44,29 @@ namespace MyProject.WebAPI.Controllers
                 RoleId = registerDto.RoleId
             };
             var result = RepositoryWrapper.AppUsers.Register(user);
-            return Ok("User register successfully");
+            return Ok("User register successfully");       
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="loginDto"></param>
+        /// <returns></returns>
         [HttpPost("Login")]
-        public async  Task<JsonResult> Login(LoginDto loginDto)
+        public ActionResult<UserDto> Login(LoginDto loginDto)
         {
             AppUsers appUsers = RepositoryWrapper.AppUsers.GetUsers(loginDto);
-            if (appUsers == null) return await base.FinalizStatusCodeeMessage("Invalid User Name provided.", 100);
+            if (appUsers == null) return Ok("Error: Invalid User Name provided.");
 
             using var hmac = new HMACSHA512(appUsers.PasswordSalt);
             var computHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(loginDto.Password));
             for (int i = 0; i < computHash.Length; i++)
             {
-                if (computHash[i] != appUsers.PasswordHash[i]) return await base.FinalizStatusCodeeMessage("Invalid Password provided.", 100);
+                if (computHash[i] != appUsers.PasswordHash[i]) return Ok("Error: Invalid Password provided.");
             }
 
-            var UserDto = new UserDto
+            
+             var UserDto = new
             {
                 Id = appUsers.Id,
                 FirstName = appUsers.FirstName,
@@ -69,13 +77,14 @@ namespace MyProject.WebAPI.Controllers
                 UserName = appUsers.UserName,
                 Token = TokenMgr.GetToken(loginDto.UserName, loginDto.Password, ((Roles)appUsers.RoleId).ToString())
             };
-            return await base.FinalizeSingle<UserDto>(UserDto);
+            Response.Headers.Add("UserDetails", JsonConvert.SerializeObject(UserDto));
+            return Ok(UserDto);
         }
 
         [HttpGet("GetAllUserRolls")]
-        public async Task<JsonResult> GetAllUserRolls()
+        public async Task<IEnumerable<AppUserRoles>> GetAllUserRolls()
         {
-             return await base.FinalizeMultiple<IEnumerable<AppUserRoles>>(await RepositoryWrapper.AppUserRoles.GetAllUserRolls());
+            return await RepositoryWrapper.AppUserRoles.GetAllUserRolls();
         }
 
         /// <summary>
@@ -85,12 +94,12 @@ namespace MyProject.WebAPI.Controllers
         /// <returns>Returns Contact Details, name, email, RoleId of input id from AppUsers Table</returns>
         ///<Aurthor>Sumeet Tanaji Kemse</Aurthor>
         [HttpPost("GetUserDataById")]
-        public async Task<JsonResult> GetUsersById(int Id)
+        public ActionResult<LoginUserDto> GetUsersById(int Id)
         {
             var user = RepositoryWrapper.AppUsers.GetUsersById(Id);
-            if (user == null) return await base.FinalizeMessage("User ID Not Found Enter valid Id.");
+            if (user == null) return Ok("Error: User ID Not Found Enter valid Id.");
 
-            var loginUserDto= new LoginUserDto
+            return new LoginUserDto
             {
                 Id = user.Id,
                 UserName = user.UserName,
@@ -99,9 +108,7 @@ namespace MyProject.WebAPI.Controllers
                 MobileNo = user.MobileNo,
                 Email = user.Email,
                 RoleId = user.RoleId
-
             };
-           return await base.FinalizeSingle<LoginUserDto>(loginUserDto);
         }
 
     }

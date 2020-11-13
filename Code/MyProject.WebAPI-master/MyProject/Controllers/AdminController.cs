@@ -16,10 +16,6 @@ namespace MyProject.WebAPI.Controllers
     [Authorize(Roles = "Admin")]
     public class AdminController : ControllerBase
     {
-        public override void InitializeController()
-        {
-
-        }
         public AdminController(IRepositoryWrapper repositoryWrapper)
         {
             RepositoryWrapper = repositoryWrapper;

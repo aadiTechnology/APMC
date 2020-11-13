@@ -24,8 +24,6 @@ namespace MyProject.Entities
         public DbSet<StallProductCategories> StallProductCategories { get; set; }
         public DbSet<IndentDetails> IndentDetails { get; set; }
         public DbSet<IndentProducts> IndentProducts { get; set; }
-        public DbSet<Product> Product { get; set; }
-        public DbSet<Units> Units { get; set; }
 
     }
 }
