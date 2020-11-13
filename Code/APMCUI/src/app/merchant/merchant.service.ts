@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { HttpService } from '../core/services/http.service';
 
 @Injectable({
@@ -7,11 +8,18 @@ import { HttpService } from '../core/services/http.service';
 export class MerchantService {
   constructor(private httpService: HttpService) {}
 
-  getAllProductCategories(): any {
+  getAllStallDetails():any{
     return this.httpService.get('Merchant/GetAllStallDetails');
+  }   
+
+  getAllProductCategories(): any {
+    return this.httpService.get('Merchant/GetAllProductCategory');
   }
 
-  stallRegistration(data): any {
+  stallRegistration(data): Observable<any> {
     return this.httpService.post('Merchant/StallRegistration', data);
+  }
+  indentCreation(indentData){
+    return this.httpService.post('Indent/Add', indentData);
   }
 }

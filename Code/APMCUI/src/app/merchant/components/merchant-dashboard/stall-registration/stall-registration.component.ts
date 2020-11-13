@@ -1,38 +1,35 @@
-import { Component, OnInit, TemplateRef } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Component, OnInit, TemplateRef } from "@angular/core";
+import { NgForm } from "@angular/forms";
+import { Router } from "@angular/router";
 
-import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
-import { NgxSpinnerService } from 'ngx-spinner';
-import { ToastrService } from 'ngx-toastr';
-import { MerchantService } from '../../../merchant.service';
+import { BsModalService, BsModalRef } from "ngx-bootstrap/modal";
+import { NgxSpinnerService } from "ngx-spinner";
+import { ToastrService } from "ngx-toastr";
+import { MerchantService } from "../../../merchant.service";
+import { StallDetails } from "../../../entities/stall-details";
+import { ProductCategory } from "../../../entities/product-category";
+
 @Component({
-  selector: 'app-stall-registration',
-  templateUrl: './stall-registration.component.html',
-  styleUrls: ['./stall-registration.component.scss'],
+  selector: "app-stall-registration",
+  templateUrl: "./stall-registration.component.html",
+  styleUrls: ["./stall-registration.component.scss"],
 })
 export class StallRegistrationComponent implements OnInit {
-  selected: string;
-  productCAtergory = [];
-  // [
-  //   'Fruits',
-  //   'Vegetables',
-  //   'Flowers',
-  //   'Dry Fruits',
-  //   'Spices',
-  //   'Fertilizers & Manures',
-  //   'Dairy',
-  //   'Packaging Material',
-  //   'Farm Equipments',
-  //   'Grains',
-  //   'Fishery',
-  //   'Pulses',
-  //   'Cereals',
-  // ];
+  stalllist: any;
+  productCategory: any;
 
-  stallreg: {
-    stallno: number;
-    productcategory: string;
+  selected: string;
+  productCatergory = [];
+
+  currentUser: any;
+
+  p = { Id: 1, ProductName: "Fishery" };
+  selectedProducts: any[];
+
+  stall: {
+    UserId: number;
+    StallId: number;
+    Category: string;
   };
 
   modalRef: BsModalRef;
@@ -45,33 +42,60 @@ export class StallRegistrationComponent implements OnInit {
     private ngxSpinnerService: NgxSpinnerService,
     private toastr: ToastrService
   ) {
-    this.stallreg = {
-      stallno: null,
-      productcategory: null,
+    this.currentUser = JSON.parse(sessionStorage.getItem("CurrentUser"));
+    this.stall = {
+      UserId: this.currentUser.id,
+      StallId: null,
+      Category: null,
     };
-    this.productCAtergory = new Array<any>();
+
+    this.selectedProducts = [{ Id: 1, ProductName: "Fishery" }];
+
+    this.stalllist = new Array<StallDetails>();
+    this.productCategory = new Array<ProductCategory>();
   }
 
   openModal(template: TemplateRef<any>): void {
-    this.modalRef = this.modalService.show(template, { class: 'modal-sm' });
+    this.modalRef = this.modalService.show(template, { class: "modal-sm" });
   }
   ngOnInit(): void {
     this.getAllProductCategories();
+    this.getAllStallDetails();
+  }
+
+  onProductSelect(event): void {
+    if (event) {
+      // if (this.selectedProducts.length === 0) {
+      this.selectedProducts.push(event);
+      // }
+    }
+  }
+  removeProduct(event): void {
+    if (this.selectedProducts.length !== 0) {
+      const index = this.selectedProducts.findIndex((x) => x.id === event.id);
+      if (index !== -1) {
+        this.selectedProducts.splice(index, 1);
+      }
+    }
   }
 
   stallregister(form: NgForm): void {
     this.ngxSpinnerService.show();
     if (form.valid) {
-      const stallData = {};
+      const stallData = {
+        UserId: +this.stall.UserId,
+        StallId: +this.stall.StallId,
+        Category: [+this.stall.Category],
+      };
       this.merchantService.stallRegistration(stallData).subscribe(
         (arg) => {
           if (arg) {
-            this.toastr.success('Stall registration successful', 'Success');
+            this.toastr.success("Stall registration successful", "Success");
             this.ngxSpinnerService.hide();
           }
         },
         (err) => {
-          this.toastr.success('Something went wrong', 'Error');
+          this.toastr.success("Something went wrong", "Error");
           this.ngxSpinnerService.hide();
         }
       );
@@ -81,20 +105,32 @@ export class StallRegistrationComponent implements OnInit {
   }
 
   confirm(): void {
-    this.message = 'Confirmed!';
-    this.router.navigate(['/merchant']);
+    this.message = "Confirmed!";
+    this.router.navigate(["/merchant"]);
     this.modalRef.hide();
   }
   decline(): void {
-    this.message = 'Declined!';
+    this.message = "Declined!";
     this.modalRef.hide();
+  }
+
+  getAllStallDetails() {
+    this.merchantService.getAllStallDetails().subscribe((arg) => {
+      if (arg) {
+        this.stalllist = arg;
+      }
+    });
   }
 
   getAllProductCategories(): void {
     this.merchantService.getAllProductCategories().subscribe((arg) => {
       if (arg) {
-        this.productCAtergory = arg;
+        this.productCategory = arg;
       }
     });
+  }
+
+  onCategory(event) {
+    this.stall.Category = event.item.id;
   }
 }

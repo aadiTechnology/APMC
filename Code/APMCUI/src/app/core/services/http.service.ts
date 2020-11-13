@@ -53,10 +53,8 @@ export class HttpService {
    * @param data payload to send
    */
   post<T, M>(url: string, data: M): Observable<T> {
-    const formData: any = new FormData();
-    formData.append('RequestData', JSON.stringify(data));
     return this.httpRequest(
-      this.http.post(environment.api + url, formData, this.getHttpHeader())
+      this.http.post(environment.api + url, JSON.stringify(data), this.getHttpHeader())
     ).pipe(map((response: T) => response)) as Observable<T>;
   }
 

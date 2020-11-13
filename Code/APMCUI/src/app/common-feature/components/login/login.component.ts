@@ -30,7 +30,11 @@ export class LoginComponent implements OnInit {
         (arg) => {
           if (arg) {
             sessionStorage.setItem('AccessToken', arg.token);
-            this.router.navigate(['/merchant']);
+            
+            sessionStorage.setItem('CurrentUser', JSON.stringify(arg));
+            if (arg.role === 'Merchant') {
+              this.router.navigate(['/merchant']);
+            }
             this.ngxSpinnerService.hide();
           }
         },

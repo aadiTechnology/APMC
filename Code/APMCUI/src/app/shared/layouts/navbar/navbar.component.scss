@@ -1,0 +1,29 @@
+.wrapper {
+  nav {
+    &.navbar {
+      .right-nav {
+        ul {
+          &.navbar-nav {
+            div {
+              &.dropdown-menu {
+                padding: 0 !important;
+                div {
+                  width: 100% !important;
+                  max-width: 100% !important;
+                  a {
+                    &.dropdown-item {
+                      padding: 0.75rem 1.5rem !important;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+.dropdown-menu {
+  padding: 0 !important;
+}
