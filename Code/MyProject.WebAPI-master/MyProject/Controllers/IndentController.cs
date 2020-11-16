@@ -48,5 +48,11 @@ namespace MyProject.WebAPI.Controllers
         {
             return await RepositoryWrapper.IndentDetails.GetOrderId();
         }
+
+        [HttpGet("GetProducts")]
+        public async Task<IEnumerable<Product>> GetProducts(int CategoryId)
+        {
+            return await RepositoryWrapper.Product.GetProducts(CategoryId);
+        }
     }
 }
