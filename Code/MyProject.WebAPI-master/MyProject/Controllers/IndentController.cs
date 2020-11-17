@@ -54,5 +54,11 @@ namespace MyProject.WebAPI.Controllers
         {
             return await RepositoryWrapper.Product.GetProducts(CategoryId);
         }
+
+        [HttpGet("GetUnits")]
+        public async Task<IEnumerable<Units>> GetUnits()
+        {
+            return await RepositoryWrapper.Units.GetUnits();
+        }
     }
 }
