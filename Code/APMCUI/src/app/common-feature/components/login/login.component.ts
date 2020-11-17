@@ -11,6 +11,7 @@ import { CommonService } from '../../common.service';
 })
 export class LoginComponent implements OnInit {
   user: { UserName: string; Password: string };
+  hide: boolean = true;
   constructor(
     private commonService: CommonService,
     private router: Router,
@@ -21,8 +22,12 @@ export class LoginComponent implements OnInit {
       Password: null,
     };
   }
+  
 
   ngOnInit(): void {}
+  myFunction(): void {
+    this.hide = !this.hide;
+  }
   login(form: NgForm, user): any {
     this.ngxSpinnerService.show();
     if (form.valid) {

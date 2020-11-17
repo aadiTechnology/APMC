@@ -15,15 +15,18 @@ import { ProductCategory } from "../../../entities/product-category";
   styleUrls: ["./stall-registration.component.scss"],
 })
 export class StallRegistrationComponent implements OnInit {
-  stalllist: any;
-  productCategory: any;
+  stalllist: any; // stalllist
+  productCategory: any; //product category list
 
   selected: string;
   productCatergory = [];
+  currentUser: any; // session 
 
-  currentUser: any;
+  product:{
+    categoryId:number;
+    categoryName:string;
+  }
 
-  p = { Id: 1, ProductName: "Fishery" };
   selectedProducts: any[];
 
   stall: {
@@ -48,9 +51,12 @@ export class StallRegistrationComponent implements OnInit {
       StallId: null,
       Category: null,
     };
+   this.product ={
+      categoryId:null,
+      categoryName:null,
+    }
 
-    this.selectedProducts = [{ Id: 1, ProductName: "Fishery" }];
-
+    this.selectedProducts = [];
     this.stalllist = new Array<StallDetails>();
     this.productCategory = new Array<ProductCategory>();
   }
@@ -131,6 +137,16 @@ export class StallRegistrationComponent implements OnInit {
   }
 
   onCategory(event) {
-    this.stall.Category = event.item.id;
+    this.stall.Category = event.item.category;
   }
+
+
+onCategoryChange(event){
+    
+  const category=this.productCatergory.filter(p => p.id===+event.target.value)[0];
+  this.product.categoryId=category.id;
+  this.product.categoryName=category.category;
+  
+}
+
 }

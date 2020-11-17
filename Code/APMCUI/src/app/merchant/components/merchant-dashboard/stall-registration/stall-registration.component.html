@@ -12,15 +12,25 @@
       #StallRegisterForm="ngForm"
       (ngSubmit)="stallregister(StallRegisterForm)"
     >
+    <div class="input-group form-group">
+      <input
+        type="txt"
+        class="form-control"
+        placeholder="{{currentUser.id}}"
+        value="{{currentUser.id}}"
+        name="FirstName"
+        #FirstName="ngModel"
+        [(ngModel)]="stall.UserId"
+        disabled
+      />
+    </div>
       <div class="input-group form-group">
         <input
           type="txt"
           class="form-control"
           placeholder="{{currentUser.firstName}}"
-          value="{{currentUser.id}}"
+          value="{{currentUser.firstName}}"
           name="FirstName"
-          #FirstName="ngModel"
-          [(ngModel)]="stall.UserId"
           disabled
         />
       </div>
@@ -77,6 +87,7 @@
           [typeahead]= "productCategory"
           typeaheadOptionField="category"
           (typeaheadOnSelect)="onCategory($event)"
+          change="onCategoryChange($event)"
           [typeaheadMultipleSearch]="true"
           typeaheadMultipleSearchDelimiters=" |"
           class="form-control"
@@ -95,7 +106,7 @@
       </div>
 
       <div>
-        <a (click)="onProductSelect(p)" class="btn text-info float-right"
+        <a (click)="onProductSelect(stall.Category)" class="btn text-info float-right"
           ><i class="fa fa-plus">Add</i
         ></a>
       </div>
@@ -105,9 +116,9 @@
           <th>Prodcut name</th>
           <th>action</th>
         </tr>
-        <tr *ngFor="let item of selectedProducts">
-          <td>{{item.Id}}</td>
-          <td>{{item.ProductName}}</td>
+        <tr *ngFor="let item of selectedProducts; let i = index">
+          <td>{{i + 1}}</td>
+          <td>{{item}}</td>
           <td>
             <a (click)="removeProduct(item)" class="btn text-info"
               ><i class="fa fa-trash"></i

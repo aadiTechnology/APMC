@@ -11,6 +11,6 @@ export class StallRegistrationRequestsComponent implements OnInit {
 
   ngOnInit(): void {
   }
-signup(){}
+
 
 }
