@@ -11,5 +11,6 @@ namespace MyProject.Contracts
         IndentDetails Add(IndentDetails indentDetails, List<IndentProducts> indentProducts);
         IndentDetails Update(IndentDetails indentDetails);
         Task<IEnumerable<IndentDetails>> GetOrderId();
+      
     }
 }

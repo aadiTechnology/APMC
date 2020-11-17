@@ -4,11 +4,11 @@ using System.Text;
 
 namespace MyProject.Entities.Models
 {
-    public class IndentProducts
+    public class Product
     {
         public int Id { get; set; }
-        public int IndentId { get; set; }
+        public string ProductName { get; set; }
         public int CategoryId { get; set; }
-        public int ProductId { get; set; }
     }
 }
+

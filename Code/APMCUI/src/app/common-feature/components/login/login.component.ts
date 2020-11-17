@@ -35,12 +35,7 @@ export class LoginComponent implements OnInit {
         (arg) => {
           if (arg) {
             sessionStorage.setItem('AccessToken', arg.token);
-            sessionStorage.setItem('Id', arg.id);
-            sessionStorage.setItem('Role', arg.role);
-            sessionStorage.setItem('FirstName', arg.firstName);
-            sessionStorage.setItem('LastName', arg.lastName);
-            sessionStorage.setItem('Mobile', arg.mobileNo);
-            sessionStorage.setItem('Email', arg.email);
+            
             sessionStorage.setItem('CurrentUser', JSON.stringify(arg));
             if (arg.role === 'Merchant') {
               this.router.navigate(['/merchant']);

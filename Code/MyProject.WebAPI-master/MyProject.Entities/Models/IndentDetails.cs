@@ -7,9 +7,12 @@ namespace MyProject.Entities.Models
     public class IndentDetails
     {
         public int Id { get; set; }
-        public string ProductId { get; set; }
+        public int IndentId { get; set; }
+        public int ProductId { get; set; }
         public float ProductWeight { get; set; }
+        public string Unit { get; set; }
         public int OrderNo { get; set; }
+        public string ETADate { get; set; }
         public string ETATime { get; set; }
         public string VehicleNo { get; set; }
         public string SupplierNo { get; set; }
