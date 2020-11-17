@@ -26,7 +26,8 @@ export class CommonService {
 
   login(user): any {
     const loginUser = { UserName: user.UserName, Password: user.Password };
-    return this.httpService.postAnonymous('Account/Login', loginUser);
+    let a= this.httpService.postAnonymous('Account/Login', loginUser);
+    return a;
   }
   signup(user): any {
     const registeruser = {
