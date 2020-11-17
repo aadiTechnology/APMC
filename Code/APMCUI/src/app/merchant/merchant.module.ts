@@ -13,6 +13,8 @@ import { CreatIndentComponent } from './components/merchant-dashboard/creat-inde
 import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule } from '@angular/material/core';
 import { TimepickerModule } from 'ngx-bootstrap/timepicker';
+import { MatDialogModule } from '@angular/material/dialog';
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 
 @NgModule({
   declarations: [
@@ -28,9 +30,12 @@ import { TimepickerModule } from 'ngx-bootstrap/timepicker';
     MatNativeDateModule,
     MatDatepickerModule,
     MatInputModule,
+    NgxMaterialTimepickerModule,
     TypeaheadModule.forRoot(),
     ModalModule.forRoot(),
     TimepickerModule.forRoot(),
+    MatInputModule,
+    MatDialogModule,
   ],
 })
 export class MerchantModule {}

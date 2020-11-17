@@ -50,8 +50,10 @@ namespace MyProject.Repository
         public async Task<IEnumerable<IndentDetails>> GetOrderId()
         {
             //return await _repositoryContext.StallDetails.ToListAsync();
-            return await _repositoryContext.IndentDetails.Where(a => a.CreatedBy == 1).ToListAsync();
+            return await _repositoryContext.IndentDetails.Where(a => a.CreatedBy == 20).ToListAsync();
 
         }
+
+
     }
 }

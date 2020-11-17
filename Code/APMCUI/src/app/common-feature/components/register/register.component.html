@@ -24,8 +24,9 @@
           [(ngModel)]="user.roleId"
         >
           <option value="null" selected disabled hidden>Select a Role</option>
-          <option *ngFor="let rolelist of Role" value="{{rolelist.Id}}">{{rolelist.roleName}}</option>
-          
+          <option *ngFor="let rolelist of Role" value="{{rolelist.Id}}"
+            >{{rolelist.roleName}}</option
+          >
         </select>
       </div>
       <div
@@ -113,8 +114,8 @@
           placeholder="Mobile No"
           [(ngModel)]="user.mobileNumber"
           required
-          pattern="[0-9]*"
-          maxlength="10"
+          pattern="\d{10}"
+          
           #FieldMobileNumber="ngModel"
           name="FieldMobileNumber"
           [ngClass]="{'has-error': FieldMobileNumber.invalid && (FieldMobileNumber.dirty || FieldMobileNumber.touched
@@ -178,7 +179,6 @@
           User id is required
         </div>
       </div>
-
       <div
         class="input-group form-group"
         data-toggle="tooltip"
@@ -190,10 +190,10 @@
             ><i class="fas fa-key text-white"></i
           ></span>
         </div>
-
         <input
           type="password"
           class="border-right-0 form-control"
+          autocomplete="on"
           placeholder="Password"
           [(ngModel)]="user.password"
           required
@@ -204,7 +204,6 @@
           name="FieldPassword"
           [type]="hide ? 'password' : 'text'"
         />
-
         <div class="border rounded-right border-left-0 input-group-prepend">
           <span
             (click)="myFunction()"
@@ -217,12 +216,10 @@
           ></span>
         </div>
       </div>
-
       <div
         *ngIf="FieldPassword.invalid && (FieldPassword.dirty || FieldPassword.touched || SignupForm.submitted)"
         class="text-danger"
       >
-       
         <div [hidden]="!FieldPassword.errors.required">
           Password is required
         </div>
@@ -233,10 +230,10 @@
             ><i class="fas fa-key text-white"></i
           ></span>
         </div>
-
         <input
           type="password"
           class="border-right-0 form-control"
+          autocomplete="on"
           placeholder="Confirm Password"
           [(ngModel)]="user.confirmPassword"
           required
@@ -245,16 +242,15 @@
           #FieldConfirmPassword="ngModel"
           #FieldConfirmPasswordInput
           name="FieldConfirmPassword"
-          [type]="hide ? 'password' : 'text'"
+          [type]="hidee ? 'password' : 'text'"
         />
-
         <div class="border rounded-right border-left-0 input-group-prepend">
           <span
-            (click)="myFunction()"
+            (click)="myFunctionCp()"
             class="bg-transparent input-group-text text-black-50"
             ><i
-              [class.fa-eye-slash]="hide"
-              [class.fa-eye]="!hide"
+              [class.fa-eye-slash]="hidee"
+              [class.fa-eye]="!hidee"
               class="fas fa-lg"
             ></i
           ></span>
@@ -280,7 +276,6 @@
 
       <div class="input-group form-group">
         <div class="mx-auto">
-          
           <input
             type="submit"
             value="Sign Up"
