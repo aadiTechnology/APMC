@@ -16,6 +16,7 @@ export class RegisterComponent implements OnInit {
 
   Role:any;
   hide: boolean = true;
+  hidee: boolean = true;
   user: {
     roleId: number;
     firstName: string;
@@ -58,6 +59,9 @@ export class RegisterComponent implements OnInit {
   }
   myFunction(): void {
     this.hide = !this.hide;
+  }
+  myFunctionCp(): void {
+    this.hidee = !this.hidee;
   }
   
 
