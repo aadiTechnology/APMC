@@ -52,13 +52,13 @@ namespace MyProject.WebAPI.Controllers
         [HttpGet("GetProducts")]
         public async Task<IEnumerable<Product>> GetProducts(int CategoryId)
         {
-            return await RepositoryWrapper.Product.GetProducts(CategoryId);
+            return  await RepositoryWrapper.Product.GetProducts(CategoryId);
         }
 
         [HttpGet("GetUnits")]
         public async Task<IEnumerable<Units>> GetUnits()
         {
-            return await RepositoryWrapper.Units.GetUnits();
+            return  await RepositoryWrapper.Units.GetUnits();
         }
     }
 }
