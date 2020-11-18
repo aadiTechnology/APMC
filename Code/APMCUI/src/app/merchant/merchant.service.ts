@@ -15,6 +15,12 @@ export class MerchantService {
   getAllProductCategories(): any {
     return this.httpService.get('Merchant/GetAllProductCategory');
   }
+  getAllProducts(CategoryId): any {
+    return this.httpService.get(`Indent/GetProducts?CategoryId=${CategoryId}`);
+  }
+  getAllGetAllDrivers(): any {
+    return this.httpService.get('Indent/GetAllDrivers');
+  }
 
   stallRegistration(data): Observable<any> {
     return this.httpService.post('Merchant/StallRegistration', data);
