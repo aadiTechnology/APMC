@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { CommonService } from '../../common.service';
 
@@ -15,7 +16,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private commonService: CommonService,
     private router: Router,
-    private ngxSpinnerService: NgxSpinnerService
+    private ngxSpinnerService: NgxSpinnerService,
+    private toastr: ToastrService
   ) {
     this.user = {
       UserName: null,
@@ -33,7 +35,8 @@ export class LoginComponent implements OnInit {
     if (form.valid) {
       this.commonService.login(user).subscribe(
         (arg) => {
-          if (arg) {
+          if (!arg.HasErrors) {
+            
             sessionStorage.setItem('AccessToken', arg.token);
             
             sessionStorage.setItem('CurrentUser', JSON.stringify(arg));
@@ -44,8 +47,14 @@ export class LoginComponent implements OnInit {
             }
             this.ngxSpinnerService.hide();
           }
+          else{
+            
+          this.toastr.error(arg.message, 'Error');
+          this.ngxSpinnerService.hide();
+          }
         },
         (err) => {
+          this.toastr.success('Something went wrong', 'Error');
           this.ngxSpinnerService.hide();
         }
       );

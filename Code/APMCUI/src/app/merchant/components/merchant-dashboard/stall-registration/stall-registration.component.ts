@@ -15,13 +15,16 @@ import { ProductCategory } from "../../../entities/product-category";
   styleUrls: ["./stall-registration.component.scss"],
 })
 export class StallRegistrationComponent implements OnInit {
+  currentUser: any; // session Cureent User 
   stalllist: any; // stalllist
   productCategory: any; //product category list
+  CategoryId:number;
 
   selected: string;
   productCatergory = [];
-  currentUser: any; // session 
+  
 
+  //Category Details
   product:{
     categoryId:number;
     categoryName:string;
@@ -29,14 +32,16 @@ export class StallRegistrationComponent implements OnInit {
 
   selectedProducts: any[];
 
+  // Stall registration form entity
   stall: {
     UserId: number;
     StallId: number;
-    Category: string;
+    Category: number[];
   };
 
-  modalRef: BsModalRef;
+  modalRef: BsModalRef; //cancel model 
   message: string;
+
 
   constructor(
     private modalService: BsModalService,
@@ -49,7 +54,7 @@ export class StallRegistrationComponent implements OnInit {
     this.stall = {
       UserId: this.currentUser.id,
       StallId: null,
-      Category: null,
+      Category: new Array<number>(),
     };
    this.product ={
       categoryId:null,
@@ -59,11 +64,16 @@ export class StallRegistrationComponent implements OnInit {
     this.selectedProducts = [];
     this.stalllist = new Array<StallDetails>();
     this.productCategory = new Array<ProductCategory>();
+    
   }
 
+  //Cancel button popup
   openModal(template: TemplateRef<any>): void {
     this.modalRef = this.modalService.show(template, { class: "modal-sm" });
   }
+
+
+
   ngOnInit(): void {
     this.getAllProductCategories();
     this.getAllStallDetails();
@@ -72,7 +82,11 @@ export class StallRegistrationComponent implements OnInit {
   onProductSelect(event): void {
     if (event) {
       // if (this.selectedProducts.length === 0) {
+      
+      this.stall.Category.push(event);
       this.selectedProducts.push(event);
+      this.CategoryId=null;
+      this.selected=null;
       // }
     }
   }
@@ -91,7 +105,7 @@ export class StallRegistrationComponent implements OnInit {
       const stallData = {
         UserId: +this.stall.UserId,
         StallId: +this.stall.StallId,
-        Category: [+this.stall.Category],
+        Category: this.stall.Category,
       };
       this.merchantService.stallRegistration(stallData).subscribe(
         (arg) => {
@@ -123,7 +137,7 @@ export class StallRegistrationComponent implements OnInit {
   getAllStallDetails() {
     this.merchantService.getAllStallDetails().subscribe((arg) => {
       if (arg) {
-        this.stalllist = arg;
+        this.stalllist = arg.rows;
       }
     });
   }
@@ -131,13 +145,15 @@ export class StallRegistrationComponent implements OnInit {
   getAllProductCategories(): void {
     this.merchantService.getAllProductCategories().subscribe((arg) => {
       if (arg) {
-        this.productCategory = arg;
+        this.productCategory = arg.rows;
       }
     });
   }
 
   onCategory(event) {
-    this.stall.Category = event.item.category;
+   // this.stall.Category = event.item.category;
+    this.CategoryId=event.item.id;
+    
   }
 
 
@@ -148,5 +164,6 @@ onCategoryChange(event){
   this.product.categoryName=category.category;
   
 }
+
 
 }

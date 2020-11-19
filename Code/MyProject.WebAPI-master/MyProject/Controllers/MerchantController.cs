@@ -11,12 +11,17 @@ using MyProject.Entities.Models;
 
 namespace MyProject.WebAPI.Controllers
 {
+
     [Route("api/[controller]")]
     [ApiController]
     [Authorize(Roles = "Merchant")]
     public class MerchantController : ControllerBase
     {
-       
+        public override void InitializeController()
+        {
+
+        }
+
         public MerchantController(IRepositoryWrapper repositoryWrapper)
         {
             RepositoryWrapper = repositoryWrapper;
@@ -30,9 +35,9 @@ namespace MyProject.WebAPI.Controllers
         /// <returns>Returns the list of StallDetails from master where stall is not Assigned</returns>
         ///<Aurthor>Sumeet Tanaji Kemse</Aurthor>
         [HttpGet("GetAllStallDetails")]
-        public async Task<IEnumerable<StallDetails>> GetAllStallDetails()
+        public async Task<JsonResult> GetAllStallDetails()
         {
-            return await RepositoryWrapper.StallDetails.GetAllStallDetails();
+            return await base.FinalizeMultiple < IEnumerable <StallDetails>> (await RepositoryWrapper.StallDetails.GetAllStallDetails());
         }
 
    /// <summary>
@@ -40,9 +45,9 @@ namespace MyProject.WebAPI.Controllers
    /// </summary>
    /// <returns></returns>
         [HttpGet("GetAllProductCategory")]
-        public async Task<IEnumerable<ProductCategory>> GetAllProductCategory()
+        public async Task<JsonResult> GetAllProductCategory()
         {
-            return await RepositoryWrapper.ProductCategory.GetAllProductCategory();
+            return await base.FinalizeMultiple<IEnumerable<ProductCategory>>(await RepositoryWrapper.ProductCategory.GetAllProductCategory());
         }
 
 
@@ -57,18 +62,18 @@ namespace MyProject.WebAPI.Controllers
         /// <returns>Returns status/Exception if Sucessfully Registered data in table or not</returns>
         ///<Aurthor>Sumeet Tanaji Kemse</Aurthor>
     [HttpPost("StallRegistration")]
-        public ActionResult<StallRegistrationDto> StallRegistration([FromBody] StallRegistrationDto stallregisterDto)
+        public async Task<JsonResult> StallRegistration([FromBody] StallRegistrationDto stallregisterDto)
         {
             try
             {
                 RepositoryWrapper.StallRegistration.StallRegistration(stallregisterDto.UserId, stallregisterDto.StallId);
-                RepositoryWrapper.StallProductCategories.StallProductCategories(stallregisterDto.Category.ToList(), stallregisterDto.StallId);
+                RepositoryWrapper.StallProductCategories.StallProductCategories(stallregisterDto.Category.ToList(), stallregisterDto.Id);
 
-                return Ok("Stall Registered Sucessfully");
+                return await base.FinalizStatusCodeeMessage("Stall Registered Sucessfully",200);
             }
             catch (Exception ex)
             {
-                return Ok("Error: Failure in Stall Registration : " + ex);
+                return await base.FinalizStatusCodeeMessage("Error: Failure in Stall Registration : " + ex,401);
             }
         }
     }

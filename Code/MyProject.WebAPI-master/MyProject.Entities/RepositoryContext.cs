@@ -26,5 +26,6 @@ namespace MyProject.Entities
         public DbSet<IndentProducts> IndentProducts { get; set; }
         public DbSet<Product> Product { get; set; }
         public DbSet<Units> Units { get; set; }
+
     }
 }
