@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MyProject.Contracts;
@@ -12,6 +13,8 @@ using MyProject.Repository;
 namespace MyProject.WebAPI.Controllers
 {
     [Route("api/[controller]")]
+    [ApiController]
+    [Authorize(Roles = "Merchant")]
     //Author-Datta (Indent related methods)
     public class IndentController : ControllerBase
     {
