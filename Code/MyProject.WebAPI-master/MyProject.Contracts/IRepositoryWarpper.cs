@@ -18,6 +18,7 @@ namespace MyProject.Contracts
         IStallProductCategoriesRepository StallProductCategories { get; set; }
         IIndentRepository IndentDetails { get; set; }
         IProductRepository Product { get; set; }
+        IUnitsRepository Units { get; set; }
         void Save();
     }
 }

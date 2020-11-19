@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MyProject.Contracts;
@@ -12,9 +13,14 @@ using MyProject.Repository;
 namespace MyProject.WebAPI.Controllers
 {
     [Route("api/[controller]")]
+    [ApiController]
+    [Authorize(Roles = "Merchant")]
     //Author-Datta (Indent related methods)
     public class IndentController : ControllerBase
     {
+        public override void InitializeController()
+        {
+        }
         public IndentController(IRepositoryWrapper repositoryWrapper)
         {
             RepositoryWrapper = repositoryWrapper;
@@ -26,10 +32,18 @@ namespace MyProject.WebAPI.Controllers
         /// <param name="IndentDto"></param>
         /// <returns>Return Indent details if insert successfully</returns>
         [HttpPost("Add")]
-        public ActionResult<IndentDetails> Add([FromBody] IndentDto IndentDto)
+        public async Task<JsonResult> Add([FromBody] IndentDto IndentDto)
         {
-            RepositoryWrapper.IndentDetails.Add(IndentDto.IndentDetails, IndentDto.IndentProducts);
-            return null;
+            try
+            {
+                return await base.FinalizeSingle<IndentDetails>(RepositoryWrapper.IndentDetails.Add(IndentDto.IndentDetails, IndentDto.IndentProducts));
+                return await base.FinalizStatusCodeeMessage("Indent Created Successfully", 200);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            
         }
         /// <summary>
         /// Author-Datta(Update Indent isApproved)
@@ -37,22 +51,35 @@ namespace MyProject.WebAPI.Controllers
         /// <param name="indentDetails"></param>
         /// <returns>Successfully updated then return indent model</returns>
         [HttpPost("Update")]
-        public ActionResult<IndentDetails> Update([FromBody] IndentDetails indentDetails)
+        public async Task<JsonResult> Update([FromBody] IndentDetails indentDetails)
         {
             RepositoryWrapper.IndentDetails.Update(indentDetails);
-            return null;
+            return await base.FinalizStatusCodeeMessage("Updated Indent Successfully",200);
         }
 
+
         [HttpGet("GetOrderId")]
-        public async Task<IEnumerable<IndentDetails>> GetOrderId()
+        public async Task<JsonResult> GetOrderId()
         {
-            return await RepositoryWrapper.IndentDetails.GetOrderId();
+            return await base.FinalizeMultiple<IEnumerable<IndentDetails>>(await RepositoryWrapper.IndentDetails.GetOrderId());
         }
 
         [HttpGet("GetProducts")]
-        public async Task<IEnumerable<Product>> GetProducts(int CategoryId)
+        public async Task<JsonResult> GetProducts(int CategoryId)
         {
-            return await RepositoryWrapper.Product.GetProducts(CategoryId);
+            return await base.FinalizeMultiple<IEnumerable<Product>>(await RepositoryWrapper.Product.GetProducts(CategoryId));
+        }
+
+        [HttpGet("GetUnits")]
+        public async Task<JsonResult> GetUnits()
+        {
+            return await base.FinalizeMultiple<IEnumerable<Units>>(await RepositoryWrapper.Units.GetUnits());
+        }
+
+        [HttpGet("GetAllDrivers")]
+        public async Task<JsonResult> GetAllDrivers()
+        {
+            return await base.FinalizeMultiple<IEnumerable<AppUsers>>(await RepositoryWrapper.AppUsers.GetAllDrivers());
         }
     }
 }

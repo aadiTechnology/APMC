@@ -11,5 +11,7 @@ namespace MyProject.Contracts
         AppUsers GetUsers(LoginDto loginDto);
         AppUsers GetUsersById(int Id);
         Task<IEnumerable<AppUserRoles>> GetAllUserRolls();
+        Task<IEnumerable<AppUsers>> GetAllDrivers();
+        
     }
 }

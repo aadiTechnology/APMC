@@ -6,7 +6,7 @@ import { StallRegistrationRequestsComponent } from "./components/stall-registrat
 import { DashboardComponent } from './dashboard/dashboard.component';
 
 const routes: Routes = [
-  { path: "", redirectTo: "stallRegistrationRequests", pathMatch: "full" },
+  { path: "",  component: DashboardComponent},
   {
     path: "stallRegistrationRequests",
     component: StallRegistrationRequestsComponent,

@@ -6,9 +6,8 @@
     <form
       novalidate
       autocomplete="off"
-      name="CreateIndentForm"
-      #CreateIndentForm="ngForm"
-      (ngSubmit)="createIndent(CreateIndentForm)"
+      name="ProductIndentForm"
+      #ProductIndentForm="ngForm"
     >
       <div class="input-group form-group">
         <div class="input-group-prepend"></div>
@@ -21,7 +20,7 @@
           name="FieldProductCategory"
           required
           #FieldProductCategory="ngModel"
-          [(ngModel)]="merchantindent.productcategory"
+          [(ngModel)]="indent.CategoryId"
           (change)="onCategoryChange($event)"
         >
           <option value="null" selected disabled hidden
@@ -41,22 +40,19 @@
         </div>
       </div>
       <div class="form-group">
-        <input
-          type="text"
-          [(ngModel)]="merchantindent.productlist"
-          placeholder="Product List"
-          required
-          pattern="[a-zA-Z ]*"
-          name="FieldProductList"
-          autocomplete="off"
-          [typeahead]="procategory"
-          [typeaheadMultipleSearch]="true"
-          typeaheadMultipleSearchDelimiters=" |"
+        <select
           class="form-control"
-          #FieldProductList="ngModel"
           name="FieldProductList"
-          [ngClass]="{'has-error': FieldProductList.invalid && (FieldProductList.dirty || FieldProductList.touched || CreateIndentForm.submitted) }"
-        />
+          required
+          #FieldProductList="ngModel"
+          [(ngModel)]="indent.ProductId"
+          (change)="onProductSelected($event)"
+        >
+          <option value="null" selected disabled hidden>Select Product</option>
+          <option *ngFor="let product of productlist" value="{{product.id}}"
+            >{{product.productName}}</option
+          >
+        </select>
       </div>
       <div
         *ngIf="FieldProductList.invalid && (FieldProductList.dirty || FieldProductList.touched || CreateIndentForm.submitted )"
@@ -75,15 +71,14 @@
           <input
             type="txt"
             class="form-control"
-            pattern="[0-9]*"
             placeholder="Quantity"
-            pattern="[0-9]"
-            [(ngModel)]="merchantindent.productquantity"
+            [(ngModel)]="indent.Quantity"
             required
             pattern="[0-9]*"
             maxlength="10"
             #FieldProductQuantity="ngModel"
             name="FieldProductQuantity"
+            (change)="onQuantity($event)"
             [ngClass]="{'has-error': FieldProductQuantity.invalid && (FieldProductQuantity.dirty || FieldProductQuantity.touched
                 || CreateIndentForm.submitted ) }"
           /><br />
@@ -107,7 +102,8 @@
             name="FieldProductQuantityUnits"
             required
             #FieldProductQuantityUnits="ngModel"
-            [(ngModel)]="merchantindent.productquantityunits"
+            [(ngModel)]="indent.Unit"
+            (change)="onUnitsChange($event)"
           >
             <option value="null" selected disabled hidden
               >Quantity Units</option
@@ -127,22 +123,30 @@
         </div>
       </div>
       <div class="float-right">
-        <a (click)="onProductSelect(p)" class="btn text-info"
-          >Add <i class="fa fa-plus"></i
-        ></a>
+        <button
+          type="submit"
+          (click)="onProductSelect(product,ProductIndentForm)"
+          class="btn btn-sm text-info"
+        >
+          Add <i class="fa fa-plus"></i>
+        </button>
       </div>
       <table class="table table-sm table-bordered">
         <tr>
+          <th>Sr No</th>
+          <th>Product Category</th>
           <th>Product Name</th>
           <th>Quantity</th>
-          <th>Quantity Units</th>
+          <th>Units</th>
           <th>Action</th>
         </tr>
 
-        <tr *ngFor="let item of selectedProducts">
-          <td>{{item.FieldProductCategory}}</td>
-          <td>{{item.FieldProductQuantity}}</td>
-          <td>{{item.FieldProductQuantityUnits}}</td>
+        <tr *ngFor="let item of selectedProducts; let i = index">
+          <td>{{i + 1}}</td>
+          <td>{{item.categoryName}}</td>
+          <td>{{item.productName}}</td>
+          <td>{{item.quantity}}</td>
+          <td>{{item.unit}}</td>
           <td>
             <a (click)="removeProduct(item) " class="btn text-info"
               ><i class="fa fa-trash"></i
@@ -150,13 +154,19 @@
           </td>
         </tr>
       </table>
+    </form>
+    <form
+      novalidate
+      autocomplete="off"
+      name="CreateIndentForm"
+      #CreateIndentForm="ngForm"
+      (ngSubmit)="createIndent(CreateIndentForm)"
+    >
       <div class="form-group">
         <input
-          type="text"
-          [(ngModel)]="merchantindent.driverName"
+          [(ngModel)]="merchantindent.DriverName"
           placeholder="Driver Name"
           required
-          name="category"
           autocomplete="off"
           [typeahead]="driverlist"
           [typeaheadMultipleSearch]="true"
@@ -184,7 +194,7 @@
           type="txt"
           class="form-control"
           placeholder="Driver Number"
-          [(ngModel)]="merchantindent.driverNumber"
+          [(ngModel)]="merchantindent.DriverNo"
           required
           pattern="[0-9]*"
           maxlength="10"
@@ -211,7 +221,7 @@
           type="txt"
           class="form-control"
           placeholder="Vehicle Number"
-          [(ngModel)]="merchantindent.vhclNumber"
+          [(ngModel)]="merchantindent.VehicleNo"
           #FieldVehicleNumber="ngModel"
           name="FieldVehicleNumber"
         />
@@ -221,14 +231,14 @@
           type="date"
           placeholder="Select Date"
           class="form-control"
-          [(ngModel)]="merchantindent.selectdte"
+          [(ngModel)]="merchantindent.ETADate"
           #FieldSelectDate="ngModel"
           name="FieldSelectDate"
           required
-          [ngClass]="{'has-error': FieldSelectDate.invalid && (FieldSelectDate.dirty || FieldSelectDate.touched 
+          [ngClass]="{'has-error': FieldSelectDate.invalid && (FieldSelectDate.dirty || FieldSelectDate.touched
               || CreateIndentForm.submitted) }"
         />
-        </div>
+      </div>
       <div
         *ngIf="FieldSelectDate.invalid && (FieldSelectDate.dirty || FieldSelectDate.touched || CreateIndentForm.submitted )"
         class="text-danger"
@@ -245,12 +255,12 @@
           aria-label="default time"
           [ngxTimepicker]="defaultValue"
           [value]="'0:00 am'"
-          [(ngModel)]="merchantindent.selecttime"
+          [(ngModel)]="merchantindent.ETATime"
           #FieldSelectTime="ngModel"
           name="FieldSelectTime"
           placeholder="Select time"
           required
-          [ngClass]="{'has-error': FieldSelectTime.invalid && (FieldSelectTime.dirty || FieldSelectTime.touched 
+          [ngClass]="{'has-error': FieldSelectTime.invalid && (FieldSelectTime.dirty || FieldSelectTime.touched
         || CreateIndentForm.submitted) }"
         />
         <ngx-material-timepicker #defaultValue> </ngx-material-timepicker>
@@ -269,7 +279,7 @@
           type="txt"
           class="form-control"
           placeholder="Supplier Name"
-          [(ngModel)]="merchantindent.suplierName"
+          [(ngModel)]="merchantindent.SupplierName"
           #FieldSupplierName="ngModel"
           name="#FieldSupplierName"
         />
@@ -280,13 +290,12 @@
           class="form-control"
           placeholder="Supplier Number"
           maxlength="10"
-          [(ngModel)]="merchantindent.suplierNumber"
+          [(ngModel)]="merchantindent.SupplierNo"
           #FieldSupplierNumber="ngModel"
           name="FieldSupplierNumber"
         />
       </div>
 
-      <pre class="card-header">Category: {{merchantindent | json}}</pre>
       <br />
       <div class="input-group form-group">
         <div class="mx-auto">
@@ -296,7 +305,7 @@
             class="btn btn-success"
           />&nbsp;&nbsp;&nbsp;
           <input
-            type="reset"
+            type="button"
             value="Cancel"
             class="btn btn-danger"
             (click)="openModal(template)"

@@ -8,9 +8,6 @@ namespace MyProject.Entities.Models
     {
         public int Id { get; set; }
         public int IndentId { get; set; }
-        public int ProductId { get; set; }
-        public float ProductWeight { get; set; }
-        public string Unit { get; set; }
         public int OrderNo { get; set; }
         public string ETADate { get; set; }
         public string ETATime { get; set; }

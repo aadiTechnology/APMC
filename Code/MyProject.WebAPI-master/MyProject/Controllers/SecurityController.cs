@@ -10,10 +10,15 @@ using MyProject.Security.Auth;
 
 namespace MyProject.WebAPI.Controllers
 {
+
     [Route("api/[controller]")]
     [ApiController]
     public class SecurityController : ControllerBase
     {
+        public override void InitializeController()
+        {
+
+        }
         //private readonly IJwtAuthenticationManager jwtAuthenticationManager;
 
         //public SecurityController(IJwtAuthenticationManager jwtAuthenticationManager)
@@ -27,13 +32,13 @@ namespace MyProject.WebAPI.Controllers
         }
         [AllowAnonymous]
         [HttpPost("authenticate")]
-        public IActionResult Authenticate([FromBody] UserCredential userCred)
+        public async Task<JsonResult> Authenticate([FromBody] UserCredential userCred)
         {
             //var token = jwtAuthenticationManager.Authenticate(userCred.UserName, userCred.Password);
             var token = _tokenManager.GetToken(userCred.UserName, userCred.Password,"");
             if (token == null)
-                return Ok("Error: authenticate");
-            return Ok(token);
+                return await base.FinalizStatusCodeeMessage("Error: authenticate",401);
+            return await base.FinalizeSingle<string>(token);
         }
     }
 }

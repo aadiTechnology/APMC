@@ -1,15 +1,8 @@
-
-
 .text-danger{
-  
     margin-bottom: 10px;
   }
-
-
-
   [data-tip] {
 	position:relative;
-
 }
 [data-tip]:before {
 	content:'';
@@ -38,9 +31,9 @@
 	background:silver;
 	color:black;
 	z-index:9;
-	font-size: 1em;
-	height:78px;
-	width: 75% !important;
+	font-size: 0.79em;
+	height:65px;
+	width: 72% !important;
 	margin-left: 15% !important;
 	line-height:18px;
 	-webkit-border-radius: 3px;
