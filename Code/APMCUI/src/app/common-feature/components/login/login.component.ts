@@ -39,6 +39,8 @@ export class LoginComponent implements OnInit {
             sessionStorage.setItem('CurrentUser', JSON.stringify(arg));
             if (arg.role === 'Merchant') {
               this.router.navigate(['/merchant']);
+            }else if (arg.role === 'Admin') {
+              this.router.navigate(['/admin']);
             }
             this.ngxSpinnerService.hide();
           }
