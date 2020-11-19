@@ -1,9 +1,9 @@
 export class ProductCategory {
-    id:number;
+    categoryId:number;
     category:string;
      
     constructor(){
-        this.id=null;
+        this.categoryId=null;
         this.category=null;
     }
 }

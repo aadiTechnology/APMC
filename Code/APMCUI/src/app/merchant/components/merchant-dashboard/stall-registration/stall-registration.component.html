@@ -29,7 +29,6 @@
           type="txt"
           class="form-control"
           placeholder="{{currentUser.firstName}}"
-          value="{{currentUser.firstName}}"
           name="FirstName"
           disabled
         />
@@ -78,24 +77,30 @@
           Stall no is required
         </div>
       </div>
-      <div class="form-group">
-        <input
-          [(ngModel)]="stall.Category"
+      <div class="input-group form-group"> 
+        
+          <input
+          [(ngModel)]="selected"
           placeholder="Product Category"
           required
           autocomplete="off"
           [typeahead]= "productCategory"
           typeaheadOptionField="category"
           (typeaheadOnSelect)="onCategory($event)"
-          change="onCategoryChange($event)"
-          [typeaheadMultipleSearch]="true"
+          [typeaheadMultipleSearch]="false"
           typeaheadMultipleSearchDelimiters=" |"
           class="form-control"
           name="Pcategory"
-          value="12"
           #Pcategory="ngModel"
         />
+        
+       
+          <a (click)="onProductSelect(CategoryId)" class="btn btn-primary float-right"
+        ><i class="fa fa-plus"></i
+      ></a>
+     
       </div>
+     
       <div
         *ngIf="Pcategory.invalid && (Pcategory.dirty || Pcategory.touched || StallRegisterForm.submitted)"
         class="text-danger"
@@ -106,9 +111,7 @@
       </div>
 
       <div>
-        <a (click)="onProductSelect(stall.Category)" class="btn text-info float-right"
-          ><i class="fa fa-plus">Add</i
-        ></a>
+        
       </div>
       <table class="table table-sm table-bordered">
         <tr>

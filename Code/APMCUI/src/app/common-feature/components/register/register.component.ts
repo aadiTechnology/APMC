@@ -103,7 +103,7 @@ export class RegisterComponent implements OnInit {
     this.modalRef.hide();
   }
   getAllUserRolls(): void {
-    this.commonService.getAllUserRolls().subscribe(result => { this.Role = result });
+    this.commonService.getAllUserRolls().subscribe(result => { this.Role = result.rows });
     
   }
 }
