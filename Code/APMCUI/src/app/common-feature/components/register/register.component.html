@@ -24,7 +24,7 @@
           [(ngModel)]="user.roleId"
         >
           <option value="null" selected disabled hidden>Select a Role</option>
-          <option *ngFor="let rolelist of Role" value="{{rolelist.Id}}"
+          <option *ngFor="let rolelist of Role" value="{{rolelist.id}}"
             >{{rolelist.roleName}}</option
           >
         </select>
@@ -112,7 +112,7 @@
           type="text"
           class="form-control"
           placeholder="Mobile No"
-          [(ngModel)]="user.mobileNumber"
+          [(ngModel)]="user.mobileNo"
           required
           pattern="\d{10}"
           

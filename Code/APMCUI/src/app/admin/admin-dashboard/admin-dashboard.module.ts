@@ -6,10 +6,11 @@ import { AdminDashboardComponent } from './admin-dashboard.component';
 import { StallRegistrationRequestsComponent } from './components/stall-registration-requests/stall-registration-requests.component';
 import { RouterModule } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { StallRegistrationListComponent } from './components/stall-registration-list/stall-registration-list.component';
 
 
 @NgModule({
-  declarations: [AdminDashboardComponent, StallRegistrationRequestsComponent, DashboardComponent],
+  declarations: [AdminDashboardComponent, StallRegistrationRequestsComponent, DashboardComponent, StallRegistrationListComponent],
   imports: [
     CommonModule,
     AdminDashboardRoutingModule,
