@@ -1,24 +1,23 @@
-import { Component, OnInit, TemplateRef } from "@angular/core";
-import { NgForm } from "@angular/forms";
-import { BsModalRef, BsModalService } from "ngx-bootstrap/modal";
-import { Router } from "@angular/router";
-import { NgxSpinnerService } from "ngx-spinner";
-import { ToastrService } from "ngx-toastr";
-import { MerchantService } from "../../../merchant.service";
-import { ProductCategory } from "../../../entities/product-category";
-import { ProductList } from "../../../entities/productlist";
-import { DriverList } from "../../../entities/driverlist";
+import { Component, OnInit, TemplateRef } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { ToastrService } from 'ngx-toastr';
+import { MerchantService } from '../../../merchant.service';
+import { ProductCategory } from '../../../entities/product-category';
+import { ProductList } from '../../../entities/productlist';
+import { DriverList } from '../../../entities/driverlist';
 
 @Component({
-  selector: "app-creat-indent",
-  templateUrl: "./creat-indent.component.html",
-  styleUrls: ["./creat-indent.component.scss"],
+  selector: 'app-creat-indent',
+  templateUrl: './creat-indent.component.html',
+  styleUrls: ['./creat-indent.component.scss'],
 })
 export class CreatIndentComponent implements OnInit {
   selected: string;
-  ETATime = "6:00 am";
+  ETATime = '6:00 am';
   product: {
-    productcategory:number;
     categoryId: number;
     categoryName: string;
     productId: number;
@@ -45,7 +44,12 @@ export class CreatIndentComponent implements OnInit {
   driverlist = [];
   modalRef: BsModalRef;
   message: string;
-
+  indent: {
+    CategoryId: number;
+    ProductId: number;
+    Quantity: number;
+    Unit: string;
+  };
   constructor(
     private modalService: BsModalService,
     private router: Router,
@@ -67,7 +71,6 @@ export class CreatIndentComponent implements OnInit {
       SupplierNo: null,
     };
     this.product = {
-      productcategory:null,
       categoryId: null,
       categoryName: null,
       productId: null,
@@ -75,7 +78,20 @@ export class CreatIndentComponent implements OnInit {
       quantity: null,
       unit: null,
     };
-    this.selectedProducts = [];
+    this.indent = {
+      CategoryId: null,
+      ProductId: null,
+      Quantity: null,
+      Unit: null,
+    };
+    this.selectedProducts = new Array<{
+      categoryId: number;
+      categoryName: string;
+      productId: number;
+      productName: string;
+      quantity: number;
+      unit: string;
+    }>();
     this.procategory = new Array<ProductCategory>();
     this.productlist = new Array<ProductList>();
     this.driverlist = new Array<DriverList>();
@@ -83,18 +99,22 @@ export class CreatIndentComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllProductCategories();
-   // this.getAllProducts();
-    //this.getAllGetAllDrivers();
   }
 
   openModal(template: TemplateRef<any>): void {
-    this.modalRef = this.modalService.show(template, { class: "modal-sm" });
+    this.modalRef = this.modalService.show(template, { class: 'modal-sm' });
   }
-  onProductSelect(event): void {
-    if (event) {
-      //  if (this.selectedProducts.length === 0) {
-      this.selectedProducts.push(event);
-      //   }
+  onProductSelect(prod, form: NgForm): void {
+    debugger;
+    if (prod && form.valid) {
+      this.selectedProducts.push(prod);
+      form.reset();
+      this.indent = {
+        CategoryId: null,
+        ProductId: null,
+        Quantity: null,
+        Unit: null,
+      };
     }
   }
 
@@ -108,7 +128,7 @@ export class CreatIndentComponent implements OnInit {
   }
   createIndent(form: NgForm): void {
     this.ngxSpinnerService.show();
-    if (form.valid) {
+    if (form.valid && this.selectedProducts.length !== 0) {
       const indentData = {
         productcategory: +this.merchantindent.productcategory,
         productlist: +this.merchantindent.productlist,
@@ -125,13 +145,13 @@ export class CreatIndentComponent implements OnInit {
       this.merchantService.indentCreation(indentData).subscribe(
         (arg) => {
           if (arg) {
-            this.toastr.success("Indent Creation successful", "Success");
+            this.toastr.success('Indent Creation successful', 'Success');
             this.ngxSpinnerService.hide();
             alert(JSON.stringify(arg));
           }
         },
         (err) => {
-          this.toastr.success("Something went wrong", "Error");
+          this.toastr.success('Something went wrong', 'Error');
           this.ngxSpinnerService.hide();
         }
       );
@@ -141,36 +161,50 @@ export class CreatIndentComponent implements OnInit {
   }
 
   confirm(): void {
-    this.message = "Confirmed!";
-    this.router.navigate(["/login"]);
+    this.message = 'Confirmed!';
+    this.router.navigate(['/login']);
     this.modalRef.hide();
   }
 
   decline(): void {
-    this.message = "Declined!";
+    this.message = 'Declined!';
     this.modalRef.hide();
   }
 
-  onCategoryChange(event) {
-   const category = this.procategory.filter(x=> x.productcategory===event.target.value)[0];
-     this.product.categoryName = category.productcategory;
-    if(category){
-    this.merchantService.getAllProducts(category.id).subscribe(
-      procategory=>this.productlist=procategory 
-    );
-  }else{
-    this.productlist=null;
+  onCategoryChange(event): void {
+    const category = this.procategory.filter(
+      (x) => x.id === +event.target.value
+    )[0];
+    this.product.categoryId = +category.id;
+    this.product.categoryName = category.category;
+    if (category) {
+      this.merchantService
+        .getAllProducts(category.id)
+        .subscribe((procategory) => {
+          if (procategory) {
+            this.productlist = procategory;
+          }
+        });
+    } else {
+      this.productlist = null;
+    }
   }
-
-}
-  onProductListChange(event) {
-   
+  onProductSelected(event): void {
+    const prod = this.productlist.filter(
+      (p) => p.id === +event.target.value
+    )[0];
+    this.product.productId = prod.id;
+    this.product.productName = prod.productName;
   }
-  onQuantity(event) {
-    
+  onQuantity(event): void {
+    if (event) {
+      this.product.quantity = event.target.value;
+    }
   }
-  onUnitsChange(event) {
-  
+  onUnitsChange(event): void {
+    if (event) {
+      this.product.unit = event.target.value;
+    }
   }
 
   getAllProductCategories(): void {
