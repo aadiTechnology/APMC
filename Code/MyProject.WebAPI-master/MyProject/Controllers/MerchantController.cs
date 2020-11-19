@@ -14,7 +14,7 @@ namespace MyProject.WebAPI.Controllers
 
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = "Merchant")]
+   // [Authorize(Roles = "Merchant")]
     public class MerchantController : ControllerBase
     {
         public override void InitializeController()
