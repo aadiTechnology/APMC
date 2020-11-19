@@ -21,6 +21,9 @@ export class MerchantService {
   getAllGetAllDrivers(): any {
     return this.httpService.get('Indent/GetAllDrivers');
   }
+  getAllUnits(): any {
+    return this.httpService.get('Indent/GetUnits');
+  }
 
   stallRegistration(data): Observable<any> {
     return this.httpService.post('Merchant/StallRegistration', data);

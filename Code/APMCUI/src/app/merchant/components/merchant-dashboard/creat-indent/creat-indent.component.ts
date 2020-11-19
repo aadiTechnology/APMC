@@ -8,6 +8,7 @@ import { MerchantService } from '../../../merchant.service';
 import { ProductCategory } from '../../../entities/product-category';
 import { ProductList } from '../../../entities/productlist';
 import { DriverList } from '../../../entities/driverlist';
+import {UnitList} from '../../../entities/unitlist';
 
 @Component({
   selector: 'app-creat-indent',
@@ -42,6 +43,7 @@ export class CreatIndentComponent implements OnInit {
   procategory = [];
   productlist = [];
   driverlist = [];
+  unitlist =[];
   modalRef: BsModalRef;
   message: string;
   indent: {
@@ -95,18 +97,20 @@ export class CreatIndentComponent implements OnInit {
     this.procategory = new Array<ProductCategory>();
     this.productlist = new Array<ProductList>();
     this.driverlist = new Array<DriverList>();
+    this.unitlist=new Array<UnitList>();
+
   }
 
   ngOnInit(): void {
     this.getAllProductCategories();
+    this.getAllUnits();
   }
 
   openModal(template: TemplateRef<any>): void {
     this.modalRef = this.modalService.show(template, { class: 'modal-sm' });
   }
   onProductSelect(prod, form: NgForm): void {
-    debugger;
-    if (prod && form.valid) {
+      if (prod && form.valid) {
       this.selectedProducts.push(prod);
       form.reset();
       this.indent = {
@@ -195,7 +199,8 @@ export class CreatIndentComponent implements OnInit {
     )[0];
     this.product.productId = prod.id;
     this.product.productName = prod.productName;
-  }
+    this.selected=null;
+   }
   onQuantity(event): void {
     if (event) {
       this.product.quantity = event.target.value;
@@ -221,11 +226,20 @@ export class CreatIndentComponent implements OnInit {
       }
     });
   }
-  // getAllGetAllDrivers():  void {
-  //   this.merchantService.getAllGetAllDrivers().subscribe((arg) => {
-  //     if (arg) {
-  //       this.driverlist = arg;
-  //     }
-  //   });
-  // }
+
+  getAllUnits(): void {
+    this.merchantService.getAllUnits().subscribe((arg) => {
+      if (arg) {
+        this.unitlist = arg;
+      }
+    });
+  }
+
+  getAllGetAllDrivers():  void {
+    this.merchantService.getAllGetAllDrivers().subscribe((arg) => {
+      if (arg) {
+        this.driverlist = arg;
+      }
+    });
+  }
 }

@@ -32,7 +32,7 @@
         </select>
       </div>
       <div
-        *ngIf="FieldProductCategory.invalid && (FieldProductCategory.dirty || FieldProductCategory.touched || CreateIndentForm.submitted)"
+        *ngIf="FieldProductCategory.invalid && (FieldProductCategory.dirty || FieldProductCategory.touched || ProductIndentForm.submitted)"
         class="text-danger"
       >
         <div [hidden]="!FieldProductCategory.errors.required">
@@ -55,7 +55,7 @@
         </select>
       </div>
       <div
-        *ngIf="FieldProductList.invalid && (FieldProductList.dirty || FieldProductList.touched || CreateIndentForm.submitted )"
+        *ngIf="FieldProductList.invalid && (FieldProductList.dirty || FieldProductList.touched || ProductIndentForm.submitted )"
         class="text-danger"
       >
         <div [hidden]="!FieldProductList.errors.required">
@@ -83,7 +83,7 @@
                 || CreateIndentForm.submitted ) }"
           /><br />
           <div
-            *ngIf="FieldProductQuantity.invalid && (FieldProductQuantity.dirty || FieldProductQuantity.touched || CreateIndentForm.submitted)"
+            *ngIf="FieldProductQuantity.invalid && (FieldProductQuantity.dirty || FieldProductQuantity.touched || ProductIndentForm.submitted)"
             class="text-danger"
           >
             <div [hidden]="!FieldProductQuantity.errors.required">
@@ -105,15 +105,16 @@
             [(ngModel)]="indent.Unit"
             (change)="onUnitsChange($event)"
           >
-            <option value="null" selected disabled hidden
-              >Quantity Units</option
+            <option value="null" selected disabled hidden>Select Units</option
+            ><option
+              *ngFor="let productunit of unitlist"
+              value="{{productunit.unit}}"
+              >{{productunit.unit}}</option
             >
-            <option>gram</option>
-            <option>Kilogram</option>
-            <option>Dozen</option> </select
-          ><br />
+          </select>
+          <br />
           <div
-            *ngIf="FieldProductQuantityUnits.invalid && (FieldProductQuantityUnits.dirty || FieldProductQuantityUnits.touched || CreateIndentForm.submitted)"
+            *ngIf="FieldProductQuantityUnits.invalid && (FieldProductQuantityUnits.dirty || FieldProductQuantityUnits.touched || ProductIndentForm.submitted)"
             class="text-danger"
           >
             <div [hidden]="!FieldProductQuantityUnits.errors.required">
