@@ -41,5 +41,14 @@ namespace MyProject.Repository
         {
             return await _repositoryContext.AppUserRoles.ToListAsync();
         }
+
+
+        public async Task<IEnumerable<AppUsers>> GetAllDrivers()
+        {
+            return await _repositoryContext.AppUsers.Where(x => x.RoleId == 3).ToListAsync();
+            //return FindByCondition(x=>x.UserName == loginDto.UserName);
+        }
+
+     
     }
 }

@@ -8,6 +8,7 @@ namespace MyProject.Entities.Models
     {
         public int Id { get; set; }
         public string Unit { get; set; }
+        public string Symbol { get; set; }
     }
 }
 
