@@ -15,20 +15,20 @@ import { ProductCategory } from "../../../entities/product-category";
   styleUrls: ["./stall-registration.component.scss"],
 })
 export class StallRegistrationComponent implements OnInit {
-  currentUser: any; // session Cureent User 
+  currentUser: any; // session Cureent User
   stalllist: any; // stalllist
   productCategory: any; //product category list
-  CategoryId:number;
+  CategoryId: number;
+  
 
   selected: string;
   productCatergory = [];
-  
 
   //Category Details
-  product:{
-    categoryId:number;
-    categoryName:string;
-  }
+  product: {
+    categoryId: number;
+    categoryName: string;
+  };
 
   selectedProducts: any[];
 
@@ -39,9 +39,8 @@ export class StallRegistrationComponent implements OnInit {
     Category: number[];
   };
 
-  modalRef: BsModalRef; //cancel model 
+  modalRef: BsModalRef; //cancel model
   message: string;
-
 
   constructor(
     private modalService: BsModalService,
@@ -56,15 +55,14 @@ export class StallRegistrationComponent implements OnInit {
       StallId: null,
       Category: new Array<number>(),
     };
-   this.product ={
-      categoryId:null,
-      categoryName:null,
-    }
+    this.product = {
+      categoryId: null,
+      categoryName: null,
+    };
 
     this.selectedProducts = [];
     this.stalllist = new Array<StallDetails>();
     this.productCategory = new Array<ProductCategory>();
-    
   }
 
   //Cancel button popup
@@ -72,24 +70,40 @@ export class StallRegistrationComponent implements OnInit {
     this.modalRef = this.modalService.show(template, { class: "modal-sm" });
   }
 
-
-
   ngOnInit(): void {
     this.getAllProductCategories();
     this.getAllStallDetails();
   }
 
-  onProductSelect(event): void {
+
+
+  onProductSelect(StallRegisterForm:NgForm,event): void {
     if (event) {
       // if (this.selectedProducts.length === 0) {
-      
+
       this.stall.Category.push(event);
-      this.selectedProducts.push(event);
-      this.CategoryId=null;
-      this.selected=null;
+      this.selectedProducts.push({id:event,name: this.selected});
+      this.CategoryId = null;
+      this.selected = null;
+      StallRegisterForm.controls['Pcategory'].reset();
       // }
     }
   }
+
+  onCategory(event) {
+    // this.stall.Category = event.item.category;
+    this.CategoryId = event.item.id;
+    
+  }
+ 
+  onCategoryChange(event) {
+    const category = this.productCatergory.filter(
+      (p) => p.id === +event.target.value
+    )[0];
+    this.product.categoryId = category.id;
+    this.product.categoryName = category.category;
+  }
+
   removeProduct(event): void {
     if (this.selectedProducts.length !== 0) {
       const index = this.selectedProducts.findIndex((x) => x.id === event.id);
@@ -102,6 +116,7 @@ export class StallRegistrationComponent implements OnInit {
   stallregister(form: NgForm): void {
     this.ngxSpinnerService.show();
     if (form.valid) {
+     if(this.stall.Category.length!==0){
       const stallData = {
         UserId: +this.stall.UserId,
         StallId: +this.stall.StallId,
@@ -119,6 +134,11 @@ export class StallRegistrationComponent implements OnInit {
           this.ngxSpinnerService.hide();
         }
       );
+     }
+     else{
+      this.toastr.error("select category", "Error");
+      this.ngxSpinnerService.hide();
+     }
     } else {
       this.ngxSpinnerService.hide();
     }
@@ -149,21 +169,4 @@ export class StallRegistrationComponent implements OnInit {
       }
     });
   }
-
-  onCategory(event) {
-   // this.stall.Category = event.item.category;
-    this.CategoryId=event.item.id;
-    
-  }
-
-
-onCategoryChange(event){
-    
-  const category=this.productCatergory.filter(p => p.id===+event.target.value)[0];
-  this.product.categoryId=category.id;
-  this.product.categoryName=category.category;
-  
-}
-
-
 }
