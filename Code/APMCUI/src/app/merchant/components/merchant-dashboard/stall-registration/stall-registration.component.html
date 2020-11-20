@@ -89,6 +89,9 @@
           (typeaheadOnSelect)="onCategory($event)"
           [typeaheadMultipleSearch]="false"
           typeaheadMultipleSearchDelimiters=" |"
+     
+          [typeaheadScrollable]="true"
+          [typeaheadOptionsInScrollableView]="6"
           class="form-control"
           name="Pcategory"
           #Pcategory="ngModel"

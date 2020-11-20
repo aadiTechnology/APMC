@@ -19,7 +19,6 @@ export class StallRegistrationComponent implements OnInit {
   stalllist: any; // stalllist
   productCategory: any; //product category list
   CategoryId: number;
-  
 
   selected: string;
   productCatergory = [];
@@ -75,17 +74,15 @@ export class StallRegistrationComponent implements OnInit {
     this.getAllStallDetails();
   }
 
-
-
-  onProductSelect(StallRegisterForm:NgForm,event): void {
+  onProductSelect(StallRegisterForm: NgForm, event): void {
     if (event) {
       // if (this.selectedProducts.length === 0) {
 
       this.stall.Category.push(event);
-      this.selectedProducts.push({id:event,name: this.selected});
+      this.selectedProducts.push({ id: event, name: this.selected });
       this.CategoryId = null;
       this.selected = null;
-      StallRegisterForm.controls['Pcategory'].reset();
+      StallRegisterForm.controls["Pcategory"].reset();
       // }
     }
   }
@@ -93,9 +90,8 @@ export class StallRegistrationComponent implements OnInit {
   onCategory(event) {
     // this.stall.Category = event.item.category;
     this.CategoryId = event.item.id;
-    
   }
- 
+
   onCategoryChange(event) {
     const category = this.productCatergory.filter(
       (p) => p.id === +event.target.value
@@ -116,29 +112,28 @@ export class StallRegistrationComponent implements OnInit {
   stallregister(form: NgForm): void {
     this.ngxSpinnerService.show();
     if (form.valid) {
-     if(this.stall.Category.length!==0){
-      const stallData = {
-        UserId: +this.stall.UserId,
-        StallId: +this.stall.StallId,
-        Category: this.stall.Category,
-      };
-      this.merchantService.stallRegistration(stallData).subscribe(
-        (arg) => {
-          if (arg) {
-            this.toastr.success("Stall registration successful", "Success");
+      if (this.stall.Category.length !== 0) {
+        const stallData = {
+          UserId: +this.stall.UserId,
+          StallId: +this.stall.StallId,
+          Category: this.stall.Category,
+        };
+        this.merchantService.stallRegistration(stallData).subscribe(
+          (arg) => {
+            if (arg) {
+              this.toastr.success("Stall registration successful", "Success");
+              this.ngxSpinnerService.hide();
+            }
+          },
+          (err) => {
+            this.toastr.success("Something went wrong", "Error");
             this.ngxSpinnerService.hide();
           }
-        },
-        (err) => {
-          this.toastr.success("Something went wrong", "Error");
-          this.ngxSpinnerService.hide();
-        }
-      );
-     }
-     else{
-      this.toastr.error("select category", "Error");
-      this.ngxSpinnerService.hide();
-     }
+        );
+      } else {
+        this.toastr.error("select category", "Error");
+        this.ngxSpinnerService.hide();
+      }
     } else {
       this.ngxSpinnerService.hide();
     }
