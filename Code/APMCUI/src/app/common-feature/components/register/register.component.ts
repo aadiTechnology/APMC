@@ -17,14 +17,14 @@ export class RegisterComponent implements OnInit {
   hide: boolean = true;
   hidee: boolean = true;
   user: {
-    roleId: number;
-    firstName: string;
-    lastName: string;
-    mobileNo: string;
-    email: string;
-    userName: string;
-    password: string;
-    confirmPassword: string;
+    RoleId: number;
+    FirstName: string;
+    LastName: string;
+    MobileNo: number;
+    Email: string;
+    UserName: string;
+    Password: string;
+    ConfirmPassword: string;
   };
   modalRef: BsModalRef;
   message: string;
@@ -37,14 +37,14 @@ export class RegisterComponent implements OnInit {
     private toastr: ToastrService
   ) {
     this.user = {
-      roleId: null,
-      firstName: null,
-      lastName: null,
-      mobileNo: null,
-      email: null,
-      userName: null,
-      password: null,
-      confirmPassword: null,
+      RoleId: null,
+      FirstName: null,
+      LastName: null,
+      MobileNo: null,
+      Email: null,
+      UserName: null,
+      Password: null,
+      ConfirmPassword: null,
     };
     this.Role = new Array<AllAppUserRole>();
   }
@@ -63,7 +63,7 @@ export class RegisterComponent implements OnInit {
   }
 
   checkPassword(): boolean {
-    return this.user.password === this.user.confirmPassword ? true : false;
+    return this.user.Password === this.user.ConfirmPassword ? true : false;
   }
 
   signup(form: NgForm, user): void {

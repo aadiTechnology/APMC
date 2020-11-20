@@ -30,13 +30,13 @@ export class CommonService {
   }
   signup(user): any {
     const registeruser = {
-      UserName: user.userName,
-      Password: user.password,
-      FirstName: user.firstName,
-      MobileNo: user.mobileNumber,
-      LastName: user.lastName,
-      Email: user.email,
-      RoleId: +user.roleId,
+      UserName: user.UserName,
+      Password: user.Password,
+      FirstName: user.FirstName,
+      MobileNo: user.MobileNo,
+      LastName: user.LastName,
+      Email: user.Email,
+      RoleId: +user.RoleId,
     };
     return this.httpService.postAnonymous('Account/Register', registeruser);
   }
