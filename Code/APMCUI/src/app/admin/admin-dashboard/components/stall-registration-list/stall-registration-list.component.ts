@@ -4,11 +4,11 @@ import { Router } from "@angular/router";
 import { BsModalRef, BsModalService } from "ngx-bootstrap/modal";
 
 @Component({
-  selector: "app-stall-registration-requests",
-  templateUrl: "./stall-registration-requests.component.html",
-  styleUrls: ["./stall-registration-requests.component.scss"],
+  selector: "app-stall-registration-list",
+  templateUrl: "./stall-registration-list.component.html",
+  styleUrls: ["./stall-registration-list.component.scss"],
 })
-export class StallRegistrationRequestsComponent implements OnInit {
+export class StallRegistrationListComponent implements OnInit {
   modalRef: BsModalRef;
   message: string;
   constructor(private modalService: BsModalService, private router: Router) {}

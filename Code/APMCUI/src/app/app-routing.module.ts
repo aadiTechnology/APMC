@@ -1,40 +1,43 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { LoginComponent } from './common-feature/components/login/login.component';
-import { RegisterComponent } from './common-feature/components/register/register.component';
-import { LoginLayoutComponent } from './shared/layouts/login-layout/login-layout.component';
-import { MainLayoutComponent } from './shared/layouts/main-layout/main-layout.component';
+import { NgModule } from "@angular/core";
+import { Routes, RouterModule } from "@angular/router";
+import { LoginComponent } from "./common-feature/components/login/login.component";
+import { RegisterComponent } from "./common-feature/components/register/register.component";
+import { LoginLayoutComponent } from "./shared/layouts/login-layout/login-layout.component";
+import { MainLayoutComponent } from "./shared/layouts/main-layout/main-layout.component";
 
 const routes: Routes = [
   {
-    path: '',
+    path: "",
     component: LoginLayoutComponent,
     children: [
-      { path: '', redirectTo: 'login', pathMatch: 'full' },
-      { path: 'login', component: LoginComponent },
-      {path:"register", component:RegisterComponent},
+      { path: "", redirectTo: "login", pathMatch: "full" },
+      { path: "login", component: LoginComponent },
+      { path: "register", component: RegisterComponent },
     ],
   },
   {
-    path: '',
+    path: "",
     component: MainLayoutComponent,
     children: [
       {
-        path: 'apmc',
+        path: "apmc",
         loadChildren: () =>
-          import('./common-feature/common-feature.module').then(
+          import("./common-feature/common-feature.module").then(
             (m) => m.CommonFeatureModule
           ),
       },
       {
-        path: 'merchant',
+        path: "merchant",
         loadChildren: () =>
-          import('./merchant/merchant.module').then((m) => m.MerchantModule),
+          import("./merchant/merchant.module").then((m) => m.MerchantModule),
       },
-      { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) },
+      {
+        path: "admin",
+        loadChildren: () =>
+          import("./admin/admin.module").then((m) => m.AdminModule),
+      },
     ],
   },
-  
 ];
 
 @NgModule({
