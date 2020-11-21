@@ -8,11 +8,12 @@
       autocomplete="off"
       name="ProductIndentForm"
       #ProductIndentForm="ngForm"
+      (ngSubmit)="onProductSelect(product,ProductIndentForm)"
     >
-      <div class="input-group form-group">
+      <!-- <div class="input-group form-group">
         <div class="input-group-prepend"></div>
         <span class="badge badge-success">OrderId:0001</span>
-      </div>
+      </div> -->
 
       <div class="input-group form-group">
         <select
@@ -126,7 +127,7 @@
       <div class="float-right">
         <button
           type="submit"
-          (click)="onProductSelect(product,ProductIndentForm)"
+         
           class="btn btn-sm text-info"
         >
           Add <i class="fa fa-plus"></i>
@@ -170,7 +171,9 @@
           required
           autocomplete="off"
           [typeahead]="driverlist"
+          type
           [typeaheadMultipleSearch]="true"
+          typeaheadOptionField="firstName"
           typeaheadMultipleSearchDelimiters=" |"
           class="form-control"
           #FieldDriverName="ngModel"

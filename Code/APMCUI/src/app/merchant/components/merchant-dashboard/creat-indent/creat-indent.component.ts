@@ -103,6 +103,7 @@ export class CreatIndentComponent implements OnInit {
   ngOnInit(): void {
     this.getAllProductCategories();
     this.getAllUnits();
+    this.getAllGetAllDrivers();
   }
 
   openModal(template: TemplateRef<any>): void {
@@ -110,14 +111,16 @@ export class CreatIndentComponent implements OnInit {
   }
   onProductSelect(prod, form: NgForm): void {
     if (prod && form.valid) {
-      this.selectedProducts.push(prod);
-      form.reset();
+      const p=JSON.parse(JSON.stringify(prod));
+      this.selectedProducts.push(p);
+      
       this.indent = {
         CategoryId: null,
         ProductId: null,
         Quantity: null,
         Unit: null,
       };
+      form.resetForm();
     }
   }
 
@@ -150,10 +153,11 @@ export class CreatIndentComponent implements OnInit {
           if (arg) {
             this.toastr.success("Indent Creation successful", "Success");
             this.ngxSpinnerService.hide();
+ 
           }
         },
         (err) => {
-          this.toastr.success("Something went wrong", "Error");
+          this.toastr.error("Something went wrong", "Error");
           this.ngxSpinnerService.hide();
         }
       );
