@@ -7,8 +7,8 @@ namespace MyProject.Entities.Models
     public class IndentDetails
     {
         public int Id { get; set; }
-        public int IndentId { get; set; }
-        public int OrderNo { get; set; }
+        public int? IndentId { get; set; }
+        public int? OrderNo { get; set; }
         public string ETADate { get; set; }
         public string ETATime { get; set; }
         public string VehicleNo { get; set; }
@@ -16,11 +16,11 @@ namespace MyProject.Entities.Models
         public string SupplierName { get; set; }
         public string DriverName { get; set; }
         public string DriverNo { get; set; }
-        public int RollId { get; set; }
-        public int CreatedBy { get; set; }
-        public int AppovedBy { get; set; }
-        public bool IsApprove { get; set; }
-        public bool IsRejected { get; set; }
+        public int? RollId { get; set; }
+        public int? CreatedBy { get; set; }
+        public int? AppovedBy { get; set; }
+        public bool? IsApprove { get; set; }
+        public bool? IsRejected { get; set; }
         public string RejectReason { get; set; }
         public DateTime CreatedDate { get; set; }
     }
