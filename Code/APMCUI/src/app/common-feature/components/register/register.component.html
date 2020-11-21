@@ -21,10 +21,10 @@
           name="FieldRole"
           required
           #FieldRole="ngModel"
-          [(ngModel)]="user.roleId"
+          [(ngModel)]="user.RoleId"
         >
           <option value="null" selected disabled hidden>Select a Role</option>
-          <option *ngFor="let rolelist of Role" value="{{rolelist.Id}}"
+          <option *ngFor="let rolelist of Role" value="{{rolelist.id}}"
             >{{rolelist.roleName}}</option
           >
         </select>
@@ -49,7 +49,7 @@
           class="form-control"
           placeholder="First Name"
           type="text"
-          [(ngModel)]="user.firstName"
+          [(ngModel)]="user.FirstName"
           required
           pattern="[a-zA-Z ]*"
           #FiledFirstName="ngModel"
@@ -80,7 +80,7 @@
           type="text"
           class="form-control"
           placeholder="Last Name"
-          [(ngModel)]="user.lastName"
+          [(ngModel)]="user.LastName"
           required
           pattern="[a-zA-Z ]*"
           #FiledLastName="ngModel"
@@ -112,7 +112,7 @@
           type="text"
           class="form-control"
           placeholder="Mobile No"
-          [(ngModel)]="user.mobileNumber"
+          [(ngModel)]="user.MobileNo"
           required
           pattern="\d{10}"
           
@@ -144,7 +144,7 @@
           type="email"
           class="form-control"
           placeholder="Email Id"
-          [(ngModel)]="user.email"
+          [(ngModel)]="user.Email"
           required
           pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
           #FieldEmail="ngModel"
@@ -163,7 +163,7 @@
           type="text"
           class="form-control"
           placeholder="User Id"
-          [(ngModel)]="user.userName"
+          [(ngModel)]="user.UserName"
           required
           #FieldUserName="ngModel"
           name="FieldUserName"
@@ -183,7 +183,7 @@
         class="input-group form-group"
         data-toggle="tooltip"
         data-placement="top"
-        data-tip="Password should be: Minimum 8 characters, at least one lower case, at least one number and at least one special character"
+        data-tip="Password should be: Minimum 8 characters, at least one upper case, at least one lower case, at least one number & at least one special character."
       >
         <div class="input-group-prepend">
           <span class="input-group-text bg-success"
@@ -195,7 +195,7 @@
           class="border-right-0 form-control"
           autocomplete="on"
           placeholder="Password"
-          [(ngModel)]="user.password"
+          [(ngModel)]="user.Password"
           required
           pattern="^(?=.*?[A-Z])(?=(.*[a-z]){1,})(?=(.*[\d]){1,})(?=(.*[\W]){1,})(?!.*\s).{8,}$"
           [ngClass]="{'has-error': FieldPassword.invalid && (FieldPassword.dirty || FieldPassword.touched || SignupForm.submitted) }"
@@ -235,7 +235,8 @@
           class="border-right-0 form-control"
           autocomplete="on"
           placeholder="Confirm Password"
-          [(ngModel)]="user.confirmPassword"
+          [(ngModel)]="user.ConfirmPassword"
+          pattern="^(?=.*?[A-Z])(?=(.*[a-z]){1,})(?=(.*[\d]){1,})(?=(.*[\W]){1,})(?!.*\s).{8,}$"
           required
           [ngClass]="{'has-error': FieldConfirmPassword.invalid && (FieldConfirmPassword.dirty ||
 						    FieldConfirmPassword.touched || SignupForm.submitted) }"

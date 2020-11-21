@@ -12,7 +12,7 @@
       #StallRegisterForm="ngForm"
       (ngSubmit)="stallregister(StallRegisterForm)"
     >
-    <div class="input-group form-group">
+    <div class="input-group form-group d-none">
       <input
         type="txt"
         class="form-control"
@@ -82,20 +82,21 @@
           <input
           [(ngModel)]="selected"
           placeholder="Product Category"
-          required
+          
           autocomplete="off"
           [typeahead]= "productCategory"
           typeaheadOptionField="category"
           (typeaheadOnSelect)="onCategory($event)"
           [typeaheadMultipleSearch]="false"
           typeaheadMultipleSearchDelimiters=" |"
+          [typeaheadScrollable]="true"
+          [typeaheadOptionsInScrollableView]="6"
           class="form-control"
           name="Pcategory"
           #Pcategory="ngModel"
         />
-        
-       
-          <a (click)="onProductSelect(CategoryId)" class="btn btn-primary float-right"
+        &nbsp;
+        <a (click)="onProductSelect(StallRegisterForm,CategoryId)" class="btn btn-primary float-right"
         ><i class="fa fa-plus"></i
       ></a>
      
@@ -121,7 +122,7 @@
         </tr>
         <tr *ngFor="let item of selectedProducts; let i = index">
           <td>{{i + 1}}</td>
-          <td>{{item}}</td>
+          <td>{{item.name}}</td>
           <td>
             <a (click)="removeProduct(item)" class="btn text-info"
               ><i class="fa fa-trash"></i
@@ -149,10 +150,10 @@
           <div class="modal-body text-center">
             <h3 class="mx-auto">Confirm Cancellation</h3>
             <p>Do you want to cancel Stall Registration ?</p>
-            <button type="button" class="btn btn-default" (click)="confirm()">
+            <button type="button" class="btn btn-primary" (click)="confirm()">
               Yes
-            </button>
-            <button type="button" class="btn btn-primary" (click)="decline()">
+            </button>&nbsp;
+            <button type="button" class="btn btn-secondary" (click)="decline()">
               No
             </button>
           </div>

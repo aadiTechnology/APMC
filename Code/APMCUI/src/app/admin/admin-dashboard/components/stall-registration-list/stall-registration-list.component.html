@@ -1,0 +1,53 @@
+<div class="card">
+  <div class="card-header text-center text-success">
+    <h3 class="mb-0">Stall Registration Request List</h3>
+  </div>
+  <div class="card-body">
+    <form>
+      <table class="table table-responsive">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <!-- <th scope="col">Date</th> -->
+            <th scope="col">StallNo</th>
+            <th scope="col">Category</th>
+            <th scope="col">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let requestList of stallRequestList; let i =index">
+            <th scope="row">{{i + 1}}</th>
+            <td scope="col">{{requestList.userId}}</td>
+            <td scope="col">{{requestList.stallId}}</td>
+        
+          </tr>
+          
+        </tbody>
+      </table>
+
+      <div class="input-group form-group">
+        <div class="mx-auto">
+          
+          <input
+            type="button"
+            value="Back"
+            class="btn btn-danger"
+            (click)="openModal(template)"
+            />
+        </div>
+        <ng-template #template>
+            <div class="modal-body text-center">
+              <h3 class="mx-auto">Confirm Cancellation</h3>
+              <p>Are you sure you want to leave this page?</p>
+              <button type="button" class="btn btn-default" (click)="confirm()">
+                Yes
+              </button>
+              <button type="button" class="btn btn-primary" (click)="decline()">
+                No
+              </button>
+            </div>
+          </ng-template>
+    </div>
+    </form>
+  </div>
+</div>

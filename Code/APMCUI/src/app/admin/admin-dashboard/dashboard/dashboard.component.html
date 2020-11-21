@@ -6,12 +6,14 @@
     <form>
       <div class="card text-white bg-primary mb-3" style="max-width: auto;">
         <div class="card-header" style="text-align: center;">
+         <a>
           <button
             class="btn btn-primary"
-            routerLink="/stallRegistrationRequests"
+            [routerLink]="['/dashboard/stallRegistrationRequests']"
+             routerLinkActive="active"
           >
             Stall Registration Requests
-          </button>
+          </button></a>
         </div>
       </div>
       <!-- <div class="card text-white bg-secondary mb-3" style="max-width: auto;">

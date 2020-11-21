@@ -8,11 +8,12 @@
       autocomplete="off"
       name="ProductIndentForm"
       #ProductIndentForm="ngForm"
+      (ngSubmit)="onProductSelect(product,ProductIndentForm)"
     >
-      <div class="input-group form-group">
+      <!-- <div class="input-group form-group">
         <div class="input-group-prepend"></div>
         <span class="badge badge-success">OrderId:0001</span>
-      </div>
+      </div> -->
 
       <div class="input-group form-group">
         <select
@@ -67,7 +68,6 @@
       </div>
       <div class="row">
         <div class="col-6">
-          <span class="label label-default">Quantity</span>
           <input
             type="txt"
             class="form-control"
@@ -95,8 +95,6 @@
           </div>
         </div>
         <div class="col-6">
-          <span class="label label-default ml-auto pr-5">Units</span>
-
           <select
             class="form-control"
             name="FieldProductQuantityUnits"
@@ -124,11 +122,7 @@
         </div>
       </div>
       <div class="float-right">
-        <button
-          type="submit"
-          (click)="onProductSelect(product,ProductIndentForm)"
-          class="btn btn-sm text-info"
-        >
+        <button type="submit" class="btn btn-sm text-info">
           Add <i class="fa fa-plus"></i>
         </button>
       </div>
@@ -170,7 +164,9 @@
           required
           autocomplete="off"
           [typeahead]="driverlist"
+          type
           [typeaheadMultipleSearch]="true"
+          typeaheadOptionField="firstName"
           typeaheadMultipleSearchDelimiters=" |"
           class="form-control"
           #FieldDriverName="ngModel"
@@ -260,7 +256,6 @@
           #FieldSelectTime="ngModel"
           name="FieldSelectTime"
           placeholder="Select time"
-          required
           [ngClass]="{'has-error': FieldSelectTime.invalid && (FieldSelectTime.dirty || FieldSelectTime.touched
         || CreateIndentForm.submitted) }"
         />
@@ -269,11 +264,7 @@
       <div
         *ngIf="FieldSelectTime.invalid && (FieldSelectTime.dirty || FieldSelectTime.touched || CreateIndentForm.submitted )"
         class="text-danger"
-      >
-        <div [hidden]="!FieldSelectTime.errors.required">
-          Time is required
-        </div>
-      </div>
+      ></div>
 
       <div class="input-group form-group">
         <input
@@ -316,10 +307,10 @@
           <div class="modal-body text-center">
             <h3 class="mx-auto">Confirm Cancellation</h3>
             <p>Are you sure ? You want to cancel Indent creation?</p>
-            <button type="button" class="btn btn-default" (click)="confirm()">
-              Yes
-            </button>
-            <button type="button" class="btn btn-primary" (click)="decline()">
+            <button type="button" class="btn btn-primary" (click)="confirm()">
+              Yes</button
+            >&nbsp;
+            <button type="button" class="btn btn-secondary" (click)="decline()">
               No
             </button>
           </div>

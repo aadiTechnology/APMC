@@ -1,23 +1,23 @@
-import { Component, OnInit, TemplateRef } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { Router } from '@angular/router';
-import { NgxSpinnerService } from 'ngx-spinner';
-import { ToastrService } from 'ngx-toastr';
-import { MerchantService } from '../../../merchant.service';
-import { ProductCategory } from '../../../entities/product-category';
-import { ProductList } from '../../../entities/productlist';
-import { DriverList } from '../../../entities/driverlist';
-import {UnitList} from '../../../entities/unitlist';
+import { Component, OnInit, TemplateRef } from "@angular/core";
+import { NgForm } from "@angular/forms";
+import { BsModalRef, BsModalService } from "ngx-bootstrap/modal";
+import { Router } from "@angular/router";
+import { NgxSpinnerService } from "ngx-spinner";
+import { ToastrService } from "ngx-toastr";
+import { MerchantService } from "../../../merchant.service";
+import { ProductCategory } from "../../../entities/product-category";
+import { ProductList } from "../../../entities/productlist";
+import { DriverList } from "../../../entities/driverlist";
+import { UnitList } from "../../../entities/unitlist";
 
 @Component({
-  selector: 'app-creat-indent',
-  templateUrl: './creat-indent.component.html',
-  styleUrls: ['./creat-indent.component.scss'],
+  selector: "app-creat-indent",
+  templateUrl: "./creat-indent.component.html",
+  styleUrls: ["./creat-indent.component.scss"],
 })
 export class CreatIndentComponent implements OnInit {
   selected: string;
-  ETATime = '6:00 am';
+  ETATime = "6:00 am";
   product: {
     categoryId: number;
     categoryName: string;
@@ -43,7 +43,7 @@ export class CreatIndentComponent implements OnInit {
   procategory = [];
   productlist = [];
   driverlist = [];
-  unitlist =[];
+  unitlist = [];
   modalRef: BsModalRef;
   message: string;
   indent: {
@@ -97,28 +97,30 @@ export class CreatIndentComponent implements OnInit {
     this.procategory = new Array<ProductCategory>();
     this.productlist = new Array<ProductList>();
     this.driverlist = new Array<DriverList>();
-    this.unitlist=new Array<UnitList>();
-
+    this.unitlist = new Array<UnitList>();
   }
 
   ngOnInit(): void {
     this.getAllProductCategories();
     this.getAllUnits();
+    this.getAllGetAllDrivers();
   }
 
   openModal(template: TemplateRef<any>): void {
-    this.modalRef = this.modalService.show(template, { class: 'modal-sm' });
+    this.modalRef = this.modalService.show(template, { class: "modal-sm" });
   }
   onProductSelect(prod, form: NgForm): void {
-      if (prod && form.valid) {
-      this.selectedProducts.push(prod);
-      form.reset();
+    if (prod && form.valid) {
+      const p = JSON.parse(JSON.stringify(prod));
+      this.selectedProducts.push(p);
+
       this.indent = {
         CategoryId: null,
         ProductId: null,
         Quantity: null,
         Unit: null,
       };
+      form.resetForm();
     }
   }
 
@@ -149,13 +151,13 @@ export class CreatIndentComponent implements OnInit {
       this.merchantService.indentCreation(indentData).subscribe(
         (arg) => {
           if (arg) {
-            this.toastr.success('Indent Creation successful', 'Success');
+            this.toastr.success("Indent Creation successful", "Success");
             this.ngxSpinnerService.hide();
-            alert(JSON.stringify(arg));
           }
+          form.resetForm();
         },
         (err) => {
-          this.toastr.success('Something went wrong', 'Error');
+          this.toastr.error("Something went wrong", "Error");
           this.ngxSpinnerService.hide();
         }
       );
@@ -165,13 +167,13 @@ export class CreatIndentComponent implements OnInit {
   }
 
   confirm(): void {
-    this.message = 'Confirmed!';
-    this.router.navigate(['/login']);
+    this.message = "Confirmed!";
+    this.router.navigate(["/login"]);
     this.modalRef.hide();
   }
 
   decline(): void {
-    this.message = 'Declined!';
+    this.message = "Declined!";
     this.modalRef.hide();
   }
 
@@ -186,7 +188,7 @@ export class CreatIndentComponent implements OnInit {
         .getAllProducts(category.id)
         .subscribe((procategory) => {
           if (procategory) {
-            this.productlist = procategory;
+            this.productlist = procategory.rows;
           }
         });
     } else {
@@ -199,8 +201,8 @@ export class CreatIndentComponent implements OnInit {
     )[0];
     this.product.productId = prod.id;
     this.product.productName = prod.productName;
-    this.selected=null;
-   }
+    this.selected = null;
+  }
   onQuantity(event): void {
     if (event) {
       this.product.quantity = event.target.value;
@@ -215,14 +217,14 @@ export class CreatIndentComponent implements OnInit {
   getAllProductCategories(): void {
     this.merchantService.getAllProductCategories().subscribe((arg) => {
       if (arg) {
-        this.procategory = arg;
+        this.procategory = arg.rows;
       }
     });
   }
   getAllProducts(CategoryId): void {
     this.merchantService.getAllProducts(CategoryId).subscribe((arg) => {
       if (arg) {
-        this.productlist = arg;
+        this.productlist = arg.rows;
       }
     });
   }
@@ -230,15 +232,15 @@ export class CreatIndentComponent implements OnInit {
   getAllUnits(): void {
     this.merchantService.getAllUnits().subscribe((arg) => {
       if (arg) {
-        this.unitlist = arg;
+        this.unitlist = arg.rows;
       }
     });
   }
 
-  getAllGetAllDrivers():  void {
+  getAllGetAllDrivers(): void {
     this.merchantService.getAllGetAllDrivers().subscribe((arg) => {
       if (arg) {
-        this.driverlist = arg;
+        this.driverlist = arg.rows;
       }
     });
   }

@@ -63,7 +63,7 @@ import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
       enabled: environment.production,
     }),
     ToastrModule.forRoot({
-      timeOut: 2500,
+      timeOut: 7500,
       positionClass: 'toast-top-center',
       preventDuplicates: true,
       countDuplicates: false,
