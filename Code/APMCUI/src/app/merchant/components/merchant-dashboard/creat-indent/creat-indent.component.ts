@@ -184,7 +184,7 @@ export class CreatIndentComponent implements OnInit {
         .getAllProducts(category.id)
         .subscribe((procategory) => {
           if (procategory) {
-            this.productlist = procategory;
+            this.productlist = procategory.rows;
           }
         });
     } else {
