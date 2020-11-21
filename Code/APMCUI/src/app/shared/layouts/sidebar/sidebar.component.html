@@ -9,7 +9,7 @@
   </div>
   <nav class="sidebar-menu pt-3 pb-3">
     <ul class="menu-items">
-      <li>
+      <li *ngIf="currentUser.role=='Merchant'">
         <a
           [routerLink]="['/merchant/stallregistration']"
           routerLinkActive="active"
@@ -18,7 +18,7 @@
           <span>Dashboard</span>
         </a>
       </li>
-      <li>
+      <li *ngIf="currentUser.role=='Merchant'">
         <a
           [routerLink]="['/merchant/stallregistration']"
           routerLinkActive="active"
