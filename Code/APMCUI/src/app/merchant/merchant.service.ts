@@ -29,6 +29,6 @@ export class MerchantService {
     return this.httpService.post('Merchant/StallRegistration', data);
   }
   indentCreation(indentData){
-    return this.httpService.post('Indent/Add', indentData);
+    return this.httpService.post('Indent/AddIndent', indentData);
   }
 }

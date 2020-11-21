@@ -72,7 +72,7 @@
             type="txt"
             class="form-control"
             placeholder="Quantity"
-            [(ngModel)]="indent.Quantity"
+            [(ngModel)]="indent.ProductQuantity"
             required
             pattern="[0-9]*"
             maxlength="10"
@@ -100,13 +100,13 @@
             name="FieldProductQuantityUnits"
             required
             #FieldProductQuantityUnits="ngModel"
-            [(ngModel)]="indent.Unit"
+            [(ngModel)]="indent.UnitId"
             (change)="onUnitsChange($event)"
           >
             <option value="null" selected disabled hidden>Select Units</option
             ><option
               *ngFor="let productunit of unitlist"
-              value="{{productunit.unit}}"
+              value="{{productunit.id}}"
               >{{productunit.unit}}</option
             >
           </select>
@@ -138,10 +138,10 @@
 
         <tr *ngFor="let item of selectedProducts; let i = index">
           <td>{{i + 1}}</td>
-          <td>{{item.categoryName}}</td>
-          <td>{{item.productName}}</td>
-          <td>{{item.quantity}}</td>
-          <td>{{item.unit}}</td>
+          <td>{{item.CategoryName}}</td>
+          <td>{{item.ProductName}}</td>
+          <td>{{item.ProductQuantity}}</td>
+          <td>{{item.Unit}}</td>
           <td>
             <a (click)="removeProduct(item) " class="btn text-info"
               ><i class="fa fa-trash"></i
