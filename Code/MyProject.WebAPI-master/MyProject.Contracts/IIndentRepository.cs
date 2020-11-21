@@ -8,7 +8,7 @@ namespace MyProject.Contracts
 {
     public interface IIndentRepository : IRepositoryBase<IndentDetails>
     {
-        IndentDetails Add(IndentDetails indentDetails, List<IndentProducts> indentProducts);
+        IndentDetails AddIndent(IndentDetails indentDetails, List<IndentProducts> indentProducts);
         IndentDetails Update(IndentDetails indentDetails);
         Task<IEnumerable<IndentDetails>> GetOrderId();
       

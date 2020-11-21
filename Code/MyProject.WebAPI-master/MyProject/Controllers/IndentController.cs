@@ -31,19 +31,19 @@ namespace MyProject.WebAPI.Controllers
         /// </summary>
         /// <param name="IndentDto"></param>
         /// <returns>Return Indent details if insert successfully</returns>
-        [HttpPost("Add")]
-        public async Task<JsonResult> Add([FromBody] IndentDto IndentDto)
+        [HttpPost("AddIndent")]
+        public async Task<JsonResult> AddIndent([FromBody] IndentDto IndentDto)
         {
             try
             {
-                return await base.FinalizeSingle<IndentDetails>(RepositoryWrapper.IndentDetails.Add(IndentDto.IndentDetails, IndentDto.IndentProducts));
+                RepositoryWrapper.IndentDetails.AddIndent(IndentDto.IndentDetails, IndentDto.IndentProducts);
                 return await base.FinalizStatusCodeeMessage("Indent Created Successfully", 200);
             }
             catch (Exception ex)
             {
-                throw ex;
+                return await base.FinalizStatusCodeeMessage("Error: Failure in Indent Create : " + ex, 401);
             }
-            
+
         }
         /// <summary>
         /// Author-Datta(Update Indent isApproved)

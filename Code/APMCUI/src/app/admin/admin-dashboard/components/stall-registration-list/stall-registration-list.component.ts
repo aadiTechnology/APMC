@@ -5,6 +5,7 @@ import { BsModalRef, BsModalService } from "ngx-bootstrap/modal";
 import { AdminService } from "../../../admin.service";
 import {StallRequestList} from "../../../entities/stallrequestlist";
 
+
 @Component({
   selector: "app-stall-registration-list",
   templateUrl: "./stall-registration-list.component.html",
@@ -43,10 +44,11 @@ export class StallRegistrationListComponent implements OnInit {
     this.adminservice.getAllStallRegistration().subscribe((arg)=> {
       if(arg){
         this.stallRequestList = arg.rows;
-        alert(JSON.stringify(arg.rows));
       }
     });
-    
-   
+  }
+
+  ApproveStall(requestList){
+    this.router.navigate([''])
   }
 }
