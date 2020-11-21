@@ -132,7 +132,7 @@ export class StallRegistrationComponent implements OnInit {
         this.merchantService.stallRegistration(stallData).subscribe(
           (arg) => {
             if (arg) {
-              this.toastr.success("Stall registration successful", "Success");
+              this.toastr.success("Thank you for submitting your request we will get in touch with you shortly.", "Success");
               this.ngxSpinnerService.hide();
             }
             form.resetForm();
