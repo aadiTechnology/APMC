@@ -12,7 +12,7 @@
       #StallRegisterForm="ngForm"
       (ngSubmit)="stallregister(StallRegisterForm)"
     >
-    <div class="input-group form-group">
+    <div class="input-group form-group d-none">
       <input
         type="txt"
         class="form-control"
@@ -89,6 +89,9 @@
           (typeaheadOnSelect)="onCategory($event)"
           [typeaheadMultipleSearch]="false"
           typeaheadMultipleSearchDelimiters=" |"
+     
+          [typeaheadScrollable]="true"
+          [typeaheadOptionsInScrollableView]="6"
           class="form-control"
           name="Pcategory"
           #Pcategory="ngModel"
