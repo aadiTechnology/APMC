@@ -18,7 +18,7 @@ const routes: Routes = [
     
   },
   {
-    path:"StallRegistrationList",
+    path:"stallRegistrationList",
     component:StallRegistrationListComponent,
   }
 ];
