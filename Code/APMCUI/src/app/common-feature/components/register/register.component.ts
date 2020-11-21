@@ -63,9 +63,10 @@ export class RegisterComponent implements OnInit {
   }
 
   checkPassword(): boolean {
-    if (this.user.Password.length === this.user.ConfirmPassword.length || this.user.Password.length < this.user.ConfirmPassword.length) {
+    if (this.user.Password!== null){
+     if (this.user.Password!== null || this.user.Password.length === this.user.ConfirmPassword.length || this.user.Password.length < this.user.ConfirmPassword.length ) {
       return this.user.Password === this.user.ConfirmPassword ? true : false;
-    } else {
+    } }else {
       return true;
     }
   }
