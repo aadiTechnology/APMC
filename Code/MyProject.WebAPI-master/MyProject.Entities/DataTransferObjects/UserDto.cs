@@ -14,5 +14,6 @@ namespace MyProject.Entities.DataTransferObjects
         public string Role { get; set; }
         public string UserName { get; set; }
         public string Token { get; set; }
+        public int RoleId { get; set; }
     }
 }
