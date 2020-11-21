@@ -58,12 +58,6 @@ namespace MyProject.WebAPI.Controllers
         }
 
 
-        [HttpGet("GetOrderId")]
-        public async Task<JsonResult> GetOrderId()
-        {
-            return await base.FinalizeMultiple<IEnumerable<IndentDetails>>(await RepositoryWrapper.IndentDetails.GetOrderId());
-        }
-
         [HttpGet("GetProducts")]
         public async Task<JsonResult> GetProducts(int CategoryId)
         {

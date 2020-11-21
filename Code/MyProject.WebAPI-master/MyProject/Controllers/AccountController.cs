@@ -65,6 +65,7 @@ namespace MyProject.WebAPI.Controllers
                 LastName = appUsers.LastName,
                 MobileNo = appUsers.MobileNo,
                 Email = appUsers.Email,
+                RoleId = appUsers.RoleId,
                 Role = ((Roles)appUsers.RoleId).ToString(),
                 UserName = appUsers.UserName,
                 Token = TokenMgr.GetToken(loginDto.UserName, loginDto.Password, ((Roles)appUsers.RoleId).ToString())
