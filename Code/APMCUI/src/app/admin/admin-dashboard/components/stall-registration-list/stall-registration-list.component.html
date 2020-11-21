@@ -15,41 +15,13 @@
           </tr>
         </thead>
         <tbody>
-          <tr >
-            <th scope="row">1</th>
-            <!-- <td>19/11/2020</td> -->
-            <td>ST001</td>
-            <td>Vegetables</td>
-            <td>Pending</td>
+          <tr *ngFor="let requestList of stallRequestList; let i =index">
+            <th scope="row">{{i + 1}}</th>
+            <td scope="col">{{requestList.userId}}</td>
+            <td scope="col">{{requestList.stallId}}</td>
+        
           </tr>
-          <tr>
-            <th scope="row">2</th>
-            <!-- <td>19/11/2020</td> -->
-            <td>ST002</td>
-            <td>Fruits</td>
-            <td>Approved</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <!-- <td>19/11/2020</td> -->
-            <td>ST003</td>
-            <td>Flowers</td>
-            <td>Pending</td>
-          </tr>
-          <tr>
-            <th scope="row"></th>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <th scope="row"></th>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
+          
         </tbody>
       </table>
 

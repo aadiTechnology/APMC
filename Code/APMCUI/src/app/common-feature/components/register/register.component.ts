@@ -63,7 +63,11 @@ export class RegisterComponent implements OnInit {
   }
 
   checkPassword(): boolean {
-    return this.user.Password === this.user.ConfirmPassword ? true : false;
+    if (this.user.Password.length === this.user.ConfirmPassword.length || this.user.Password.length < this.user.ConfirmPassword.length) {
+      return this.user.Password === this.user.ConfirmPassword ? true : false;
+    } else {
+      return true;
+    }
   }
 
   signup(form: NgForm, user): void {

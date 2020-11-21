@@ -13,6 +13,10 @@ const routes: Routes = [
     component: StallRegistrationRequestsComponent,
   },
   {
+    path: "getAllstallRegistrationList",
+    component: StallRegistrationListComponent,
+  },
+  {
     path: "dashboard",
     component: DashboardComponent,
     

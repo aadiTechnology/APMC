@@ -76,16 +76,26 @@ export class StallRegistrationComponent implements OnInit {
 
   onProductSelect(StallRegisterForm: NgForm, event): void {
     if (event) {
-      // if (this.selectedProducts.length === 0) {
+      if (this.selectedProducts.length === 0) {
 
       this.stall.Category.push(event);
       this.selectedProducts.push({ id: event, name: this.selected });
-      this.CategoryId = null;
-      this.selected = null;
-      StallRegisterForm.controls["Pcategory"].reset();
-      // }
-    }
+      
+       }
+       else{
+         const index= this.selectedProducts.findIndex(p=>p.id===event);
+         if (index!==-1) {
+          this.toastr.error("Category already Present", "Error");
+         } else {
+          this.selectedProducts.push({ id: event, name: this.selected });
+         }
+       }
+       this.CategoryId = null;
+       this.selected = null;
+       StallRegisterForm.controls["Pcategory"].reset();
+    
   }
+}
 
   onCategory(event) {
     // this.stall.Category = event.item.category;
@@ -126,7 +136,7 @@ export class StallRegistrationComponent implements OnInit {
             }
           },
           (err) => {
-            this.toastr.success("Something went wrong", "Error");
+            this.toastr.error("Something went wrong", "Error");
             this.ngxSpinnerService.hide();
           }
         );
