@@ -93,6 +93,7 @@ export class StallRegistrationComponent implements OnInit {
        this.CategoryId = null;
        this.selected = null;
        StallRegisterForm.controls["Pcategory"].reset();
+       
     
   }
 }
@@ -131,9 +132,10 @@ export class StallRegistrationComponent implements OnInit {
         this.merchantService.stallRegistration(stallData).subscribe(
           (arg) => {
             if (arg) {
-              this.toastr.success("Stall registration successful", "Success");
+              this.toastr.success("Thank you for submitting your request we will get in touch with you shortly.", "Success");
               this.ngxSpinnerService.hide();
             }
+            form.resetForm();
           },
           (err) => {
             this.toastr.error("Something went wrong", "Error");
@@ -147,6 +149,7 @@ export class StallRegistrationComponent implements OnInit {
     } else {
       this.ngxSpinnerService.hide();
     }
+      
   }
 
   confirm(): void {

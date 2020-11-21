@@ -23,7 +23,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatInputModule } from '@angular/material/input';
 import { ModalModule } from 'ngx-bootstrap/modal';
-import { ToastrModule } from 'ngx-toastr';
+
 
 @NgModule({
   declarations: [CommonFeatureComponent, LoginComponent, RegisterComponent],
@@ -47,13 +47,7 @@ import { ToastrModule } from 'ngx-toastr';
     FormsModule,
     MatTabsModule,
     MatInputModule,
-    ToastrModule.forRoot({
-      timeOut: 2500,
-      positionClass: 'toast-top-center',
-      preventDuplicates: true,
-      countDuplicates: false,
-      progressBar: true,
-    }),
+   
     // ModalModule.forRoot(),
   ],
 })
