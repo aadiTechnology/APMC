@@ -18,10 +18,11 @@ namespace MyProject.Repository
         {
             _repositoryContext = repositoryContext;
         }
-        public IndentDetails Add(IndentDetails indentDetails, List<IndentProducts> indentProducts)
+        public IndentDetails AddIndent(IndentDetails indentDetails, List<IndentProducts> indentProducts)
         {
             try
             {
+                indentDetails.CreatedDate = DateTime.Now;
                 _repositoryContext.IndentDetails.Add(indentDetails);
                 _repositoryContext.IndentProducts.AddRange(indentProducts);
                 _repositoryContext.SaveChanges();

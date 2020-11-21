@@ -35,7 +35,7 @@ namespace MyProject.WebAPI.Controllers
         [HttpGet("GetAllStallRegistration")]
         public async Task<JsonResult> GetAllStallRegistration()
         {
-            return await base.FinalizeMultiple<IEnumerable<StallRegistration>>(await RepositoryWrapper.StallRegistration.GetAllStallRegistration()); 
+            return await base.FinalizeMultiple<IEnumerable<StallRegistrationDto>>(await RepositoryWrapper.StallRegistration.GetAllStallRegistration()); 
         }
 
         /// <summary>

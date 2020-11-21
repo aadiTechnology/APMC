@@ -111,9 +111,9 @@ export class CreatIndentComponent implements OnInit {
   }
   onProductSelect(prod, form: NgForm): void {
     if (prod && form.valid) {
-      const p=JSON.parse(JSON.stringify(prod));
+      const p = JSON.parse(JSON.stringify(prod));
       this.selectedProducts.push(p);
-      
+
       this.indent = {
         CategoryId: null,
         ProductId: null,
@@ -153,8 +153,8 @@ export class CreatIndentComponent implements OnInit {
           if (arg) {
             this.toastr.success("Indent Creation successful", "Success");
             this.ngxSpinnerService.hide();
- 
           }
+          form.resetForm();
         },
         (err) => {
           this.toastr.error("Something went wrong", "Error");
