@@ -7,18 +7,20 @@
       <table class="table table-responsive">
         <thead>
           <tr>
-            <th scope="col">#</th>
+           
             <!-- <th scope="col">Date</th> -->
-            <th scope="col">StallNo</th>
-            <th scope="col">Category</th>
-            <th scope="col">Status</th>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Stall_No</th>
+            <th scope="col">Date</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let requestList of stallRequestList; let i =index">
+          <tr *ngFor="let requestList of stallRequestList; let i =index" (Click)="ApproveStall(requestList)">
             <th scope="row">{{i + 1}}</th>
-            <td scope="col">{{requestList.userId}}</td>
-            <td scope="col">{{requestList.stallId}}</td>
+            <td scope="col">{{requestList.merchantName}}</td>
+            <td scope="col">{{requestList.stallNo}}</td>
+            <td scope="col">{{requestList.createdDate |  date: 'dd/MM/yy'}}</td>
         
           </tr>
           
@@ -39,10 +41,10 @@
             <div class="modal-body text-center">
               <h3 class="mx-auto">Confirm Cancellation</h3>
               <p>Are you sure you want to leave this page?</p>
-              <button type="button" class="btn btn-default" (click)="confirm()">
+              <button type="button" class="btn btn-primary" (click)="confirm()">
                 Yes
-              </button>
-              <button type="button" class="btn btn-primary" (click)="decline()">
+              </button>&nbsp;
+              <button type="button" class="btn btn-secondary" (click)="decline()">
                 No
               </button>
             </div>
