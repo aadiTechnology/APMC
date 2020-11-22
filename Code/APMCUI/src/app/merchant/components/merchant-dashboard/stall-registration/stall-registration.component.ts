@@ -93,8 +93,6 @@ export class StallRegistrationComponent implements OnInit {
        this.CategoryId = null;
        this.selected = null;
        StallRegisterForm.controls["Pcategory"].reset();
-       
-    
   }
 }
 
@@ -109,6 +107,7 @@ export class StallRegistrationComponent implements OnInit {
     )[0];
     this.product.categoryId = category.id;
     this.product.categoryName = category.category;
+    
   }
 
   removeProduct(event): void {
