@@ -1,7 +1,8 @@
 import { TemplateRef } from "@angular/core";
 import { Component, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { BsModalRef, BsModalService } from "ngx-bootstrap/modal";
+import { AdminService } from "../../../admin.service";
 
 @Component({
   selector: "app-stall-registration-requests",
@@ -11,15 +12,28 @@ import { BsModalRef, BsModalService } from "ngx-bootstrap/modal";
 export class StallRegistrationRequestsComponent implements OnInit {
   modalRef: BsModalRef;
   message: string;
-  requestList: any;
+  Approverow: any;
+  stallId:string;
 
-
-  constructor(private modalService: BsModalService, private router: Router) {}
+  constructor(private modalService: BsModalService,
+              private adminService: AdminService,
+              private activatedRoute: ActivatedRoute,
+               private router: Router) {}
   
   ngOnInit(): void {
-    
+    this.stallId=this.activatedRoute.snapshot.queryParams.stallId;
+    this.getAllStallRegistrationById(this.stallId);
     
   }
+  getAllStallRegistrationById(Id){
+    this.adminService.getAllStallRegistrationById(Id).subscribe((arg) => {
+      if(arg){
+        this.Approverow=arg.rows;
+      }
+    })
+  }
+
+
   openModal(template: TemplateRef<any>): void {
     this.modalRef = this.modalService.show(template, { class: "modal-sm" });
   }

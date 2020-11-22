@@ -67,9 +67,17 @@ namespace MyProject.WebAPI.Controllers
             try
             {
                 RepositoryWrapper.StallRegistration.StallRegistration(stallregisterDto.UserId, stallregisterDto.StallId);
+
+
+                if (stallregisterDto.Category.ToList().Count==0)
+                {
+                    return await base.FinalizStatusCodeeMessage("Category Is Not Selected Or Empty", 200);
+                }
+                
                 RepositoryWrapper.StallProductCategories.StallProductCategories(stallregisterDto.Category.ToList(), stallregisterDto.StallId);
 
                 return await base.FinalizStatusCodeeMessage("Stall Registered Sucessfully",200);
+                
             }
             catch (Exception ex)
             {
