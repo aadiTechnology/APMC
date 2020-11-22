@@ -11,16 +11,21 @@ import { BsModalRef, BsModalService } from "ngx-bootstrap/modal";
 export class StallRegistrationRequestsComponent implements OnInit {
   modalRef: BsModalRef;
   message: string;
-  constructor(private modalService: BsModalService, private router: Router) {}
+  requestList: any;
 
-  ngOnInit(): void {}
+  constructor(private modalService: BsModalService, private router: Router) {}
+  
+  ngOnInit(): void {
+    this.requestList=history.state.requestList;
+    
+  }
   openModal(template: TemplateRef<any>): void {
     this.modalRef = this.modalService.show(template, { class: "modal-sm" });
   }
 
   confirm(): void {
     this.message = "Confirmed!";
-    this.router.navigate(["/admin/dashboard"]);
+    this.router.navigate(["/admin/dashboard/getAllstallRegistrationList"]);
     this.modalRef.hide();
   }
 

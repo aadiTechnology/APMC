@@ -48,7 +48,7 @@ export class StallRegistrationListComponent implements OnInit {
     });
   }
 
-  ApproveStall(requestList){
-    this.router.navigate([''])
+  ApproveStall(requestList): void{
+    this.router.navigate(['/admin/dashboard/stallRegistrationRequests'],{state: {requestList: requestList}})
   }
 }
