@@ -222,6 +222,14 @@
         <div [hidden]="!FieldPassword.errors.required">
           Password is required
         </div>
+        <div
+*ngIf="FieldPassword.invalid && (FieldPassword.dirty || FieldPassword.touched || SignupForm.submitted)"
+class="text-danger"
+>
+<div [hidden]="!FieldPassword.errors.pattern">
+Password strength is not match
+</div>
+</div>
       </div>
       <div class="input-group form-group">
         <div class="input-group-prepend">
