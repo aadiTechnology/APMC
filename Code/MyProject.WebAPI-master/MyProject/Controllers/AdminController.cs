@@ -77,5 +77,10 @@ namespace MyProject.WebAPI.Controllers
                 return await base.FinalizStatusCodeeMessage("Error: Failure in Stall Update : " + ex,401);
             }
         }
+        [HttpGet("GetStallRegistrationById")]
+        public async Task<JsonResult> GetStallRegistrationById(int Id)
+        {
+            return await base.FinalizeMultiple<IEnumerable<StallRegistrationDto>>(await RepositoryWrapper.StallRegistration.GetStallRegistrationById(Id));
+        }
     }
 }
