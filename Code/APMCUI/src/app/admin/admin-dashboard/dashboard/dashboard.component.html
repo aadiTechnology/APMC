@@ -9,7 +9,8 @@
          
           <button
             class="btn btn-primary"
-            (click)="stallRegistrationRequests()"
+            [routerLink]="['/admin/dashboard/stallRegistrationList']"
+             routerLinkActive="active"
           >
             Stall Registration Requests
           </button>

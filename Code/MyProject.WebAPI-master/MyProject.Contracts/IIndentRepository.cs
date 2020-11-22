@@ -10,7 +10,6 @@ namespace MyProject.Contracts
     {
         IndentDetails AddIndent(IndentDetails indentDetails, List<IndentProducts> indentProducts);
         IndentDetails Update(IndentDetails indentDetails);
-        Task<IEnumerable<IndentDetails>> GetOrderId();
-      
+        string GetOrderId();
     }
 }

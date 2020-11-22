@@ -8,26 +8,30 @@ import { StallRegistrationRequestsComponent } from "./components/stall-registrat
 import { DashboardComponent } from "./dashboard/dashboard.component";
 
 const routes: Routes = [
-  { path: "", component: DashboardComponent },
+  { path: "",  component: AdminDashboardComponent,
+children:[ 
   {
-    path: "stallRegistrationRequests",
-    component: StallRegistrationRequestsComponent,
-  },
-  {
-    path: "getAllstallRegistrationList",
-    component: StallRegistrationListComponent,
-  },
+       path: "",
+      redirectTo: 'dashboard',pathMatch:'full'
+    },
+  
   {
     path: "dashboard",
     component: DashboardComponent,
-    children: [],
+  },
+  {
+    path: "stallRegistrationRequests",
+    component: StallRegistrationRequestsComponent,
   },
   {
     path: "stallRegistrationList",
     component: StallRegistrationListComponent,
   },
   
-];
+]
+},
+  
+  ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
