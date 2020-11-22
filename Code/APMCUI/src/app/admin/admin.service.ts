@@ -15,4 +15,8 @@ export class AdminService {
   getAllStallRegistration(): any {
     return this.httpService.get('Admin/GetAllStallRegistration');
   }
+
+  getAllStallRegistrationById(Id): any {
+    return this.httpService.get(`Admin/GetStallRegistrationById?Id=${Id}`);
+  }
 }

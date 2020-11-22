@@ -49,7 +49,11 @@ export class StallRegistrationListComponent implements OnInit {
   }
 
   ApproveStall(requestList) {
-    this.router.navigate(['/admin/dashboard/stallRegistrationRequests',requestList]);
+    this.router.navigate(['/admin/dashboard/stallRegistrationRequests'], {
+      queryParams: {
+        stallId: requestList
+      },
+    });
   }
  
 }
