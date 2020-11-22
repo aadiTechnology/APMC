@@ -90,6 +90,29 @@ namespace MyProject.Repository
                          });
             return await Result.ToListAsync();
         }
-       
+
+        public async Task<IEnumerable<StallRegistrationDto>> GetStallRegistrationById(int Id)
+        {
+            var Result = (from str in _repositoryContext.StallRegistration
+                          join au in _repositoryContext.AppUsers
+                          on str.UserId equals au.Id
+                          join st in _repositoryContext.StallDetails
+                          on str.StallId equals st.Id
+                          where str.Id==Id && str.IsApproved == false && str.IsRejected == false
+                          select new StallRegistrationDto
+                          {
+                              Id = str.Id,
+                              StallId = str.StallId,
+                              UserId = str.UserId,
+                              CreatedDate = str.CreatedDate,
+                              MerchantName = au.FirstName + au.LastName,
+                              MobileNo = au.MobileNo,
+                              StallNo = st.StallNo,
+                              StallName = st.StallName,
+                              StallRegNo = st.StallRegNo,
+                              Area = st.Area
+                          });
+            return await Result.ToListAsync();
+        }
     }
 }

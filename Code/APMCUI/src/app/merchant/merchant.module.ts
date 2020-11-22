@@ -15,6 +15,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 import { MatDialogModule } from '@angular/material/dialog';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -29,9 +30,11 @@ import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
     MerchantRoutingModule,
     MatNativeDateModule,
     MatDatepickerModule,
+    MatIconModule,
     MatInputModule,
     NgxMaterialTimepickerModule,
     TypeaheadModule.forRoot(),
+    MatDatepickerModule,
     ModalModule.forRoot(),
     TimepickerModule.forRoot(),
     MatInputModule,

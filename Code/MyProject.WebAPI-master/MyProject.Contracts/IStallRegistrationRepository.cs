@@ -13,6 +13,7 @@ namespace MyProject.Contracts
         StallRegistration UpdateStallRegistrationAdmin(int Id, int ApproveBy, bool IsApproved, bool IsRejected, string RejectReason);
         
         Task<IEnumerable<StallRegistrationDto>> GetAllStallRegistration();
+        Task<IEnumerable<StallRegistrationDto>> GetStallRegistrationById(int Id);
 
     }
 

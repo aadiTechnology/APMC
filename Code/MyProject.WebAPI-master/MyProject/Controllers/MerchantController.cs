@@ -14,7 +14,7 @@ namespace MyProject.WebAPI.Controllers
 
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = "Merchant")]
+   [Authorize(Roles = "Merchant")]
     public class MerchantController : ControllerBase
     {
         public override void InitializeController()
@@ -67,7 +67,7 @@ namespace MyProject.WebAPI.Controllers
             try
             {
                 RepositoryWrapper.StallRegistration.StallRegistration(stallregisterDto.UserId, stallregisterDto.StallId);
-                RepositoryWrapper.StallProductCategories.StallProductCategories(stallregisterDto.Category.ToList(), stallregisterDto.Id);
+                RepositoryWrapper.StallProductCategories.StallProductCategories(stallregisterDto.Category.ToList(), stallregisterDto.StallId);
 
                 return await base.FinalizStatusCodeeMessage("Stall Registered Sucessfully",200);
             }
