@@ -143,7 +143,7 @@
         <input
           type="email"
           class="form-control"
-          placeholder="Email Id"
+          placeholder="Email ID"
           [(ngModel)]="user.Email"
           pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
           #FieldEmail="ngModel"
@@ -161,7 +161,7 @@
         <input
           type="text"
           class="form-control"
-          placeholder="User Id"
+          placeholder="User ID"
           [(ngModel)]="user.UserName"
           required
           #FieldUserName="ngModel"
@@ -175,7 +175,7 @@
         class="text-danger"
       >
         <div [hidden]="!FieldUserName.errors.required">
-          User id is required
+          User Id is required
         </div>
       </div>
       <div

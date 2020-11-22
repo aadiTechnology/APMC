@@ -56,7 +56,7 @@ namespace MyProject.Repository
         public string GetOrderId()
         {
             string orderNo = _repositoryContext.IndentDetails.OrderByDescending(a => a.Id).Select(a => a.OrderNo).FirstOrDefault();
-            if (orderNo == "0")
+            if (orderNo == null)
             {
                 orderNo = "IndNo-1";
             }

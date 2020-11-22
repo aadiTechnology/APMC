@@ -17,6 +17,7 @@ import { UnitList } from "../../../entities/unitlist";
 })
 export class CreatIndentComponent implements OnInit {
   selected: string;
+  isDateValid:boolean=true;
   currentUser: any; // session Cureent User
   ETATime = "6:00 am";
   product: {
@@ -110,7 +111,14 @@ export class CreatIndentComponent implements OnInit {
     this.getAllUnits();
     this.getAllGetAllDrivers();
   }
-
+  isValidDate(d): void {
+    if(!isNaN(Date.parse(d)))
+	{
+  this.isDateValid= true;
+  }else{
+    this.isDateValid= false;
+  }
+  }
   openModal(template: TemplateRef<any>): void {
     this.modalRef = this.modalService.show(template, { class: "modal-sm" });
   }

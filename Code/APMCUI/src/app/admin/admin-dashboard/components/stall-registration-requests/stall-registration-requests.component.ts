@@ -13,10 +13,11 @@ export class StallRegistrationRequestsComponent implements OnInit {
   message: string;
   requestList: any;
 
+
   constructor(private modalService: BsModalService, private router: Router) {}
   
   ngOnInit(): void {
-    this.requestList=history.state.requestList;
+    
     
   }
   openModal(template: TemplateRef<any>): void {
