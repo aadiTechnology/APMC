@@ -232,6 +232,7 @@
           #FieldSelectDate="ngModel"
           name="FieldSelectDate"
           required
+          [min]="getToday()"
           [ngClass]="{'has-error': FieldSelectDate.invalid && (FieldSelectDate.dirty || FieldSelectDate.touched
               || CreateIndentForm.submitted) }"
         />

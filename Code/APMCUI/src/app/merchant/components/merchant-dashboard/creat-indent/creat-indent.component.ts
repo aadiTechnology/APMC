@@ -182,6 +182,9 @@ export class CreatIndentComponent implements OnInit {
     this.message = "Declined!";
     this.modalRef.hide();
   }
+  getToday(): string {
+    return new Date().toISOString().split('T')[0]
+ }
 
   onCategoryChange(event): void {
     const category = this.procategory.filter(
