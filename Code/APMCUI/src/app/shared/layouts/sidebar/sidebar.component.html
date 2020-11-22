@@ -10,7 +10,7 @@
   <nav class="sidebar-menu pt-3 pb-3">
     <ul class="menu-items">
       <li *ngIf="currentUser.role=='Admin'">
-        <a [routerLink]="['/admin/dashboard']" routerLinkActive="active">
+        <a [routerLink]="['/admin/dashboard']">
           <i class="fa fa-tv"></i>
           <span>Dashboard</span>
         </a>
@@ -21,19 +21,10 @@
           routerLinkActive="active"
         >
           <i class="fa fa-tv"></i>
-          <span>Stall Registration List</span>
-        </a>
-      </li>
-      <li *ngIf="currentUser.role=='Admin'">
-        <a
-          [routerLink]="['/admin/dashboard/stallRegistrationRequests']"
-          routerLinkActive="active"
-        >
-          <i class="fa fa-tv"></i>
           <span>Stall Registration Requests</span>
         </a>
       </li>
-
+      
       <li *ngIf="currentUser.role=='Merchant'">
         <a [routerLink]="['/merchant/stallregistration']">
           <i class="fa fa-tv"></i>
