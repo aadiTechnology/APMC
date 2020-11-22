@@ -139,8 +139,10 @@ export class CreatIndentComponent implements OnInit {
   }
   createIndent(form: NgForm): void {
     this.ngxSpinnerService.show();
+    delete this.selectedProducts[0].Unit;
     if (form.valid && this.selectedProducts.length !== 0) {
       const indentData = {
+
         IndentProducts:this.selectedProducts,
         RollId:this.currentUser.id,
         CreatedBy:this.currentUser.roleId,
