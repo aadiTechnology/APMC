@@ -41,7 +41,7 @@ namespace MyProject.WebAPI.Controllers
             }
             catch (Exception ex)
             {
-                return await base.FinalizStatusCodeeMessage("Error: Failure in Indent Create : " + ex, 401);
+                return await base.FinalizStatusCodeeMessage("Error: Failure in Indent Create : " + ex, 500);
             }
 
         }

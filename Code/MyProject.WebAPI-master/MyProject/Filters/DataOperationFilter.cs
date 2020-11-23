@@ -38,6 +38,7 @@ namespace MyProject.WebAPI.Filters
                             var resultData = JObject.Parse(myJsonOutput.ToString());
                             if (resultData.ContainsKey("statusCode"))
                             {
+                                //string value=JObject.Parse(resultData.)["statusCode"];
                                 resultData.Add("HasErrors", true);
                                 //resultData.Add("Data", resultData.);
                                 filterContext.Result = new JsonResult(resultData);
@@ -45,7 +46,7 @@ namespace MyProject.WebAPI.Filters
                             else
                             {
                                 resultData.Add("HasErrors", false);
-                                // resultData.Add("Data", resultData);
+                                 resultData.Add("statusCode", 200);
                                 filterContext.Result = new JsonResult(resultData);
                             }
 

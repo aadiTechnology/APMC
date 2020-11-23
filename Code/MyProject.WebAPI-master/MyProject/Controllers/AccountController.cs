@@ -49,13 +49,13 @@ namespace MyProject.WebAPI.Controllers
         public async Task<JsonResult> Login(LoginDto loginDto)
         {
             AppUsers appUsers = RepositoryWrapper.AppUsers.GetUsers(loginDto);
-            if (appUsers == null) return await base.FinalizStatusCodeeMessage("Invalid User Name provided.", 200);
+            if (appUsers == null) return await base.FinalizStatusCodeeMessage("Error: Invalid User Name provided.", 500);
 
             using var hmac = new HMACSHA512(appUsers.PasswordSalt);
             var computHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(loginDto.Password));
             for (int i = 0; i < computHash.Length; i++)
             {
-                if (computHash[i] != appUsers.PasswordHash[i]) return await base.FinalizStatusCodeeMessage("Invalid Password provided.", 200);
+                if (computHash[i] != appUsers.PasswordHash[i]) return await base.FinalizStatusCodeeMessage("Error: Invalid Password provided.", 500);
             }
 
             var UserDto = new UserDto
@@ -89,7 +89,7 @@ namespace MyProject.WebAPI.Controllers
         public async Task<JsonResult> GetUsersById(int Id)
         {
             var user = RepositoryWrapper.AppUsers.GetUsersById(Id);
-            if (user == null) return await base.FinalizStatusCodeeMessage("User ID Not Found Enter valid Id.",200);
+            if (user == null) return await base.FinalizStatusCodeeMessage("Error: User ID Not Found Enter valid Id.", 500);
 
             var loginUserDto= new LoginUserDto
             {
