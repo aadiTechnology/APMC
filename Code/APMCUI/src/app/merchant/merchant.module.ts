@@ -16,6 +16,7 @@ import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 import { MatDialogModule } from '@angular/material/dialog';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { MatIconModule } from '@angular/material/icon';
+import { DatepickerModule, BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,8 @@ import { MatIconModule } from '@angular/material/icon';
     TimepickerModule.forRoot(),
     MatInputModule,
     MatDialogModule,
+    BsDatepickerModule.forRoot(),
+    DatepickerModule.forRoot() ,
   ],
 })
 export class MerchantModule {}

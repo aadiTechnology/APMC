@@ -238,35 +238,30 @@
         </div>
       </div>
 
-      <!-- //pattern="/^(0?[1-9]|[12][0-9]|3[01])[\/-](0?[1-9]|1[012])[\/-]\d{4}$/" -->
-      <div class="input-group form-group">
+      <div class="form-group">
         <input
-          type="date"
-          placeholder="Select Date"
           class="form-control"
-          pattern=""
-          [(ngModel)]="merchantindent.ETADate"
-          #FieldSelectDate="ngModel"
           name="FieldSelectDate"
           required
-          [min]="getToday()"
+          #FieldSelectDate="ngModel"
+          [(ngModel)]="merchantindent.ETADate"
+          bsDatepicker
+          placeholder="Select Date"
+          container=""
+          [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY',adaptivePosition: true }"
+          [minDate]="minDate"
+          [maxlength]="10"
           [ngClass]="{'has-error': FieldSelectDate.invalid && (FieldSelectDate.dirty || FieldSelectDate.touched
-              || CreateIndentForm.submitted) }"
+          || CreateIndentForm.submitted) }"
         />
       </div>
       <div
         *ngIf="FieldSelectDate.invalid && (FieldSelectDate.dirty || FieldSelectDate.touched || CreateIndentForm.submitted )"
         class="text-danger"
       >
-        <!-- <div [hidden]="!FieldSelectDate.errors.required">
+        <div [hidden]="!FieldSelectDate.errors.required">
           Date is required
-        </div> -->
-        <div [hidden]="!FieldSelectDate.errors.pattern">
-          pattern
         </div>
-        <!-- <div [hidden]="isDateValid">
-          Date is invalid
-        </div> -->
       </div>
 
       <div class="input-group form-group">
