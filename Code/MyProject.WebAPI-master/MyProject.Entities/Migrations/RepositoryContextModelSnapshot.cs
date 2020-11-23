@@ -101,7 +101,7 @@ namespace MyProject.Entities.Migrations
                     b.Property<int>("AppovedBy")
                         .HasColumnType("int");
 
-                    b.Property<int>("CreatedBy")
+                    b.Property<int?>("CreatedBy")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
@@ -113,6 +113,9 @@ namespace MyProject.Entities.Migrations
                     b.Property<string>("DriverNo")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ETADate")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ETATime")
                         .HasColumnType("nvarchar(max)");
 
@@ -122,19 +125,13 @@ namespace MyProject.Entities.Migrations
                     b.Property<bool>("IsRejected")
                         .HasColumnType("bit");
 
-                    b.Property<int>("OrderNo")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ProductId")
+                    b.Property<string>("OrderNo")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<float>("ProductWeight")
-                        .HasColumnType("real");
 
                     b.Property<string>("RejectReason")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("RollId")
+                    b.Property<int?>("RollId")
                         .HasColumnType("int");
 
                     b.Property<string>("SupplierName")
@@ -158,15 +155,45 @@ namespace MyProject.Entities.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("IndentId")
+                    b.Property<int?>("CategoryId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ProductId")
+                    b.Property<int?>("IndentId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ProductName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ProductQuantity")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("UnitId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.ToTable("IndentProducts");
+                });
+
+            modelBuilder.Entity("MyProject.Entities.Models.Product", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ProductName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Product");
                 });
 
             modelBuilder.Entity("MyProject.Entities.Models.ProductCategory", b =>
@@ -263,6 +290,24 @@ namespace MyProject.Entities.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("StallRegistration");
+                });
+
+            modelBuilder.Entity("MyProject.Entities.Models.Units", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Symbol")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Unit")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Units");
                 });
 #pragma warning restore 612, 618
         }

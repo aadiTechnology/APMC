@@ -13,6 +13,11 @@ namespace MyProject.Repository
     public class StallRegistrationRepository : RepositoryBase<StallRegistration>, IStallRegistrationRepository
     {
         private readonly RepositoryContext _repositoryContext;
+        public StallRegistrationRepository(RepositoryContext repositoryContext)
+      : base(repositoryContext)
+        {
+            _repositoryContext = repositoryContext;
+        }
         public StallRegistration StallRegistration(int UserId, int StallId)
         {
             try
@@ -52,22 +57,62 @@ namespace MyProject.Repository
             }
             catch (Exception)
             {
-
                 throw;
             }
 
         }
-        public async Task<IEnumerable<StallRegistration>> GetAllStallRegistration()
-        {
-           // return await _repositoryContext.StallRegistration.ToListAsync();
-            return await _repositoryContext.StallRegistration.Where(a => a.IsApproved == false &&  a.IsRejected == false).ToListAsync();
-            //  return await _repositoryContext.StallRegistration.Where(a => a.IsApproved == false).ToListAsync();
 
-        }
-        public StallRegistrationRepository(RepositoryContext repositoryContext)
-       : base(repositoryContext)
+        /// <summary>
+        /// This method is used to get all stall registration records for approval.
+        /// </summary>
+        /// <returns></returns>
+        /// <Aurthor>Deepali Patil</Aurthor>
+        public async Task<IEnumerable<StallRegistrationDto>> GetAllStallRegistration()
         {
-            _repositoryContext = repositoryContext;
+            var Result = (from str in _repositoryContext.StallRegistration
+                         join au in _repositoryContext.AppUsers
+                         on str.UserId equals au.Id
+                         join st in _repositoryContext.StallDetails
+                         on str.StallId equals st.Id
+                         where str.IsApproved == false && str.IsRejected == false
+                         select new StallRegistrationDto
+                         {
+                             Id = str.Id,
+                             StallId = str.StallId,
+                             UserId = str.UserId,
+                             CreatedDate = str.CreatedDate,
+                             MerchantName = au.FirstName + au.LastName,
+                             MobileNo = au.MobileNo,
+                             StallNo = st.StallNo,
+                             StallName = st.StallName,
+                             StallRegNo = st.StallRegNo,
+                             Area = st.Area
+                         });
+            return await Result.ToListAsync();
+        }
+
+        public async Task<IEnumerable<StallRegistrationDto>> GetStallRegistrationById(int Id)
+        {
+            var Result = (from str in _repositoryContext.StallRegistration
+                          join au in _repositoryContext.AppUsers
+                          on str.UserId equals au.Id
+                          join st in _repositoryContext.StallDetails
+                          on str.StallId equals st.Id
+                          where str.Id==Id && str.IsApproved == false && str.IsRejected == false
+                          select new StallRegistrationDto
+                          {
+                              Id = str.Id,
+                              StallId = str.StallId,
+                              UserId = str.UserId,
+                              CreatedDate = str.CreatedDate,
+                              MerchantName = au.FirstName + au.LastName,
+                              MobileNo = au.MobileNo,
+                              StallNo = st.StallNo,
+                              StallName = st.StallName,
+                              StallRegNo = st.StallRegNo,
+                              Area = st.Area
+                          });
+            return await Result.ToListAsync();
         }
     }
 }

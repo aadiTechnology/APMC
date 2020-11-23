@@ -1,54 +1,43 @@
 <div class="card">
     <div class="card-header text-center text-success">
       <h3 class="mb-0">Approve Request</h3>
+      <div>
+       
+      </div>
     </div>
     <div class="card-body">
-      <form
-      
-      >
+      <form >
         <div class="input-group form-group">
+          <pre></pre>
           <input
             type="txt"
             class="form-control"
             placeholder="First Name"
+            value="{{Approverow[0].merchantName}}"
             disabled
           />
         </div>
-        <div class="input-group form-group">
-          <input
-            type="txt"
-            class="form-control"
-            placeholder="Last Name"
-            disabled
-          />
-        </div>
+     
         <div class="input-group form-group">
           <input
             type="txt"
             class="form-control"
             placeholder="Mobile No"
+            value="{{Approverow[0].mobileNo}}"
             disabled
           />
         </div>
-        <div class="input-group form-group">
-          <input type="email" class="form-control" placeholder="Email" disabled />
-        </div>
+        
         <div class="input-group form-group">
             <input
               type="txt"
               class="form-control"
               placeholder="Stall No"
+              value="{{Approverow[0].stallNo}}"
               disabled
             />
           </div>
-          <div class="input-group form-group">
-            <input
-              type="txt"
-              class="form-control"
-              placeholder="Product Category"
-              disabled
-            />
-          </div>
+          
        
         <div class="input-group form-group">
           <div class="mx-auto">
@@ -61,12 +50,22 @@
               type="button"
               value="Cancel"
               class="btn btn-danger"
-             
+              (click)="openModal(template)"
             />
           </div>
-         
+          <ng-template #template>
+            <div class="modal-body text-center">
+              <h3 class="mx-auto">Confirm Cancellation</h3>
+              <p>Are you sure ? You want to go Back?</p>
+              <button type="button" class="btn btn-default" (click)="confirm()">
+                Yes
+              </button>
+              <button type="button" class="btn btn-primary" (click)="decline()">
+                No
+              </button>
+            </div>
+          </ng-template>
         </div>
       </form>
     </div>
   </div>
-  

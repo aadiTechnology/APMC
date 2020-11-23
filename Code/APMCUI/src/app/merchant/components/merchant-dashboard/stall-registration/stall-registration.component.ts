@@ -15,24 +15,30 @@ import { ProductCategory } from "../../../entities/product-category";
   styleUrls: ["./stall-registration.component.scss"],
 })
 export class StallRegistrationComponent implements OnInit {
-  stalllist: any;
-  productCategory: any;
+  currentUser: any; // session Cureent User
+  stalllist: any; // stalllist
+  productCategory: any; //product category list
+  CategoryId: number;
 
   selected: string;
   productCatergory = [];
 
-  currentUser: any;
+  //Category Details
+  product: {
+    categoryId: number;
+    categoryName: string;
+  };
 
-  p = { Id: 1, ProductName: "Fishery" };
   selectedProducts: any[];
 
+  // Stall registration form entity
   stall: {
     UserId: number;
     StallId: number;
-    Category: string;
+    Category: number[];
   };
 
-  modalRef: BsModalRef;
+  modalRef: BsModalRef; //cancel model
   message: string;
 
   constructor(
@@ -46,30 +52,64 @@ export class StallRegistrationComponent implements OnInit {
     this.stall = {
       UserId: this.currentUser.id,
       StallId: null,
-      Category: null,
+      Category: new Array<number>(),
+    };
+    this.product = {
+      categoryId: null,
+      categoryName: null,
     };
 
-    this.selectedProducts = [{ Id: 1, ProductName: "Fishery" }];
-
+    this.selectedProducts = [];
     this.stalllist = new Array<StallDetails>();
     this.productCategory = new Array<ProductCategory>();
   }
 
+  //Cancel button popup
   openModal(template: TemplateRef<any>): void {
     this.modalRef = this.modalService.show(template, { class: "modal-sm" });
   }
+
   ngOnInit(): void {
     this.getAllProductCategories();
     this.getAllStallDetails();
   }
 
-  onProductSelect(event): void {
+  onProductSelect(StallRegisterForm: NgForm, event): void {
     if (event) {
-      // if (this.selectedProducts.length === 0) {
-      this.selectedProducts.push(event);
-      // }
-    }
+      if (this.selectedProducts.length === 0) {
+
+      this.stall.Category.push(event);
+      this.selectedProducts.push({ id: event, name: this.selected });
+      
+       }
+       else{
+         const index= this.selectedProducts.findIndex(p=>p.id===event);
+         if (index!==-1) {
+          this.toastr.error("Category already Present", "Error");
+         } else {
+          this.selectedProducts.push({ id: event, name: this.selected });
+         }
+       }
+       this.CategoryId = null;
+       this.selected = null;
+       StallRegisterForm.controls["Pcategory"].reset();
   }
+}
+
+  onCategory(event) {
+    // this.stall.Category = event.item.category;
+    this.CategoryId = event.item.id;
+  }
+
+  onCategoryChange(event) {
+    const category = this.productCatergory.filter(
+      (p) => p.id === +event.target.value
+    )[0];
+    this.product.categoryId = category.id;
+    this.product.categoryName = category.category;
+    
+  }
+
   removeProduct(event): void {
     if (this.selectedProducts.length !== 0) {
       const index = this.selectedProducts.findIndex((x) => x.id === event.id);
@@ -82,26 +122,33 @@ export class StallRegistrationComponent implements OnInit {
   stallregister(form: NgForm): void {
     this.ngxSpinnerService.show();
     if (form.valid) {
-      const stallData = {
-        UserId: +this.stall.UserId,
-        StallId: +this.stall.StallId,
-        Category: [+this.stall.Category],
-      };
-      this.merchantService.stallRegistration(stallData).subscribe(
-        (arg) => {
-          if (arg) {
-            this.toastr.success("Stall registration successful", "Success");
+      if (this.stall.Category.length !== 0) {
+        const stallData = {
+          UserId: +this.stall.UserId,
+          StallId: +this.stall.StallId,
+          Category: this.stall.Category,
+        };
+        this.merchantService.stallRegistration(stallData).subscribe(
+          (arg) => {
+            if (arg) {
+              this.toastr.success("Thank you for submitting your request Admin will get in touch with you shortly.", "Success");
+              this.ngxSpinnerService.hide();
+            }
+            form.resetForm();
+          },
+          (err) => {
+            this.toastr.error("Something went wrong", "Error");
             this.ngxSpinnerService.hide();
           }
-        },
-        (err) => {
-          this.toastr.success("Something went wrong", "Error");
-          this.ngxSpinnerService.hide();
-        }
-      );
+        );
+      } else {
+        this.toastr.error("select category", "Error");
+        this.ngxSpinnerService.hide();
+      }
     } else {
       this.ngxSpinnerService.hide();
     }
+      
   }
 
   confirm(): void {
@@ -117,7 +164,7 @@ export class StallRegistrationComponent implements OnInit {
   getAllStallDetails() {
     this.merchantService.getAllStallDetails().subscribe((arg) => {
       if (arg) {
-        this.stalllist = arg;
+        this.stalllist = arg.rows;
       }
     });
   }
@@ -125,12 +172,8 @@ export class StallRegistrationComponent implements OnInit {
   getAllProductCategories(): void {
     this.merchantService.getAllProductCategories().subscribe((arg) => {
       if (arg) {
-        this.productCategory = arg;
+        this.productCategory = arg.rows;
       }
     });
-  }
-
-  onCategory(event) {
-    this.stall.Category = event.item.id;
   }
 }

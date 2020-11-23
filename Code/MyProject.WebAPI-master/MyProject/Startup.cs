@@ -19,7 +19,10 @@ using Microsoft.IdentityModel.Tokens;
 using MyProject.Contracts;
 using MyProject.Security.Auth;
 using MyProject.WebAPI.Extensions;
+using MyProject.WebAPI.Filters;
 using NLog;
+using Microsoft.AspNetCore.Mvc.NewtonsoftJson;
+using Newtonsoft.Json.Serialization;
 
 namespace MyProject
 {
@@ -38,13 +41,22 @@ namespace MyProject
         {
             var key = "This is my test Key for application";
             services.ConfigureLoggerService();
-            services.AddControllers();
             services.ConfigureAuthentication(key);
             services.ConfigureSqlServerContext(Configuration);
             services.AddAutoMapper(typeof(Startup));
-            services.AddSingleton<IJwtAuthenticationManager>(new JwtAuthenticationManager(key));           
+            services.AddSingleton<IJwtAuthenticationManager>(new JwtAuthenticationManager(key));
+            services.AddMvc(optins =>
+            {
+                optins.Filters.Add<DataOperationFilter>();
+            }).AddNewtonsoftJson(options =>
+            {
+                options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+            })
+                .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
+           
             //services.AddSingleton<IJwtAuthenticationManager,JwtAuthenticationManager>();
-            services.AddSingleton<ITokenManager,TokenManager>();
+            services.AddSingleton<ITokenManager, TokenManager>();
             services.AddCors(options =>
             {
                 options.AddPolicy(name: MyAllowSpecificOrigins,
@@ -64,8 +76,8 @@ namespace MyProject
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-            }           
-            app.ConfigureExceptionHandler(logger);
+            }
+            //app.ConfigureExceptionHandler(logger);
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();

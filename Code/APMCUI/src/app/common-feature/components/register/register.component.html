@@ -21,11 +21,12 @@
           name="FieldRole"
           required
           #FieldRole="ngModel"
-          [(ngModel)]="user.roleId"
+          [(ngModel)]="user.RoleId"
         >
           <option value="null" selected disabled hidden>Select a Role</option>
-          <option *ngFor="let rolelist of Role" value="{{rolelist.Id}}">{{rolelist.roleName}}</option>
-          
+          <option *ngFor="let rolelist of Role" value="{{rolelist.id}}"
+            >{{rolelist.roleName}}</option
+          >
         </select>
       </div>
       <div
@@ -48,7 +49,7 @@
           class="form-control"
           placeholder="First Name"
           type="text"
-          [(ngModel)]="user.firstName"
+          [(ngModel)]="user.FirstName"
           required
           pattern="[a-zA-Z ]*"
           #FiledFirstName="ngModel"
@@ -79,7 +80,7 @@
           type="text"
           class="form-control"
           placeholder="Last Name"
-          [(ngModel)]="user.lastName"
+          [(ngModel)]="user.LastName"
           required
           pattern="[a-zA-Z ]*"
           #FiledLastName="ngModel"
@@ -111,10 +112,10 @@
           type="text"
           class="form-control"
           placeholder="Mobile No"
-          [(ngModel)]="user.mobileNumber"
+          [(ngModel)]="user.MobileNo"
           required
-          pattern="[0-9]*"
-          maxlength="10"
+          pattern="\d{10}"
+          
           #FieldMobileNumber="ngModel"
           name="FieldMobileNumber"
           [ngClass]="{'has-error': FieldMobileNumber.invalid && (FieldMobileNumber.dirty || FieldMobileNumber.touched
@@ -129,7 +130,7 @@
           Mobile number is required
         </div>
         <div [hidden]="!FieldMobileNumber.errors.pattern">
-          Enter valide mobile number
+          Enter valid mobile number
         </div>
       </div>
 
@@ -142,9 +143,8 @@
         <input
           type="email"
           class="form-control"
-          placeholder="Email Id"
-          [(ngModel)]="user.email"
-          required
+          placeholder="Email ID"
+          [(ngModel)]="user.Email"
           pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
           #FieldEmail="ngModel"
           name="FieldEmail"
@@ -161,8 +161,8 @@
         <input
           type="text"
           class="form-control"
-          placeholder="User Id"
-          [(ngModel)]="user.userName"
+          placeholder="User ID"
+          [(ngModel)]="user.UserName"
           required
           #FieldUserName="ngModel"
           name="FieldUserName"
@@ -175,27 +175,26 @@
         class="text-danger"
       >
         <div [hidden]="!FieldUserName.errors.required">
-          User id is required
+          User Id is required
         </div>
       </div>
-
       <div
         class="input-group form-group"
-        data-toggle="tooltip"
-        data-placement="top"
-        data-tip="Password should 8 characters minimum,at least 1 uppercase, 1 lowercase, 1 special character & 1 number"
+        
+        data-tooltip="Password should be: Minimum 8 characters, at least one upper case, at least one lower case, at least one number & at least one special character."
+         data-tooltip-persistent
       >
         <div class="input-group-prepend">
           <span class="input-group-text bg-success"
             ><i class="fas fa-key text-white"></i
           ></span>
         </div>
-
         <input
           type="password"
           class="border-right-0 form-control"
+          autocomplete="on"
           placeholder="Password"
-          [(ngModel)]="user.password"
+          [(ngModel)]="user.Password"
           required
           pattern="^(?=.*?[A-Z])(?=(.*[a-z]){1,})(?=(.*[\d]){1,})(?=(.*[\W]){1,})(?!.*\s).{8,}$"
           [ngClass]="{'has-error': FieldPassword.invalid && (FieldPassword.dirty || FieldPassword.touched || SignupForm.submitted) }"
@@ -204,7 +203,6 @@
           name="FieldPassword"
           [type]="hide ? 'password' : 'text'"
         />
-
         <div class="border rounded-right border-left-0 input-group-prepend">
           <span
             (click)="myFunction()"
@@ -217,15 +215,21 @@
           ></span>
         </div>
       </div>
-
       <div
         *ngIf="FieldPassword.invalid && (FieldPassword.dirty || FieldPassword.touched || SignupForm.submitted)"
         class="text-danger"
       >
-       
         <div [hidden]="!FieldPassword.errors.required">
           Password is required
         </div>
+        <div
+*ngIf="FieldPassword.invalid && (FieldPassword.dirty || FieldPassword.touched || SignupForm.submitted)"
+class="text-danger"
+>
+<div [hidden]="!FieldPassword.errors.pattern">
+Password strength is not match
+</div>
+</div>
       </div>
       <div class="input-group form-group">
         <div class="input-group-prepend">
@@ -233,28 +237,28 @@
             ><i class="fas fa-key text-white"></i
           ></span>
         </div>
-
         <input
           type="password"
           class="border-right-0 form-control"
+          autocomplete="on"
           placeholder="Confirm Password"
-          [(ngModel)]="user.confirmPassword"
+          [(ngModel)]="user.ConfirmPassword"
+          pattern="^(?=.*?[A-Z])(?=(.*[a-z]){1,})(?=(.*[\d]){1,})(?=(.*[\W]){1,})(?!.*\s).{8,}$"
           required
           [ngClass]="{'has-error': FieldConfirmPassword.invalid && (FieldConfirmPassword.dirty ||
 						    FieldConfirmPassword.touched || SignupForm.submitted) }"
           #FieldConfirmPassword="ngModel"
           #FieldConfirmPasswordInput
           name="FieldConfirmPassword"
-          [type]="hide ? 'password' : 'text'"
+          [type]="hidee ? 'password' : 'text'"
         />
-
         <div class="border rounded-right border-left-0 input-group-prepend">
           <span
-            (click)="myFunction()"
+            (click)="myFunctionCp()"
             class="bg-transparent input-group-text text-black-50"
             ><i
-              [class.fa-eye-slash]="hide"
-              [class.fa-eye]="!hide"
+              [class.fa-eye-slash]="hidee"
+              [class.fa-eye]="!hidee"
               class="fas fa-lg"
             ></i
           ></span>
@@ -280,7 +284,6 @@
 
       <div class="input-group form-group">
         <div class="mx-auto">
-          
           <input
             type="submit"
             value="Sign Up"

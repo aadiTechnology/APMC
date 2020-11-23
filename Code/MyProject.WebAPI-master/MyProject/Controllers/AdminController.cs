@@ -16,6 +16,10 @@ namespace MyProject.WebAPI.Controllers
     [Authorize(Roles = "Admin")]
     public class AdminController : ControllerBase
     {
+        public override void InitializeController()
+        {
+
+        }
         public AdminController(IRepositoryWrapper repositoryWrapper)
         {
             RepositoryWrapper = repositoryWrapper;
@@ -29,9 +33,9 @@ namespace MyProject.WebAPI.Controllers
         /// <returns>returns the list of Stall Registeration which are not approved not rejected</returns>
         ///<Aurthor>Sumeet Tanaji Kemse</Aurthor>
         [HttpGet("GetAllStallRegistration")]
-        public async Task<IEnumerable<StallRegistration>> GetAllStallRegistration()
+        public async Task<JsonResult> GetAllStallRegistration()
         {
-            return await RepositoryWrapper.StallRegistration.GetAllStallRegistration(); 
+            return await base.FinalizeMultiple<IEnumerable<StallRegistrationDto>>(await RepositoryWrapper.StallRegistration.GetAllStallRegistration()); 
         }
 
         /// <summary>
@@ -45,7 +49,7 @@ namespace MyProject.WebAPI.Controllers
         /// <returns>Returns status/Exception if Sucessfully updated data in table or not</returns>
         ///<Aurthor>Sumeet Tanaji Kemse</Aurthor>
         [HttpPost("UpdateStallRegistration")]
-        public ActionResult<StallRegistrationDto> UpdateStallRegistration([FromBody] StallRegistrationDto stallregisterDto)
+        public async Task<JsonResult> UpdateStallRegistration([FromBody] StallRegistrationDto stallregisterDto)
         {
             try
             {
@@ -53,16 +57,16 @@ namespace MyProject.WebAPI.Controllers
                 {
                     RepositoryWrapper.StallDetails.UpdateStallAssigned(stallregisterDto.StallId);
                     RepositoryWrapper.StallRegistration.UpdateStallRegistrationAdmin(stallregisterDto.Id, stallregisterDto.ApproveBy, stallregisterDto.IsApproved, stallregisterDto.IsRejected, stallregisterDto.RejectReason);
-                    return Ok("StallRegistration Sucessfully Approved");
+                    return await base.FinalizStatusCodeeMessage("StallRegistration Sucessfully Approved",200);
                 }
                 else if (stallregisterDto.IsRejected == true && stallregisterDto.IsApproved != true && stallregisterDto.RejectReason != null && stallregisterDto.RejectReason != "")
                 {
                     RepositoryWrapper.StallRegistration.UpdateStallRegistrationAdmin(stallregisterDto.Id, stallregisterDto.ApproveBy, stallregisterDto.IsApproved, stallregisterDto.IsRejected, stallregisterDto.RejectReason);
-                    return Ok("StallRegistration Rejected");
+                    return await base.FinalizStatusCodeeMessage("StallRegistration Rejected",200);
                 }
                 else
                 {
-                    return Ok("Error: Approved and Rejected Both Should not be true at same time  Or If Rejected Enter Reject Reason Compulsory");
+                    return await base.FinalizStatusCodeeMessage("Error: Approved and Rejected Both Should not be true at same time  Or If Rejected Enter Reject Reason Compulsory",200);
                 }
 
 
@@ -70,8 +74,13 @@ namespace MyProject.WebAPI.Controllers
             }
             catch (Exception ex)
             {
-                return Ok("Error: Failure in Stall Update : " + ex);
+                return await base.FinalizStatusCodeeMessage("Error: Failure in Stall Update : " + ex,401);
             }
+        }
+        [HttpGet("GetStallRegistrationById")]
+        public async Task<JsonResult> GetStallRegistrationById(int Id)
+        {
+            return await base.FinalizeMultiple<IEnumerable<StallRegistrationDto>>(await RepositoryWrapper.StallRegistration.GetStallRegistrationById(Id));
         }
     }
 }

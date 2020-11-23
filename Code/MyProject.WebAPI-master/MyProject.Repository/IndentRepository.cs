@@ -18,11 +18,18 @@ namespace MyProject.Repository
         {
             _repositoryContext = repositoryContext;
         }
-        public IndentDetails Add(IndentDetails indentDetails, List<IndentProducts> indentProducts)
+        public IndentDetails AddIndent(IndentDetails indentDetails, List<IndentProducts> indentProducts)
         {
             try
             {
+                indentDetails.OrderNo = GetOrderId();
+                indentDetails.CreatedDate = DateTime.Now;
                 _repositoryContext.IndentDetails.Add(indentDetails);
+                var id = GetIndentId();
+                foreach (IndentProducts indentProduct in indentProducts)
+                {
+                    indentProduct.IndentId = id;
+                }
                 _repositoryContext.IndentProducts.AddRange(indentProducts);
                 _repositoryContext.SaveChanges();
                 return indentDetails;
@@ -31,7 +38,6 @@ namespace MyProject.Repository
             {
                 throw;
             }
-
         }
         public IndentDetails Update(IndentDetails indentDetails)
         {
@@ -47,11 +53,26 @@ namespace MyProject.Repository
             }
 
         }
-        public async Task<IEnumerable<IndentDetails>> GetOrderId()
+        public string GetOrderId()
         {
-            //return await _repositoryContext.StallDetails.ToListAsync();
-            return await _repositoryContext.IndentDetails.Where(a => a.CreatedBy == 1).ToListAsync();
-
+            string orderNo = _repositoryContext.IndentDetails.OrderByDescending(a => a.Id).Select(a => a.OrderNo).FirstOrDefault();
+            if (orderNo == null)
+            {
+                orderNo = "IndNo-1";
+            }
+            else
+            {
+                orderNo = "IndNo-" + (Convert.ToInt32(orderNo.Split('-')[1].Trim()) + 1);
+            }
+            return orderNo;
         }
+
+        public int GetIndentId()
+        {
+            int id = _repositoryContext.IndentDetails.OrderByDescending(a => a.Id).Select(a => a.Id).FirstOrDefault();
+            return id;
+        }
+
+
     }
 }

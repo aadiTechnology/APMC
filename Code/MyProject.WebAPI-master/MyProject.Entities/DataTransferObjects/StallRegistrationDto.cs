@@ -30,5 +30,15 @@ namespace MyProject.Entities.DataTransferObjects
         public int ApproveBy { get; set; }
         public DateTime ApprovedDate { get; set; }    
         public string RejectReason { get; set; }
+        
+        public string MerchantName { get; set; }
+        public string MobileNo { get; set; }
+
+        public string StallNo { get; set; }
+
+        public string StallName { get; set; }
+
+        public string StallRegNo { get; set; }
+        public string Area { get; set; }
     }
 }

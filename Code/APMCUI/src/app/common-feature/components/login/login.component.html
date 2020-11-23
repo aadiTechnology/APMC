@@ -26,7 +26,7 @@
                   <input
                     type="text"
                     class="form-control"
-                    placeholder="User Id ( Mobile No)"
+                    placeholder="User ID"
                     [(ngModel)]="user.UserName"
                     required
                     #FiledUserName="ngModel"
@@ -58,6 +58,7 @@
                   <input
                     type="password"
                     class="form-control"
+                    autocomplete="on"
                     placeholder="Password"
                     [(ngModel)]="user.Password"
                     required
@@ -65,7 +66,19 @@
                     #FieldPassword="ngModel"
                     #FieldPasswordInput
                     name="FieldPassword"
+                    [type]="hide ? 'password' : 'text'"
                   />
+                  <div class="border rounded-right border-left-0 input-group-prepend">
+                    <span
+                      (click)="myFunction()"
+                      class="bg-transparent input-group-text text-black-50"
+                      ><i
+                        [class.fa-eye-slash]="hide"
+                        [class.fa-eye]="!hide"
+                        class="fas fa-lg"
+                      ></i
+                    ></span>
+                  </div>
                 </div>
                 <div
                   [ngStyle]="{'display': FieldPassword.invalid && (FieldPassword.dirty || FieldPassword.touched || LoginForm.submitted) ? 'block': 'none'}"

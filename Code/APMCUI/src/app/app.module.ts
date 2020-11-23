@@ -29,6 +29,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { ToastrModule } from 'ngx-toastr';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TimepickerModule } from 'ngx-bootstrap/timepicker';
+import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 
 @NgModule({
   declarations: [AppComponent],
@@ -55,13 +56,14 @@ import { TimepickerModule } from 'ngx-bootstrap/timepicker';
     SharedModule,
     MatTabsModule,
     MatDatepickerModule,
+    NgxMaterialTimepickerModule,
     ModalModule.forRoot(),
     TimepickerModule.forRoot(),
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
     }),
     ToastrModule.forRoot({
-      timeOut: 2500,
+      timeOut: 5500,
       positionClass: 'toast-top-center',
       preventDuplicates: true,
       countDuplicates: false,

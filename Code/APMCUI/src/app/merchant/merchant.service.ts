@@ -15,11 +15,20 @@ export class MerchantService {
   getAllProductCategories(): any {
     return this.httpService.get('Merchant/GetAllProductCategory');
   }
+  getAllProducts(CategoryId): any {
+    return this.httpService.get(`Indent/GetProducts?CategoryId=${CategoryId}`);
+  }
+  getAllGetAllDrivers(): any {
+    return this.httpService.get('Indent/GetAllDrivers');
+  }
+  getAllUnits(): any {
+    return this.httpService.get('Indent/GetUnits');
+  }
 
   stallRegistration(data): Observable<any> {
     return this.httpService.post('Merchant/StallRegistration', data);
   }
   indentCreation(indentData){
-    return this.httpService.post('Indent/Add', indentData);
+    return this.httpService.post('Indent/AddIndent', indentData);
   }
 }

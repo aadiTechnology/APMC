@@ -24,6 +24,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatInputModule } from '@angular/material/input';
 import { ModalModule } from 'ngx-bootstrap/modal';
 
+
 @NgModule({
   declarations: [CommonFeatureComponent, LoginComponent, RegisterComponent],
   imports: [
@@ -46,6 +47,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     FormsModule,
     MatTabsModule,
     MatInputModule,
+   
     // ModalModule.forRoot(),
   ],
 })
