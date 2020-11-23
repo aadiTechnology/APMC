@@ -225,11 +225,12 @@
           name="FieldVehicleNumber"
         />
       </div>
+      <!-- //pattern="/^(0?[1-9]|[12][0-9]|3[01])[\/-](0?[1-9]|1[012])[\/-]\d{4}$/" -->
       <div class="input-group form-group">
         <input
           type="date"
           placeholder="Select Date"
-          pattern="/^(0?[1-9]|[12][0-9]|3[01])[\/-](0?[1-9]|1[012])[\/-]\d{4}$/"
+          
           class="form-control"
           [(ngModel)]="merchantindent.ETADate"
           #FieldSelectDate="ngModel"
@@ -265,7 +266,7 @@
           placeholder="Select time"
           [ngClass]="{'has-error': FieldSelectTime.invalid && (FieldSelectTime.dirty || FieldSelectTime.touched
         || CreateIndentForm.submitted) }"
-        disabled
+        
         />
         <ngx-material-timepicker #defaultValue> </ngx-material-timepicker>
       </div>

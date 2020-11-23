@@ -82,7 +82,7 @@ export class CreatIndentComponent implements OnInit {
       ProductId: null,
       ProductName: null,
       ProductQuantity: null,
-      Unit: null,
+     Unit:null,
       UnitId: null,
     };
     this.indent = {
@@ -147,27 +147,27 @@ export class CreatIndentComponent implements OnInit {
   }
   createIndent(form: NgForm): void {
     this.ngxSpinnerService.show();
-    delete this.selectedProducts[0].Unit;
     if (form.valid && this.selectedProducts.length !== 0) {
+     const  IndentDetails={
+      RollId:this.currentUser.id,
+      CreatedBy:this.currentUser.roleId,
+      DriverName: this.merchantindent.DriverName,
+      DriverNo: this.merchantindent.DriverNo,
+      ETADate: this.merchantindent.ETADate,
+      ETATime: this.merchantindent.ETATime,
+      VehicleNo: this.merchantindent.VehicleNo,
+      SupplierName: this.merchantindent.SupplierName,
+      SupplierNo: this.merchantindent.SupplierNo,   
+      };
       const indentData = {
-
         IndentProducts:this.selectedProducts,
-        RollId:this.currentUser.id,
-        CreatedBy:this.currentUser.roleId,
-        DriverName: this.merchantindent.DriverName,
-        DriverNo: this.merchantindent.DriverNo,
-        ETADate: this.merchantindent.ETADate,
-        ETATime: this.merchantindent.ETATime,
-        VehicleNo: this.merchantindent.VehicleNo,
-        SupplierName: this.merchantindent.SupplierName,
-        SupplierNo: this.merchantindent.SupplierNo,       
-      
+        IndentDetails:IndentDetails
       };
       this.merchantService.indentCreation(indentData).subscribe(
         (arg) => {
           if (arg) {
             this.toastr.success("Indent Creation successful", "Success");
-           alert(JSON.stringify(arg));
+          //  alert(JSON.stringify(arg));
             this.ngxSpinnerService.hide();
           }
           form.resetForm();
@@ -179,6 +179,7 @@ export class CreatIndentComponent implements OnInit {
       );
     } else {
       this.ngxSpinnerService.hide();
+      this.toastr.error("Please create indent details")
     }
   }
 
@@ -232,7 +233,7 @@ export class CreatIndentComponent implements OnInit {
       (x) => x.id === +event.target.value
     )[0];
     this.product.UnitId = +unit.id;
-    this.product.Unit = unit.unit;
+   this.product.Unit = unit.unit;
   }
 
   getAllProductCategories(): void {

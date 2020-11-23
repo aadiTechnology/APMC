@@ -17,7 +17,7 @@ export class RegisterComponent implements OnInit {
   hide: boolean = true;
   hidee: boolean = true;
   user: {
-    RoleId: number;
+    RoleId: string;
     FirstName: string;
     LastName: string;
     MobileNo: number;
