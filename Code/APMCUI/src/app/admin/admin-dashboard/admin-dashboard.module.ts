@@ -7,7 +7,7 @@ import { StallRegistrationRequestsComponent } from './components/stall-registrat
 import { RouterModule } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { StallRegistrationListComponent } from './components/stall-registration-list/stall-registration-list.component';
-
+import { FormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [AdminDashboardComponent, StallRegistrationRequestsComponent, DashboardComponent, StallRegistrationListComponent],
@@ -15,6 +15,7 @@ import { StallRegistrationListComponent } from './components/stall-registration-
     CommonModule,
     AdminDashboardRoutingModule,
     RouterModule,
+    FormsModule
   ]
 })
 export class AdminDashboardModule { }

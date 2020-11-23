@@ -64,10 +64,7 @@ export class StallRegistrationComponent implements OnInit {
     this.productCategory = new Array<ProductCategory>();
   }
 
-  //Cancel button popup
-  openModal(template: TemplateRef<any>): void {
-    this.modalRef = this.modalService.show(template, { class: "modal-sm" });
-  }
+  
 
   ngOnInit(): void {
     this.getAllProductCategories();
@@ -75,7 +72,7 @@ export class StallRegistrationComponent implements OnInit {
   }
 
   onProductSelect(StallRegisterForm: NgForm, event): void {
-    if (event) {
+    if (event!==null) {
       if (this.selectedProducts.length === 0) {
 
       this.stall.Category.push(event);
@@ -93,6 +90,9 @@ export class StallRegistrationComponent implements OnInit {
        this.CategoryId = null;
        this.selected = null;
        StallRegisterForm.controls["Pcategory"].reset();
+  }
+  else{
+    this.toastr.error("Please Select Category ", "Error");
   }
 }
 
@@ -150,21 +150,13 @@ export class StallRegistrationComponent implements OnInit {
     }
       
   }
+  
 
-  confirm(): void {
-    this.message = "Confirmed!";
-    this.router.navigate(["/merchant"]);
-    this.modalRef.hide();
-  }
-  decline(): void {
-    this.message = "Declined!";
-    this.modalRef.hide();
-  }
-
-  getAllStallDetails() {
+  getAllStallDetails():void {
     this.merchantService.getAllStallDetails().subscribe((arg) => {
       if (arg) {
         this.stalllist = arg.rows;
+        alert(JSON.stringify(this.stalllist))
       }
     });
   }
@@ -175,5 +167,20 @@ export class StallRegistrationComponent implements OnInit {
         this.productCategory = arg.rows;
       }
     });
+  }
+
+  //Cancel button popup
+  openModal(template: TemplateRef<any>): void {
+    this.modalRef = this.modalService.show(template, { class: "modal-sm" });
+  }
+
+  confirm(): void {
+    this.message = "Confirmed!";
+    this.router.navigate(["/merchant"]);
+    this.modalRef.hide();
+  }
+  decline(): void {
+    this.message = "Declined!";
+    this.modalRef.hide();
   }
 }

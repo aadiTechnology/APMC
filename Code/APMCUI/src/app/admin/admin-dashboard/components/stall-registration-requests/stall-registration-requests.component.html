@@ -6,14 +6,20 @@
       </div>
     </div>
     <div class="card-body">
-      <form >
+      <form 
+      novalidate
+      autocomplete="off"
+      name="ApproveStallForm"
+      #ApproveStallForm="ngForm"
+      (ngSubmit)="approveStall(ApproveStallForm)"
+      >
+  
         <div class="input-group form-group">
-          <pre></pre>
           <input
             type="txt"
             class="form-control"
             placeholder="First Name"
-            value="{{Approverow[0].merchantName}}"
+            value="{{Approverow?.merchantName}}"
             disabled
           />
         </div>
@@ -23,7 +29,7 @@
             type="txt"
             class="form-control"
             placeholder="Mobile No"
-            value="{{Approverow[0].mobileNo}}"
+            value="{{Approverow?.mobileNo}}"
             disabled
           />
         </div>
@@ -33,7 +39,16 @@
               type="txt"
               class="form-control"
               placeholder="Stall No"
-              value="{{Approverow[0].stallNo}}"
+              value="{{Approverow?.stallNo}}"
+              disabled
+            />
+          </div>
+          <div class="input-group form-group">
+            <input
+              type="txt"
+              class="form-control"
+              placeholder="stallRegNo"
+              value="{{Approverow?.approvedDate|date: 'dd/MM/yy'}}"
               disabled
             />
           </div>
