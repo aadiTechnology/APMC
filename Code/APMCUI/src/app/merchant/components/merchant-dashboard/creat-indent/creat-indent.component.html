@@ -135,9 +135,11 @@
           <th>Units</th>
           <th>Action</th>
         </tr>
-        <tr *ngIf="selectedProducts?.length <= 0">  <td colspan="10" align="center">
-          <h3>No data to display</h3>
-        </td></tr>
+        <tr *ngIf="selectedProducts?.length <= 0">
+          <td colspan="10" align="center">
+            <h3>No data to display</h3>
+          </td>
+        </tr>
         <tr *ngFor="let item of selectedProducts; let i = index">
           <td>{{i + 1}}</td>
           <td>{{item.CategoryName}}</td>
@@ -164,6 +166,7 @@
           [(ngModel)]="merchantindent.DriverName"
           placeholder="Driver Name"
           required
+          pattern="[a-zA-Z ]*"
           autocomplete="off"
           [typeahead]="driverlist"
           type
@@ -220,25 +223,36 @@
           type="txt"
           class="form-control"
           placeholder="Vehicle Number"
+          pattern="[a-zA-Z0-9]+"
           [(ngModel)]="merchantindent.VehicleNo"
           #FieldVehicleNumber="ngModel"
           name="FieldVehicleNumber"
         />
       </div>
-      <!-- //pattern="/^(0?[1-9]|[12][0-9]|3[01])[\/-](0?[1-9]|1[012])[\/-]\d{4}$/" -->
-      <div class="input-group form-group">
+      <div
+        *ngIf="FieldVehicleNumber.invalid && (FieldVehicleNumber.dirty || FieldVehicleNumber.touched || CreateIndentForm.submitted )"
+        class="text-danger"
+      >
+        <div [hidden]="!FieldVehicleNumber.errors.pattern">
+          Enter valid vehicle number
+        </div>
+      </div>
+
+      <div class="form-group">
         <input
-          type="date"
-          placeholder="Select Date"
-          
           class="form-control"
-          [(ngModel)]="merchantindent.ETADate"
-          #FieldSelectDate="ngModel"
           name="FieldSelectDate"
           required
-          [min]="getToday()"
+          #FieldSelectDate="ngModel"
+          [(ngModel)]="merchantindent.ETADate"
+          bsDatepicker
+          placeholder="Select Date"
+          container=""
+          [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY',adaptivePosition: true }"
+          [minDate]="minDate"
+          [maxlength]="10"
           [ngClass]="{'has-error': FieldSelectDate.invalid && (FieldSelectDate.dirty || FieldSelectDate.touched
-              || CreateIndentForm.submitted) }"
+          || CreateIndentForm.submitted) }"
         />
       </div>
       <div
@@ -247,9 +261,6 @@
       >
         <div [hidden]="!FieldSelectDate.errors.required">
           Date is required
-        </div>
-        <div [hidden]="isDateValid">
-          Date is invalid
         </div>
       </div>
 
@@ -266,7 +277,6 @@
           placeholder="Select time"
           [ngClass]="{'has-error': FieldSelectTime.invalid && (FieldSelectTime.dirty || FieldSelectTime.touched
         || CreateIndentForm.submitted) }"
-        
         />
         <ngx-material-timepicker #defaultValue> </ngx-material-timepicker>
       </div>
@@ -279,22 +289,44 @@
         <input
           type="txt"
           class="form-control"
+          pattern="[a-zA-Z ]*"
           placeholder="Supplier Name"
           [(ngModel)]="merchantindent.SupplierName"
           #FieldSupplierName="ngModel"
           name="#FieldSupplierName"
+          [ngClass]="{'has-error': FieldSupplierName.invalid && (FieldSupplierName.dirty || FieldSupplierName.touched
+          || CreateIndentForm.submitted) }"
         />
+      </div>
+      <div
+        *ngIf="FieldSupplierName.invalid && (FieldSupplierName.dirty || FieldSupplierName.touched || CreateIndentForm.submitted )"
+        class="text-danger"
+      >
+        <div [hidden]="!FieldSupplierName.errors.pattern">
+          Enter valid supplier name
+        </div>
       </div>
       <div class="input-group form-group">
         <input
           type="txt"
           class="form-control"
+          pattern="[0-9]*"
           placeholder="Supplier Number"
           maxlength="10"
           [(ngModel)]="merchantindent.SupplierNo"
           #FieldSupplierNumber="ngModel"
           name="FieldSupplierNumber"
+          [ngClass]="{'has-error': FieldSupplierNumber.invalid && (FieldSupplierNumber.dirty || FieldSupplierNumber.touched
+          || CreateIndentForm.submitted) }"
         />
+      </div>
+      <div
+        *ngIf="FieldSupplierNumber.invalid && (FieldSupplierNumber.dirty || FieldSupplierNumber.touched || CreateIndentForm.submitted )"
+        class="text-danger"
+      >
+        <div [hidden]="!FieldSupplierNumber.errors.pattern">
+          Enter valid supplier number
+        </div>
       </div>
 
       <br />

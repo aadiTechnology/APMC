@@ -17,7 +17,7 @@ import { UnitList } from "../../../entities/unitlist";
 })
 export class CreatIndentComponent implements OnInit {
   selected: string;
-  isDateValid:boolean=true;
+  minDate:Date;
   currentUser: any; // session Cureent User
   ETATime = "6:00 am";
   product: {
@@ -60,8 +60,9 @@ export class CreatIndentComponent implements OnInit {
     private router: Router,
     private merchantService: MerchantService,
     private ngxSpinnerService: NgxSpinnerService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
   ) {
+    this.minDate=new Date();
     this.currentUser = JSON.parse(sessionStorage.getItem("CurrentUser"));
     this.merchantindent = {
       productcategory: null,
@@ -111,14 +112,7 @@ export class CreatIndentComponent implements OnInit {
     this.getAllUnits();
     this.getAllGetAllDrivers();
   }
-  isValidDate(d): void {
-    if(!isNaN(Date.parse(d)))
-	{
-  this.isDateValid= true;
-  }else{
-    this.isDateValid= false;
-  }
-  }
+ 
   openModal(template: TemplateRef<any>): void {
     this.modalRef = this.modalService.show(template, { class: "modal-sm" });
   }
@@ -194,7 +188,7 @@ export class CreatIndentComponent implements OnInit {
     this.modalRef.hide();
   }
   getToday(): string {
-    return new Date().toISOString().split('T')[0]
+    return new Date().toISOString().split('T')[0];
  }
 
   onCategoryChange(event): void {

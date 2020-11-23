@@ -71,7 +71,7 @@ namespace MyProject.WebAPI.Controllers
 
                 if (stallregisterDto.Category.ToList().Count==0)
                 {
-                    return await base.FinalizStatusCodeeMessage("Category Is Not Selected Or Empty", 200);
+                    return await base.FinalizStatusCodeeMessage("Error: Category Is Not Selected Or Empty", 500);
                 }
                 
                 RepositoryWrapper.StallProductCategories.StallProductCategories(stallregisterDto.Category.ToList(), stallregisterDto.StallId);
@@ -81,7 +81,7 @@ namespace MyProject.WebAPI.Controllers
             }
             catch (Exception ex)
             {
-                return await base.FinalizStatusCodeeMessage("Error: Failure in Stall Registration : " + ex,401);
+                return await base.FinalizStatusCodeeMessage("Error: Failure in Stall Registration : " + ex,500);
             }
         }
     }

@@ -57,7 +57,7 @@ namespace MyProject.WebAPI.Controllers
                 {
                     RepositoryWrapper.StallDetails.UpdateStallAssigned(stallregisterDto.StallId);
                     RepositoryWrapper.StallRegistration.UpdateStallRegistrationAdmin(stallregisterDto.Id, stallregisterDto.ApproveBy, stallregisterDto.IsApproved, stallregisterDto.IsRejected, stallregisterDto.RejectReason);
-                    return await base.FinalizStatusCodeeMessage("StallRegistration Sucessfully Approved",200);
+                    return await base.FinalizeMessage("StallRegistration Sucessfully Approved");
                 }
                 else if (stallregisterDto.IsRejected == true && stallregisterDto.IsApproved != true && stallregisterDto.RejectReason != null && stallregisterDto.RejectReason != "")
                 {
@@ -66,7 +66,7 @@ namespace MyProject.WebAPI.Controllers
                 }
                 else
                 {
-                    return await base.FinalizStatusCodeeMessage("Error: Approved and Rejected Both Should not be true at same time  Or If Rejected Enter Reject Reason Compulsory",200);
+                    return await base.FinalizStatusCodeeMessage("Error: Approved and Rejected Both Should not be true at same time  Or If Rejected Enter Reject Reason Compulsory",500);
                 }
 
 
