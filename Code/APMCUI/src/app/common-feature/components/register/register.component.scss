@@ -1,49 +1,65 @@
 .text-danger{
     margin-bottom: 10px;
   }
-  [data-tip] {
-	position:relative;
+  [data-tooltip]:before {
+    /* needed - do not touch */
+    content: attr(data-tooltip);
+    position: absolute;
+    opacity: 0;
+    
+    /* customizable */
+    transition: all 0.15s ease;
+    padding: 10px;
+    color: #333;
+    border-radius: 10px;
+    box-shadow: 2px 2px 1px silver;    
 }
-[data-tip]:before {
-	content:'';
-	/* hides the tooltip when not hovered */
-	display:none;
-	content:'';
-	border-left: 5px solid transparent;
-	border-right: 5px solid transparent;
-	border-bottom: 5px solid transparent;	
-	position:absolute;
-	top:30px;
-	left:35px;
-	z-index:8;
-	font-size:0;
-	line-height:0;
-	width:0;
-	height:0;
-}
-[data-tip]:after {
-	display:none;
-	content:attr(data-tip);
-	position:absolute;
-	top:-60px;
-	left:0px;
-	padding:5px 8px;
-	background:silver;
-	color:black;
-	z-index:9;
-	font-size: 0.75em;
-	height:68px;
-	width: 72% !important;
-	margin-left: 15% !important;
-	line-height:18px;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	border-radius: 3px;
-	white-space:pre-line;
 
-    word-break: break-word;
+[data-tooltip]:hover:before {
+    /* needed - do not touch */
+    opacity: 1;
+    
+    /* customizable */
+    background: silver;
+    margin-top: -50px;
+    margin-left: 20px;    
 }
-[data-tip]:hover:before,
-[data-tip]:hover:after {
+
+[data-tooltip]:not([data-tooltip-persistent]):before {
+    pointer-events: none;
+}[data-tooltip]:before {
+    /* needed - do not touch */
+    content: attr(data-tooltip);
+    position: absolute;
+	opacity: 0;
+	z-index: 9999;
+	font-size: 0.70em;
+	height: 55px;
+	line-height: 10px;
+	margin-bottom: 50px !important;
+    
+    /* customizable */
+    transition: all 0.15s ease;
+    padding: 10px;
+    color: #333;
+    border-radius: 10px;
+    box-shadow: 2px 2px 1px silver;    
+}
+
+[data-tooltip]:hover:before {
+    /* needed - do not touch */
+    opacity: 1;
+    
+    /* customizable */
+    background: silver;
+    margin-top: -50px;
+    margin-left: 20px;    
+}
+
+[data-tooltip]:not([data-tooltip-persistent]):before {
+    pointer-events: none;
+}
+[data-tooltip]:hover:before
+ {
 	display:block;
 }
