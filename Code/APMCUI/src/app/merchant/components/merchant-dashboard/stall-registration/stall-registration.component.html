@@ -90,10 +90,12 @@
           [typeaheadMultipleSearch]="false"
           typeaheadMultipleSearchDelimiters=" |"
           [typeaheadScrollable]="true"
+          [dropup]="true"
           [typeaheadOptionsInScrollableView]="6"
           class="form-control"
           name="Pcategory"
           #Pcategory="ngModel"
+          class="form-control"
         />
         &nbsp;
         <a (click)="onProductSelect(StallRegisterForm,CategoryId)" class="btn btn-primary float-right"

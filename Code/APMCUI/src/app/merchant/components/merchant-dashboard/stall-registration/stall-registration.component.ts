@@ -142,7 +142,7 @@ export class StallRegistrationComponent implements OnInit {
           }
         );
       } else {
-        this.toastr.error("Please select category", "Error");
+        this.toastr.error("Please select correct category", "Error");
         this.ngxSpinnerService.hide();
       }
     } else {
