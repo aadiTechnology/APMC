@@ -142,7 +142,7 @@ export class StallRegistrationComponent implements OnInit {
           }
         );
       } else {
-        this.toastr.error("select category", "Error");
+        this.toastr.error("Please select category", "Error");
         this.ngxSpinnerService.hide();
       }
     } else {
@@ -156,7 +156,6 @@ export class StallRegistrationComponent implements OnInit {
     this.merchantService.getAllStallDetails().subscribe((arg) => {
       if (arg) {
         this.stalllist = arg.rows;
-        alert(JSON.stringify(this.stalllist))
       }
     });
   }
