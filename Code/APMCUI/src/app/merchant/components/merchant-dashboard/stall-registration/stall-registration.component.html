@@ -98,7 +98,7 @@
           class="form-control"
         />
         &nbsp;
-        <a (click)="onProductSelect(StallRegisterForm,CategoryId)" class="btn btn-primary float-right"
+        <a [ngClass]="{'disabled': selected == null}" (click)="onProductSelect(StallRegisterForm,CategoryId)" class="btn btn-primary float-right "
         ><i class="fa fa-plus"></i
       ></a>
      

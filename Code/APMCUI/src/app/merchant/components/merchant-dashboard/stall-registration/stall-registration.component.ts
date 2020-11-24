@@ -72,7 +72,7 @@ export class StallRegistrationComponent implements OnInit {
   }
 
   onProductSelect(StallRegisterForm: NgForm, event): void {
-    if (event!==null) {
+    if (event!==null && event !=undefined) {
       if (this.selectedProducts.length === 0) {
 
       this.stall.Category.push(event);
