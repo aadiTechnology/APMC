@@ -72,7 +72,7 @@ export class StallRegistrationComponent implements OnInit {
   }
 
   onProductSelect(StallRegisterForm: NgForm, event): void {
-    if (event!==null) {
+    if (event!==null && event !=undefined) {
       if (this.selectedProducts.length === 0) {
 
       this.stall.Category.push(event);
@@ -142,7 +142,7 @@ export class StallRegistrationComponent implements OnInit {
           }
         );
       } else {
-        this.toastr.error("Please select category", "Error");
+        this.toastr.error("Please select correct category", "Error");
         this.ngxSpinnerService.hide();
       }
     } else {

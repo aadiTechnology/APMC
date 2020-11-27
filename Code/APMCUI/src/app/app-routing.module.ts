@@ -37,10 +37,10 @@ const routes: Routes = [
           import("./admin/admin.module").then((m) => m.AdminModule),
       },
       {
-        path: "entryGateOperator",
+        path: "exitGateOperator",
         loadChildren: () =>
-          import("./entry-gate-operator/entry-gate-operator.module").then(
-            (m) => m.EntryGateOperatorModule
+          import("./exit-gate-operator/exit-gate-operator.module").then(
+            (m) => m.ExitGateOperatorModule
           ),
       },
     ],
