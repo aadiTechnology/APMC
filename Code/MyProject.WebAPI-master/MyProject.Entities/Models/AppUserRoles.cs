@@ -13,11 +13,12 @@ namespace MyProject.Entities.Models
     public enum Roles
     {
         Admin = 1,
-        Merchant=2,
-        Driver=3,
-        GateOperator=4,
-        Agent=5,
-        Transporter=6
+        Merchant = 2,
+        Driver = 3,
+        Agent = 5,
+        Transporter = 6,
+        EntryGateOperator = 7,
+        ExitGateOperator = 8
     }
 }
 
