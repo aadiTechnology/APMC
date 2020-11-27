@@ -47,7 +47,7 @@ export class ExitGateComponent implements OnInit {
 
 confirm(): void {
   this.message = "Confirmed!";
-  this.router.navigate(["/dashboard"]);
+  this.router.navigate(["exitGateOperator/dashboard"]);
   this.modalRef.hide();
 }
 decline(): void {
