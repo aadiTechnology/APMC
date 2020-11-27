@@ -46,6 +46,18 @@
           <span>Create Indent</span>
         </a>
       </li>
+      <li *ngIf="currentUser.role=='ExitGateOperator'">
+        <a [routerLink]="['/exitGateOperator/dashboard']">
+          <i class="fa fa-tv"></i>
+          <span>Dashboard</span>
+        </a>
+      </li>
+      <li *ngIf="currentUser.role=='ExitGateOperator'">
+        <a [routerLink]="['/exitGateOperator/exitGate']">
+          <i class="fa fa-tv"></i>
+          <span>Exit Gate Entry</span>
+        </a>
+      </li>
     </ul>
   </nav>
 </aside>

@@ -44,6 +44,8 @@ export class LoginComponent implements OnInit {
               this.router.navigate(['/merchant']);
             }else if (arg.role === 'Admin') {
               this.router.navigate(['/admin']);
+            }else if (arg.role === 'ExitGateOperator') {
+              this.router.navigate(['/exitGateOperator']);
             }
             this.ngxSpinnerService.hide();
           }

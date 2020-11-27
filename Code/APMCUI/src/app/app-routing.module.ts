@@ -36,6 +36,13 @@ const routes: Routes = [
         loadChildren: () =>
           import("./admin/admin.module").then((m) => m.AdminModule),
       },
+      {
+        path: "exitGateOperator",
+        loadChildren: () =>
+          import("./exit-gate-operator/exit-gate-operator.module").then(
+            (m) => m.ExitGateOperatorModule
+          ),
+      },
     ],
   },
 ];

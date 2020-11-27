@@ -1,0 +1,129 @@
+<div class="card stall-register-box">
+  <div class="card-header text-center text-success">
+    <h3 class="mb-0">Exit Gate Entry</h3>
+  </div>
+
+  <div class="card-body">
+    <form>
+      <div class="">
+        <b>Vehicle Details:</b>
+      </div>
+      <hr />
+
+      <div class="input-group form-group">
+
+       <input
+       [(ngModel)]="selected"
+       placeholder="Enter Vehical No"
+       name="FieldVehicleNumber"
+       autocomplete="off"
+       [typeahead]= "states"
+       [typeaheadMultipleSearch]="false"
+       [typeaheadOptionsInScrollableView]="6"
+       [ngModelOptions]="{standalone: true}"
+       class="form-control"
+       required
+
+   />
+   
+      </div>
+
+      <!-- <div class="input-group form-group">
+        <input
+          type="txt"
+          name="FieldVehicleNumber"
+          class="form-control"
+          placeholder="Vehical No"
+          required
+          pattern="[a-zA-Z0-9]+"
+          [(ngModel)]="VehicleNo"
+          #FieldVehicleNumber="ngModel"
+          maxlength="10"
+        />
+      </div>
+      <div
+        *ngIf="FieldVehicleNumber.invalid && (FieldVehicleNumber.dirty || FieldVehicleNumber.touched )"
+        class="text-danger"
+      >
+        <div [hidden]="!FieldVehicleNumber.errors.required">
+          Vehicle number is required
+        </div>
+        <div [hidden]="!FieldVehicleNumber.errors.pattern">
+          Enter valid vehicle number
+        </div>
+      </div> -->
+
+      <div class="input-group form-group ">
+        <input
+          class="form-control text-primary"
+          matInput
+          aria-label="default time"
+          value="{{todaysDataTime}}"
+          minTime="CurrentTime"
+          name="FieldSelectTime"
+          placeholder="Select time"
+          disabled
+        />
+        <!-- [ngxTimepicker]="defaultValue" <ngx-material-timepicker #defaultValue> </ngx-material-timepicker> -->
+      </div>
+      <div>
+        <b>Vehicle Fine:</b>
+      </div>
+      <hr />
+      <div class="d-inline">
+      <div class="form-group form-check">
+        <input type="checkbox" class="form-check-input" id="1">
+        <label class="form-check-label" for="1">Extra Time</label>
+      </div>
+      <div class="form-group form-check">
+        <input type="checkbox" class="form-check-input" id="2">
+        <label class="form-check-label" for="2">No Parking</label>
+      </div>
+      </div>
+        <div class="input-group form-group">
+          <input
+            type="txt"
+            class="form-control"
+            placeholder="Enter Amount"
+            value=""
+          />
+        </div>
+        <hr>
+        <div class="form-group form-check text-center text-primary ">
+          <input type="checkbox" class="form-check-input" id="exampleCheck1">
+          <label class="form-check-label" for="exampleCheck1">Payment Received</label>
+        </div>
+
+        <div class="input-group form-group">
+          <div class="mx-auto">
+            <input
+              type="submit"
+              value="Save"
+              class="btn btn-success"
+            />&nbsp;&nbsp;&nbsp;
+            <input
+              type="button"
+              value="Cancel"
+              class="btn btn-danger"
+              (click)="openModal(template)"
+            />
+          </div>
+        </div>
+
+        <ng-template #template>
+          <div class="modal-body text-center">
+            <h3 class="mx-auto">Confirm Cancellation</h3>
+            <p>Do you want to cancel Exit Gate Entry ?</p>
+            <button type="button" class="btn btn-primary" (click)="confirm()">
+              Yes</button
+            >&nbsp;
+            <button type="button" class="btn btn-secondary" (click)="decline()">
+              No
+            </button>
+          </div>
+        </ng-template>
+ 
+      <!-- Material unchecked -->
+    </form>
+  </div>
+</div>
