@@ -22,5 +22,7 @@ namespace MyProject.Entities.Models
         public bool IsRejected { get; set; }
         public string RejectReason { get; set; }
         public DateTime CreatedDate { get; set; }
+        public string QrId { get; set; }
+        public bool IsScanned { get; set; }
     }
 }

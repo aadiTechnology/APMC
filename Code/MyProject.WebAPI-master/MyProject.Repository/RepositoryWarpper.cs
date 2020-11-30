@@ -1,4 +1,5 @@
-﻿using MyProject.Contracts;
+﻿using Microsoft.Extensions.Configuration;
+using MyProject.Contracts;
 using MyProject.Entities;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ namespace MyProject.Repository
     public class RepositoryWarpper : IRepositoryWrapper
     {
         private RepositoryContext _repoContext;
+        private readonly IConfiguration _configuration;
         private IEmployeeRepository _employee;
         private IAppUsersRepository _appUsers;
         private IStallDetailsRepository _stallDetails;
@@ -18,6 +20,7 @@ namespace MyProject.Repository
         private IIndentRepository _indentDetails;
         private IProductRepository _productDetails;
         private IUnitsRepository _units;
+        private IEntryCheckInDetailsRepository _entryCheckInDetails;
 
         public IEmployeeRepository Employee
         {
@@ -208,6 +211,27 @@ namespace MyProject.Repository
         {
             _repoContext = repositoryContext;
         }
+
+        public IEntryCheckInDetailsRepository EntryCheckInDetails
+        {
+            get
+            {
+                if (_entryCheckInDetails == null)
+                {
+                    _entryCheckInDetails = new EntryCheckInDetailsRepository(_repoContext);
+                }
+                return _entryCheckInDetails;
+            }
+            set
+            {
+                if (_entryCheckInDetails == null)
+                {
+                    _entryCheckInDetails = new EntryCheckInDetailsRepository(_repoContext);
+                };
+            }
+
+        }
+        
         public void Save()
         {
             _repoContext.SaveChanges();

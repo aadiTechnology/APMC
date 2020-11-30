@@ -23,9 +23,12 @@ namespace MyProject.Entities
 
         public DbSet<StallProductCategories> StallProductCategories { get; set; }
         public DbSet<IndentDetails> IndentDetails { get; set; }
+        public DbSet<GlobalConfiguration> GlobalConfigurations { get; set; }
         public DbSet<IndentProducts> IndentProducts { get; set; }
         public DbSet<Product> Product { get; set; }
         public DbSet<Units> Units { get; set; }
-
+        public DbSet<ParkingCharges> ParkingCharges { get; set; }
+        public DbSet<ChargesTypeMaster> ChargesTypeMaster { get; set; }
+        public DbSet<VehicleTypeMaster> VehicleTypeMaster { get; set; }
     }
 }
