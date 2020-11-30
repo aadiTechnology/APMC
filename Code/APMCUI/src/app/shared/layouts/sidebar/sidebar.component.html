@@ -66,6 +66,12 @@
         </a>
       </li>
       <li *ngIf="currentUser.role=='ExitGateOperator'">
+        <a [routerLink]="['/exitGateOperator/VehicleList']">
+          <i class="fa fa-tv"></i>
+          <span>Vehicel List</span>
+        </a>
+      </li>
+      <li *ngIf="currentUser.role=='ExitGateOperator'">
         <a [routerLink]="['/exitGateOperator/exitGate']">
           <i class="fa fa-tv"></i>
           <span>Exit Gate Entry</span>
