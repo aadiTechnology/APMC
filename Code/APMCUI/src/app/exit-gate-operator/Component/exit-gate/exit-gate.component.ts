@@ -1,5 +1,6 @@
 import { formatDate } from '@angular/common';
 import { Component, OnInit, TemplateRef } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Exitgate } from "../../entities/exitGate";
@@ -40,6 +41,9 @@ export class ExitGateComponent implements OnInit {
     'MH16PQ0005',
   ];
 
+  exitgate(form: NgForm):void {
+
+  }
  //Cancel button popup
  openModal(template: TemplateRef<any>): void {
   this.modalRef = this.modalService.show(template, { class: "modal-sm" });

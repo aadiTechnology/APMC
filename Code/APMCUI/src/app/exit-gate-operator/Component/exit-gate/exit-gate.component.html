@@ -4,7 +4,13 @@
   </div>
 
   <div class="card-body">
-    <form>
+    <form
+      novalidate
+      autocomplete="off"
+      name="ExitGateForm"
+      #ExitGateForm="ngForm"
+      (ngSubmit)="exitgate(ExitGateForm)"
+    >
       <div class="">
         <b>Vehicle Details:</b>
       </div>
@@ -16,6 +22,7 @@
        [(ngModel)]="selected"
        placeholder="Enter Vehical No"
        name="FieldVehicleNumber"
+       #FieldVehicleNumber="ngModel"
        autocomplete="off"
        [typeahead]= "states"
        [typeaheadMultipleSearch]="false"
@@ -23,10 +30,18 @@
        [ngModelOptions]="{standalone: true}"
        class="form-control"
        required
-
    />
+  </div>
+   <div
+        *ngIf="FieldVehicleNumber.invalid && (FieldVehicleNumber.dirty || FieldVehicleNumber.touched || ExitGateForm.submitted )"
+        class="text-danger"
+      >
+        <div [hidden]="!FieldVehicleNumber.errors.required">
+          Vehicle number is required
+        </div>
    
       </div>
+      
 
       <!-- <div class="input-group form-group">
         <input
