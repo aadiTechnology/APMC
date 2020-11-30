@@ -20,6 +20,8 @@ namespace MyProject.Contracts
         IProductRepository Product { get; set; }
         IUnitsRepository Units { get; set; }
         IEntryCheckInDetailsRepository EntryCheckInDetails { get; set; }
+
+        IExitGateRepository ExitGateRepository { get; set; }
         void Save();
     }
 }

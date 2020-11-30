@@ -12,8 +12,8 @@ namespace MyProject.Entities.Models
         public string VehicleNumber { get; set; }
         public string EntryFee { get; set; }
         public int ChargesTypeId { get; set; }
-        public DateTime InTime { get; set; }
-        public DateTime OutTime { get; set; }
+        public DateTime? InTime { get; set; }
+        public DateTime? OutTime { get; set; }
        
     }
 }

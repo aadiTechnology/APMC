@@ -1,3 +1,5 @@
 Code/APMCUI/package-lock.json
 /.vs
 Code/APMCUI/debug.log
+/Code/MyProject.WebAPI-master/MyProject.Entities/Migrations/20201130093619_updateAllowNullInOutTime.Designer.cs
+/Code/MyProject.WebAPI-master/MyProject.Entities/Migrations/20201130093619_updateAllowNullInOutTime.cs

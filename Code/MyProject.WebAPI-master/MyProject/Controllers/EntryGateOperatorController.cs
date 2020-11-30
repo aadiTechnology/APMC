@@ -14,11 +14,7 @@ namespace MyProject.WebAPI.Controllers
     [ApiController]
     public class EntryGateOperatorController : ControllerBase
     {
-        public override void InitializeController()
-        {
-
-        }
-
+        public override void InitializeController() { }
         public EntryGateOperatorController(IRepositoryWrapper repositoryWrapper)
         {
             RepositoryWrapper = repositoryWrapper;

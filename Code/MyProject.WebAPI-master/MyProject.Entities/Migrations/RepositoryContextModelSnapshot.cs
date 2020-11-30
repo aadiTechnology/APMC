@@ -233,13 +233,13 @@ namespace MyProject.Entities.Migrations
                     b.Property<string>("EntryFee")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("InTime")
+                    b.Property<DateTime?>("InTime")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("IndentId")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("OutTime")
+                    b.Property<DateTime?>("OutTime")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("VehicleNumber")

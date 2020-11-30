@@ -21,7 +21,7 @@ namespace MyProject.Repository
         private IProductRepository _productDetails;
         private IUnitsRepository _units;
         private IEntryCheckInDetailsRepository _entryCheckInDetails;
-
+        private IExitGateRepository _exitGateRepository;
         public IEmployeeRepository Employee
         {
             get
@@ -212,6 +212,24 @@ namespace MyProject.Repository
             _repoContext = repositoryContext;
         }
 
+        public IExitGateRepository ExitGateRepository
+        {
+            get
+            {
+                if (_exitGateRepository == null)
+                {
+                    _exitGateRepository = new ExitGateRepository(_repoContext);
+                }
+                return _exitGateRepository;
+            }
+            set
+            {
+                if (_exitGateRepository == null)
+                {
+                    _exitGateRepository = new ExitGateRepository(_repoContext);
+                };
+            }
+        }
         public IEntryCheckInDetailsRepository EntryCheckInDetails
         {
             get
