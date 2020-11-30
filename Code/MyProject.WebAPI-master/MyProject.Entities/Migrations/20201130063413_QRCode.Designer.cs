@@ -10,8 +10,8 @@ using MyProject.Entities;
 namespace MyProject.Entities.Migrations
 {
     [DbContext(typeof(RepositoryContext))]
-    [Migration("20201120102333_Drop&CreateDB")]
-    partial class DropCreateDB
+    [Migration("20201130063413_QRCode")]
+    partial class QRCode
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -72,6 +72,24 @@ namespace MyProject.Entities.Migrations
                     b.ToTable("AppUsers");
                 });
 
+            modelBuilder.Entity("MyProject.Entities.Models.ChargesTypeMaster", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<decimal>("ExtraTimeCharges")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("NoParkingCharges")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ChargesTypeMaster");
+                });
+
             modelBuilder.Entity("MyProject.Entities.Models.Employee", b =>
                 {
                     b.Property<int>("Id")
@@ -93,6 +111,24 @@ namespace MyProject.Entities.Migrations
                     b.ToTable("Employees");
                 });
 
+            modelBuilder.Entity("MyProject.Entities.Models.GlobalConfiguration", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Key")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Value")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("GlobalConfigurations");
+                });
+
             modelBuilder.Entity("MyProject.Entities.Models.IndentDetails", b =>
                 {
                     b.Property<int>("Id")
@@ -103,7 +139,7 @@ namespace MyProject.Entities.Migrations
                     b.Property<int>("AppovedBy")
                         .HasColumnType("int");
 
-                    b.Property<int>("CreatedBy")
+                    b.Property<int?>("CreatedBy")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
@@ -121,22 +157,25 @@ namespace MyProject.Entities.Migrations
                     b.Property<string>("ETATime")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("IndentId")
-                        .HasColumnType("int");
-
                     b.Property<bool>("IsApprove")
                         .HasColumnType("bit");
 
                     b.Property<bool>("IsRejected")
                         .HasColumnType("bit");
 
-                    b.Property<int>("OrderNo")
-                        .HasColumnType("int");
+                    b.Property<bool>("IsScanned")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("OrderNo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("QrId")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("RejectReason")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("RollId")
+                    b.Property<int?>("RollId")
                         .HasColumnType("int");
 
                     b.Property<string>("SupplierName")
@@ -160,13 +199,13 @@ namespace MyProject.Entities.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("CategoryId")
+                    b.Property<int?>("CategoryId")
                         .HasColumnType("int");
 
-                    b.Property<int>("IndentId")
+                    b.Property<int?>("IndentId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ProductId")
+                    b.Property<int?>("ProductId")
                         .HasColumnType("int");
 
                     b.Property<string>("ProductName")
@@ -175,12 +214,45 @@ namespace MyProject.Entities.Migrations
                     b.Property<string>("ProductQuantity")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("UnitId")
+                    b.Property<int?>("UnitId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.ToTable("IndentProducts");
+                });
+
+            modelBuilder.Entity("MyProject.Entities.Models.ParkingCharges", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("ChargesTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("EntryFee")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("InTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("IndentId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("OutTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("VehicleNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("VehicleTypeId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ParkingCharges");
                 });
 
             modelBuilder.Entity("MyProject.Entities.Models.Product", b =>
@@ -313,6 +385,21 @@ namespace MyProject.Entities.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Units");
+                });
+
+            modelBuilder.Entity("MyProject.Entities.Models.VehicleTypeMaster", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("VehicleType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("VehicleTypeMaster");
                 });
 #pragma warning restore 612, 618
         }

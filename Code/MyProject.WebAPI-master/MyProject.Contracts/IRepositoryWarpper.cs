@@ -19,6 +19,7 @@ namespace MyProject.Contracts
         IIndentRepository IndentDetails { get; set; }
         IProductRepository Product { get; set; }
         IUnitsRepository Units { get; set; }
+        IEntryCheckInDetailsRepository EntryCheckInDetails { get; set; }
         void Save();
     }
 }
