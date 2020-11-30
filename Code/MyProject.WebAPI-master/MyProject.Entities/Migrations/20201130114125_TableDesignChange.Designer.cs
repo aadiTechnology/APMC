@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MyProject.Entities;
 
 namespace MyProject.Entities.Migrations
 {
     [DbContext(typeof(RepositoryContext))]
-    partial class RepositoryContextModelSnapshot : ModelSnapshot
+    [Migration("20201130114125_TableDesignChange")]
+    partial class TableDesignChange
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -236,9 +238,6 @@ namespace MyProject.Entities.Migrations
                     b.Property<string>("ExtraTimeFee")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("FineCharges")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime?>("InTime")
                         .HasColumnType("datetime2");
 
@@ -249,12 +248,6 @@ namespace MyProject.Entities.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("OutTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("UpdatedById")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("UpdatedDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("VehicleNumber")
