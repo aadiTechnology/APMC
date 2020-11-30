@@ -175,7 +175,7 @@ export class StallRegistrationComponent implements OnInit {
 
   confirm(): void {
     this.message = "Confirmed!";
-    this.router.navigate(["/merchant"]);
+    this.router.navigate(["/merchant/dashboard"]);
     this.modalRef.hide();
   }
   decline(): void {
