@@ -26,7 +26,7 @@
       </li>
       
       <li *ngIf="currentUser.role=='Merchant'">
-        <a [routerLink]="['/merchant/stallregistration']">
+        <a [routerLink]="['/merchant/dashboard']">
           <i class="fa fa-tv"></i>
           <span>Dashboard</span>
         </a>
@@ -41,9 +41,34 @@
         </a>
       </li>
       <li *ngIf="currentUser.role=='Merchant'">
-        <a [routerLink]="['/merchant/creatindent']" routerLinkActive="active">
+        <a [routerLink]="['/merchant/creatindent']"
+         routerLinkActive="active">
           <i class="fa fa-tv"></i>
           <span>Create Indent</span>
+        </a>
+      </li>
+      <li *ngIf="currentUser.role=='EntryGateOperator'">
+        <a [routerLink]="['/entryGateOperator/dashboard']">
+          <i class="fa fa-tv"></i>
+          <span>Dashboard</span>
+        </a>
+      </li>
+      <li *ngIf="currentUser.role=='EntryGateOperator'">
+        <a [routerLink]="['/entryGateOperator/indentListRecord']">
+          <i class="fa fa-tv"></i>
+          <span>Indent List</span>
+        </a>
+      </li>
+      <li *ngIf="currentUser.role=='ExitGateOperator'">
+        <a [routerLink]="['/exitGateOperator/dashboard']">
+          <i class="fa fa-tv"></i>
+          <span>Dashboard</span>
+        </a>
+      </li>
+      <li *ngIf="currentUser.role=='ExitGateOperator'">
+        <a [routerLink]="['/exitGateOperator/exitGate']">
+          <i class="fa fa-tv"></i>
+          <span>Exit Gate Entry</span>
         </a>
       </li>
     </ul>
