@@ -8,8 +8,8 @@ namespace MyProject.Contracts
 {
     public interface IExitGateRepository: IRepositoryBase<ParkingCharges>
     {
-        Task<IEnumerable<ParkingCharges>> GetAllCheckInVehicalDetails();
-        Task<IEnumerable<ParkingCharges>> GetCheckInVehicalDetailsById(int Id);
+        Task<IEnumerable<ParkingCharges>> GetAllCheckInVehicleDetails();
+        Task<IEnumerable<ParkingCharges>> GetCheckInVehicleDetailsById(int Id);
         ParkingCharges UpdateParkingCharges(ParkingCharges parkingCharges);
     }
 }
