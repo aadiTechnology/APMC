@@ -10,6 +10,6 @@ export class ExitGateServiceService {
   constructor(private httpService: HttpService) { }
 
   GetAllCheckInVehicalDetails(): any {
-    return this.httpService.get('ExitGate/GetAllCheckInVehicalDetails');
+    return this.httpService.get('ExitGate/GetAllCheckInVehicleDetails');
   }
 }

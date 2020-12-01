@@ -13,6 +13,7 @@ export class VehicleListComponent implements OnInit {
   LVehicleList:any;
   message: string;
   modalRef: any;
+  term: string;
 
 
 
@@ -29,8 +30,10 @@ export class VehicleListComponent implements OnInit {
   
 
   getAllStallRegistration(): void {
-    this.exitGateServiceService.GetAllCheckInVehicalDetails().subscribe((result) => {
-      this.LVehicleList = result.rows;
+    this.exitGateServiceService.GetAllCheckInVehicalDetails().subscribe((arg) => {
+      if (arg) {
+        this.LVehicleList = arg.rows;
+      }
     });
   }
 

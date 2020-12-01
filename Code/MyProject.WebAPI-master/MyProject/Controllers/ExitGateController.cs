@@ -21,29 +21,30 @@ namespace MyProject.WebAPI.Controllers
         }
 
         public IRepositoryWrapper RepositoryWrapper { get; }
+
         /// <summary>
-        /// This method is used to get all checkin vehical details of current date.
+        /// This method is used to get all checkin vehicle details of current date.
         /// </summary>
         /// <returns></returns>
-        [HttpGet("GetAllCheckInVehicalDetails")]
-        public async Task<JsonResult> GetAllCheckInVehicalDetails()
+        [HttpGet("GetAllCheckInVehicleDetails")]
+        public async Task<JsonResult> GetAllCheckInVehicleDetails()
         {
-            return await base.FinalizeMultiple<IEnumerable<ParkingCharges>>(await RepositoryWrapper.ExitGateRepository.GetAllCheckInVehicalDetails());
+            return await base.FinalizeMultiple<IEnumerable<ParkingCharges>>(await RepositoryWrapper.ExitGateRepository.GetAllCheckInVehicleDetails());
         }
 
         /// <summary>
-        /// This method is used to get checkin details of selected vehical.
+        /// This method is used to get checkin details of selected vehicle.
         /// </summary>
         /// <param name="Id"></param>
         /// <returns></returns>
-        [HttpGet("GetCheckInVehicalDetailsById")]
-        public async Task<JsonResult> GetCheckInVehicalDetailsById(int Id)
+        [HttpGet("GetCheckInVehicleDetailsById")]
+        public async Task<JsonResult> GetCheckInVehicleDetailsById(int Id)
         {
-            return await base.FinalizeMultiple<IEnumerable<ParkingCharges>>(await RepositoryWrapper.ExitGateRepository.GetCheckInVehicalDetailsById(Id));
+            return await base.FinalizeMultiple<IEnumerable<ParkingCharges>>(await RepositoryWrapper.ExitGateRepository.GetCheckInVehicleDetailsById(Id));
         }
 
         /// <summary>
-        /// This method is used to update exit details of selected vehical.
+        /// This method is used to update exit details of selected vehicle.
         /// </summary>
         /// <param name="parkingCharges"></param>
         /// <returns></returns>
@@ -53,7 +54,7 @@ namespace MyProject.WebAPI.Controllers
             try
             {
                 RepositoryWrapper.ExitGateRepository.UpdateParkingCharges(parkingCharges);
-                return await base.FinalizeMessage("Vehical exit succesfully");
+                return await base.FinalizeMessage("Vehicle exit succesfully");
             }
             catch (Exception ex)
             {

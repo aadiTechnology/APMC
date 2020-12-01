@@ -32,6 +32,7 @@ import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 import { DatepickerModule, BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 
 @NgModule({
@@ -65,8 +66,10 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
     TimepickerModule.forRoot(),
     BsDatepickerModule.forRoot(),
     DatepickerModule.forRoot(), 
+    Ng2SearchPipeModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
+      
     }),
     ToastrModule.forRoot({
       timeOut: 5500,

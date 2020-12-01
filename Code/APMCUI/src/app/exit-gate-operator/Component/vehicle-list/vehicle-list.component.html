@@ -3,9 +3,9 @@
       <h3 class="mb-0">Vehicle List</h3>
     </div>
     <div class="card-body">
-        
+        <input type="text" class="form-control" placeholder="Search Here" [(ngModel)]="term">
       <form>
-        <table class="table table-responsive">
+         <table class="table table-responsive">
           <thead>
             <tr>
              
@@ -17,7 +17,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let EntryData of LVehicleList;let i =index">
+            <tr *ngFor="let EntryData of LVehicleList | filter:term;let i =index">
               <th scope="row">{{i + 1}}</th>
               <td scope="col">{{EntryData.vehicleNumber}}</td>
               <td scope="col">{{EntryData.inTime}}</td>
