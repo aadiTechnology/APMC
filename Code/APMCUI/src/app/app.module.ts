@@ -31,6 +31,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 import { DatepickerModule, BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 
@@ -61,6 +62,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     MatDatepickerModule,
     NgxMaterialTimepickerModule,
     ModalModule.forRoot(),
+    PaginationModule.forRoot(),
     TimepickerModule.forRoot(),
     BsDatepickerModule.forRoot(),
     DatepickerModule.forRoot(), 

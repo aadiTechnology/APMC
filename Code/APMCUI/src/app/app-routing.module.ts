@@ -50,9 +50,13 @@ const routes: Routes = [
             (m) => m.ExitGateOperatorModule
           ),
       },
+      {
+        path: "driver",
+        loadChildren: () =>
+          import("./driver/driver.module").then((m) => m.DriverModule),
+      },
     ],
   },
-  
 ];
 
 @NgModule({

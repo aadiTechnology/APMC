@@ -1,0 +1,137 @@
+<div class="card">
+  <div class="card-header text-center text-success">
+    <h3 class="mb-0">QR code list</h3>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <!-- <div>
+       <b class="text-success ml-auto pl-3">Stall No</b> 
+      </div> -->
+      <div class="text-success ml-auto pr-3">
+        <p>{{myDate | date:'fullDate'}}
+        </p> 
+      </div>
+    </div><br>
+    <form>
+      <table class="table table-responsive">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Order ID</th>
+            <th scope="col">Merchant name</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td scope="col">005</td>
+            <td scope="col">Sangram Konde</td>
+            <td scope="col">
+              <button
+                class="btn btn-light"
+                type="button"
+                id="dropdownMenuButton"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" routerLink="/driver/qrDetails"
+                  >View QR Code</a
+                >
+              </div>
+            </td>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr>
+            <th scope="row">2</th>
+            <td scope="col">007</td>
+            <td scope="col">Ganesh Jagdhane</td>
+            <td scope="col">
+              <button
+                class="btn btn-light"
+                type="button"
+                id="dropdownMenuButton"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" routerLink="/driver/qrDetails"
+                  >View QR Code</a
+                >
+              </div>
+            </td>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr>
+            <th scope="row">3</th>
+            <td scope="col">008</td>
+            <td scope="col">Mayur Chavan</td>
+            <td scope="col">
+              <button
+                class="btn btn-light"
+                type="button"
+                id="dropdownMenuButton"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" routerLink="/driver/qrDetails"
+                  >View QR Code</a
+                >
+              </div>
+            </td>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr>
+            <th scope="row">4</th>
+            <td scope="col">009</td>
+            <td scope="col">Sumit Kemse</td>
+            <td scope="col">
+              <button
+                class="btn btn-light"
+                type="button"
+                id="dropdownMenuButton"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" routerLink="/driver/qrDetails"
+                  >View QR Code</a
+                >
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <pagination [totalItems]="50"></pagination>
+
+      <div class="input-group form-group">
+        <div class="mx-auto">
+          <input
+            type="button"
+            value="Back"
+            class="btn btn-danger"
+            routerLink="/driver/dashboard"
+          />
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
