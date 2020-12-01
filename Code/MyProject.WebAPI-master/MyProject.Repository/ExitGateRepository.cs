@@ -17,14 +17,28 @@ namespace MyProject.Repository
         {
             _repositoryContext = repositoryContext;
         }
-        public async Task<IEnumerable<ParkingCharges>> GetAllCheckInVehicalDetails()
+        public async Task<IEnumerable<ParkingCharges>> GetAllCheckInVehicleDetails()
         {
-            return await _repositoryContext.ParkingCharges.Where(a => a.OutTime == null).ToListAsync();
+            try
+            {
+                return await _repositoryContext.ParkingCharges.Where(a => a.OutTime == null).ToListAsync();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
-        public async Task<IEnumerable<ParkingCharges>> GetCheckInVehicalDetailsById(int Id)
+        public async Task<IEnumerable<ParkingCharges>> GetCheckInVehicleDetailsById(int Id)
         {
-            return await _repositoryContext.ParkingCharges.Where(a => a.Id == Id).ToListAsync();
+            try
+            {
+                return await _repositoryContext.ParkingCharges.Where(a => a.Id == Id).ToListAsync();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public ParkingCharges UpdateParkingCharges(ParkingCharges parkingCharges)
