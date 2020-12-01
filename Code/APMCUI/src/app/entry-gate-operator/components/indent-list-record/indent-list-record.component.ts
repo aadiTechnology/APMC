@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./indent-list-record.component.scss']
 })
 export class IndentListRecordComponent implements OnInit {
+  myDate = Date.now();    //date 
 
   constructor() { }
 

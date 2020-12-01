@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./indent-qrlist.component.scss']
 })
 export class IndentQRListComponent implements OnInit {
-
+  myDate = Date.now();    //date 
   constructor() { }
 
   ngOnInit(): void {
