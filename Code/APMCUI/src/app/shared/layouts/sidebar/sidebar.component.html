@@ -24,7 +24,7 @@
           <span>Stall Registration Requests</span>
         </a>
       </li>
-      
+
       <li *ngIf="currentUser.role=='Merchant'">
         <a [routerLink]="['/merchant/dashboard']">
           <i class="fa fa-tv"></i>
@@ -41,8 +41,7 @@
         </a>
       </li>
       <li *ngIf="currentUser.role=='Merchant'">
-        <a [routerLink]="['/merchant/creatindent']"
-         routerLinkActive="active">
+        <a [routerLink]="['/merchant/creatindent']" routerLinkActive="active">
           <i class="fa fa-tv"></i>
           <span>Create Indent</span>
         </a>
