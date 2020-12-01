@@ -44,6 +44,8 @@ export class LoginComponent implements OnInit {
               this.router.navigate(['/merchant']);
             }else if (arg.role === 'Admin') {
               this.router.navigate(['/admin']);
+            }else if (arg.role === 'Driver') {
+              this.router.navigate(['/driver']);
             }else if (arg.role === 'EntryGateOperator') {
               this.router.navigate(['/entryGateOperator']);
             }else if (arg.role === 'ExitGateOperator') {

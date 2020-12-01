@@ -6,13 +6,15 @@ import { EntryGateOperatorComponent } from './entry-gate-operator.component';
 import { EntryGateOperatorDashboardComponent } from './components/entry-gate-operator-dashboard/entry-gate-operator-dashboard.component';
 import { IndentListRecordComponent } from './components/indent-list-record/indent-list-record.component';
 import { IndentDetailsComponent } from './components/indent-details/indent-details.component';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
 
 
 @NgModule({
   declarations: [EntryGateOperatorComponent, EntryGateOperatorDashboardComponent, IndentListRecordComponent, IndentDetailsComponent, ],
   imports: [
     CommonModule,
-    EntryGateOperatorRoutingModule
+    EntryGateOperatorRoutingModule,
+    PaginationModule.forRoot(),
   ]
 })
 export class EntryGateOperatorModule { }

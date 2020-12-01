@@ -4,33 +4,92 @@
   </div>
   <div class="card-body">
     <form>
-      <table class="table table-sm table-bordered table-responsive">
-        <tr>
-          <th>Sr No</th>
-          <th>Time</th>
-          <th>Order ID</th>
-          <th>Vehicle Number</th>
-          <th>Driver's name</th>
-        </tr>
-        <tr routerLink="/entryGateOperator/indentDetail">
-          <td>1</td>
-          <td>09.00 am</td>
-          <td>007</td>
-          <td>MH12ST1111</td>
-          <td>Rama</td>
-        </tr>
+      <table class="table table-responsive">
+        <thead>
+          <tr>
+            <!-- <th scope="col">Date</th> -->
+            <th scope="col">#</th>
+            <th scope="col">Order ID</th>
+            <th scope="col">ETA Time</th>
+            <th scope="col">Vehicle Number</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td scope="col">005</td>
+            <td scope="col">09:00 AM</td>
+            <td scope="col">MH12ST5555</td>
+            <td scope="col"><button class="btn btn-light " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+             </button>
+             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+               <a class="dropdown-item"  routerLink="/entryGateOperator/indentDetail">View</a>
+               <a class="dropdown-item" >Scan QR</a>
+               </div></td>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr>
+            <th scope="row">2</th>
+            <td scope="col">007</td>
+            <td scope="col">09:00 AM</td>
+            <td scope="col">MH12ST1111</td>
+            <td scope="col"><button class="btn btn-light " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+             </button>
+             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+               <a class="dropdown-item" >View</a>
+               <a class="dropdown-item" >Scan QR</a>
+               </div></td>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr>
+            <th scope="row">3</th>
+            <td scope="col">008</td>
+            <td scope="col">09:00 AM</td>
+            <td scope="col">MH12ST2222</td>
+            <td scope="col"><button class="btn btn-light " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+             </button>
+             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+               <a class="dropdown-item" >View</a>
+               <a class="dropdown-item" >Scan QR</a>
+               </div></td>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr>
+            <th scope="row">4</th>
+            <td scope="col">009</td>
+            <td scope="col">09:00 AM</td>
+            <td scope="col">MH12ST3333</td>
+            <td scope="col"><button class="btn btn-light " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+             </button>
+             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+               <a class="dropdown-item" >View</a>
+               <a class="dropdown-item" >Scan QR</a>
+               </div></td>
+          </tr>
+        </tbody>
       </table>
+      
+      <pagination [totalItems]="50"></pagination>
+
+     
       <div class="input-group form-group">
         <div class="mx-auto">
-          
           <input
             type="button"
             value="Back"
             class="btn btn-danger"
             routerLink="/entryGateOperator/dashboard"
-            />
+          />
         </div>
-    </div>
+      </div>
     </form>
   </div>
 </div>
