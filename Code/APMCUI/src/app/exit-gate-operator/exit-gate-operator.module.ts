@@ -11,10 +11,11 @@ import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
+import { VehicleListComponent } from './Component/vehicle-list/vehicle-list.component';
 
 
 @NgModule({
-  declarations: [ExitGateOperatorComponent, ExitGateDashboardComponent, ExitGateComponent],
+  declarations: [ExitGateOperatorComponent, ExitGateDashboardComponent, ExitGateComponent, VehicleListComponent],
   imports: [
     CommonModule,
     ExitGateOperatorRoutingModule,
