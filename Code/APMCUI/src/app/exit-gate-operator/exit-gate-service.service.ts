@@ -12,4 +12,9 @@ export class ExitGateServiceService {
   GetAllCheckInVehicalDetails(): any {
     return this.httpService.get('ExitGate/GetAllCheckInVehicleDetails');
   }
+
+  GetCheckInVehicleDetailsById(Id): any {
+    return this.httpService.get(`ExitGate/GetCheckInVehicleDetailsById?Id=${Id}`);
+  }
+
 }

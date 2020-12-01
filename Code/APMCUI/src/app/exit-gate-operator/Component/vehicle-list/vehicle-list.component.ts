@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { ExitGateServiceService } from '../../exit-gate-service.service';
 import { InVehicle } from '../../entities/InVehicle'
+
  
 @Component({
   selector: 'app-vehicle-list',
@@ -36,6 +37,15 @@ export class VehicleListComponent implements OnInit {
       }
     });
   }
+
+  SelectedVehicle(EntryData){
+    this.router.navigate(['/exitGateOperator/exitGate'],{
+      queryParams: {
+        indentId:EntryData
+      },
+    });
+  }
+
 
   openModal(template: TemplateRef<any>): void {
     this.modalRef = this.modalService.show(template, { class: "modal-sm" });

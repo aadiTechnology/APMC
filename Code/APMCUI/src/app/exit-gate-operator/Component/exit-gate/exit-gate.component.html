@@ -1,6 +1,6 @@
 <div class="card stall-register-box">
   <div class="card-header text-center text-success">
-    <h3 class="mb-0">Exit Gate Entry</h3>
+    <h3 class="mb-0">Exit Gate</h3>
   </div>
 
   <div class="card-body">
@@ -17,58 +17,31 @@
       <hr />
 
       <div class="input-group form-group">
-
-       <input
-       [(ngModel)]="selected"
-       placeholder="Enter Vehical No"
-       name="FieldVehicleNumber"
-       #FieldVehicleNumber="ngModel"
-       autocomplete="off"
-       [typeahead]= "states"
-       [typeaheadMultipleSearch]="false"
-       [typeaheadOptionsInScrollableView]="6"
-       [ngModelOptions]="{standalone: true}"
-       class="form-control"
-       required
-   />
-  </div>
-   <div
-        *ngIf="FieldVehicleNumber.invalid && (FieldVehicleNumber.dirty || FieldVehicleNumber.touched || ExitGateForm.submitted )"
-        class="text-danger"
-      >
-        <div [hidden]="!FieldVehicleNumber.errors.required">
-          Vehicle number is required
-        </div>
-   
-      </div>
-      
-
-      <!-- <div class="input-group form-group">
-        <input
+      <input
           type="txt"
           name="FieldVehicleNumber"
           class="form-control"
-          placeholder="Vehical No"
-          required
-          pattern="[a-zA-Z0-9]+"
-          [(ngModel)]="VehicleNo"
-          #FieldVehicleNumber="ngModel"
-          maxlength="10"
+          placeholder="Vehicle No"
+          value="{{vehicleEntryRow.vehicleNumber}}"
+          disabled
         />
       </div>
-      <div
-        *ngIf="FieldVehicleNumber.invalid && (FieldVehicleNumber.dirty || FieldVehicleNumber.touched )"
-        class="text-danger"
-      >
-        <div [hidden]="!FieldVehicleNumber.errors.required">
-          Vehicle number is required
-        </div>
-        <div [hidden]="!FieldVehicleNumber.errors.pattern">
-          Enter valid vehicle number
-        </div>
-      </div> -->
-
+      
+      
       <div class="input-group form-group ">
+        <div class="col-6 col-md-6 pl-1">
+          <label>In-Time</label>
+          <input
+            type="txt"
+            name="EntryTime"
+            class="form-control"
+            placeholder="EntryTime"
+            value="{{vehicleEntryRow.inTime}}"
+            disabled
+          />
+        </div>
+        <div class="col-6 col-md-6 pr-1">
+          <label>Out-Time</label>
         <input
           class="form-control text-primary"
           matInput
@@ -79,10 +52,11 @@
           placeholder="Select time"
           disabled
         />
+      </div>
         <!-- [ngxTimepicker]="defaultValue" <ngx-material-timepicker #defaultValue> </ngx-material-timepicker> -->
       </div>
       <div>
-        <b>Vehicle Fine:</b>
+        <b>Fine:</b>
       </div>
       <hr />
       <div class="d-inline">
@@ -104,10 +78,10 @@
           />
         </div>
         <hr>
-        <div class="form-group form-check text-center text-primary ">
+      <!--  <div class="form-group form-check text-center text-primary ">
           <input type="checkbox" class="form-check-input" id="exampleCheck1">
           <label class="form-check-label" for="exampleCheck1">Payment Received</label>
-        </div>
+        </div> -->
 
         <div class="input-group form-group">
           <div class="mx-auto">

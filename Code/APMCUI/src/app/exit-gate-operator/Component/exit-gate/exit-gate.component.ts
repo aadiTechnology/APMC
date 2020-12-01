@@ -1,9 +1,11 @@
 import { formatDate } from '@angular/common';
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute,Router } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Exitgate } from "../../entities/exitGate";
+import { ExitGateServiceService } from "../../exit-gate-service.service";
+
 @Component({
   selector: 'app-exit-gate',
   templateUrl: './exit-gate.component.html',
@@ -18,8 +20,14 @@ export class ExitGateComponent implements OnInit {
   today = new Date();
   todaysDataTime = "";
   exitGate=[];
+  indentId: any;
+  vehicleEntryRow: any;
 
-  constructor( private modalService: BsModalService, private router: Router,) { 
+  constructor( private modalService: BsModalService,
+               private router: Router,
+               private exitGateServiceService:ExitGateServiceService,
+               private activeRoute:ActivatedRoute,
+               ) { 
     this.exitGate = new Array<Exitgate>();
     this.VehicleNo=null;
     this.todaysDataTime = formatDate(
@@ -31,19 +39,22 @@ export class ExitGateComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.indentId=this.activeRoute.snapshot.queryParams.indentId;
+    this.GetCheckInVehicleDetailsById(this.indentId)
   }
 
-  
-  states: string[] = [
-    'MH14EX9044',
-    'MH12DK7454',
-    'MH12ST0005',
-    'MH16PQ0005',
-  ];
+  GetCheckInVehicleDetailsById(Id){
+    this.exitGateServiceService.GetCheckInVehicleDetailsById(Id).subscribe((arg)=>{
+      if(arg){
+        this.vehicleEntryRow=arg.rows[0];
+      }
+    })
+  }
 
   exitgate(form: NgForm):void {
 
   }
+
  //Cancel button popup
  openModal(template: TemplateRef<any>): void {
   this.modalRef = this.modalService.show(template, { class: "modal-sm" });

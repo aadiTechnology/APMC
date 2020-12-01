@@ -12,12 +12,12 @@
               <!-- <th scope="col">Date</th> -->
               <th scope="col">#</th>
               <th scope="col">Vehicle No</th>
-              <th scope="col">In Time</th>
+              <th scope="col">InTime</th>
               <th scope="col">Entry Fee</th>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let EntryData of LVehicleList | filter:term;let i =index">
+            <tr *ngFor="let EntryData of LVehicleList | filter:term;let i =index" (click)="SelectedVehicle(EntryData.id)">
               <th scope="row">{{i + 1}}</th>
               <td scope="col">{{EntryData.vehicleNumber}}</td>
               <td scope="col">{{EntryData.inTime}}</td>
