@@ -12,6 +12,8 @@ import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { VehicleListComponent } from './Component/vehicle-list/vehicle-list.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+
 
 
 @NgModule({
@@ -23,7 +25,8 @@ import { VehicleListComponent } from './Component/vehicle-list/vehicle-list.comp
     NgxMaterialTimepickerModule,
     FormsModule,
     TimepickerModule.forRoot(),
-    TypeaheadModule
+    TypeaheadModule,
+    Ng2SearchPipeModule
     
   ]
 })

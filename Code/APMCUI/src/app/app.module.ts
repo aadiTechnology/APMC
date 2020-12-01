@@ -31,6 +31,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 import { DatepickerModule, BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 
 @NgModule({
@@ -63,8 +64,10 @@ import { DatepickerModule, BsDatepickerModule } from 'ngx-bootstrap/datepicker';
     TimepickerModule.forRoot(),
     BsDatepickerModule.forRoot(),
     DatepickerModule.forRoot(), 
+    Ng2SearchPipeModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
+      
     }),
     ToastrModule.forRoot({
       timeOut: 5500,
