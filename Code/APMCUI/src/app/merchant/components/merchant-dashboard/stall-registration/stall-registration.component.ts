@@ -124,7 +124,7 @@ export class StallRegistrationComponent implements OnInit {
     if (form.valid) {
       if (this.stall.Category.length !== 0) {
         const stallData = {
-          UserId: +this.stall.UserId,
+          UserId: +this.currentUser.id,
           StallId: +this.stall.StallId,
           Category: this.stall.Category,
         };

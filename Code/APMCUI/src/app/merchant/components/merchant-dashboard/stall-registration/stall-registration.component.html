@@ -12,51 +12,37 @@
       #StallRegisterForm="ngForm"
       (ngSubmit)="stallregister(StallRegisterForm)"
     >
-    <div class="input-group form-group d-none">
-      <input
-        type="txt"
-        class="form-control"
-        placeholder="{{currentUser.id}}"
-        value="{{currentUser.id}}"
-        name="FirstName"
-        #FirstName="ngModel"
-        [(ngModel)]="stall.UserId"
-        disabled
-      />
-    </div>
-      <div class="input-group form-group">
-        <input
-          type="txt"
-          class="form-control"
-          placeholder="{{currentUser.firstName}}"
-          name="FirstName"
-          disabled
-        />
-      </div>
-      <div class="input-group form-group">
-        <input
-          type="txt"
-          class="form-control"
-          placeholder="{{currentUser.lastName}}"
-          name="LastName"
-          disabled
-        />
-      </div>
-      <div class="input-group form-group">
-        <input
-          type="txt"
-          class="form-control"
-          placeholder="{{currentUser.mobileNo}}"
-          name="MobileNo"
-          disabled
-        />
-      </div>
-      <div class="input-group form-group">
-        <input type="email" class="form-control" placeholder="{{currentUser.email}}"
-        name="Email"
-         disabled />
+
+    <div class="container-fluid pt-4">
+      <div class="row">
+        <div class="col-md-5 col-5">
+          <b>Name : </b>
+        </div>
+        <div class="col-md-7 col-7">
+          <p>&nbsp;{{currentUser.firstName}} {{currentUser.lastName}}</p>
+        </div>
       </div>
 
+      <div class="row">
+        <div class="col-md-5 col-5">
+          <b>Mobile No : </b>
+        </div>
+        <div class="col-md-7 col-7">
+          <p>&nbsp;{{currentUser.mobileNo}}</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-5 col-5">
+          <b>Email : </b>
+        </div>
+        <div class="col-md-7 col-7">
+          <p>&nbsp;{{currentUser.email}}</p>
+        </div>
+      </div>
+
+    </div>
+  
       <div class="input-group form-group">
         <select
           class="form-control"
