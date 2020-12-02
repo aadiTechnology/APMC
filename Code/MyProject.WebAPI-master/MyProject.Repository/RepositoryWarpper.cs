@@ -20,7 +20,7 @@ namespace MyProject.Repository
         private IIndentRepository _indentDetails;
         private IProductRepository _productDetails;
         private IUnitsRepository _units;
-        private IEntryCheckInDetailsRepository _entryCheckInDetails;
+        private IEntryGateDetailsRepository _entryCheckInDetails;
         private IExitGateRepository _exitGateRepository;
         public IEmployeeRepository Employee
         {
@@ -230,13 +230,13 @@ namespace MyProject.Repository
                 };
             }
         }
-        public IEntryCheckInDetailsRepository EntryCheckInDetails
+        public IEntryGateDetailsRepository EntryCheckInDetails
         {
             get
             {
                 if (_entryCheckInDetails == null)
                 {
-                    _entryCheckInDetails = new EntryCheckInDetailsRepository(_repoContext);
+                    _entryCheckInDetails = new EntryGateDetailsRepository(_repoContext);
                 }
                 return _entryCheckInDetails;
             }
@@ -244,7 +244,7 @@ namespace MyProject.Repository
             {
                 if (_entryCheckInDetails == null)
                 {
-                    _entryCheckInDetails = new EntryCheckInDetailsRepository(_repoContext);
+                    _entryCheckInDetails = new EntryGateDetailsRepository(_repoContext);
                 };
             }
 

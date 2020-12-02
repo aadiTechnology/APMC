@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace MyProject.Contracts
 {
-    public interface IEntryCheckInDetailsRepository : IRepositoryBase<IndentDetails>
+    public interface IEntryGateDetailsRepository : IRepositoryBase<IndentDetails>
     {
-        Task<IEnumerable<IndentDetails>> GetAllScannedIndent();
+        Task<IEnumerable<IndentDetails>> IndentDetailsByOrderNo(string orderNo);
         Task<IEnumerable<IndentDetails>> GetAllNotScannedIndent();
         ParkingCharges AddEntryCheckInDetails(IndentDetails indentDetails, List<ParkingCharges> parkingCharges);
     }

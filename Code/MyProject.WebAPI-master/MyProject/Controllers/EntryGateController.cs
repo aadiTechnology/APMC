@@ -12,10 +12,10 @@ namespace MyProject.WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class EntryGateOperatorController : ControllerBase
+    public class EntryGateController : ControllerBase
     {
         public override void InitializeController() { }
-        public EntryGateOperatorController(IRepositoryWrapper repositoryWrapper)
+        public EntryGateController(IRepositoryWrapper repositoryWrapper)
         {
             RepositoryWrapper = repositoryWrapper;
         }
@@ -37,10 +37,10 @@ namespace MyProject.WebAPI.Controllers
         /// </summary>
         /// <param name="IndentDto"></param>
         /// <returns>Return Indent details if insert successfully</returns>
-        [HttpGet("GetAllScannedIndent")]
-        public async Task<JsonResult> GetAllScannedIndent()
+        [HttpGet("IndentDetailsByOrderNo")]
+        public async Task<JsonResult> IndentDetailsByOrderNo(string orderNo)
         {
-            return await base.FinalizeMultiple<IEnumerable<IndentDetails>>(await RepositoryWrapper.EntryCheckInDetails.GetAllScannedIndent());
+            return await base.FinalizeMultiple<IEnumerable<IndentDetails>>(await RepositoryWrapper.EntryCheckInDetails.IndentDetailsByOrderNo(orderNo));
         }
 
         /// <summary>
