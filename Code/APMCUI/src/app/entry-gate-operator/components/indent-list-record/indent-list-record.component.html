@@ -23,10 +23,10 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td scope="col">005</td>
-            <td scope="col">09:00 AM</td>
-            <td scope="col">MH12ST5555</td>
+          <tr *ngFor="let indentListData of IndentList">
+            <td scope="col">{{indentListData.orderNo}}</td>
+            <td scope="col">{{indentListData.etaTime}}</td>
+            <td scope="col">{{indentListData.vehicleNo}}</td>
             <td scope="col">
               <button
                 class="btn btn-light"
@@ -42,7 +42,7 @@
                 <a
                   class="dropdown-item"
                   routerLink="/entryGateOperator/indentDetail"
-                  ><i class="fa fa-eye" aria-hidden="true"></i>
+                  ><i class="fa fa-eye" aria-hidden="true" (click)="selectedIndentRow(id)"></i>
                 </a>
                 <a class="dropdown-item"
                   ><i class="fa fa-qrcode" aria-hidden="true"></i>
