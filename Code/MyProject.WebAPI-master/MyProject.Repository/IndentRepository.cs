@@ -36,6 +36,7 @@ namespace MyProject.Repository
                 }
                 _repositoryContext.IndentProducts.AddRange(indentProducts);
                 _repositoryContext.SaveChanges();
+                GenerateQRCode(indentDetails.ToString(), indentDetails.CreatedBy.ToString(), indentDetails.DriverNo.ToString());
                 return indentDetails;
             }
             catch (Exception ex)
@@ -78,34 +79,34 @@ namespace MyProject.Repository
         }
         public Tuple<IndentDetails, byte[]> GetIndent(int indentID)
         {
-            IndentDetails indentDetails= _repositoryContext.IndentDetails.Where(a=>a.Id== indentID).FirstOrDefault();
-           var bytes= getByte(_repositoryContext.GlobalConfigurations.Where(a => a.Key == "QRPath").FirstOrDefault().Value + indentDetails.QrId);
-          return(Tuple.Create(indentDetails,bytes));
+            IndentDetails indentDetails = _repositoryContext.IndentDetails.Where(a => a.Id == indentID).FirstOrDefault();
+            var bytes = getByte(_repositoryContext.GlobalConfigurations.Where(a => a.Key == "QRPath").FirstOrDefault().Value + indentDetails.QrId);
+            return (Tuple.Create(indentDetails, bytes));
         }
         public List<IndentDetails> GetIndentByDateRange(DateTime fromDate, DateTime toDate)
         {
-           return _repositoryContext.IndentDetails.Where(a => a.CreatedDate>= fromDate && a.CreatedDate<= toDate).ToList();
+            return _repositoryContext.IndentDetails.Where(a => a.CreatedDate >= fromDate && a.CreatedDate <= toDate).ToList();
         }
-        private byte[]  getByte(string path)
+        private byte[] getByte(string path)
         {
             Image img = Image.FromFile(path);
             return (byte[])(new ImageConverter()).ConvertTo(img, typeof(byte[]));
         }
-        public byte[] GenerateQRCode(string indentId,string merchantId,string driverId)
+        public byte[] GenerateQRCode(string indentId, string merchantId, string driverId)
         {
             Tuple<IndentDetails, byte[]> indentDetails = GetIndent(int.Parse(indentId));
             //if (string.IsNullOrWhiteSpace(indentDetails.OrderNo)|| string.IsNullOrWhiteSpace(indentDetails.DriverNo)||)
             //{
 
             //}
-            string encodeString = Base64Encode(indentId+"|"+ merchantId+"|"+ driverId);
+            string encodeString = Base64Encode(indentId + "|" + merchantId + "|" + driverId);
             QRCodeGenerator _qrCode = new QRCodeGenerator();
             QRCodeData _qrCodeData = _qrCode.CreateQrCode(encodeString, QRCodeGenerator.ECCLevel.Q);
             QRCode qrCode = new QRCode(_qrCodeData);
             Bitmap qrCodeImage = qrCode.GetGraphic(20);
 
             byte[] array = BitmapToBytesCode(qrCodeImage);
-            File.WriteAllBytes(_repositoryContext.GlobalConfigurations.Where(a => a.Key == "QRPath").FirstOrDefault().Value + indentId+ merchantId+ driverId+".png", array);
+            File.WriteAllBytes(_repositoryContext.GlobalConfigurations.Where(a => a.Key == "QRPath").FirstOrDefault().Value + indentId + merchantId + driverId + ".png", array);
             indentDetails.Item1.QrId = indentId + merchantId + driverId + ".png";
             _repositoryContext.IndentDetails.Update(indentDetails.Item1);
             _repositoryContext.SaveChanges();
