@@ -3,22 +3,20 @@
     <h3 class="mb-0">Indent List</h3>
   </div>
   <div class="card-body">
-     <div class="row">
-        <!-- <div>
+    <div class="row">
+      <!-- <div>
          <b class="text-success ml-auto pl-3">Stall No</b> 
         </div> -->
-        <div class="text-success ml-auto pr-3">
-          <p>{{myDate | date:'fullDate'}}
-          </p> 
-        </div>
-      </div><br>
+      <div class="text-success ml-auto pr-3">
+        <p>{{myDate | date: 'dd/MM/yyyy'}}</p>
+      </div>
+    </div>
+    <br />
     <form>
       <table class="table table-responsive">
         <thead>
           <tr>
-            <!-- <th scope="col">Date</th> -->
-            <th scope="col">#</th>
-            <th scope="col">Order ID</th>
+            <th scope="col">Order no</th>
             <th scope="col">ETA Time</th>
             <th scope="col">Vehicle Number</th>
             <th scope="col">Action</th>
@@ -26,69 +24,37 @@
         </thead>
         <tbody>
           <tr>
-            <th scope="row">1</th>
             <td scope="col">005</td>
             <td scope="col">09:00 AM</td>
             <td scope="col">MH12ST5555</td>
-            <td scope="col"><button class="btn btn-light " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
-             </button>
-             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-               <a class="dropdown-item"  routerLink="/entryGateOperator/indentDetail">View</a>
-               <a class="dropdown-item" >Scan QR</a>
-               </div></td>
-          </tr>
-        </tbody>
-        <tbody>
-          <tr>
-            <th scope="row">2</th>
-            <td scope="col">007</td>
-            <td scope="col">09:00 AM</td>
-            <td scope="col">MH12ST1111</td>
-            <td scope="col"><button class="btn btn-light " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
-             </button>
-             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-               <a class="dropdown-item" >View</a>
-               <a class="dropdown-item" >Scan QR</a>
-               </div></td>
-          </tr>
-        </tbody>
-        <tbody>
-          <tr>
-            <th scope="row">3</th>
-            <td scope="col">008</td>
-            <td scope="col">09:00 AM</td>
-            <td scope="col">MH12ST2222</td>
-            <td scope="col"><button class="btn btn-light " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
-             </button>
-             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-               <a class="dropdown-item" >View</a>
-               <a class="dropdown-item" >Scan QR</a>
-               </div></td>
-          </tr>
-        </tbody>
-        <tbody>
-          <tr>
-            <th scope="row">4</th>
-            <td scope="col">009</td>
-            <td scope="col">09:00 AM</td>
-            <td scope="col">MH12ST3333</td>
-            <td scope="col"><button class="btn btn-light " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
-             </button>
-             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-               <a class="dropdown-item" >View</a>
-               <a class="dropdown-item" >Scan QR</a>
-               </div></td>
+            <td scope="col">
+              <button
+                class="btn btn-light"
+                type="button"
+                id="dropdownMenuButton"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a
+                  class="dropdown-item"
+                  routerLink="/entryGateOperator/indentDetail"
+                  ><i class="fa fa-eye" aria-hidden="true"></i>
+                </a>
+                <a class="dropdown-item"
+                  ><i class="fa fa-qrcode" aria-hidden="true"></i>
+                </a>
+              </div>
+            </td>
           </tr>
         </tbody>
       </table>
-      
+
       <pagination [totalItems]="50"></pagination>
 
-     
       <div class="input-group form-group">
         <div class="mx-auto">
           <input
