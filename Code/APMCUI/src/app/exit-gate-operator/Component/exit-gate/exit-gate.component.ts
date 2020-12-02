@@ -12,14 +12,12 @@ import { ExitGateServiceService } from "../../exit-gate-service.service";
   styleUrls: ['./exit-gate.component.scss']
 })
 export class ExitGateComponent implements OnInit {
-  selected: string;
   modalRef: BsModalRef; //cancel model
   message: string;
-  VehicleNo:string;
 
   today = new Date();
   todaysDataTime = "";
-  exitGate=[];
+  exitGate:any;
   indentId: any;
   vehicleEntryRow: any;
 
@@ -28,11 +26,11 @@ export class ExitGateComponent implements OnInit {
                private exitGateServiceService:ExitGateServiceService,
                private activeRoute:ActivatedRoute,
                ) { 
+                 
     this.exitGate = new Array<Exitgate>();
-    this.VehicleNo=null;
     this.todaysDataTime = formatDate(
       this.today,
-      " hh:mm:ss a",
+      " hh:mm a",
       "en-US",
       "+0530"
     );
