@@ -28,10 +28,10 @@ namespace MyProject.Repository
             return await _repositoryContext.IndentDetails.Where(x => x.IsScanned == false && x.CreatedDate.Date == DateTime.Now.Date).ToListAsync();
         }
 
-        public async Task<IEnumerable<IndentDetails>> IndentDetailsByOrderNo(string orderNo)
+        public async Task<IEnumerable<IndentDetails>> IndentDetailsById(int id)
         {
             var Result = (from Idetails in _repositoryContext.IndentDetails
-                          where Idetails.OrderNo == orderNo && Idetails.IsScanned == false && 
+                          where Idetails.Id == id && Idetails.IsScanned == false &&
                           Idetails.CreatedDate.Date == DateTime.Now.Date
                           select new IndentDetails
                           {

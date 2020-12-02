@@ -37,10 +37,10 @@ namespace MyProject.WebAPI.Controllers
         /// </summary>
         /// <param name="IndentDto"></param>
         /// <returns>Return Indent details if insert successfully</returns>
-        [HttpGet("IndentDetailsByOrderNo")]
-        public async Task<JsonResult> IndentDetailsByOrderNo(string orderNo)
+        [HttpGet("IndentDetailsById")]
+        public async Task<JsonResult> IndentDetailsByOrderNo(int id)
         {
-            return await base.FinalizeMultiple<IEnumerable<IndentDetails>>(await RepositoryWrapper.EntryCheckInDetails.IndentDetailsByOrderNo(orderNo));
+            return await base.FinalizeMultiple<IEnumerable<IndentDetails>>(await RepositoryWrapper.EntryCheckInDetails.IndentDetailsById(id));
         }
 
         /// <summary>
