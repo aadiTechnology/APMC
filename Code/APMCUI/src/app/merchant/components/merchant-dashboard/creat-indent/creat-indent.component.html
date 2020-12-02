@@ -126,33 +126,33 @@
           Add <i class="fa fa-plus"></i>
         </button>
       </div>
-      <table class="table table-sm table-bordered table-responsive">
-        <tr>
-          <th>Sr No</th>
-          <th>Product Category</th>
-          <th>Product Name</th>
-          <th>Quantity</th>
-          <th>Units</th>
-          <th>Action</th>
-        </tr>
-        <tr *ngIf="selectedProducts?.length <= 0">
+      <table class="table table-responsive">
+        <thead>
+          <tr>
+            <th scope="col">Product Category</th>
+            <th scope="col">Product Name</th>
+            <th scope="col">Quantity</th>
+			 <th scope="col">Units</th>
+			  <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+		<tr *ngIf="selectedProducts?.length <= 0">
           <td colspan="10" align="center">
             <h3>No data to display</h3>
           </td>
         </tr>
-        <tr *ngFor="let item of selectedProducts; let i = index">
-          <td>{{i + 1}}</td>
-          <td>{{item.CategoryName}}</td>
-          <td>{{item.ProductName}}</td>
-          <td>{{item.ProductQuantity}}</td>
-          <td>{{item.Unit}}</td>
-          <td>
-            <a (click)="removeProduct(item) " class="btn text-info"
+          <tr *ngFor="let item of selectedProducts; let i = index">
+            <td scope="col">{{item.CategoryName}}</td>
+            <td scope="col">{{item.ProductName}}</td>
+            <td scope="col">{{item.ProductQuantity}}</td>
+            <td scope="col">{{item.Unit}}</td>
+			<td scope="col"><a (click)="removeProduct(item) " class="btn text-info"
               ><i class="fa fa-trash"></i
-            ></a>
-          </td>
-        </tr>
-      </table>
+            ></a></td>
+          </tr>
+        </tbody>
+       </table>
     </form>
     <form
       novalidate

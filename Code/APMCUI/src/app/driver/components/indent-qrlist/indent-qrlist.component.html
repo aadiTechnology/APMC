@@ -1,6 +1,6 @@
 <div class="card">
   <div class="card-header text-center text-success">
-    <h3 class="mb-0">QR code list</h3>
+    <h3 class="mb-0">Indent List</h3>
   </div>
   <div class="card-body">
     <div class="row">
@@ -8,7 +8,8 @@
        <b class="text-success ml-auto pl-3">Stall No</b> 
       </div> -->
       <div class="text-success ml-auto pr-3">
-        <p>{{myDate | date:'fullDate'}}
+        <p>{{myDate | date: 'dd/MM/yyyy'}}
+
         </p> 
       </div>
     </div><br>
@@ -16,15 +17,13 @@
       <table class="table table-responsive">
         <thead>
           <tr>
-            <th scope="col">#</th>
-            <th scope="col">Order ID</th>
+            <th scope="col">Order no</th>
             <th scope="col">Merchant name</th>
             <th scope="col">Action</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <th scope="row">1</th>
             <td scope="col">005</td>
             <td scope="col">Sangram Konde</td>
             <td scope="col">
@@ -40,7 +39,8 @@
               </button>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <a class="dropdown-item" routerLink="/driver/qrDetails"
-                  >View QR Code</a
+                  ><i class="fa fa-eye" aria-hidden="true"></i>
+                  </a
                 >
               </div>
             </td>
@@ -48,8 +48,7 @@
         </tbody>
         <tbody>
           <tr>
-            <th scope="row">2</th>
-            <td scope="col">007</td>
+           <td scope="col">007</td>
             <td scope="col">Ganesh Jagdhane</td>
             <td scope="col">
               <button
@@ -64,7 +63,8 @@
               </button>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <a class="dropdown-item" routerLink="/driver/qrDetails"
-                  >View QR Code</a
+                  ><i class="fa fa-eye" aria-hidden="true"></i>
+                  </a
                 >
               </div>
             </td>
@@ -72,7 +72,6 @@
         </tbody>
         <tbody>
           <tr>
-            <th scope="row">3</th>
             <td scope="col">008</td>
             <td scope="col">Mayur Chavan</td>
             <td scope="col">
@@ -88,7 +87,8 @@
               </button>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <a class="dropdown-item" routerLink="/driver/qrDetails"
-                  >View QR Code</a
+                  ><i class="fa fa-eye" aria-hidden="true"></i>
+                  </a
                 >
               </div>
             </td>
@@ -96,8 +96,7 @@
         </tbody>
         <tbody>
           <tr>
-            <th scope="row">4</th>
-            <td scope="col">009</td>
+           <td scope="col">009</td>
             <td scope="col">Sumit Kemse</td>
             <td scope="col">
               <button
@@ -112,7 +111,8 @@
               </button>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <a class="dropdown-item" routerLink="/driver/qrDetails"
-                  >View QR Code</a
+                  ><i class="fa fa-eye" aria-hidden="true"></i>
+                  </a
                 >
               </div>
             </td>

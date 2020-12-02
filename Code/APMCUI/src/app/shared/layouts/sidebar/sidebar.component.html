@@ -1,12 +1,12 @@
 <aside class="sidebar shadow-sm">
-  <div class="sidebar-search pt-1 pb-1 pl-3 pr-3">
+  <!-- <div class="sidebar-search pt-1 pb-1 pl-3 pr-3">
     <input
       type="search"
       class="form-control rounded-pill"
       name="search"
       placeholder="Search ..."
     />
-  </div>
+  </div> -->
   <nav class="sidebar-menu pt-3 pb-3">
     <ul class="menu-items">
       <li *ngIf="currentUser.role=='Admin'">
@@ -65,7 +65,7 @@
         </a>
       </li>
       <li *ngIf="currentUser.role=='EntryGateOperator'">
-        <a [routerLink]="['/entryGateOperator/indentListRecord']">
+        <a [routerLink]="['/entryGateOperator/indentListRecord']" >
           <i class="fa fa-tv"></i>
           <span>Indent List</span>
         </a>
