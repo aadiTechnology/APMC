@@ -5,6 +5,7 @@ import { ActivatedRoute,Router } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Exitgate } from "../../entities/exitGate";
 import { ExitGateServiceService } from "../../exit-gate-service.service";
+import {UpdateParkingCharge} from "../../entities/updateParkingCharge";
 
 @Component({
   selector: 'app-exit-gate',
@@ -20,6 +21,7 @@ export class ExitGateComponent implements OnInit {
   exitGate:any;
   indentId: any;
   vehicleEntryRow: any;
+  updateParkingCharge: UpdateParkingCharge;
 
   constructor( private modalService: BsModalService,
                private router: Router,
@@ -28,6 +30,7 @@ export class ExitGateComponent implements OnInit {
                ) { 
                  
     this.exitGate = new Array<Exitgate>();
+    this.updateParkingCharge=new UpdateParkingCharge();
     this.todaysDataTime = formatDate(
       this.today,
       " hh:mm a",
