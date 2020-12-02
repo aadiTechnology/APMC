@@ -11,77 +11,67 @@
       #ExitGateForm="ngForm"
       (ngSubmit)="exitgate(ExitGateForm)"
     >
-      <div class="">
-        <b>Vehicle Details:</b>
-      </div>
-      <hr />
 
-      <div class="input-group form-group">
-      <input
-          type="txt"
-          name="FieldVehicleNumber"
-          class="form-control"
-          placeholder="Vehicle No"
-          value="{{vehicleEntryRow.vehicleNumber}}"
-          disabled
-        />
-      </div>
-      
-      
-      <div class="input-group form-group ">
-        <div class="col-6 col-md-6 pl-1">
-          <label>In-Time</label>
-          <input
-            type="txt"
-            name="EntryTime"
-            class="form-control"
-            placeholder="EntryTime"
-            value="{{vehicleEntryRow.inTime}}"
-            disabled
-          />
+    <div class="container-fluid pt-4">
+      <div class="row">
+        <div class="col-md-5 col-5">
+          <b>Vehicle No: </b>
         </div>
-        <div class="col-6 col-md-6 pr-1">
-          <label>Out-Time</label>
-        <input
-          class="form-control text-primary"
-          matInput
-          aria-label="default time"
-          value="{{todaysDataTime}}"
-          minTime="CurrentTime"
-          name="FieldSelectTime"
-          placeholder="Select time"
-          disabled
-        />
-      </div>
-        <!-- [ngxTimepicker]="defaultValue" <ngx-material-timepicker #defaultValue> </ngx-material-timepicker> -->
-      </div>
-      <div>
-        <b>Fine:</b>
-      </div>
-      <hr />
-      <div class="d-inline">
-      <div class="form-group form-check">
-        <input type="checkbox" class="form-check-input" id="1">
-        <label class="form-check-label" for="1">Extra Time</label>
-      </div>
-      <div class="form-group form-check">
-        <input type="checkbox" class="form-check-input" id="2">
-        <label class="form-check-label" for="2">No Parking</label>
-      </div>
-      </div>
-        <div class="input-group form-group">
-          <input
-            type="txt"
-            class="form-control"
-            placeholder="Enter Amount"
-            value=""
-          />
+        <div class="col-md-7 col-7">
+          <p>&nbsp;{{ vehicleEntryRow.vehicleNumber}}</p>
         </div>
-        <hr>
-      <!--  <div class="form-group form-check text-center text-primary ">
-          <input type="checkbox" class="form-check-input" id="exampleCheck1">
-          <label class="form-check-label" for="exampleCheck1">Payment Received</label>
-        </div> -->
+      </div>
+      <div class="row">
+        <div class="col-md-5 col-5">
+          <b>In-Time: </b> 
+        </div>
+        <div class="col-md-7 col-7">
+          <p>&nbsp;{{ vehicleEntryRow.inTime | date:'h:mm a'}}</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-5 col-5">
+          <b>Out-Time: </b> 
+        </div>
+        <div class="col-md-7 col-7">
+          <p>&nbsp;{{ todaysDataTime }}</p>
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-md-5 col-5">
+          <b>Fine: </b> 
+        </div>
+        <div class="col-md-7 col-7">
+          <div class="input-group form-group">
+            <input
+              type="txt"
+              class="form-control"
+              placeholder="Enter Amount"
+              value=""
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6 col-6">
+          <div class="form-group form-check">
+            <input type="checkbox" class="form-check-input" id="1">
+            <label class="form-check-label" for="1">Extra Time</label>
+          </div>
+        </div>
+        <div class="col-md-6 col-6">
+          <div class="form-group form-check">
+            <input type="checkbox" class="form-check-input" id="2">
+            <label class="form-check-label" for="2">No Parking</label>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+     <br>
 
         <div class="input-group form-group">
           <div class="mx-auto">
