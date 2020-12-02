@@ -41,7 +41,9 @@ namespace MyProject.Repository
                               SupplierNo = Idetails.SupplierNo,
                               VehicleNo = Idetails.VehicleNo,
                               DriverName = Idetails.DriverName,
-                              DriverNo = Idetails.DriverNo
+                              DriverNo = Idetails.DriverNo,
+                              ETADate = Idetails.ETADate,
+                              ETATime = Idetails.ETATime
                           });
             return await Result.ToListAsync();
         }
