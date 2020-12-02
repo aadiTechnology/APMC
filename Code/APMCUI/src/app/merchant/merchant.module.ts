@@ -17,6 +17,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { MatIconModule } from '@angular/material/icon';
 import { DatepickerModule, BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { OrderDetailsComponent } from './components/merchant-dashboard/order-details/order-details.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { DatepickerModule, BsDatepickerModule } from 'ngx-bootstrap/datepicker';
     MerchantDashboardComponent,
     StallRegistrationComponent,
     CreatIndentComponent,
+    OrderDetailsComponent,
   ],
   imports: [
     CommonModule,
