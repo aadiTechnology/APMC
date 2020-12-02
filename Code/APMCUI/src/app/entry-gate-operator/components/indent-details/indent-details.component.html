@@ -1,109 +1,111 @@
 <div class="card">
-    <div class="card-header text-center text-success">
-      <h3 class="mb-0">Indent Details</h3>
-    </div>
-    <div class="card-body">
-      <div class="row">
-        <div>
-         <b class="text-success ml-auto pl-3">Stall No</b> 
-        </div>
-        <div class="text-success ml-auto pr-3">
-          <b>Sangram Konde</b> 
-        </div>
-      </div><br>
-      <form>
-        <div class="text-primary">
-          <b>Order Id</b>
-        </div>
-        <div class="input-group form-group">
-          <input
-            type="txt"
-            class="form-control"
-            placeholder="Driver Name"
-            disabled
-          />
-        </div>
-        <div class="input-group form-group">
-          <input
-            type="txt"
-            class="form-control"
-            placeholder="Driver No"
-            disabled
-          />
-        </div>
-        <div class="input-group form-group">
-          <input
-            type="txt"
-            class="form-control"
-            placeholder="Vehicle No"
-            disabled
-          />
-        </div>
-        <div class="input-group form-group">
-          <input
-            type="txt"
-            class="form-control"
-            placeholder="Date"
-            disabled
-          />
-        </div>
-        <div class="input-group form-group">
-          <input
-            type="txt"
-            class="form-control"
-            placeholder="Time"
-            disabled
-          />
-        </div>
-        <div class="input-group form-group">
-          <input
-            type="txt"
-            class="form-control"
-            placeholder="Supplier Name"
-            disabled
-          />
-        </div>
-        <div class="input-group form-group">
-          <input
-            type="txt"
-            class="form-control"
-            placeholder="Supplier No"
-            disabled
-          />
-        </div>
-
-        <table class="table table-responsive">
-          <thead>
-            <tr>
-              <!-- <th scope="col">Date</th> -->
-              <th scope="col">Product category</th>
-              <th scope="col">Product name</th>
-              <th scope="col">Quantity</th>
-              <th scope="col">Unit</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td scope="col">Fruits</td>
-              <td scope="col">Apple</td>
-              <td scope="col">5</td>
-              <td scope="col">Kilogram</td>
-            </tr>
-          </tbody>
-       </table>
-      
-        <div class="input-group form-group">
-            <div class="mx-auto">
-              
-              <input
-                type="button"
-                value="Back"
-                class="btn btn-danger"
-                routerLink="/entryGateOperator/indentListRecord"
-                />
-            </div>
-        </div>
-      </form>
-    </div>
+  <div class="card-header text-center text-success">
+    <h3 class="mb-0">Indent Details</h3>
   </div>
-  
+  <div class="card-body">
+    <div class="row">
+      <div>
+        <b class="text-success ml-auto pl-3">Stall No</b>
+      </div>
+      <div class="text-success ml-auto pr-3">
+        <b>Sangram Konde </b>
+      </div>
+    </div>
+    <br />
+    <form>
+      <div class="text-primary">
+        <b>Order no:</b>
+        {{IndentOrder.orderNo}}
+      </div>
+      <hr />
+      <div class="container-fluid pt-4">
+        <div class="row">
+          <div class="col-md-5 col-5">
+            <b>Driver Name: </b>
+          </div>
+          <div class="col-md-7 col-7">
+            <p>&nbsp;{{IndentOrder.driverName}}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-5 col-5">
+            <b>Driver No: </b>
+          </div>
+          <div class="col-md-7 col-7">
+            <p>&nbsp; {{IndentOrder.driverNo}}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-5 col-5">
+            <b>Vehicle No: </b>
+          </div>
+          <div class="col-md-7 col-7">
+            <p>&nbsp;{{IndentOrder.vehicleNo}}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-5 col-5">
+            <b>Date: </b>
+          </div>
+          <div class="col-md-7 col-7">
+            <p>&nbsp; {{IndentOrder.etaDate |date:'dd-MM-yyyy'}}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-5 col-5">
+            <b>Time: </b>
+          </div>
+          <div class="col-md-7 col-7">
+            <p>&nbsp;{{IndentOrder.etaTime}}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-5 col-5">
+            <b>Supplier Name: </b>
+          </div>
+          <div class="col-md-7 col-7">
+            <p>&nbsp;{{IndentOrder.supplierName}}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-5 col-5">
+            <b>Supplier No: </b>
+          </div>
+          <div class="col-md-7 col-7">
+            <p>&nbsp; {{IndentOrder.supplierNo}}</p>
+          </div>
+        </div>
+      </div>
+      <hr />
+      <table class="table table-responsive">
+        <thead>
+          <tr>
+            <th scope="col">Product category</th>
+            <th scope="col">Product name</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Unit</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td scope="col">Fruits</td>
+            <td scope="col">Apple</td>
+            <td scope="col">5</td>
+            <td scope="col">Kilogram</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="input-group form-group">
+        <div class="mx-auto">
+          <input
+            type="button"
+            value="Back"
+            class="btn btn-danger"
+            routerLink="/entryGateOperator/indentListRecord"
+          />
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

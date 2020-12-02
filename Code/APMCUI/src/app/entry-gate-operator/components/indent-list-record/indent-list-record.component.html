@@ -4,9 +4,6 @@
   </div>
   <div class="card-body">
     <div class="row">
-      <!-- <div>
-         <b class="text-success ml-auto pl-3">Stall No</b> 
-        </div> -->
       <div class="text-success ml-auto pr-3">
         <p>{{myDate | date: 'dd/MM/yyyy'}}</p>
       </div>
@@ -23,10 +20,10 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td scope="col">005</td>
-            <td scope="col">09:00 AM</td>
-            <td scope="col">MH12ST5555</td>
+          <tr *ngFor="let indentListData of IndentList">
+            <td scope="col">{{indentListData.orderNo}}</td>
+            <td scope="col">{{indentListData.etaTime}}</td>
+            <td scope="col">{{indentListData.vehicleNo}}</td>
             <td scope="col">
               <button
                 class="btn btn-light"
@@ -39,10 +36,12 @@
                 <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
               </button>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a
-                  class="dropdown-item"
-                  routerLink="/entryGateOperator/indentDetail"
-                  ><i class="fa fa-eye" aria-hidden="true"></i>
+                <a class="dropdown-item"
+                  ><i
+                    class="fa fa-eye"
+                    aria-hidden="true"
+                    (click)="selectedIndentRow(indentListData.id)"
+                  ></i>
                 </a>
                 <a class="dropdown-item"
                   ><i class="fa fa-qrcode" aria-hidden="true"></i>
