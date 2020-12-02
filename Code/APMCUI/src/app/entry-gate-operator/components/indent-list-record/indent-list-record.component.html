@@ -4,9 +4,6 @@
   </div>
   <div class="card-body">
     <div class="row">
-      <!-- <div>
-         <b class="text-success ml-auto pl-3">Stall No</b> 
-        </div> -->
       <div class="text-success ml-auto pr-3">
         <p>{{myDate | date: 'dd/MM/yyyy'}}</p>
       </div>
@@ -39,10 +36,12 @@
                 <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
               </button>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a
-                  class="dropdown-item"
-                  routerLink="/entryGateOperator/indentDetail"
-                  ><i class="fa fa-eye" aria-hidden="true" (click)="selectedIndentRow(id)"></i>
+                <a class="dropdown-item"
+                  ><i
+                    class="fa fa-eye"
+                    aria-hidden="true"
+                    (click)="selectedIndentRow(indentListData.id)"
+                  ></i>
                 </a>
                 <a class="dropdown-item"
                   ><i class="fa fa-qrcode" aria-hidden="true"></i>
