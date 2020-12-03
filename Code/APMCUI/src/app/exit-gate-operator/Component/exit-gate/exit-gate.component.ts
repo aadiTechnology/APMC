@@ -28,8 +28,8 @@ export class ExitGateComponent implements OnInit {
                private exitGateServiceService:ExitGateServiceService,
                private activeRoute:ActivatedRoute,
                ) { 
-                 
-    this.exitGate = new Array<Exitgate>();
+        
+     this.exitGate = new Array<Exitgate>();
     this.updateParkingCharge=new UpdateParkingCharge();
     this.todaysDataTime = formatDate(
       this.today,
@@ -63,7 +63,7 @@ export class ExitGateComponent implements OnInit {
 
 confirm(): void {
   this.message = "Confirmed!";
-  this.router.navigate(["exitGateOperator/dashboard"]);
+  this.router.navigate(["/exitGateOperator/VehicleList"]);
   this.modalRef.hide();
 }
 decline(): void {
