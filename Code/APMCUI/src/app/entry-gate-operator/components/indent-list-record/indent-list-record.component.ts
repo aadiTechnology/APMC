@@ -12,7 +12,7 @@ import { Router } from "@angular/router";
 export class IndentListRecordComponent implements OnInit {
   myDate = Date.now();
   IndentList: IndentList[];
-
+  term:string;
   constructor(
     private router: Router,
     private entryGateOperatorService: EntryGateOperatorService

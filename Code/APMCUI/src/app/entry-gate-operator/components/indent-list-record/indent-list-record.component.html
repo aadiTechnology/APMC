@@ -8,19 +8,22 @@
         <p>{{myDate | date: 'dd/MM/yyyy'}}</p>
       </div>
     </div>
+
+    <input type="text" class="form-control" placeholder="Search vehicle number" [(ngModel)]="term"  >
+
     <br />
     <form>
       <table class="table table-responsive">
         <thead>
           <tr>
-            <th scope="col">Order no</th>
+            <th scope="col">Order No</th>
             <th scope="col">ETA Time</th>
             <th scope="col">Vehicle Number</th>
             <th scope="col">Action</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let indentListData of IndentList">
+          <tr *ngFor="let indentListData of IndentList | filter:term;">
             <td scope="col">{{indentListData.orderNo}}</td>
             <td scope="col">{{indentListData.etaTime}}</td>
             <td scope="col">{{indentListData.vehicleNo}}</td>
@@ -52,7 +55,7 @@
         </tbody>
       </table>
 
-      <pagination [totalItems]="50"></pagination>
+      <!-- <pagination [totalItems]="50"></pagination> -->
 
       <div class="input-group form-group">
         <div class="mx-auto">

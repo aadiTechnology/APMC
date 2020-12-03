@@ -7,12 +7,17 @@ import { EntryGateOperatorDashboardComponent } from './components/entry-gate-ope
 import { IndentListRecordComponent } from './components/indent-list-record/indent-list-record.component';
 import { IndentDetailsComponent } from './components/indent-details/indent-details.component';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { FormsModule } from '@angular/forms';
+
 
 
 @NgModule({
   declarations: [EntryGateOperatorComponent, EntryGateOperatorDashboardComponent, IndentListRecordComponent, IndentDetailsComponent, ],
   imports: [
     CommonModule,
+    FormsModule,
+    Ng2SearchPipeModule,
     EntryGateOperatorRoutingModule,
     PaginationModule.forRoot(),
   ]
