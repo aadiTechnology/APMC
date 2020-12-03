@@ -9,143 +9,165 @@
         <div class="input-group-prepend"></div>
         <span class="badge badge-success">OrderId:0001</span>
       </div> -->
-
-  <div class="input-group form-group">
-    <select
-      class="form-control"
-      name="FieldProductCategory"
-      required
-      #FieldProductCategory="ngModel"
-      [(ngModel)]="indent.CategoryId"
-      (change)="onCategoryChange($event)"
-    >
-      <option value="null" selected disabled hidden
-        >Select Product Category</option
-      >
-      <option *ngFor="let pcategory of procategory" value="{{pcategory.id}}"
-        >{{pcategory.category}}</option
-      >
-    </select>
-  </div>
-  <div
-    *ngIf="FieldProductCategory.invalid && (FieldProductCategory.dirty || FieldProductCategory.touched || ProductIndentForm.submitted)"
-    class="text-danger"
-  >
-    <div [hidden]="!FieldProductCategory.errors.required">
-      Product category is required
-    </div>
-  </div>
-  <div class="form-group">
-    <select
-      class="form-control"
-      name="FieldProductList"
-      required
-      #FieldProductList="ngModel"
-      [(ngModel)]="indent.ProductId"
-      (change)="onProductSelected($event)"
-    >
-      <option value="null" selected disabled hidden>Select Product</option>
-      <option *ngFor="let product of productlist" value="{{product.id}}"
-        >{{product.productName}}</option
-      >
-    </select>
-  </div>
-  <div
-    *ngIf="FieldProductList.invalid && (FieldProductList.dirty || FieldProductList.touched || ProductIndentForm.submitted )"
-    class="text-danger"
-  >
-    <div [hidden]="!FieldProductList.errors.required">
-      Product selection is required
-    </div>
-    <div [hidden]="!FieldProductList.errors.pattern">
-      Enter valid product
-    </div>
-  </div>
   <div class="row">
-    <div class="col-6">
-      <input
-        type="txt"
-        class="form-control"
-        placeholder="Quantity"
-        [(ngModel)]="indent.ProductQuantity"
-        required
-        pattern="[0-9]*"
-        maxlength="10"
-        #FieldProductQuantity="ngModel"
-        name="FieldProductQuantity"
-        (change)="onQuantity($event)"
-        [ngClass]="{'has-error': FieldProductQuantity.invalid && (FieldProductQuantity.dirty || FieldProductQuantity.touched
-                 ) }"
-      /><br />
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 form-group">
+      <!-- <label class="required">Product Category</label> -->
+      <div class="input-group">
+        <select
+          class="form-control"
+          name="FieldProductCategory"
+          required
+          #FieldProductCategory="ngModel"
+          [(ngModel)]="indent.CategoryId"
+          (change)="onCategoryChange($event)"
+          [ngClass]="{'is-invalid': FieldProductCategory.invalid && (FieldProductCategory.dirty || FieldProductCategory.touched || ProductIndentForm.submitted) }"
+          [ngClass]="{'is-valid': FieldProductCategory.valid && (!FieldProductCategory.dirty || !FieldProductCategory.touched || !ProductIndentForm.submitted) }"
+        >
+          <option value="null" selected disabled hidden
+            >Select Product Category</option
+          >
+          <option *ngFor="let pcategory of procategory" value="{{pcategory.id}}"
+            >{{pcategory.category}}</option
+          >
+        </select>
+      </div>
       <div
-        *ngIf="FieldProductQuantity.invalid && (FieldProductQuantity.dirty || FieldProductQuantity.touched || ProductIndentForm.submitted)"
-        class="text-danger"
+        [ngClass]="{'d-block': FieldProductCategory.invalid && (FieldProductCategory.dirty || FieldProductCategory.touched || ProductIndentForm.submitted) }"
+        class="invalid-feedback"
       >
-        <div [hidden]="!FieldProductQuantity.errors.required">
+        <div [hidden]="!FieldProductCategory?.errors?.required">
+          Product category is required
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 form-group">
+      <!-- <label class="required">Product </label> -->
+      <div class="input-group">
+        <select
+          class="form-control"
+          name="FieldProductList"
+          required
+          #FieldProductList="ngModel"
+          [(ngModel)]="indent.ProductId"
+          (change)="onProductSelected($event)"
+          [ngClass]="{'is-invalid': FieldProductList.invalid && (FieldProductList.dirty || FieldProductList.touched || ProductIndentForm.submitted) }"
+          [ngClass]="{'is-valid': FieldProductList.valid && (!FieldProductList.dirty || !FieldProductList.touched || !ProductIndentForm.submitted) }"
+        >
+          <option value="null" selected disabled hidden>Select Product</option>
+          <option *ngFor="let product of productlist" value="{{product.id}}"
+            >{{product.productName}}</option
+          >
+        </select>
+      </div>
+      <div
+        [ngClass]="{'d-block': FieldProductList.invalid && (FieldProductList.dirty || FieldProductList.touched || ProductIndentForm.submitted) }"
+        class="invalid-feedback"
+      >
+        <div [hidden]="!FieldProductList?.errors?.required">
+          Product selection is required
+        </div>
+        <div [hidden]="!FieldProductList?.errors?.pattern">
+          Enter valid product
+        </div>
+      </div>
+    </div>
+    <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 form-group">
+      <!-- <label class="required">Quantity </label> -->
+      <div class="input-group">
+        <input
+          type="txt"
+          class="form-control"
+          placeholder="Quantity"
+          [(ngModel)]="indent.ProductQuantity"
+          required
+          pattern="[0-9]*"
+          maxlength="10"
+          #FieldProductQuantity="ngModel"
+          name="FieldProductQuantity"
+          (change)="onQuantity($event)"
+          [ngClass]="{'is-invalid': FieldProductQuantity.invalid && (FieldProductQuantity.dirty || FieldProductQuantity.touched || ProductIndentForm.submitted) }"
+          [ngClass]="{'is-valid': FieldProductQuantity.valid && (!FieldProductQuantity.dirty || !FieldProductQuantity.touched || !ProductIndentForm.submitted) }"
+        />
+      </div>
+      <div
+        [ngClass]="{'d-block': FieldProductQuantity.invalid && (FieldProductQuantity.dirty || FieldProductQuantity.touched || ProductIndentForm.submitted) }"
+        class="invalid-feedback"
+      >
+        <div [hidden]="!FieldProductQuantity?.errors?.required">
           Quantity is required
         </div>
-        <div [hidden]="!FieldProductQuantity.errors.pattern">
+        <div [hidden]="!FieldProductQuantity?.errors?.pattern">
           Enter valid Quantity
         </div>
       </div>
     </div>
-    <div class="col-6">
-      <select
-        class="form-control"
-        name="FieldProductQuantityUnits"
-        required
-        #FieldProductQuantityUnits="ngModel"
-        [(ngModel)]="indent.UnitId"
-        (change)="onUnitsChange($event)"
-      >
-        <option value="null" selected disabled hidden>Select Units</option
-        ><option *ngFor="let productunit of unitlist" value="{{productunit.id}}"
-          >{{productunit.unit}}</option
+    <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 form-group">
+      <!-- <label class="required">Unit </label> -->
+      <div class="input-group">
+        <select
+          class="form-control"
+          name="FieldProductQuantityUnits"
+          required
+          #FieldProductQuantityUnits="ngModel"
+          [(ngModel)]="indent.UnitId"
+          (change)="onUnitsChange($event)"
+          [ngClass]="{'is-invalid': FieldProductQuantityUnits.invalid && (FieldProductQuantityUnits.dirty || FieldProductQuantityUnits.touched || ProductIndentForm.submitted) }"
+          [ngClass]="{'is-valid': FieldProductQuantityUnits.valid && (!FieldProductQuantityUnits.dirty || !FieldProductQuantityUnits.touched || !ProductIndentForm.submitted) }"
         >
-      </select>
-      <br />
+          <option value="null" selected disabled hidden>Select Unit</option
+          ><option
+            *ngFor="let productunit of unitlist"
+            value="{{productunit.id}}"
+            >{{productunit.unit}}</option
+          >
+        </select>
+      </div>
       <div
-        *ngIf="FieldProductQuantityUnits.invalid && (FieldProductQuantityUnits.dirty || FieldProductQuantityUnits.touched || ProductIndentForm.submitted)"
-        class="text-danger"
+        [ngClass]="{'d-block': FieldProductQuantityUnits.invalid && (FieldProductQuantityUnits.dirty || FieldProductQuantityUnits.touched || ProductIndentForm.submitted) }"
+        class="invalid-feedback"
       >
-        <div [hidden]="!FieldProductQuantityUnits.errors.required">
+        <div [hidden]="!FieldProductQuantityUnits?.errors?.required">
           Unit is required
         </div>
       </div>
     </div>
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 form-group">
+      <button type="submit" class="btn btn-sm text-info float-right">
+        Add <i class="fa fa-plus"></i>
+      </button>
+    </div>
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+      <table
+        class="table table-responsive table-responsive-lg table-responsive-sm table-responsive-xl"
+      >
+        <thead>
+          <tr>
+            <th scope="col">Product Category</th>
+            <th scope="col">Product Name</th>
+            <th scope="col">Quantity</th>
+            <!-- <th scope="col">Units</th> -->
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="text-center" *ngIf="selectedProducts?.length <= 0">
+            <td colspan="10">
+              <h3 class="mb-0 text-black-50">No data to display</h3>
+            </td>
+          </tr>
+          <tr *ngFor="let item of selectedProducts; let i = index">
+            <td scope="col">{{item.CategoryName}}</td>
+            <td scope="col">{{item.ProductName}}</td>
+            <td scope="col">{{item.ProductQuantity}} {{item.Unit}}</td>
+            <!-- <td scope="col">{{item.Unit}}</td> -->
+            <td scope="col">
+              <a (click)="removeProduct(item) " class="btn text-info"
+                ><i class="fa fa-trash"></i
+              ></a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
-  <div class="float-right">
-    <button type="submit" class="btn btn-sm text-info">
-      Add <i class="fa fa-plus"></i>
-    </button>
-  </div>
-  <table class="table table-responsive">
-    <thead>
-      <tr>
-        <th scope="col">Product Category</th>
-        <th scope="col">Product Name</th>
-        <th scope="col">Quantity</th>
-        <th scope="col">Units</th>
-        <th scope="col">Action</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngIf="selectedProducts?.length <= 0">
-        <td colspan="10">
-          <h3>No data to display</h3>
-        </td>
-      </tr>
-      <tr *ngFor="let item of selectedProducts; let i = index">
-        <td scope="col">{{item.CategoryName}}</td>
-        <td scope="col">{{item.ProductName}}</td>
-        <td scope="col">{{item.ProductQuantity}}</td>
-        <td scope="col">{{item.Unit}}</td>
-        <td scope="col">
-          <a (click)="removeProduct(item) " class="btn text-info"
-            ><i class="fa fa-trash"></i
-          ></a>
-        </td>
-      </tr>
-    </tbody>
-  </table>
 </form>

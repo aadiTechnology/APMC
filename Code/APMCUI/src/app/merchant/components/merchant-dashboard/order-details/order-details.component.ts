@@ -1,27 +1,30 @@
-import { Component, OnInit } from "@angular/core";
-import { NgForm } from "@angular/forms";
-import { MerchantService } from "../../../merchant.service";
-import { Product } from "../../../entities/product";
-import { Indent } from "../../../entities/indent";
-import { ProductCategory } from "src/app/merchant/entities/product-category";
-import { ProductList } from "src/app/merchant/entities/productlist";
-import { UnitList } from "src/app/merchant/entities/unitlist";
+import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { MerchantService } from '../../../merchant.service';
+import { Product } from '../../../entities/product';
+import { Indent } from '../../../entities/indent';
+import { ProductCategory } from 'src/app/merchant/entities/product-category';
+import { ProductList } from 'src/app/merchant/entities/productlist';
+import { UnitList } from 'src/app/merchant/entities/unitlist';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
-  selector: "app-order-details",
-  templateUrl: "./order-details.component.html",
-  styleUrls: ["./order-details.component.scss"],
+  selector: 'app-order-details',
+  templateUrl: './order-details.component.html',
+  styleUrls: ['./order-details.component.scss'],
 })
 export class OrderDetailsComponent implements OnInit {
   selectedProducts: any[];
   procategory = [];
   productlist = [];
   unitlist = [];
-
   product: Product;
   indent: Indent;
 
-  constructor(private merchantService: MerchantService) {
+  constructor(
+    private merchantService: MerchantService,
+    private ngxSpinnerService: NgxSpinnerService
+  ) {
     this.product = new Product();
     this.indent = new Indent();
     this.selectedProducts = new Array<Product>();
@@ -43,21 +46,27 @@ export class OrderDetailsComponent implements OnInit {
   }
 
   onCategoryChange(event): void {
+    this.ngxSpinnerService.show();
     const category = this.procategory.filter(
       (x) => x.id === +event.target.value
     )[0];
     this.product.CategoryId = +category.id;
     this.product.CategoryName = category.category;
     if (category) {
-      this.merchantService
-        .getAllProducts(category.id)
-        .subscribe((procategory) => {
+      this.merchantService.getAllProducts(category.id).subscribe(
+        (procategory) => {
           if (procategory) {
             this.productlist = procategory.rows;
+            this.ngxSpinnerService.hide();
           }
-        });
+        },
+        (err) => {
+          this.ngxSpinnerService.hide();
+        }
+      );
     } else {
       this.productlist = null;
+      this.ngxSpinnerService.hide();
     }
   }
 

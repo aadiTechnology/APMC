@@ -31,7 +31,7 @@
                     required
                     #FiledUserName="ngModel"
                     name="FiledUserName"
-                    [ngClass]="{'has-error': FiledUserName.invalid && (FiledUserName.dirty || FiledUserName.touched || LoginForm.submitted) }"
+                    [ngClass]="{'is-invalid': FiledUserName.invalid && (FiledUserName.dirty || FiledUserName.touched || LoginForm.submitted) }"
                   />
                 </div>
                 <div
@@ -62,13 +62,15 @@
                     placeholder="Password"
                     [(ngModel)]="user.Password"
                     required
-                    [ngClass]="{'has-error': FieldPassword.invalid && (FieldPassword.dirty || FieldPassword.touched || LoginForm.submitted) }"
+                    [ngClass]="{'is-invalid': FieldPassword.invalid && (FieldPassword.dirty || FieldPassword.touched || LoginForm.submitted) }"
                     #FieldPassword="ngModel"
                     #FieldPasswordInput
                     name="FieldPassword"
                     [type]="hide ? 'password' : 'text'"
                   />
-                  <div class="border rounded-right border-left-0 input-group-prepend">
+                  <div
+                    class="border rounded-right border-left-0 input-group-prepend"
+                  >
                     <span
                       (click)="myFunction()"
                       class="bg-transparent input-group-text text-black-50"

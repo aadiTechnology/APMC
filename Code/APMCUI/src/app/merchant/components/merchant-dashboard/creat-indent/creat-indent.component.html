@@ -12,202 +12,209 @@
       #CreateIndentForm="ngForm"
       (ngSubmit)="createIndent(CreateIndentForm)"
     >
-      <div class="form-group">
-        <input
-          [(ngModel)]="merchantindent.DriverName"
-          placeholder="Driver Name"
-          required
-          pattern="[a-zA-Z ]*"
-          autocomplete="off"
-          [typeahead]="driverlist"
-          type
-          [typeaheadMultipleSearch]="true"
-          typeaheadOptionField="firstName"
-          typeaheadMultipleSearchDelimiters=" |"
-          class="form-control"
-          #FieldDriverName="ngModel"
-          name="FieldDriverName"
-          [ngClass]="{'has-error': FieldDriverName.invalid && (FieldDriverName.dirty || FieldDriverName.touched || CreateIndentForm.submitted) }"
-        />
-      </div>
-      <div
-        *ngIf="FieldDriverName.invalid && (FieldDriverName.dirty || FieldDriverName.touched || CreateIndentForm.submitted )"
-        class="text-danger"
-      >
-        <div [hidden]="!FieldDriverName.errors.required">
-          Driver name is required
-        </div>
-        <div [hidden]="!FieldDriverName.errors.pattern">
-          Enter valid driver name
-        </div>
-      </div>
-      <div class="input-group form-group">
-        <div class="input-group-prepend"></div>
-        <input
-          type="txt"
-          class="form-control"
-          placeholder="Driver Number"
-          [(ngModel)]="merchantindent.DriverNo"
-          required
-          pattern="[0-9]*"
-          maxlength="10"
-          #FieldDriverNumber="ngModel"
-          name="FieldDriverNumber"
-          [ngClass]="{'has-error': FieldDriverNumber.invalid && (FieldDriverNumber.dirty || FieldDriverNumber.touched || CreateIndentForm.submitted) }"
-        />
-      </div>
-      <div
-        *ngIf="FieldDriverNumber.invalid && (FieldDriverNumber.dirty || FieldDriverNumber.touched || CreateIndentForm.submitted )"
-        class="text-danger"
-      >
-        <div [hidden]="!FieldDriverNumber.errors.required">
-          Driver mobile number is required
-        </div>
-        <div [hidden]="!FieldDriverNumber.errors.pattern">
-          Enter valid drive mobile number
-        </div>
-      </div>
-
-      <div class="input-group form-group">
-        <div class="input-group-prepend"></div>
-        <input
-          type="txt"
-          class="form-control"
-          placeholder="Vehicle Number"
-          pattern="[a-zA-Z0-9]+"
-          [(ngModel)]="merchantindent.VehicleNo"
-          #FieldVehicleNumber="ngModel"
-          name="FieldVehicleNumber"
-        />
-      </div>
-      <div
-        *ngIf="FieldVehicleNumber.invalid && (FieldVehicleNumber.dirty || FieldVehicleNumber.touched || CreateIndentForm.submitted )"
-        class="text-danger"
-      >
-        <div [hidden]="!FieldVehicleNumber.errors.pattern">
-          Enter valid vehicle number
-        </div>
-      </div>
-
-      <div class="form-group">
-        <input
-          class="form-control"
-          name="FieldSelectDate"
-          required
-          #FieldSelectDate="ngModel"
-          [(ngModel)]="merchantindent.ETADate"
-          bsDatepicker
-          placeholder="Select Date"
-          container=""
-          [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY',adaptivePosition: true }"
-          [minDate]="minDate"
-          [maxlength]="10"
-          [ngClass]="{'has-error': FieldSelectDate.invalid && (FieldSelectDate.dirty || FieldSelectDate.touched
-          || CreateIndentForm.submitted) }"
-        />
-      </div>
-      <div
-        *ngIf="FieldSelectDate.invalid && (FieldSelectDate.dirty || FieldSelectDate.touched || CreateIndentForm.submitted )"
-        class="text-danger"
-      >
-        <div [hidden]="!FieldSelectDate.errors.required">
-          Date is required
-        </div>
-      </div>
-
-      <div class="input-group form-group">
-        <input
-          class="form-control"
-          matInput
-          aria-label="default time"
-          [ngxTimepicker]="defaultValue"
-          [value]="'0:00 am'"
-          [(ngModel)]="merchantindent.ETATime"
-          #FieldSelectTime="ngModel"
-          name="FieldSelectTime"
-          placeholder="Select time"
-          [ngClass]="{'has-error': FieldSelectTime.invalid && (FieldSelectTime.dirty || FieldSelectTime.touched
-        || CreateIndentForm.submitted) }"
-        />
-        <ngx-material-timepicker #defaultValue> </ngx-material-timepicker>
-      </div>
-      <div
-        *ngIf="FieldSelectTime.invalid && (FieldSelectTime.dirty || FieldSelectTime.touched || CreateIndentForm.submitted )"
-        class="text-danger"
-      ></div>
-
-      <div class="input-group form-group">
-        <input
-          type="txt"
-          class="form-control"
-          pattern="[a-zA-Z ]*"
-          placeholder="Supplier Name"
-          [(ngModel)]="merchantindent.SupplierName"
-          #FieldSupplierName="ngModel"
-          name="#FieldSupplierName"
-          [ngClass]="{'has-error': FieldSupplierName.invalid && (FieldSupplierName.dirty || FieldSupplierName.touched
-          || CreateIndentForm.submitted) }"
-        />
-      </div>
-      <div
-        *ngIf="FieldSupplierName.invalid && (FieldSupplierName.dirty || FieldSupplierName.touched || CreateIndentForm.submitted )"
-        class="text-danger"
-      >
-        <div [hidden]="!FieldSupplierName.errors.pattern">
-          Enter valid supplier name
-        </div>
-      </div>
-      <div class="input-group form-group">
-        <input
-          type="txt"
-          class="form-control"
-          pattern="[0-9]*"
-          placeholder="Supplier Number"
-          maxlength="10"
-          [(ngModel)]="merchantindent.SupplierNo"
-          #FieldSupplierNumber="ngModel"
-          name="FieldSupplierNumber"
-          [ngClass]="{'has-error': FieldSupplierNumber.invalid && (FieldSupplierNumber.dirty || FieldSupplierNumber.touched
-          || CreateIndentForm.submitted) }"
-        />
-      </div>
-      <div
-        *ngIf="FieldSupplierNumber.invalid && (FieldSupplierNumber.dirty || FieldSupplierNumber.touched || CreateIndentForm.submitted )"
-        class="text-danger"
-      >
-        <div [hidden]="!FieldSupplierNumber.errors.pattern">
-          Enter valid supplier number
-        </div>
-      </div>
-
-      <br />
-      <div class="input-group form-group">
-        <div class="mx-auto">
-          <input
-            type="submit"
-            value="Save"
-            class="btn btn-success"
-          />&nbsp;&nbsp;&nbsp;
-          <input
-            type="button"
-            value="Cancel"
-            class="btn btn-danger"
-            (click)="openModal(template)"
-          />
-        </div>
-        <ng-template #template>
-          <div class="modal-body text-center">
-            <h3 class="mx-auto">Confirm Cancellation</h3>
-            <p>Are you sure ? You want to cancel Indent creation?</p>
-            <button type="button" class="btn btn-primary" (click)="confirm()">
-              Yes</button
-            >&nbsp;
-            <button type="button" class="btn btn-secondary" (click)="decline()">
-              No
-            </button>
+      <div class="row">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 form-group">
+          <div class="input-group">
+            <input
+              [(ngModel)]="merchantindent.DriverName"
+              placeholder="Driver Name"
+              required
+              pattern="[a-zA-Z ]*"
+              autocomplete="off"
+              [typeahead]="driverlist"
+              type
+              [typeaheadMultipleSearch]="true"
+              typeaheadOptionField="firstName"
+              typeaheadMultipleSearchDelimiters=" |"
+              class="form-control"
+              #FieldDriverName="ngModel"
+              name="FieldDriverName"
+              [ngClass]="{'is-invalid': FieldDriverName.invalid && (FieldDriverName.dirty || FieldDriverName.touched || CreateIndentForm.submitted) }"
+              [ngClass]="{'is-valid': FieldDriverName.valid && (!FieldDriverName.dirty || !FieldDriverName.touched || !CreateIndentForm.submitted) }"
+            />
           </div>
-        </ng-template>
+          <div
+            [ngClass]="{'d-block': FieldDriverName.invalid && (FieldDriverName.dirty || FieldDriverName.touched || CreateIndentForm.submitted) }"
+            class="invalid-feedback"
+          >
+            <div [hidden]="!FieldDriverName?.errors?.required">
+              Driver name is required
+            </div>
+            <div [hidden]="!FieldDriverName?.errors?.pattern">
+              Enter valid driver name
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 form-group">
+          <div class="input-group">
+            <input
+              type="txt"
+              class="form-control"
+              placeholder="Driver Number"
+              [(ngModel)]="merchantindent.DriverNo"
+              required
+              pattern="[0-9]*"
+              maxlength="10"
+              #FieldDriverNumber="ngModel"
+              name="FieldDriverNumber"
+              [ngClass]="{'is-invalid': FieldDriverNumber.invalid && (FieldDriverNumber.dirty || FieldDriverNumber.touched || CreateIndentForm.submitted) }"
+              [ngClass]="{'is-valid': FieldDriverNumber.valid && (!FieldDriverNumber.dirty || !FieldDriverNumber.touched || !CreateIndentForm.submitted) }"
+            />
+          </div>
+          <div
+            [ngClass]="{'d-block': FieldDriverNumber.invalid && (FieldDriverNumber.dirty || FieldDriverNumber.touched || CreateIndentForm.submitted) }"
+            class="invalid-feedback"
+          >
+            <div [hidden]="!FieldDriverNumber?.errors?.required">
+              Driver mobile number is required
+            </div>
+            <div [hidden]="!FieldDriverNumber?.errors?.pattern">
+              Enter valid drive mobile number
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 form-group">
+          <div class="input-group">
+            <input
+              type="txt"
+              class="form-control"
+              placeholder="Vehicle Number"
+              pattern="[a-zA-Z0-9]+"
+              [(ngModel)]="merchantindent.VehicleNo"
+              #FieldVehicleNumber="ngModel"
+              name="FieldVehicleNumber"
+            />
+          </div>
+          <div
+            [ngClass]="{'d-block': FieldVehicleNumber.invalid && (FieldVehicleNumber.dirty || FieldVehicleNumber.touched || CreateIndentForm.submitted) }"
+            class="invalid-feedback"
+          >
+            <div [hidden]="!FieldVehicleNumber?.errors?.pattern">
+              Enter valid vehicle number
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 form-group">
+          <div class="input-group">
+            <input
+              class="form-control"
+              name="FieldSelectDate"
+              required
+              #FieldSelectDate="ngModel"
+              [(ngModel)]="merchantindent.ETADate"
+              bsDatepicker
+              placeholder="Select Date"
+              container=""
+              [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY',adaptivePosition: true }"
+              [minDate]="minDate"
+              [maxlength]="10"
+              [ngClass]="{'is-invalid': FieldSelectDate.invalid && (FieldSelectDate.dirty || FieldSelectDate.touched || CreateIndentForm.submitted) }"
+              [ngClass]="{'is-valid': FieldSelectDate.valid && (!FieldSelectDate.dirty || !FieldSelectDate.touched || !CreateIndentForm.submitted) }"
+            />
+          </div>
+          <div
+            [ngClass]="{'d-block': FieldSelectDate.invalid && (FieldSelectDate.dirty || FieldSelectDate.touched || CreateIndentForm.submitted) }"
+            class="invalid-feedback"
+          >
+            <div [hidden]="!FieldSelectDate?.errors?.required">
+              Date is required
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 form-group">
+          <div class="input-group">
+            <input
+              class="form-control"
+              matInput
+              aria-label="default time"
+              [ngxTimepicker]="defaultValue"
+              [value]="'0:00 am'"
+              [(ngModel)]="merchantindent.ETATime"
+              #FieldSelectTime="ngModel"
+              name="FieldSelectTime"
+              placeholder="Select time"
+              [ngClass]="{'is-invalid': FieldSelectTime.invalid && (FieldSelectTime.dirty || FieldSelectTime.touched
+        || CreateIndentForm.submitted) }"
+            />
+            <ngx-material-timepicker #defaultValue> </ngx-material-timepicker>
+          </div>
+          <div
+            [ngClass]="{'d-block': FieldSelectTime.invalid && (FieldSelectTime.dirty || FieldSelectTime.touched || CreateIndentForm.submitted) }"
+            class="invalid-feedback"
+          ></div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 form-group">
+          <div class="input-group">
+            <input
+              type="txt"
+              class="form-control"
+              pattern="[a-zA-Z ]*"
+              placeholder="Supplier Name"
+              [(ngModel)]="merchantindent.SupplierName"
+              #FieldSupplierName="ngModel"
+              name="#FieldSupplierName"
+              [ngClass]="{'is-invalid': FieldSupplierName.invalid && (FieldSupplierName.dirty || FieldSupplierName.touched
+          || CreateIndentForm.submitted) }"
+            />
+          </div>
+          <div
+            [ngClass]="{'d-block': FieldSupplierName.invalid && (FieldSupplierName.dirty || FieldSupplierName.touched || CreateIndentForm.submitted) }"
+            class="invalid-feedback"
+          >
+            <div [hidden]="!FieldSupplierName?.errors?.pattern">
+              Enter valid supplier name
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 form-group">
+          <div class="input-group">
+            <input
+              type="txt"
+              class="form-control"
+              pattern="[0-9]*"
+              placeholder="Supplier Number"
+              maxlength="10"
+              [(ngModel)]="merchantindent.SupplierNo"
+              #FieldSupplierNumber="ngModel"
+              name="FieldSupplierNumber"
+              [ngClass]="{'is-invalid': FieldSupplierNumber.invalid && (FieldSupplierNumber.dirty || FieldSupplierNumber.touched
+          || CreateIndentForm.submitted) }"
+            />
+          </div>
+          <div
+            [ngClass]="{'d-block': FieldSupplierNumber.invalid && (FieldSupplierNumber.dirty || FieldSupplierNumber.touched || CreateIndentForm.submitted) }"
+            class="invalid-feedback"
+          >
+            <div [hidden]="!FieldSupplierNumber?.errors?.pattern">
+              Enter valid supplier number
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 form-group text-center"
+      >
+        <input type="submit" value="Save" class="btn btn-success mr-2" />
+        <input
+          type="button"
+          value="Cancel"
+          class="btn btn-danger"
+          (click)="openModal(template)"
+        />
       </div>
     </form>
   </div>
 </div>
+
+<ng-template #template>
+  <div class="modal-body text-center">
+    <h3 class="mx-auto">Confirm Cancellation</h3>
+    <p>Are you sure ? You want to cancel Indent creation?</p>
+    <button type="button" class="btn btn-primary" (click)="confirm()">
+      Yes</button
+    >&nbsp;
+    <button type="button" class="btn btn-secondary" (click)="decline()">
+      No
+    </button>
+  </div>
+</ng-template>

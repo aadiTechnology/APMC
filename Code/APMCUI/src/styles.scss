@@ -71,3 +71,23 @@ ngx-spinner {
     background-color: rgb(0 0 0 / 50%) !important;
   }
 }
+.required:after {
+  content: ' *';
+  color: red;
+}
+
+.font-13 {
+  font-size: 13px !important;
+}
+
+label.text-muted {
+  font-size: 13px !important;
+}
+app-footer {
+  small {
+    cursor: default !important;
+    span {
+      cursor: default !important;
+    }
+  }
+}

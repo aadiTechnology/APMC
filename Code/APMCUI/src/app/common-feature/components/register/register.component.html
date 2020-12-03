@@ -54,7 +54,7 @@
           pattern="[a-zA-Z ]*"
           #FiledFirstName="ngModel"
           name="FiledFirstName"
-          [ngClass]="{'has-error': FiledFirstName.invalid && (FiledFirstName.dirty ||
+          [ngClass]="{'is-invalid': FiledFirstName.invalid && (FiledFirstName.dirty ||
 			               	FiledFirstName.touched || SignupForm.submitted) }"
         />
       </div>
@@ -85,7 +85,7 @@
           pattern="[a-zA-Z ]*"
           #FiledLastName="ngModel"
           name="FiledLastName"
-          [ngClass]="{'has-error': FiledLastName.invalid && (FiledLastName.dirty || FiledLastName.touched
+          [ngClass]="{'is-invalid': FiledLastName.invalid && (FiledLastName.dirty || FiledLastName.touched
 							 || SignupForm.submitted) }"
         />
       </div>
@@ -115,10 +115,9 @@
           [(ngModel)]="user.MobileNo"
           required
           pattern="\d{10}"
-          
           #FieldMobileNumber="ngModel"
           name="FieldMobileNumber"
-          [ngClass]="{'has-error': FieldMobileNumber.invalid && (FieldMobileNumber.dirty || FieldMobileNumber.touched
+          [ngClass]="{'is-invalid': FieldMobileNumber.invalid && (FieldMobileNumber.dirty || FieldMobileNumber.touched
 								|| SignupForm.submitted) }"
         />
       </div>
@@ -148,7 +147,7 @@
           pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
           #FieldEmail="ngModel"
           name="FieldEmail"
-          [ngClass]="{'has-error': FieldEmail.invalid && (FieldEmail.dirty || FieldEmail.touched
+          [ngClass]="{'is-invalid': FieldEmail.invalid && (FieldEmail.dirty || FieldEmail.touched
 							|| SignupForm.submitted) }"
         />
       </div>
@@ -166,7 +165,7 @@
           required
           #FieldUserName="ngModel"
           name="FieldUserName"
-          [ngClass]="{'has-error': FieldUserName.invalid && (FieldUserName.dirty || FieldUserName.touched
+          [ngClass]="{'is-invalid': FieldUserName.invalid && (FieldUserName.dirty || FieldUserName.touched
 						 || SignupForm.submitted) }"
         />
       </div>
@@ -180,9 +179,8 @@
       </div>
       <div
         class="input-group form-group"
-        
         data-tooltip="Password should be: Minimum 8 characters, at least one upper case, at least one lower case, at least one number & at least one special character."
-         data-tooltip-persistent
+        data-tooltip-persistent
       >
         <div class="input-group-prepend">
           <span class="input-group-text bg-success"
@@ -197,7 +195,7 @@
           [(ngModel)]="user.Password"
           required
           pattern="^(?=.*?[A-Z])(?=(.*[a-z]){1,})(?=(.*[\d]){1,})(?=(.*[\W]){1,})(?!.*\s).{8,}$"
-          [ngClass]="{'has-error': FieldPassword.invalid && (FieldPassword.dirty || FieldPassword.touched || SignupForm.submitted) }"
+          [ngClass]="{'is-invalid': FieldPassword.invalid && (FieldPassword.dirty || FieldPassword.touched || SignupForm.submitted) }"
           #FieldPassword="ngModel"
           #FieldPasswordInput
           name="FieldPassword"
@@ -223,13 +221,13 @@
           Password is required
         </div>
         <div
-*ngIf="FieldPassword.invalid && (FieldPassword.dirty || FieldPassword.touched || SignupForm.submitted)"
-class="text-danger"
->
-<div [hidden]="!FieldPassword.errors.pattern">
-Password strength is not match
-</div>
-</div>
+          *ngIf="FieldPassword.invalid && (FieldPassword.dirty || FieldPassword.touched || SignupForm.submitted)"
+          class="text-danger"
+        >
+          <div [hidden]="!FieldPassword.errors.pattern">
+            Password strength is not match
+          </div>
+        </div>
       </div>
       <div class="input-group form-group">
         <div class="input-group-prepend">
@@ -245,7 +243,7 @@ Password strength is not match
           [(ngModel)]="user.ConfirmPassword"
           pattern="^(?=.*?[A-Z])(?=(.*[a-z]){1,})(?=(.*[\d]){1,})(?=(.*[\W]){1,})(?!.*\s).{8,}$"
           required
-          [ngClass]="{'has-error': FieldConfirmPassword.invalid && (FieldConfirmPassword.dirty ||
+          [ngClass]="{'is-invalid': FieldConfirmPassword.invalid && (FieldConfirmPassword.dirty ||
 						    FieldConfirmPassword.touched || SignupForm.submitted) }"
           #FieldConfirmPassword="ngModel"
           #FieldConfirmPasswordInput
@@ -301,8 +299,8 @@ Password strength is not match
             <h3 class="mx-auto">Confirm Cancellation</h3>
             <p>Do you want to cancel changes?</p>
             <button type="button" class="btn btn-primary" (click)="confirm()">
-              Yes
-            </button>&nbsp;
+              Yes</button
+            >&nbsp;
             <button type="button" class="btn btn-secondary" (click)="decline()">
               No
             </button>

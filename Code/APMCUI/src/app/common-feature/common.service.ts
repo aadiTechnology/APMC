@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from '../core/services/http.service';
+import { Location } from '@angular/common';
 
 @Injectable({
   providedIn: 'root',
@@ -7,7 +8,7 @@ import { HttpService } from '../core/services/http.service';
 export class CommonService {
   isSidebarPinned = false;
   isSidebarToggeled = false;
-  constructor(private httpService: HttpService) {}
+  constructor(private httpService: HttpService, private location: Location) {}
 
   toggleSidebar(): void {
     this.isSidebarToggeled = !this.isSidebarToggeled;
@@ -43,5 +44,8 @@ export class CommonService {
   getAllUserRolls(): any {
     return this.httpService.get('Account/GetAllUserRolls');
   }
-  
+
+  goBack(): void {
+    this.location.back();
+  }
 }
