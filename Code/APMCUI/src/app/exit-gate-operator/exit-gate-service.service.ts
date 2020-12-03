@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { HttpService } from '../core/services/http.service';
 
 
@@ -17,4 +18,7 @@ export class ExitGateServiceService {
     return this.httpService.get(`ExitGate/GetCheckInVehicleDetailsById?Id=${Id}`);
   }
 
+  UpdateParkingCharges(parkingCharges): Observable <any>{
+    return this.httpService.post('ExitGate/UpdateParkingCharges',parkingCharges);
+  }
 }

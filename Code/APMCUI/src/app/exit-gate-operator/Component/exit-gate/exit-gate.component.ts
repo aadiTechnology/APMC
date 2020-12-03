@@ -6,6 +6,8 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Exitgate } from "../../entities/exitGate";
 import { ExitGateServiceService } from "../../exit-gate-service.service";
 import {UpdateParkingCharge} from "../../entities/updateParkingCharge";
+import { NgxSpinnerService } from 'ngx-spinner';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-exit-gate',
@@ -25,8 +27,10 @@ export class ExitGateComponent implements OnInit {
 
   constructor( private modalService: BsModalService,
                private router: Router,
+               private ngxSpinnerService: NgxSpinnerService,
                private exitGateServiceService:ExitGateServiceService,
                private activeRoute:ActivatedRoute,
+               private toastr: ToastrService
                ) { 
         
      this.exitGate = new Array<Exitgate>();
@@ -51,9 +55,27 @@ export class ExitGateComponent implements OnInit {
       }
     })
   }
-
+//Only Signature
   exitgate(form: NgForm):void {
+    this.ngxSpinnerService.show();
+    if(form.valid){
+      const charges={
 
+      }
+    this.exitGateServiceService.UpdateParkingCharges(charges).subscribe(
+      (arg)=>{
+        if(arg){
+          this.toastr.success("Save SuccessFully","Success");
+          this.ngxSpinnerService.hide();
+        }
+        form.resetForm();
+      },
+      (err) => {
+        this.toastr.error("Something went wrong","Error");
+        this.ngxSpinnerService.hide();
+      }
+      );
+     }
   }
 
  //Cancel button popup
