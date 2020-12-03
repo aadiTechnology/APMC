@@ -74,7 +74,8 @@
         #FieldProductQuantity="ngModel"
         name="FieldProductQuantity"
         (change)="onQuantity($event)"
-        [ngClass]="{'has-error': FieldProductQuantity.invalid && (FieldProductQuantity.dirty || FieldProductQuantity.touched) }"
+        [ngClass]="{'has-error': FieldProductQuantity.invalid && (FieldProductQuantity.dirty || FieldProductQuantity.touched
+                 ) }"
       /><br />
       <div
         *ngIf="FieldProductQuantity.invalid && (FieldProductQuantity.dirty || FieldProductQuantity.touched || ProductIndentForm.submitted)"
