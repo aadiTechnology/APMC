@@ -11,97 +11,90 @@
       #ExitGateForm="ngForm"
       (ngSubmit)="exitgate(ExitGateForm)"
     >
+      <div class="container-fluid pt-4">
+        <div class="row">
+          <div class="col-md-5 col-5">
+            <b>Vehicle No: </b>
+          </div>
+          <div class="col-md-7 col-7">
+            <p>&nbsp;{{ vehicleEntryRow.vehicleNumber}}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-5 col-5">
+            <b>In Time: </b>
+          </div>
+          <div class="col-md-7 col-7">
+            <p>&nbsp;{{ vehicleEntryRow.inTime | date:'hh:mm a'}}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-5 col-5">
+            <b>Out Time: </b>
+          </div>
+          <div class="col-md-7 col-7">
+            <p>&nbsp;{{ todaysDataTime }}</p>
+          </div>
+        </div>
+        <hr />
+        <div class="row">
+          <div class="col-md-5 col-5">
+            <b>Fine:</b>
+          </div>
+          <div class="col-md-7 col-7">
+            <div class="input-group form-group">
+              <input
+                type="txt"
+                class="form-control"
+                placeholder="Enter Amount"
+                value=""
+              />
+            </div>
+          </div>
+        </div>
 
-    <div class="container-fluid pt-4">
-      <div class="row">
-        <div class="col-md-5 col-5">
-          <b>Vehicle No: </b>
-        </div>
-        <div class="col-md-7 col-7">
-          <p>&nbsp;{{ vehicleEntryRow.vehicleNumber}}</p>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-5 col-5">
-          <b>In-Time: </b> 
-        </div>
-        <div class="col-md-7 col-7">
-          <p>&nbsp;{{ vehicleEntryRow.inTime | date:'h:mm a'}}</p>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-5 col-5">
-          <b>Out-Time: </b> 
-        </div>
-        <div class="col-md-7 col-7">
-          <p>&nbsp;{{ todaysDataTime }}</p>
-        </div>
-      </div>
-      <hr>
-      <div class="row">
-        <div class="col-md-5 col-5">
-          <button class="btn btn-primary"> Check_Fine</button>
-        </div>
-        <div class="col-md-7 col-7">
-          <div class="input-group form-group">
-            <input
-              type="txt"
-              class="form-control"
-              placeholder="Enter Amount"
-              value=""
-            />
+        <div class="row">
+          <div class="col-md-5 col-5"></div>
+          <div class="col-md-7 col-7">
+            <div class="form-group form-check">
+              <input type="checkbox" class="form-check-input" id="2" />
+              <label class="form-check-label" for="2">No Parking</label>
+            </div>
           </div>
         </div>
       </div>
 
-      <div class="row">
-        <div class="col-md-5 col-5">
-          <div class="form-group form-check">
-            <input type="checkbox" class="form-check-input" id="1">
-            <label class="form-check-label" for="1">Extra Time</label>
-          </div>
-        </div>
-        <div class="col-md-7 col-7">
-          <div class="form-group form-check">
-            <input type="checkbox" class="form-check-input" id="2">
-            <label class="form-check-label" for="2">No Parking</label>
-          </div>
+      <br />
+
+      <div class="input-group form-group">
+        <div class="mx-auto">
+          <input
+            type="submit"
+            value="Save"
+            class="btn btn-success"
+          />&nbsp;&nbsp;&nbsp;
+          <input
+            type="button"
+            value="Cancel"
+            class="btn btn-danger"
+            (click)="openModal(template)"
+          />
         </div>
       </div>
 
-    </div>
-
-     <br>
-
-        <div class="input-group form-group">
-          <div class="mx-auto">
-            <input
-              type="submit"
-              value="Save"
-              class="btn btn-success"
-            />&nbsp;&nbsp;&nbsp;
-            <input
-              type="button"
-              value="Cancel"
-              class="btn btn-danger"
-              (click)="openModal(template)"
-            />
-          </div>
+      <ng-template #template>
+        <div class="modal-body text-center">
+          <h3 class="mx-auto">Confirm Cancellation</h3>
+          <p>Do you want to cancel Exit Gate Entry ?</p>
+          <button type="button" class="btn btn-primary" (click)="confirm()">
+            Yes</button
+          >&nbsp;
+          <button type="button" class="btn btn-secondary" (click)="decline()">
+            No
+          </button>
         </div>
+      </ng-template>
 
-        <ng-template #template>
-          <div class="modal-body text-center">
-            <h3 class="mx-auto">Confirm Cancellation</h3>
-            <p>Do you want to cancel Exit Gate Entry ?</p>
-            <button type="button" class="btn btn-primary" (click)="confirm()">
-              Yes</button
-            >&nbsp;
-            <button type="button" class="btn btn-secondary" (click)="decline()">
-              No
-            </button>
-          </div>
-        </ng-template>
- 
       <!-- Material unchecked -->
     </form>
   </div>

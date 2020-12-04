@@ -38,7 +38,7 @@ export class SidebarComponent implements OnInit {
     ];
     this.driverNavLink = [
       new NavLink('Dashboard', ['/driver/dashboard'], 'fas fa-tachometer-alt'),
-      new NavLink('QR Code List', ['/driver/qrList'], 'fas fa-graduation-cap'),
+      new NavLink('Indent List', ['/driver/qrList'], 'fas fa-graduation-cap'),
     ];
 
     this.adminNavLink = [

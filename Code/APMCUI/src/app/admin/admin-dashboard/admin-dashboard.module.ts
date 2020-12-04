@@ -8,6 +8,7 @@ import { RouterModule } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { StallRegistrationListComponent } from './components/stall-registration-list/stall-registration-list.component';
 import { FormsModule } from "@angular/forms";
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @NgModule({
   declarations: [AdminDashboardComponent, StallRegistrationRequestsComponent, DashboardComponent, StallRegistrationListComponent],
@@ -15,7 +16,8 @@ import { FormsModule } from "@angular/forms";
     CommonModule,
     AdminDashboardRoutingModule,
     RouterModule,
-    FormsModule
+    FormsModule,
+    Ng2SearchPipeModule,
   ]
 })
 export class AdminDashboardModule { }
