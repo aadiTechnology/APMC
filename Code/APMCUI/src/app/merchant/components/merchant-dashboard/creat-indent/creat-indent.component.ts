@@ -33,6 +33,7 @@ export class CreatIndentComponent implements OnInit, AfterViewInit {
   message: string;
   selectedProducts: any;
   merchantindent: Merchantindent;
+  IndentDetails:any;
 
   @ViewChild(OrderDetailsComponent) orderDetails;
 
@@ -89,16 +90,18 @@ export class CreatIndentComponent implements OnInit, AfterViewInit {
         IndentDetails: IndentDetails,
       };
       this.merchantService.indentCreation(indentData).subscribe(
-        (arg: any) => {
-          if (!arg.HasErrors) {
-            form.resetForm();
+        (arg) => {
+          if (arg) {
             this.toastr.success('Indent Creation successful', 'Success');
             this.ngxSpinnerService.hide();
+            
           } else {
             this.toastr.error('Indent Creation failed', 'Error');
             this.ngxSpinnerService.hide();
           }
+          form.resetForm();
         },
+       
         (err) => {
           this.toastr.error('Something went wrong', 'Error');
           this.ngxSpinnerService.hide();
