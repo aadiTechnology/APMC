@@ -15,6 +15,7 @@ export class StallRegistrationListComponent implements OnInit {
   stallRequestList:any;
   modalRef: BsModalRef;
   message: string;
+  term:string;
   constructor(private modalService: BsModalService,
                private router: Router,
                 private adminservice:AdminService) {

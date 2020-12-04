@@ -8,16 +8,15 @@
        <b class="text-success ml-auto pl-3">Stall No</b> 
       </div> -->
       <div class="text-success ml-auto pr-3">
-        <p>{{myDate | date: 'dd/MM/yyyy'}}
-
-        </p> 
+        <p>{{myDate | date: 'dd/MM/yyyy'}}</p>
       </div>
-    </div><br>
+    </div>
+    <br />
     <form>
       <table class="table table-responsive">
         <thead>
           <tr>
-            <th scope="col">Order no</th>
+            <th scope="col">Order No</th>
             <th scope="col">Merchant name</th>
             <th scope="col">Action</th>
           </tr>
@@ -40,15 +39,14 @@
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <a class="dropdown-item" routerLink="/driver/qrDetails"
                   ><i class="fa fa-eye" aria-hidden="true"></i>
-                  </a
-                >
+                </a>
               </div>
             </td>
           </tr>
         </tbody>
         <tbody>
           <tr>
-           <td scope="col">007</td>
+            <td scope="col">007</td>
             <td scope="col">Ganesh Jagdhane</td>
             <td scope="col">
               <button
@@ -64,8 +62,7 @@
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <a class="dropdown-item" routerLink="/driver/qrDetails"
                   ><i class="fa fa-eye" aria-hidden="true"></i>
-                  </a
-                >
+                </a>
               </div>
             </td>
           </tr>
@@ -88,15 +85,14 @@
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <a class="dropdown-item" routerLink="/driver/qrDetails"
                   ><i class="fa fa-eye" aria-hidden="true"></i>
-                  </a
-                >
+                </a>
               </div>
             </td>
           </tr>
         </tbody>
         <tbody>
           <tr>
-           <td scope="col">009</td>
+            <td scope="col">009</td>
             <td scope="col">Sumit Kemse</td>
             <td scope="col">
               <button
@@ -112,15 +108,12 @@
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <a class="dropdown-item" routerLink="/driver/qrDetails"
                   ><i class="fa fa-eye" aria-hidden="true"></i>
-                  </a
-                >
+                </a>
               </div>
             </td>
           </tr>
         </tbody>
       </table>
-
-      <pagination [totalItems]="50"></pagination>
 
       <div class="input-group form-group">
         <div class="mx-auto">
