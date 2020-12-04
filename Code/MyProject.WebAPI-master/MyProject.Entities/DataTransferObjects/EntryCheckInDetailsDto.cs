@@ -7,7 +7,24 @@ namespace MyProject.Entities.DataTransferObjects
 {
     public class EntryCheckInDetailsDto
     {
+        public int IndentId { get; set; }
+        public string OrderNo { get; set; }
+        public string SupplierName { get; set; }
+        public string SupplierNo { get; set; }
+        public string VehicleNo { get; set; }
+        public string DriverName { get; set; }
+        public string DriverNo { get; set; }
+        public string ETADate { get; set; }
+        public string ETATime { get; set; }
+        public string ProductName { get; set; }
+        public string ProductCategory { get; set; }
+        public string StallNo { get; set; }
+        public string StallName { get; set; }
+        public string Product { get; set; }
+        public string ProductQuantity { get; set; }
+        public string Unit { get; set; }
+
         public IndentDetails IndentDetails { get; set; }
-        public List<ParkingCharges> ParkingCharges { get; set; }
+        public ParkingCharges ParkingCharges { get; set; }
     }
 }
