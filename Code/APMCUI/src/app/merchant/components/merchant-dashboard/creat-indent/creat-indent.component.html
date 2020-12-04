@@ -80,15 +80,21 @@
               class="form-control"
               placeholder="Vehicle Number"
               pattern="[a-zA-Z0-9]+"
+              required
               [(ngModel)]="merchantindent.VehicleNo"
               #FieldVehicleNumber="ngModel"
               name="FieldVehicleNumber"
+              [ngClass]="{'is-invalid': FieldVehicleNumber.invalid && (FieldVehicleNumber.dirty || FieldVehicleNumber.touched || CreateIndentForm.submitted) }"
+              [ngClass]="{'is-valid': FieldVehicleNumber.valid && (!FieldVehicleNumber.dirty || !FieldVehicleNumber.touched || !CreateIndentForm.submitted) }"
             />
           </div>
           <div
             [ngClass]="{'d-block': FieldVehicleNumber.invalid && (FieldVehicleNumber.dirty || FieldVehicleNumber.touched || CreateIndentForm.submitted) }"
             class="invalid-feedback"
           >
+          <div [hidden]="!FieldVehicleNumber?.errors?.required">
+            Vehicle number is required
+          </div>
             <div [hidden]="!FieldVehicleNumber?.errors?.pattern">
               Enter valid vehicle number
             </div>

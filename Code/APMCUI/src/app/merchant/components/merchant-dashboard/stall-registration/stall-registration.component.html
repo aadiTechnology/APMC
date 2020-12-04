@@ -43,6 +43,8 @@
               required
               #FieldStallno="ngModel"
               [(ngModel)]="stall.StallId"
+              [ngClass]="{'is-invalid': FieldStallno.invalid && (FieldStallno.dirty || FieldStallno.touched || StallRegisterForm.submitted) }"
+              [ngClass]="{'is-valid': FieldStallno.valid && (!FieldStallno.dirty || !FieldStallno.touched || !StallRegisterForm.submitted) }"
             >
               <option value="null" selected disabled hidden>Stall No</option>
               <option
