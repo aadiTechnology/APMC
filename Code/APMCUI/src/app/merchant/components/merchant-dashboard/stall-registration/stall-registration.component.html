@@ -104,12 +104,12 @@
         <div class="col-12 col-sm-12 col-md-12 form-group">
           <table class="table table-sm table-bordered">
             <tr>
-              <th>Id</th>
+              
               <th>Product Name</th>
               <th>Action</th>
             </tr>
             <tr *ngFor="let item of selectedProducts; let i = index">
-              <td>{{i + 1}}</td>
+              
               <td>{{item.name}}</td>
               <td>
                 <a (click)="removeProduct(item)" class="btn text-info"
