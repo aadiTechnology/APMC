@@ -76,6 +76,16 @@ ngx-spinner {
   color: red;
 }
 
+.form-control.is-invalid, .was-validated .form-control:invalid {
+  
+ 
+  background-position: right calc(1.375em + .1875rem) center !important;
+ 
+}
+.form-control.is-valid, .was-validated .form-control:valid  {
+  background-position: right calc(1.375em + .1875rem) center !important;
+}
+
 .font-13 {
   font-size: 13px !important;
 }
