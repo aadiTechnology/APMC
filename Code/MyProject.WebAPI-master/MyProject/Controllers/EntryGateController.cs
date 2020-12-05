@@ -40,7 +40,7 @@ namespace MyProject.WebAPI.Controllers
         [HttpGet("IndentDetailsById")]
         public async Task<JsonResult> IndentDetailsByOrderNo(int id)
         {
-            return await base.FinalizeMultiple<IEnumerable<IndentDetails>>(await RepositoryWrapper.EntryCheckInDetails.IndentDetailsById(id));
+            return await base.FinalizeMultiple<IEnumerable<EntryCheckInDetailsDto>>(await RepositoryWrapper.EntryCheckInDetails.IndentDetailsById(id));
         }
 
         /// <summary>
@@ -53,7 +53,7 @@ namespace MyProject.WebAPI.Controllers
         {
             try
             {
-                RepositoryWrapper.EntryCheckInDetails.AddEntryCheckInDetails(EntryCheckInDetailsDto.IndentDetails, EntryCheckInDetailsDto.ParkingCharges);
+                RepositoryWrapper.EntryCheckInDetails.AddEntryCheckInDetails(EntryCheckInDetailsDto.IndentDetails.Id, EntryCheckInDetailsDto.ParkingCharges);
                 return await base.FinalizStatusCodeeMessage("Vehicle enter Successfully", 200);
             }
             catch (Exception ex)
