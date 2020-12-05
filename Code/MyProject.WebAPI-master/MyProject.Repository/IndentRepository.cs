@@ -22,7 +22,7 @@ namespace MyProject.Repository
         {
             _repositoryContext = repositoryContext;
         }
-        public IndentDetails AddIndent(IndentDetails indentDetails, List<IndentProducts> indentProducts)
+         public IndentDetails AddIndent(IndentDetails indentDetails, List<IndentProducts> indentProducts)
         {
             try
             {
@@ -104,10 +104,9 @@ namespace MyProject.Repository
             QRCodeData _qrCodeData = _qrCode.CreateQrCode(encodeString, QRCodeGenerator.ECCLevel.Q);
             QRCode qrCode = new QRCode(_qrCodeData);
             Bitmap qrCodeImage = qrCode.GetGraphic(20);
-
             byte[] array = BitmapToBytesCode(qrCodeImage);
-            File.WriteAllBytes(_repositoryContext.GlobalConfigurations.Where(a => a.Key == "QRPath").FirstOrDefault().Value + indentId + merchantId + driverId + ".png", array);
-            indentDetails.Item1.QrId = indentId + merchantId + driverId + ".png";
+            //File.WriteAllBytes(_repositoryContext.GlobalConfigurations.Where(a => a.Key == "QRPath").FirstOrDefault().Value + indentId + merchantId + driverId + ".png", array);
+            indentDetails.Item1.QrId = "data:image/png;base64,"+ Convert.ToBase64String(array, 0, array.Length);
             _repositoryContext.IndentDetails.Update(indentDetails.Item1);
             _repositoryContext.SaveChanges();
             return array;
