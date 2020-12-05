@@ -60,7 +60,7 @@ export class LoginComponent implements OnInit {
           }
         },
         (err) => {
-          this.toastr.success('Something went wrong', 'Error');
+          this.toastr.error('Something went wrong', 'Error');
           this.ngxSpinnerService.hide();
         }
       );
