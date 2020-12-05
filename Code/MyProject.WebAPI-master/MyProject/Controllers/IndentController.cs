@@ -83,7 +83,7 @@ namespace MyProject.WebAPI.Controllers
         [HttpGet("GetIndent")]
         public async Task<JsonResult> GetIndent(int indentId)
         {
-            return await base.FinalizeMultiple<Tuple<IndentDetails, byte[]>>(RepositoryWrapper.IndentDetails.GetIndent(indentId));
+            return await base.FinalizeMultiple<IndentDetails>(RepositoryWrapper.IndentDetails.GetIndent(indentId));
         }
 
         [HttpGet("GetIndentByDateRange")]
@@ -95,17 +95,17 @@ namespace MyProject.WebAPI.Controllers
         [HttpGet("UpdateScanned")]
         public async Task<JsonResult> UpdateIndent(int indentId, int merchantId, int driverId)
         {
-            Tuple<IndentDetails, byte[]> IndentDetails = RepositoryWrapper.IndentDetails.GetIndent(indentId);
+            IndentDetails IndentDetails = RepositoryWrapper.IndentDetails.GetIndent(indentId);
             if (IndentDetails != null)
             {
-                if (IndentDetails.Item1.IsScanned)
+                if (IndentDetails.IsScanned)
                 {
                     return await base.FinalizStatusCodeeMessage("Error:QR code is already scanned ", 500);
                 }
                 else
                 {
 
-                    return await base.FinalizeMultiple<IndentDetails>(RepositoryWrapper.IndentDetails.Update(IndentDetails.Item1));
+                    return await base.FinalizeMultiple<IndentDetails>(RepositoryWrapper.IndentDetails.Update(IndentDetails));
                 }
             }
             else

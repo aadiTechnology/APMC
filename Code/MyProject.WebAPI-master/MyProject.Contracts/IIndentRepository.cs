@@ -12,7 +12,7 @@ namespace MyProject.Contracts
         IndentDetails Update(IndentDetails indentDetails);
         string GetOrderId();
         public byte[] GenerateQRCode(string indentId, string merchantId, string driverId);
-        public Tuple<IndentDetails, byte[]> GetIndent(int indentId);
+        public IndentDetails GetIndent(int indentId);
         public List<IndentDetails> GetIndentByDateRange(DateTime fromDate, DateTime toDate);
     }
 }

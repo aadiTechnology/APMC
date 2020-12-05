@@ -21,9 +21,10 @@ namespace MyProject.Repository
         {
             try
             {
-                return await _repositoryContext.ParkingCharges.Where(a => a.OutTime == null).ToListAsync();
+                var a= await _repositoryContext.ParkingCharges.ToListAsync();
+                return a;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 throw;
             }
@@ -33,7 +34,15 @@ namespace MyProject.Repository
         {
             try
             {
-                return await _repositoryContext.ParkingCharges.Where(a => a.Id == Id).ToListAsync();
+                var parkingCharges=await _repositoryContext.ParkingCharges.Where(a => a.Id == Id).ToListAsync();
+                foreach (var parkingCharge in parkingCharges)
+                {
+                    var vehicalMaster = await _repositoryContext.VehicleTypeMaster.Where(a => a.Id == parkingCharge.VehicleTypeId).FirstOrDefaultAsync();
+                    parkingCharge.OutTime = DateTime.UtcNow;
+                    TimeSpan ts = parkingCharge.OutTime.Value -parkingCharge.InTime.Value;
+                    parkingCharge.ExtraTimeFee = ts.Hours * (vehicalMaster.ExtraTimeFee/ vehicalMaster.ExtraTime);
+                }
+                return parkingCharges;
             }
             catch (Exception)
             {

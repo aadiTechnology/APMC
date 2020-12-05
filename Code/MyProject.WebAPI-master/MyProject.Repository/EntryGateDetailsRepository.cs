@@ -49,7 +49,7 @@ namespace MyProject.Repository
             {
                 var Result = (from Idetails in _repositoryContext.IndentDetails
                               join sr in _repositoryContext.StallRegistration
-                              on Idetails.CreatedBy equals sr.UserId
+                              on Idetails.Id equals sr.UserId
                               join au in _repositoryContext.AppUsers
                               on sr.UserId equals au.Id
                               join sd in _repositoryContext.StallDetails
