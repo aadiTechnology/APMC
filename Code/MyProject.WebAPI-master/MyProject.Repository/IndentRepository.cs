@@ -77,12 +77,11 @@ namespace MyProject.Repository
             int id = _repositoryContext.IndentDetails.OrderByDescending(a => a.Id).Select(a => a.Id).FirstOrDefault();
             return id;
         }
-        public Tuple<IndentDetails, byte[]> GetIndent(int indentID)
-        {
-            IndentDetails indentDetails = _repositoryContext.IndentDetails.Where(a => a.Id == indentID).FirstOrDefault();
-            var bytes = getByte(_repositoryContext.GlobalConfigurations.Where(a => a.Key == "QRPath").FirstOrDefault().Value + indentDetails.QrId);
-            return (Tuple.Create(indentDetails, bytes));
-        }
+       var bytes = new byte[7000];
+            if (!string.IsNullOrWhiteSpace(indentDetails.QrId)){
+
+            bytes = getByte(_repositoryContext.GlobalConfigurations.Where(a => a.Key == "QRPath").FirstOrDefault().Value + indentDetails.QrId);
+            }
         public List<IndentDetails> GetIndentByDateRange(DateTime fromDate, DateTime toDate)
         {
             return _repositoryContext.IndentDetails.Where(a => a.CreatedDate >= fromDate && a.CreatedDate <= toDate).ToList();
