@@ -36,7 +36,7 @@ namespace MyProject.Repository
                 }
                 _repositoryContext.IndentProducts.AddRange(indentProducts);
                 _repositoryContext.SaveChanges();
-                GenerateQRCode(indentDetails.ToString(), indentDetails.CreatedBy.ToString(), indentDetails.DriverNo.ToString());
+                GenerateQRCode(id.ToString(), indentDetails.CreatedBy.ToString(), indentDetails.DriverNo.ToString());
                 return indentDetails;
             }
             catch (Exception ex)
