@@ -77,7 +77,7 @@ namespace MyProject.Repository
             int id = _repositoryContext.IndentDetails.OrderByDescending(a => a.Id).Select(a => a.Id).FirstOrDefault();
             return id;
         }
-      public IndentDetails GetIndent(int indentID)
+     public Tuple<IndentDetails, byte[]> GetIndent(int indentID)
         {
             IndentDetails indentDetails = _repositoryContext.IndentDetails.Where(a => a.Id == indentID).FirstOrDefault();
             var bytes = new byte[7000];
@@ -85,7 +85,7 @@ namespace MyProject.Repository
 
             bytes = getByte(_repositoryContext.GlobalConfigurations.Where(a => a.Key == "QRPath").FirstOrDefault().Value + indentDetails.QrId);
             }
-            return indentDetails;
+            return (Tuple.Create(indentDetails, bytes));
         }
         public List<IndentDetails> GetIndentByDateRange(DateTime fromDate, DateTime toDate)
         {
