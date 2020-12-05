@@ -89,7 +89,7 @@ export class SidebarComponent implements OnInit {
       case 'EntryGateOperator':
         return this.entryGateOperatorNavLink;
       case 'ExitGateOperator':
-        return this.entryGateOperatorNavLink;
+        return this.exitGateOperatorNavLink;
     }
   }
 

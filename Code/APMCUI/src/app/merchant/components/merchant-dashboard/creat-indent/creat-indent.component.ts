@@ -108,7 +108,7 @@ export class CreatIndentComponent implements OnInit, AfterViewInit {
         }
       );
     } else if (this.selectedProducts.length === 0) {
-      this.toastr.error('Please create indent details', 'Error');
+      this.toastr.error('Please provide required details', 'Error');
       this.ngxSpinnerService.hide();
     } else {
       this.toastr.error('Please provide required details', 'Error');
