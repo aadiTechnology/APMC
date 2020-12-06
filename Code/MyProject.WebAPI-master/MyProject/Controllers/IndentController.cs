@@ -14,7 +14,7 @@ namespace MyProject.WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = "Merchant")]
+    [Authorize(Roles = "Merchant,Driver")]
     //Author-Datta (Indent related methods)
     public class IndentController : ControllerBase
     {

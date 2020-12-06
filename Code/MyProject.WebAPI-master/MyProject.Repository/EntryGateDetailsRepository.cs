@@ -59,7 +59,7 @@ namespace MyProject.Repository
                                   SupplierName = Idetails.SupplierName,
                                   SupplierNo = Idetails.SupplierNo,
                                   VehicleNo = Idetails.VehicleNo,
-                                  DriverName = Idetails.DriverName,
+                                  DriverName = _repositoryContext.AppUsers.Where(a=>a.Id== Idetails.DriverId).FirstOrDefault().FirstName+" "+ _repositoryContext.AppUsers.Where(a => a.Id == Idetails.DriverId).FirstOrDefault().FirstName,
                                   DriverNo = Idetails.DriverNo,
                                   ETADate = Idetails.ETADate,
                                   ETATime = Idetails.ETATime,
