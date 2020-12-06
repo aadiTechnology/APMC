@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using MyProject.Contracts;
 using MyProject.Entities;
+using MyProject.Entities.DataTransferObjects;
 using MyProject.Entities.Models;
 using QRCoder;
 using System;
@@ -85,7 +86,7 @@ namespace MyProject.Repository
         }
         public IndentDetails GetIndent(int indentId, int merchantId, string driverId)
         {
-            IndentDetails indentDetails = _repositoryContext.IndentDetails.Where(a => a.Id == indentId && a.CreatedBy== merchantId && a.DriverNo== driverId).FirstOrDefault();
+            IndentDetails indentDetails = _repositoryContext.IndentDetails.Where(a => a.Id == indentId && a.CreatedBy == merchantId && a.DriverNo == driverId).FirstOrDefault();
             return indentDetails;
         }
         public List<IndentDetails> GetIndentByDateRange(DateTime fromDate, DateTime toDate)
@@ -111,7 +112,7 @@ namespace MyProject.Repository
             Bitmap qrCodeImage = qrCode.GetGraphic(20);
             byte[] array = BitmapToBytesCode(qrCodeImage);
             //File.WriteAllBytes(_repositoryContext.GlobalConfigurations.Where(a => a.Key == "QRPath").FirstOrDefault().Value + indentId + merchantId + driverId + ".png", array);
-            indentDetails.QrId = "data:image/png;base64,"+ Convert.ToBase64String(array, 0, array.Length);
+            indentDetails.QrId = "data:image/png;base64," + Convert.ToBase64String(array, 0, array.Length);
             _repositoryContext.IndentDetails.Update(indentDetails);
             _repositoryContext.SaveChanges();
             return array;
@@ -130,5 +131,22 @@ namespace MyProject.Repository
             var plainTextBytes = System.Text.Encoding.UTF8.GetBytes(plainText);
             return System.Convert.ToBase64String(plainTextBytes);
         }
+        public List<IndentMerchantDto> GetIndentWithMerchantName()
+        {
+            var Result = (from Idetails in _repositoryContext.IndentDetails
+                          join au in _repositoryContext.AppUsers
+                          on Idetails.CreatedBy equals au.Id
+                          where Idetails.IsScanned == false
+                          select new IndentMerchantDto
+                          {
+                              Id = Idetails.Id,
+                              OrderNo = Idetails.OrderNo,
+                              MerchantName = au.FirstName + " " + au.LastName
+                              //StallName = _repositoryContext.StallDetails.Where(a => a.Id == sr.StallId).FirstOrDefault().StallName,
+
+                          }).ToList();
+            return Result;
+        }
+
     }
 }

@@ -118,5 +118,11 @@ namespace MyProject.WebAPI.Controllers
                 return await base.FinalizStatusCodeeMessage("Error: Indent is not found", 500);
             }
         }
+
+        [HttpGet("GetIndentWithMerchantName")]
+        public async Task<JsonResult> GetIndentWithMerchantName()
+        {
+            return await base.FinalizeMultiple<List<IndentMerchantDto>>(RepositoryWrapper.IndentDetails.GetIndentWithMerchantName());
+        }
     }
 }
