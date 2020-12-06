@@ -1,4 +1,5 @@
-﻿using MyProject.Entities.Models;
+﻿using MyProject.Entities.DataTransferObjects;
+using MyProject.Entities.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -13,6 +14,8 @@ namespace MyProject.Contracts
         string GetOrderId();
         public byte[] GenerateQRCode(string indentId, string merchantId, string driverId);
         public IndentDetails GetIndent(int indentId);
+        public IndentDetails GetIndent(int indentId, int merchantId, string driverId);
         public List<IndentDetails> GetIndentByDateRange(DateTime fromDate, DateTime toDate);
+        public List<IndentMerchantDto> GetIndentWithMerchantName(); 
     }
 }
