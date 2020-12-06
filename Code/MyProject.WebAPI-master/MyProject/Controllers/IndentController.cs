@@ -85,6 +85,11 @@ namespace MyProject.WebAPI.Controllers
         {
             return await base.FinalizeMultiple<IndentDetails>(RepositoryWrapper.IndentDetails.GetIndent(indentId));
         }
+        [HttpGet("GetIndent")]
+        public async Task<JsonResult> GetIndent(int indentId, int merchantId, string driverId)
+        {
+            return await base.FinalizeMultiple<IndentDetails>(RepositoryWrapper.IndentDetails.GetIndent(indentId,merchantId,driverId));
+        }
 
         [HttpGet("GetIndentByDateRange")]
         public async Task<JsonResult> GetIndentByDateRange(DateTime fromDate,DateTime toDate)
@@ -93,9 +98,9 @@ namespace MyProject.WebAPI.Controllers
         }
 
         [HttpGet("UpdateScanned")]
-        public async Task<JsonResult> UpdateIndent(int indentId, int merchantId, int driverId)
+        public async Task<JsonResult> UpdateIndent(int indentId, int merchantId, string driverId)
         {
-            IndentDetails IndentDetails = RepositoryWrapper.IndentDetails.GetIndent(indentId);
+            IndentDetails IndentDetails = RepositoryWrapper.IndentDetails.GetIndent(indentId, merchantId, driverId);
             if (IndentDetails != null)
             {
                 if (IndentDetails.IsScanned)

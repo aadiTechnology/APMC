@@ -83,6 +83,11 @@ namespace MyProject.Repository
             IndentDetails indentDetails = _repositoryContext.IndentDetails.Where(a => a.Id == indentID).FirstOrDefault();
             return indentDetails;
         }
+        public IndentDetails GetIndent(int indentId, int merchantId, string driverId)
+        {
+            IndentDetails indentDetails = _repositoryContext.IndentDetails.Where(a => a.Id == indentId && a.CreatedBy== merchantId && a.DriverNo== driverId).FirstOrDefault();
+            return indentDetails;
+        }
         public List<IndentDetails> GetIndentByDateRange(DateTime fromDate, DateTime toDate)
         {
             return _repositoryContext.IndentDetails.Where(a => a.CreatedDate >= fromDate && a.CreatedDate <= toDate).ToList();

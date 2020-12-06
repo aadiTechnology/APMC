@@ -13,6 +13,8 @@ namespace MyProject.Contracts
         string GetOrderId();
         public byte[] GenerateQRCode(string indentId, string merchantId, string driverId);
         public IndentDetails GetIndent(int indentId);
+        public IndentDetails GetIndent(int indentId, int merchantId, string driverId);
+        public IndentDetails Update(string indentId, string merchantId, string driverId);
         public List<IndentDetails> GetIndentByDateRange(DateTime fromDate, DateTime toDate);
     }
 }

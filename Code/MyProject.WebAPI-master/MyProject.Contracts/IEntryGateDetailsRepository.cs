@@ -9,7 +9,7 @@ namespace MyProject.Contracts
 {
     public interface IEntryGateDetailsRepository : IRepositoryBase<IndentDetails>
     {
-        Task<IEnumerable<EntryCheckInDetailsDto>> IndentDetailsById(int id);
+        Task<EntryCheckInDetailsDto> IndentDetailsById(int id);
         Task<IEnumerable<IndentDetails>> GetAllNotScannedIndent();
         ParkingCharges AddEntryCheckInDetails(int indentId, ParkingCharges parkingCharges);
     }
