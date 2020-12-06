@@ -4,67 +4,128 @@
   </div>
   <div class="card-body">
     <div class="row">
-      <div class="text-success ml-auto pr-3">
-        <p>{{myDate | date: 'dd/MM/yyyy'}}</p>
+      <div class="col-12 col-sm-12 col-md-12 form-group text-right">
+        <p class="text-success">{{myDate | date: 'dd/MM/yyyy'}}</p>
+      </div>
+      <div class="col-12 col-sm-12 col-md-12 form-group">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Search vehicle number"
+          [(ngModel)]="term"
+        />
       </div>
     </div>
-
-    <input type="text" class="form-control" placeholder="Search vehicle number" [(ngModel)]="term"  >
-
-    <br />
-    <form>
-      <table class="table table-responsive">
-        <thead>
-          <tr>
-            <th scope="col">Order No</th>
-            <th scope="col">Vehicle Number</th>
-            <th scope="col">Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let indentListData of IndentList | filter:term;">
-            <td scope="col">{{indentListData.orderNo}}</td>
-            <td scope="col">{{indentListData.vehicleNo}}</td>
-            <td scope="col">
-              <button
-                class="btn btn-light"
-                type="button"
-                id="dropdownMenuButton"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
-              </button>
-              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item"
-                  ><i
-                    class="fa fa-eye"
-                    aria-hidden="true"
-                    (click)="selectedIndentRow(indentListData.id)"
-                  ></i>
-                </a>
-                <a class="dropdown-item"
-                  ><i class="fa fa-qrcode" aria-hidden="true"></i>
-                </a>
+    <div class="row">
+      <div
+        class="col-12 col-sm-12 col-md-12 form-group"
+        *ngFor="let indent of IndentList | filter:term;"
+      >
+        <div class="card shadow-sm">
+          <!-- <pre>{{indent | json}}</pre> -->
+          <div class="card-body pb-2 pt-2">
+            <div class="row">
+              <div class="col-5 col-sm-5 col-md-5">
+                <span class="card-text font-weight-bold"
+                  >{{indent.orderNo}}</span
+                ><br />
+                <label class="text-muted card-label">Order No</label>
               </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-
-      <!-- <pagination [totalItems]="50"></pagination> -->
-
-      <div class="input-group form-group">
-        <div class="mx-auto">
-          <input
-            type="button"
-            value="Back"
-            class="btn btn-danger"
-            routerLink="/entryGateOperator/dashboard"
-          />
+              <div class="col-6 col-sm-6 col-md-6">
+                <span class="card-text font-weight-bold"
+                  >{{indent.createdBy}}</span
+                ><br />
+                <label class="text-muted card-label">Merchant Id</label>
+              </div>
+              <div class="col-1 col-md-1 col-sm-1 pl-0 text-right">
+                <a
+                  class="text-info"
+                  type="button"
+                  id="dropdownMenuButton"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a (click)="viewIndentRow(indent.id)" class="dropdown-item"
+                    ><i class="fa fa-eye mr-1" aria-hidden="true"></i>
+                    View
+                  </a>
+                  <hr class="m-0" />
+                  <a (click)="scanIndentCode(indent.id)" class="dropdown-item"
+                    ><i class="fa fa-qrcode mr-1" aria-hidden="true"></i> Scan
+                    Qr-Code
+                  </a>
+                </div>
+              </div>
+              <div class="col-5 col-sm-5 col-md-5">
+                <span class="card-text font-weight-bold"
+                  >{{indent.driverId}}</span
+                ><br />
+                <label class="text-muted card-label">Driver Id</label>
+              </div>
+              <div class="col-7 col-sm-7 col-md-7">
+                <span class="card-text font-weight-bold"
+                  >{{indent.vehicleNo}}</span
+                ><br />
+                <label class="text-muted card-label">Vehicle No</label>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </form>
+    </div>
+    <!-- <table class="table table-responsive">
+      <thead>
+        <tr>
+          <th scope="col">Order No</th>
+          <th scope="col">Vehicle Number</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let indent of IndentList | filter:term;">
+          <td scope="col">{{indent.orderNo}}</td>
+          <td scope="col">{{indent.vehicleNo}}</td>
+          <td scope="col" class="text-right">
+            <a
+              class="text-info"
+              type="button"
+              id="dropdownMenuButton"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a (click)="viewIndentRow(indent.id)" class="dropdown-item"
+                ><i class="fa fa-eye mr-1" aria-hidden="true"></i>
+                View
+              </a>
+              <hr class="m-0" />
+              <a (click)="scanIndentCode(indent.id)" class="dropdown-item"
+                ><i class="fa fa-qrcode mr-1" aria-hidden="true"></i> Scan
+                Qr-Code
+              </a>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table> -->
+
+    <!-- <pagination [totalItems]="50"></pagination> -->
+    <div class="input-group form-group">
+      <div class="mx-auto">
+        <input
+          type="button"
+          value="Back"
+          class="btn btn-danger"
+          routerLink="/entryGateOperator/dashboard"
+        />
+      </div>
+    </div>
   </div>
 </div>

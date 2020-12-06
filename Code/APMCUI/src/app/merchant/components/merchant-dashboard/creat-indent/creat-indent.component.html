@@ -16,7 +16,7 @@
         <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 form-group">
           <div class="input-group">
             <input
-              [(ngModel)]="merchantindent.DriverName"
+              [(ngModel)]="driverName"
               placeholder="Driver Name"
               required
               pattern="[a-zA-Z ]*"
@@ -26,6 +26,7 @@
               [typeaheadMultipleSearch]="true"
               typeaheadOptionField="firstName"
               typeaheadMultipleSearchDelimiters=" |"
+              (typeaheadOnBlur)="onDriverSelect($event)"
               class="form-control"
               #FieldDriverName="ngModel"
               name="FieldDriverName"
@@ -93,9 +94,9 @@
             [ngClass]="{'d-block': FieldVehicleNumber.invalid && (FieldVehicleNumber.dirty || FieldVehicleNumber.touched || CreateIndentForm.submitted) }"
             class="invalid-feedback"
           >
-          <div [hidden]="!FieldVehicleNumber?.errors?.required">
-            Vehicle number is required
-          </div>
+            <div [hidden]="!FieldVehicleNumber?.errors?.required">
+              Vehicle number is required
+            </div>
             <div [hidden]="!FieldVehicleNumber?.errors?.pattern">
               Enter valid vehicle number
             </div>
@@ -201,7 +202,11 @@
       <div
         class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 form-group text-center"
       >
-        <input type="submit" value="Save" class="btn btn-success mr-2" />
+        <input
+          type="submit"
+          value="Save & Generate QR Code"
+          class="btn btn-success mr-2"
+        />
         <input
           type="button"
           value="Cancel"

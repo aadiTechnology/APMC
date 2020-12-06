@@ -1,4 +1,4 @@
-export class IndentList {
+export class Indent {
   id: number;
   orderNo: string;
   etaDate: string;

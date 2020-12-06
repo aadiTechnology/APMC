@@ -1,16 +1,16 @@
-import { Component, OnInit, TemplateRef } from "@angular/core";
-import { NgForm } from "@angular/forms";
-import { Router } from "@angular/router";
-import { BsModalRef, BsModalService } from "ngx-bootstrap/modal";
-import { NgxSpinnerService } from "ngx-spinner";
-import { ToastrService } from "ngx-toastr";
-import { CommonService } from "../../common.service";
-import { AllAppUserRole } from "../../entities/userrole";
+import { Component, OnInit, TemplateRef } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { ToastrService } from 'ngx-toastr';
+import { CommonService } from '../../common.service';
+import { AllAppUserRole } from '../../entities/userrole';
 
 @Component({
-  selector: "app-register",
-  templateUrl: "./register.component.html",
-  styleUrls: ["./register.component.scss"],
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent implements OnInit {
   Role: any;
@@ -53,7 +53,7 @@ export class RegisterComponent implements OnInit {
   }
 
   openModal(template: TemplateRef<any>): void {
-    this.modalRef = this.modalService.show(template, { class: "modal-sm" });
+    this.modalRef = this.modalService.show(template, { class: 'modal-sm' });
   }
   myFunction(): void {
     this.hide = !this.hide;
@@ -63,10 +63,15 @@ export class RegisterComponent implements OnInit {
   }
 
   checkPassword(): boolean {
-    if (this.user.Password!== null){
-     if (this.user.Password!== null || this.user.Password.length === this.user.ConfirmPassword.length || this.user.Password.length < this.user.ConfirmPassword.length ) {
-      return this.user.Password === this.user.ConfirmPassword ? true : false;
-    } }else {
+    if (this.user.Password !== null) {
+      if (
+        this.user.Password !== null ||
+        this.user.Password.length === this.user.ConfirmPassword.length ||
+        this.user.Password.length < this.user.ConfirmPassword.length
+      ) {
+        return this.user.Password === this.user.ConfirmPassword ? true : false;
+      }
+    } else {
       return true;
     }
   }
@@ -75,16 +80,17 @@ export class RegisterComponent implements OnInit {
     this.ngxSpinnerService.show();
     if (form.valid) {
       console.log(form.value);
+
       this.commonService.signup(user).subscribe(
         (arg) => {
           if (arg) {
-            this.router.navigate(["/login"]);
-            this.toastr.success("Registration successful", "Success");
+            this.router.navigate(['/login']);
+            this.toastr.success('Registration successful', 'Success');
             this.ngxSpinnerService.hide();
           }
         },
         (err) => {
-          this.toastr.success("Something went wrong", "Error");
+          this.toastr.success('Something went wrong', 'Error');
           this.ngxSpinnerService.hide();
         }
       );
@@ -95,13 +101,13 @@ export class RegisterComponent implements OnInit {
   }
 
   confirm(): void {
-    this.message = "Confirmed!";
-    this.router.navigate(["/login"]);
+    this.message = 'Confirmed!';
+    this.router.navigate(['/login']);
     this.modalRef.hide();
   }
 
   decline(): void {
-    this.message = "Declined!";
+    this.message = 'Declined!';
     this.modalRef.hide();
   }
   getAllUserRolls(): void {

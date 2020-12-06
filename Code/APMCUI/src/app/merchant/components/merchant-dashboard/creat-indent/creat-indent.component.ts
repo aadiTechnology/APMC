@@ -17,6 +17,7 @@ import { DriverList } from '../../../entities/driverlist';
 import { Merchantindent } from '../../../entities/merchantindent';
 import { OrderDetailsComponent } from '../order-details/order-details.component';
 import { CommonService } from 'src/app/common-feature/common.service';
+import { Product } from 'src/app/merchant/entities/product';
 
 @Component({
   selector: 'app-creat-indent',
@@ -33,9 +34,10 @@ export class CreatIndentComponent implements OnInit, AfterViewInit {
   message: string;
   selectedProducts: any;
   merchantindent: Merchantindent;
-  IndentDetails:any;
-
+  IndentDetails: any;
+  driverName: string;
   @ViewChild(OrderDetailsComponent) orderDetails;
+  roles: any;
 
   constructor(
     private modalService: BsModalService,
@@ -49,9 +51,11 @@ export class CreatIndentComponent implements OnInit, AfterViewInit {
     this.currentUser = JSON.parse(sessionStorage.getItem('CurrentUser'));
     this.merchantindent = new Merchantindent();
     this.driverlist = new Array<DriverList>();
+    this.driverName = null;
   }
 
   ngOnInit(): void {
+    this.getAllUserRoles();
     this.getAllGetAllDrivers();
   }
 
@@ -60,11 +64,20 @@ export class CreatIndentComponent implements OnInit, AfterViewInit {
   }
 
   getAllGetAllDrivers(): void {
-    this.merchantService.getAllGetAllDrivers().subscribe((arg) => {
-      if (arg) {
-        this.driverlist = arg.rows;
+    this.ngxSpinnerService.show();
+    this.merchantService.getAllGetAllDrivers().subscribe(
+      (arg) => {
+        if (!arg.HasErrors) {
+          this.driverlist = arg.rows;
+          this.ngxSpinnerService.hide();
+        } else {
+          this.ngxSpinnerService.hide();
+        }
+      },
+      (err) => {
+        this.ngxSpinnerService.hide();
       }
-    });
+    );
   }
 
   getToday(): string {
@@ -74,10 +87,10 @@ export class CreatIndentComponent implements OnInit, AfterViewInit {
   createIndent(form: NgForm): void {
     this.ngxSpinnerService.show();
     if (form.valid && this.selectedProducts.length !== 0) {
-      const IndentDetails = {
+      const indentDetails = {
         RollId: this.currentUser.id,
-        CreatedBy: this.currentUser.roleId,
-        DriverName: this.merchantindent.DriverName,
+        CreatedBy: this.currentUser.id,
+        DriverID: this.merchantindent.DriverId,
         DriverNo: this.merchantindent.DriverNo,
         ETADate: this.merchantindent.ETADate,
         ETATime: this.merchantindent.ETATime,
@@ -87,28 +100,28 @@ export class CreatIndentComponent implements OnInit, AfterViewInit {
       };
       const indentData = {
         IndentProducts: this.selectedProducts,
-        IndentDetails: IndentDetails,
+        IndentDetails: indentDetails,
       };
       this.merchantService.indentCreation(indentData).subscribe(
-        (arg) => {
-          if (arg) {
-            this.toastr.success('Indent Creation successful', 'Success');
+        (arg: any) => {
+          if (!arg.HasErrors) {
+            form.resetForm();
+            this.toastr.success(arg.message, 'Success');
             this.ngxSpinnerService.hide();
-            
+            this.selectedProducts = new Array<Product>();
+            this.orderDetails.selectedProducts = new Array<Product>();
           } else {
             this.toastr.error('Indent Creation failed', 'Error');
             this.ngxSpinnerService.hide();
           }
-          form.resetForm();
         },
-       
         (err) => {
           this.toastr.error('Something went wrong', 'Error');
           this.ngxSpinnerService.hide();
         }
       );
     } else if (this.selectedProducts.length === 0) {
-      this.toastr.error('Please provide required details', 'Error');
+      this.toastr.error('Please create indent details', 'Error');
       this.ngxSpinnerService.hide();
     } else {
       this.toastr.error('Please provide required details', 'Error');
@@ -129,5 +142,33 @@ export class CreatIndentComponent implements OnInit, AfterViewInit {
   decline(): void {
     this.message = 'Declined!';
     this.modalRef.hide();
+  }
+  getAllUserRoles(): void {
+    this.commonService.getAllUserRolls().subscribe((result) => {
+      this.roles = result.rows;
+    });
+  }
+  onDriverSelect(event): void {
+    if (event) {
+      debugger;
+      if (event.item.id !== null && event.item.id !== undefined) {
+        this.merchantindent.DriverId = event.item.id;
+      } else {
+        const registeruser = {
+          UserName: event.item,
+          Password: null,
+          FirstName: event.item,
+          MobileNo: null,
+          LastName: null,
+          Email: null,
+          RoleId: +this.roles.filter((u) => u.roleName === 'Driver')[0].id,
+        };
+        this.commonService.signup(registeruser).subscribe((arg) => {
+          if (arg) {
+            debugger;
+          }
+        });
+      }
+    }
   }
 }

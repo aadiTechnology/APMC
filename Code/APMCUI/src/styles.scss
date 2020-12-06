@@ -76,14 +76,13 @@ ngx-spinner {
   color: red;
 }
 
-.form-control.is-invalid, .was-validated .form-control:invalid {
-  
- 
-  background-position: right calc(1.375em + .1875rem) center !important;
- 
+.form-control.is-invalid,
+.was-validated .form-control:invalid {
+  background-position: right calc(1.375em + 0.1875rem) center !important;
 }
-.form-control.is-valid, .was-validated .form-control:valid  {
-  background-position: right calc(1.375em + .1875rem) center !important;
+.form-control.is-valid,
+.was-validated .form-control:valid {
+  background-position: right calc(1.375em + 0.1875rem) center !important;
 }
 
 .font-13 {
@@ -99,5 +98,14 @@ app-footer {
     span {
       cursor: default !important;
     }
+  }
+}
+
+.card.shadow-sm {
+  &:hover {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+  }
+  &:active {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
   }
 }
