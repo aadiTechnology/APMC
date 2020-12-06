@@ -63,7 +63,8 @@ namespace MyProject.Repository
                                   DriverNo = Idetails.DriverNo,
                                   ETADate = Idetails.ETADate,
                                   ETATime = Idetails.ETATime,
-                                  StallCreatedBy= au.FirstName +" "+au.LastName
+                                  StallCreatedBy = au.FirstName +" "+au.LastName,
+                                  QrId= Idetails.QrId
                                   //StallName = _repositoryContext.StallDetails.Where(a => a.Id == sr.StallId).FirstOrDefault().StallName,
 
                               }).FirstOrDefault();
@@ -76,6 +77,19 @@ namespace MyProject.Repository
                                     product= indentProduct
                                 }
                 ).ToList();
+                var stall = (from Idetails in _repositoryContext.IndentDetails
+                             join stallReg in _repositoryContext.StallRegistration
+                              on Idetails.CreatedBy equals stallReg.UserId
+                             join stallDetails in _repositoryContext.StallDetails
+                           on stallReg.StallId equals stallDetails.Id
+                           where Idetails.Id == id && Idetails.IsScanned == false
+                                && Idetails.CreatedDate.Date == DateTime.Now.Date
+                           select new
+                           {
+                              stallName= stallDetails.StallName
+                           }
+               ).FirstOrDefault();
+                Result.StallName = stall.stallName;
                 Result.Products = new List<InedntProducts>();
                 foreach (var item in res)
                 {

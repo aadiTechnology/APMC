@@ -12,6 +12,7 @@ namespace MyProject.Entities.DataTransferObjects
         public string StallCreatedBy { get; set; }
         public string SupplierName { get; set; }
         public string SupplierNo { get; set; }
+        public string QrId { get; set; }
         public string VehicleNo { get; set; }
         public string DriverName { get; set; }
         public string DriverNo { get; set; }
