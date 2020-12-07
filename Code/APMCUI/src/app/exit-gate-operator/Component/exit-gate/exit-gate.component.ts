@@ -62,10 +62,11 @@ export class ExitGateComponent implements OnInit {
       const charges={
 
       }
-    this.exitGateServiceService.UpdateParkingCharges(charges).subscribe(
+    this.exitGateServiceService.UpdateParkingCharges(this.vehicleEntryRow).subscribe(
       (arg)=>{
         if(arg){
           this.toastr.success("Save SuccessFully","Success");
+          this.GetCheckInVehicleDetailsById(this.indentId)
           this.ngxSpinnerService.hide();
         }
         form.resetForm();

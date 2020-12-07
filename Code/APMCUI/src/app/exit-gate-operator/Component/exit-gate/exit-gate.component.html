@@ -33,23 +33,24 @@
             <b>Out Time: </b>
           </div>
           <div class="col-md-7 col-7">
-            <p>&nbsp;{{ todaysDataTime }}</p>
+            <p>&nbsp;{{ vehicleEntryRow.outTime | date:'hh:mm a'}}</p>
           </div>
         </div>
         <hr />
+       
         <div class="row">
           <div class="col-md-5 col-5">
             <b>Fine:</b>
           </div>
           <div class="col-md-7 col-7">
-            <div class="input-group form-group">
-              <input
-                type="txt"
-                class="form-control"
-                placeholder="Enter Amount"
-                value=""
-              />
-            </div>
+            <input
+            type="text"
+            class="form-control"
+            placeholder="Enter Amount"
+            [(ngModel)]="vehicleEntryRow.fineCharges"
+            #FieldEmail="ngModel"
+            name="FieldFineCharge"
+          />
           </div>
         </div>
 
