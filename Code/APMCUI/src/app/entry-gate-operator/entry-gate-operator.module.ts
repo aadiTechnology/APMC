@@ -9,17 +9,28 @@ import { IndentDetailsComponent } from './components/indent-details/indent-detai
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { FormsModule } from '@angular/forms';
-
-
-
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
+import { IConfig, NgxMaskModule } from 'ngx-mask';
+const maskConfig: Partial<IConfig> = {
+  validation: false,
+};
 @NgModule({
-  declarations: [EntryGateOperatorComponent, EntryGateOperatorDashboardComponent, IndentListRecordComponent, IndentDetailsComponent, ],
+  declarations: [
+    EntryGateOperatorComponent,
+    EntryGateOperatorDashboardComponent,
+    IndentListRecordComponent,
+    IndentDetailsComponent,
+  ],
   imports: [
     CommonModule,
     FormsModule,
     Ng2SearchPipeModule,
     EntryGateOperatorRoutingModule,
     PaginationModule.forRoot(),
-  ]
+    NgxSpinnerModule,
+    NgxMaterialTimepickerModule,
+    NgxMaskModule.forRoot(maskConfig),
+  ],
 })
-export class EntryGateOperatorModule { }
+export class EntryGateOperatorModule {}

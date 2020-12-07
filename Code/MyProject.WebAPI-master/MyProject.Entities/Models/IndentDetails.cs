@@ -13,7 +13,7 @@ namespace MyProject.Entities.Models
         public string VehicleNo { get; set; }
         public string SupplierNo { get; set; }
         public string SupplierName { get; set; }
-        public string DriverName { get; set; }
+        public int? DriverId { get; set; }
         public string DriverNo { get; set; }
         public int? RollId { get; set; }
         public int? CreatedBy { get; set; }

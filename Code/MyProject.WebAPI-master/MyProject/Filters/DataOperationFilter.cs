@@ -39,9 +39,19 @@ namespace MyProject.WebAPI.Filters
                             if (resultData.ContainsKey("statusCode"))
                             {
                                 //string value=JObject.Parse(resultData.)["statusCode"];
-                                resultData.Add("HasErrors", true);
+                                if (resultData["statusCode"].Value<int>() == 200)
+                                {
+                                    resultData.Add("HasErrors", false);
+                                    filterContext.Result = new JsonResult(resultData);
+                                }
+                                else
+                                {
+                                    resultData.Add("HasErrors", true);
+                                    filterContext.Result = new JsonResult(resultData);
+                                }
+                                
                                 //resultData.Add("Data", resultData.);
-                                filterContext.Result = new JsonResult(resultData);
+                                
                             }
                             else
                             {

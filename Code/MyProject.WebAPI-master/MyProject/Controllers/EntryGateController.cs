@@ -40,7 +40,8 @@ namespace MyProject.WebAPI.Controllers
         [HttpGet("IndentDetailsById")]
         public async Task<JsonResult> IndentDetailsByOrderNo(int id)
         {
-            return await base.FinalizeMultiple<IEnumerable<EntryCheckInDetailsDto>>(await RepositoryWrapper.EntryCheckInDetails.IndentDetailsById(id));
+            var a= await base.FinalizeSingle<EntryCheckInDetailsDto>(await RepositoryWrapper.EntryCheckInDetails.IndentDetailsById(id));
+            return a;
         }
 
         /// <summary>

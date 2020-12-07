@@ -38,12 +38,27 @@
             <label class="text-muted card-label">Stall No</label>
           </div>
         </div>
-
+ 
 		<div class="col-6 col-sm-6 col-md-6">
           <div>
             <span class="card-text font-weight-bold">{{Approverow?.createdDate | date: 'dd/MM/yyyy'}}</span
             ><br />
             <label class="text-muted card-label">Date</label>
+          </div>
+        </div>
+
+        <div class="col-6 col-sm-6 col-md-6">
+          <div>
+            <span class="card-text font-weight-bold">{{Approverow?.stallRegNo}}</span
+            ><br />
+            <label class="text-muted card-label">Stall Registration No</label>
+          </div>
+        </div>
+        <div class="col-6 col-sm-6 col-md-6">
+          <div>
+            <span class="card-text font-weight-bold">{{Approverow?.area}}</span
+            ><br />
+            <label class="text-muted card-label">Stall Area (sqft)</label>
           </div>
         </div>
     </div><br>
