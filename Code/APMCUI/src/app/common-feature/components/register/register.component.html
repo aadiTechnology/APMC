@@ -114,6 +114,7 @@
           placeholder="Mobile No"
           [(ngModel)]="user.MobileNo"
           required
+          maxlength="10"
           pattern="\d{10}"
           #FieldMobileNumber="ngModel"
           name="FieldMobileNumber"
@@ -142,7 +143,7 @@
         <input
           type="email"
           class="form-control"
-          placeholder="Email ID"
+          placeholder="Email ID (Optional)"
           [(ngModel)]="user.Email"
           pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
           #FieldEmail="ngModel"
