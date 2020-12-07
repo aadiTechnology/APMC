@@ -22,78 +22,9 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td scope="col">005</td>
-            <td scope="col">Sangram Konde</td>
-            <td scope="col">
-              <button
-                class="btn btn-light"
-                type="button"
-                id="dropdownMenuButton"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
-              </button>
-              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" routerLink="/driver/qrDetails"
-                  ><i class="fa fa-eye" aria-hidden="true"></i>
-                </a>
-              </div>
-            </td>
-          </tr>
-        </tbody>
-        <tbody>
-          <tr>
-            <td scope="col">007</td>
-            <td scope="col">Ganesh Jagdhane</td>
-            <td scope="col">
-              <button
-                class="btn btn-light"
-                type="button"
-                id="dropdownMenuButton"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
-              </button>
-              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" routerLink="/driver/qrDetails"
-                  ><i class="fa fa-eye" aria-hidden="true"></i>
-                </a>
-              </div>
-            </td>
-          </tr>
-        </tbody>
-        <tbody>
-          <tr>
-            <td scope="col">008</td>
-            <td scope="col">Mayur Chavan</td>
-            <td scope="col">
-              <button
-                class="btn btn-light"
-                type="button"
-                id="dropdownMenuButton"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
-              </button>
-              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" routerLink="/driver/qrDetails"
-                  ><i class="fa fa-eye" aria-hidden="true"></i>
-                </a>
-              </div>
-            </td>
-          </tr>
-        </tbody>
-        <tbody>
-          <tr>
-            <td scope="col">009</td>
-            <td scope="col">Sumit Kemse</td>
+          <tr  *ngFor="let item of indentDetailList">
+            <td scope="col">{{item.orderNo}}</td>
+            <td scope="col">{{item.merchantName}}</td>
             <td scope="col">
               <button
                 class="btn btn-light"
