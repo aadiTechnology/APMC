@@ -45,11 +45,7 @@ namespace MyProject.WebAPI.Controllers
             }
 
         }
-        /// <summary>
-        /// Author-Datta(Update Indent isApproved)
-        /// </summary>
-        /// <param name="indentDetails"></param>
-        /// <returns>Successfully updated then return indent model</returns>
+
 
 
 
@@ -118,7 +114,11 @@ namespace MyProject.WebAPI.Controllers
         }
 
 
-
+        /// <summary>
+        /// Author-Datta(Update Indent isApproved)
+        /// </summary>
+        /// <param name="indentDetails"></param>
+        /// <returns>Successfully updated then return indent model</returns>
         [HttpPost("Update")]
         public async Task<JsonResult> UpdateIndent([FromBody] IndentDetails indentDetails)
         {
