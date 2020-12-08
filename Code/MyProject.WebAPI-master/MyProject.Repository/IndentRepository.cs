@@ -79,11 +79,7 @@ namespace MyProject.Repository
             int id = _repositoryContext.IndentDetails.OrderByDescending(a => a.Id).Select(a => a.Id).FirstOrDefault();
             return id;
         }
-        public IndentDetails GetIndent(int indentID)
-        {
-            IndentDetails indentDetails = _repositoryContext.IndentDetails.Where(a => a.Id == indentID).FirstOrDefault();
-            return indentDetails;
-        }
+
         public IndentDetails GetIndent(int indentId, int merchantId, string driverId)
         {
             IndentDetails indentDetails = _repositoryContext.IndentDetails.Where(a => a.Id == indentId && a.CreatedBy == merchantId && a.DriverNo == driverId).FirstOrDefault();
@@ -146,6 +142,154 @@ namespace MyProject.Repository
 
                           }).ToList();
             return Result;
+        }
+
+
+
+        public IndentDetails GetIndent(int indentID)
+        {
+            IndentDetails indentDetails = _repositoryContext.IndentDetails.Where(a => a.Id == indentID).FirstOrDefault();
+            return indentDetails;
+        }
+        public IndentDetailsDto GetIndentDetails(int indentID)
+        {
+            var indentDetails = (from Idetails in _repositoryContext.IndentDetails
+                                 join au in _repositoryContext.AppUsers
+                                 on Idetails.CreatedBy equals au.Id
+                                 where Idetails.Id == indentID
+                                 select new IndentDetailsDto
+                                 {
+                                     IndentDetails = Idetails,
+                                     MerchantDetails = au,
+                                 }).FirstOrDefault();
+
+            List<IndentProducts> indentProducts = new List<IndentProducts>();
+            indentDetails.IndentProducts = _repositoryContext.IndentProducts.Where(a => a.IndentId == indentDetails.IndentDetails.Id).ToList();
+            indentDetails.DriverDetails = _repositoryContext.AppUsers.Where(a => a.Id == indentDetails.IndentDetails.DriverId).FirstOrDefault();
+            var stalls = (from Idetails in _repositoryContext.IndentDetails
+                          join stallReg in _repositoryContext.StallRegistration
+                           on Idetails.CreatedBy equals stallReg.UserId
+                          join stallDetails in _repositoryContext.StallDetails
+                        on stallReg.StallId equals stallDetails.Id
+                          where Idetails.Id == indentDetails.IndentDetails.Id
+                          select new IndentDetailsDto
+                          {
+                              StallDetails = stallDetails
+                          }
+       ).FirstOrDefault();
+            if (stalls != null)
+            {
+                indentDetails.StallDetails = stalls.StallDetails;
+            }
+            return indentDetails;
+        }
+        public List<IndentDetailsDto> GetIndentDetailsByMerchantID(int merchant)
+        {
+            var indentDetails = (from Idetails in _repositoryContext.IndentDetails
+                                 join au in _repositoryContext.AppUsers
+                                 on Idetails.CreatedBy equals au.Id
+                                 where (Idetails.CreatedBy == merchant && Idetails.RollId == 2) || Idetails.AppovedBy == merchant
+                                 select new IndentDetailsDto
+                                 {
+                                     IndentDetails = Idetails,
+                                     MerchantDetails = au,
+                                 }).ToList();
+            foreach (var item in indentDetails)
+            {
+                List<IndentProducts> indentProducts = new List<IndentProducts>();
+                item.IndentProducts = _repositoryContext.IndentProducts.Where(a => a.IndentId == item.IndentDetails.Id).ToList();
+                item.DriverDetails = _repositoryContext.AppUsers.Where(a => a.Id == item.IndentDetails.DriverId).FirstOrDefault();
+                var stalls = (from Idetails in _repositoryContext.IndentDetails
+                              join stallReg in _repositoryContext.StallRegistration
+                               on Idetails.CreatedBy equals stallReg.UserId
+                              join stallDetails in _repositoryContext.StallDetails
+                            on stallReg.StallId equals stallDetails.Id
+                              where Idetails.Id == item.IndentDetails.Id
+                              select new IndentDetailsDto
+                              {
+                                  StallDetails = stallDetails
+                              }
+           ).FirstOrDefault();
+                if (stalls != null)
+                {
+                    item.StallDetails = stalls.StallDetails;
+                }
+
+
+            }
+
+            return indentDetails.OrderByDescending(a => a.IndentDetails.CreatedDate).ToList();
+        }
+        public List<IndentDetailsDto> GetIndentDetailsByDriverID(int driverId)
+        {
+            var indentDetails = (from Idetails in _repositoryContext.IndentDetails
+                                 join au in _repositoryContext.AppUsers
+                                 on Idetails.CreatedBy equals au.Id
+                                 where Idetails.CreatedBy == driverId
+                                 select new IndentDetailsDto
+                                 {
+                                     IndentDetails = Idetails,
+                                     MerchantDetails = au,
+                                 }).ToList();
+            foreach (var item in indentDetails)
+            {
+                List<IndentProducts> indentProducts = new List<IndentProducts>();
+                item.IndentProducts = _repositoryContext.IndentProducts.Where(a => a.IndentId == item.IndentDetails.Id).ToList();
+                item.DriverDetails = _repositoryContext.AppUsers.Where(a => a.Id == item.IndentDetails.DriverId).FirstOrDefault();
+                var stalls = (from Idetails in _repositoryContext.IndentDetails
+                              join stallReg in _repositoryContext.StallRegistration
+                               on Idetails.CreatedBy equals stallReg.UserId
+                              join stallDetails in _repositoryContext.StallDetails
+                            on stallReg.StallId equals stallDetails.Id
+                              where Idetails.Id == item.IndentDetails.Id
+                              select new IndentDetailsDto
+                              {
+                                  StallDetails = stallDetails
+                              }
+           ).FirstOrDefault();
+                if (stalls != null)
+                {
+                    item.StallDetails = stalls.StallDetails;
+                }
+
+
+            }
+
+            return indentDetails.OrderByDescending(a => a.IndentDetails.CreatedDate).ToList();
+        }
+        public IndentDetailsDto GetIndent(int indentId, int merchantId, int driverId)
+        {
+
+            IndentDetails indentDetails = _repositoryContext.IndentDetails.Where(a => a.Id == indentId && a.CreatedBy == merchantId && a.DriverId == driverId).FirstOrDefault();
+            var indentDetailsDto = (from Idetails in _repositoryContext.IndentDetails
+                                    join au in _repositoryContext.AppUsers
+                                    on Idetails.CreatedBy equals au.Id
+                                    where Idetails.Id == indentDetails.Id
+                                    select new IndentDetailsDto
+                                    {
+                                        IndentDetails = Idetails,
+                                        MerchantDetails = au,
+                                    }).FirstOrDefault();
+
+            List<IndentProducts> indentProducts = new List<IndentProducts>();
+            indentDetailsDto.IndentProducts = _repositoryContext.IndentProducts.Where(a => a.IndentId == indentDetailsDto.IndentDetails.Id).ToList();
+            indentDetailsDto.DriverDetails = _repositoryContext.AppUsers.Where(a => a.Id == indentDetailsDto.IndentDetails.DriverId).FirstOrDefault();
+            var stalls = (from Idetails in _repositoryContext.IndentDetails
+                          join stallReg in _repositoryContext.StallRegistration
+                           on Idetails.CreatedBy equals stallReg.UserId
+                          join stallDetails in _repositoryContext.StallDetails
+                        on stallReg.StallId equals stallDetails.Id
+                          where Idetails.Id == indentDetailsDto.IndentDetails.Id
+                          select new IndentDetailsDto
+                          {
+                              StallDetails = stallDetails
+                          }
+       ).FirstOrDefault();
+            if (stalls != null)
+            {
+                stalls.StallDetails = stalls.StallDetails;
+            }
+            return indentDetailsDto;
         }
 
     }

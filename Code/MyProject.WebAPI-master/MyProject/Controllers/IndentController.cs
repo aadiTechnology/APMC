@@ -14,7 +14,7 @@ namespace MyProject.WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = "Merchant,Driver")]
+    [Authorize(Roles = "Merchant,Driver,Admin,Agent,Transporter,Entry Gate Operator,Exit Gate Operator")]
     //Author-Datta (Indent related methods)
     public class IndentController : ControllerBase
     {
@@ -50,12 +50,8 @@ namespace MyProject.WebAPI.Controllers
         /// </summary>
         /// <param name="indentDetails"></param>
         /// <returns>Successfully updated then return indent model</returns>
-        [HttpPost("Update")]
-        public async Task<JsonResult> Update([FromBody] IndentDetails indentDetails)
-        {
-            RepositoryWrapper.IndentDetails.Update(indentDetails);
-            return await base.FinalizStatusCodeeMessage("Updated Indent Successfully", 200);
-        }
+
+
 
 
         [HttpGet("GetProducts")]
@@ -80,11 +76,7 @@ namespace MyProject.WebAPI.Controllers
         {
             return await base.FinalizeMultiple<byte[]>(RepositoryWrapper.IndentDetails.GenerateQRCode(indentId, merchantId, driverId));
         }
-        [HttpGet("GetIndent")]
-        public async Task<JsonResult> GetIndent(int indentId)
-        {
-            return await base.FinalizeMultiple<IndentDetails>(RepositoryWrapper.IndentDetails.GetIndent(indentId));
-        }
+
         [HttpGet("GetIndent")]
         public async Task<JsonResult> GetIndent(int indentId, int merchantId, string driverId)
         {
@@ -123,6 +115,39 @@ namespace MyProject.WebAPI.Controllers
         public async Task<JsonResult> GetIndentWithMerchantName()
         {
             return await base.FinalizeMultiple<List<IndentMerchantDto>>(RepositoryWrapper.IndentDetails.GetIndentWithMerchantName());
+        }
+
+
+
+        [HttpPost("Update")]
+        public async Task<JsonResult> UpdateIndent([FromBody] IndentDetails indentDetails)
+        {
+            return await base.FinalizeMultiple<IndentDetails>(RepositoryWrapper.IndentDetails.Update(indentDetails));
+        }
+        [HttpGet("GetIndentDetailsByMerchantID")]
+        public async Task<JsonResult> GetIndentDetailsByMerchantID(int merchant)
+        {
+            return await base.FinalizeMultiple<List<IndentDetailsDto>>(RepositoryWrapper.IndentDetails.GetIndentDetailsByMerchantID(merchant));
+        }
+        [HttpGet("GetIndentDetailsByDriverID")]
+        public async Task<JsonResult> GetIndentDetailsByDriverID(int driverId)
+        {
+            return await base.FinalizeMultiple<List<IndentDetailsDto>>(RepositoryWrapper.IndentDetails.GetIndentDetailsByDriverID(driverId));
+        }
+        [HttpGet("GetIndentDetails")]
+        public async Task<JsonResult> GetIndentDetails(int indentId)
+        {
+            return await base.FinalizeMultiple<IndentDetailsDto>(RepositoryWrapper.IndentDetails.GetIndentDetails(indentId));
+        }
+        [HttpGet("GetIndent")]
+        public async Task<JsonResult> GetIndent(int indentId, int merchantId, int driverId)
+        {
+            return await base.FinalizeMultiple<IndentDetailsDto>(RepositoryWrapper.IndentDetails.GetIndent(indentId, merchantId, driverId));
+        }
+        [HttpGet("GetIndent")]
+        public async Task<JsonResult> GetIndent(int indentId)
+        {
+            return await base.FinalizeMultiple<IndentDetails>(RepositoryWrapper.IndentDetails.GetIndent(indentId));
         }
     }
 }
