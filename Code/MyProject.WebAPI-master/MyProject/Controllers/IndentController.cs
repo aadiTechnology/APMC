@@ -137,17 +137,17 @@ namespace MyProject.WebAPI.Controllers
         [HttpGet("GetIndentDetails")]
         public async Task<JsonResult> GetIndentDetails(int indentId)
         {
-            return await base.FinalizeMultiple<IndentDetailsDto>(RepositoryWrapper.IndentDetails.GetIndentDetails(indentId));
+            return await base.FinalizeSingle<IndentDetailsDto>(RepositoryWrapper.IndentDetails.GetIndentDetails(indentId));
         }
         [HttpGet("GetIndent")]
         public async Task<JsonResult> GetIndent(int indentId, int merchantId, int driverId)
         {
             return await base.FinalizeMultiple<IndentDetailsDto>(RepositoryWrapper.IndentDetails.GetIndent(indentId, merchantId, driverId));
         }
-        [HttpGet("GetIndent")]
-        public async Task<JsonResult> GetIndent(int indentId)
+        [HttpGet("GetIndentById")]
+        public async Task<JsonResult> GetIndentById(int indentId)
         {
-            return await base.FinalizeMultiple<IndentDetails>(RepositoryWrapper.IndentDetails.GetIndent(indentId));
+            return await base.FinalizeSingle<IndentDetails>(RepositoryWrapper.IndentDetails.GetIndent(indentId));
         }
     }
 }
