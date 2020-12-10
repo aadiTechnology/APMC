@@ -188,7 +188,7 @@ namespace MyProject.Repository
             var indentDetails = (from Idetails in _repositoryContext.IndentDetails
                                  join au in _repositoryContext.AppUsers
                                  on Idetails.CreatedBy equals au.Id
-                                 where (Idetails.CreatedBy == merchant && Idetails.RollId == 2) || Idetails.AppovedBy == merchant
+                                 where ((Idetails.CreatedBy == merchant && Idetails.RollId == 2) || Idetails.AppovedBy == merchant) && Idetails.IsScanned==false
                                  select new IndentDetailsDto
                                  {
                                      IndentDetails = Idetails,
@@ -225,7 +225,7 @@ namespace MyProject.Repository
             var indentDetails = (from Idetails in _repositoryContext.IndentDetails
                                  join au in _repositoryContext.AppUsers
                                  on Idetails.CreatedBy equals au.Id
-                                 where Idetails.CreatedBy == driverId
+                                 where Idetails.DriverId == driverId && Idetails.IsScanned == false
                                  select new IndentDetailsDto
                                  {
                                      IndentDetails = Idetails,

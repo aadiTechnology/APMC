@@ -10,7 +10,7 @@ namespace MyProject.WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = "ExitGateOperator")]
+    [Authorize(Roles = "ExitGateOperator,Merchant,Entry Gate Operator,Exit Gate Operator")]
 
     public class ExitGateController : ControllerBase
     {
