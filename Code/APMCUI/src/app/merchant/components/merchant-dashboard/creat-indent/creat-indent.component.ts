@@ -90,7 +90,7 @@ export class CreatIndentComponent implements OnInit, AfterViewInit {
       const indentDetails = {
         RollId: this.currentUser.id,
         CreatedBy: this.currentUser.id,
-        DriverID: this.merchantindent.DriverId,
+        DriverId: this.merchantindent.DriverId,
         DriverNo: this.merchantindent.DriverNo,
         ETADate: this.merchantindent.ETADate,
         ETATime: this.merchantindent.ETATime,
@@ -151,6 +151,8 @@ export class CreatIndentComponent implements OnInit, AfterViewInit {
   onDriverSelect(event): void {
     if (event) {
       debugger;
+      const driver = this.driverlist.filter((x) => x.id === +event)[0];
+      this.merchantindent.DriverNo = driver !== null ? driver.mobileNo : null;
       if (event.item.id !== null && event.item.id !== undefined) {
         this.merchantindent.DriverId = event.item.id;
       } else {

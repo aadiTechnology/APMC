@@ -33,11 +33,13 @@ export class IndentDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.orderNo = this.activeRoute.snapshot.queryParams.orderNo;
     this.actionType = this.activeRoute.snapshot.queryParams.type;
-    this.getAllIndentDetails(this.orderNo);
+    if (this.actionType === 'VIEW') {
+      this.getAllIndentDetails(this.orderNo);
+    }
   }
   getAllIndentDetails(Id): void {
     this.spinner.show();
-    this.entryGateOperatorService.getAllIndentDetails(Id).subscribe(
+    this.entryGateOperatorService.getIndentDetails(Id).subscribe(
       (arg) => {
         if (!arg.HasErrors) {
           this.IndentOrder = arg;
@@ -52,20 +54,23 @@ export class IndentDetailsComponent implements OnInit {
     );
   }
 
-  verifyIndent(VerifyIndentForm: NgForm): void {}
+  verifyIndent(VerifyIndentForm: NgForm): void {
+    if (VerifyIndentForm.valid) {
+    }
+  }
 
   GetIndentDetails(form: NgForm): void {
     if (form.valid && this.qrCode) {
       this.spinner.show();
       const qrData = this.qrCode.split('|');
       const qrCodeDetails = {
-        indentId: +this.qrCode.slice(0, 5),
+        indented: +this.qrCode.slice(0, 5),
         merchantId: +this.qrCode.slice(5, 10),
         driverId: +this.qrCode.slice(10, 15),
       };
       this.entryGateOperatorService
         .GetDetailsByQRCode(
-          qrCodeDetails.indentId,
+          qrCodeDetails.indented,
           qrCodeDetails.merchantId,
           qrCodeDetails.driverId
         )

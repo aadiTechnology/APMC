@@ -65,9 +65,9 @@
           <div class="col-12 col-sm-12 col-md-12">
             <div>
               <span class="card-text font-weight-bold"
-                >{{IndentOrder.stallNo}}</span
+                >{{IndentOrder.stallName}}</span
               ><br />
-              <label class="text-muted card-label">Stall No</label>
+              <label class="text-muted card-label">Stall Name</label>
             </div>
           </div>
           <div class="col-12 col-sm-12 col-md-12">
@@ -85,11 +85,34 @@
           <img width="100px" [src]="IndentOrder.qrId" />
         </div>
       </div>
-      <div class="col-12 col-sm-12 col-md-12">
+      <div class="col-6 col-sm-6 col-md-6">
         <div>
           <span class="card-text font-weight-bold">{{IndentOrder.orderNo}}</span
           ><br />
           <label class="text-muted card-label">Order No</label>
+        </div>
+      </div>
+      <div class="col-6 col-sm-6 col-md-6">
+        <div>
+          <span class="card-text font-weight-bold"
+            >{{IndentOrder.indentId}}</span
+          ><br />
+          <label class="text-muted card-label">Indent Id</label>
+        </div>
+      </div>
+      <div class="col-6 col-sm-6 col-md-6">
+        <div>
+          <span class="card-text font-weight-bold"
+            >{{IndentOrder.etaDate |date:'dd-MM-yyyy'}}</span
+          ><br />
+          <label class="text-muted card-label">Date</label>
+        </div>
+      </div>
+      <div class="col-6 col-sm-6 col-md-6">
+        <div>
+          <span class="card-text font-weight-bold">{{IndentOrder.etaTime}}</span
+          ><br />
+          <label class="text-muted card-label">Time</label>
         </div>
       </div>
     </div>
@@ -105,51 +128,36 @@
         <div class="col-6 col-sm-6 col-md-6">
           <div>
             <span class="card-text font-weight-bold"
-              >{{IndentOrder.driverNo}}</span
-            ><br />
-            <label class="text-muted card-label">Driver No</label>
-          </div>
-        </div>
-        <div class="col-6 col-sm-6 col-md-6">
-          <div>
-            <span class="card-text font-weight-bold"
               >{{IndentOrder.driverName}}</span
             ><br />
             <label class="text-muted card-label">Driver Name</label>
           </div>
         </div>
-
         <div class="col-6 col-sm-6 col-md-6">
           <div>
             <span class="card-text font-weight-bold"
+              >{{IndentOrder.driverNo}}</span
+            ><br />
+            <label class="text-muted card-label">Driver Mobile Number</label>
+          </div>
+        </div>
+
+        <div class="col-6 col-sm-6 col-md-6">
+          <div>
+            <span class="card-text font-weight-bold text-uppercase"
               >{{IndentOrder.vehicleNo}}</span
             ><br />
             <label class="text-muted card-label">Vehicle No</label>
           </div>
         </div>
         <div class="col-6 col-sm-6 col-md-6"></div>
-        <div class="col-6 col-sm-6 col-md-6">
-          <div>
-            <span class="card-text font-weight-bold"
-              >{{IndentOrder.etaDate |date:'dd-MM-yyyy'}}</span
-            ><br />
-            <label class="text-muted card-label">Date</label>
-          </div>
-        </div>
-        <div class="col-6 col-sm-6 col-md-6">
-          <div>
-            <span class="card-text font-weight-bold"
-              >{{IndentOrder.etaTime}}</span
-            ><br />
-            <label class="text-muted card-label">Time</label>
-          </div>
-        </div>
+
         <div class="col-6 col-sm-6 col-md-6">
           <div>
             <span class="card-text font-weight-bold"
               >{{IndentOrder.supplierNo}}</span
             ><br />
-            <label class="text-muted card-label">Supplier No</label>
+            <label class="text-muted card-label">Supplier Mobile Number</label>
           </div>
         </div>
         <div class="col-6 col-sm-6 col-md-6">

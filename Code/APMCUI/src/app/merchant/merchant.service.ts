@@ -8,9 +8,9 @@ import { HttpService } from '../core/services/http.service';
 export class MerchantService {
   constructor(private httpService: HttpService) {}
 
-  getAllStallDetails():any{
+  getAllStallDetails(): any {
     return this.httpService.get('Merchant/GetAllStallDetails');
-  }   
+  }
 
   getAllProductCategories(): any {
     return this.httpService.get('Merchant/GetAllProductCategory');
@@ -28,7 +28,8 @@ export class MerchantService {
   stallRegistration(data): Observable<any> {
     return this.httpService.post('Merchant/StallRegistration', data);
   }
-  indentCreation(indentData){
+
+  indentCreation(indentData): any {
     return this.httpService.post('Indent/AddIndent', indentData);
   }
 }

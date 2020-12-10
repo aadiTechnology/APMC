@@ -15,7 +15,23 @@
       <div class="row">
         <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 form-group">
           <div class="input-group">
-            <input
+            <select
+              [(ngModel)]="merchantindent.DriverId"
+              placeholder="Driver Name"
+              required
+              class="form-control"
+              #FieldDriverName="ngModel"
+              name="FieldDriverName"
+              [ngClass]="{'is-invalid': FieldDriverName.invalid && (FieldDriverName.dirty || FieldDriverName.touched || CreateIndentForm.submitted) }"
+              [ngClass]="{'is-valid': FieldDriverName.valid && (!FieldDriverName.dirty || !FieldDriverName.touched || !CreateIndentForm.submitted) }"
+              (ngModelChange)="onDriverSelect($event)"
+            >
+              <option selected disabled [value]="null">Select driver</option>
+              <option *ngFor="let driver of driverlist" [value]="driver.id"
+                >{{driver.firstName}} {{driver.lastName}}</option
+              >
+            </select>
+            <!-- <input
               [(ngModel)]="driverName"
               placeholder="Driver Name"
               required
@@ -32,7 +48,7 @@
               name="FieldDriverName"
               [ngClass]="{'is-invalid': FieldDriverName.invalid && (FieldDriverName.dirty || FieldDriverName.touched || CreateIndentForm.submitted) }"
               [ngClass]="{'is-valid': FieldDriverName.valid && (!FieldDriverName.dirty || !FieldDriverName.touched || !CreateIndentForm.submitted) }"
-            />
+            /> -->
           </div>
           <div
             [ngClass]="{'d-block': FieldDriverName.invalid && (FieldDriverName.dirty || FieldDriverName.touched || CreateIndentForm.submitted) }"

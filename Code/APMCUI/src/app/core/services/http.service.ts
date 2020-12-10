@@ -1,4 +1,3 @@
-
 import { Injectable } from '@angular/core';
 import {
   HttpClient,
@@ -54,7 +53,11 @@ export class HttpService {
    */
   post<T, M>(url: string, data: M): Observable<T> {
     return this.httpRequest(
-      this.http.post(environment.api + url, JSON.stringify(data), this.getHttpHeader())
+      this.http.post(
+        environment.api + url,
+        JSON.stringify(data),
+        this.getHttpHeader()
+      )
     ).pipe(map((response: T) => response)) as Observable<T>;
   }
 
@@ -64,15 +67,15 @@ export class HttpService {
    * @param data payload to send
    */
   postAnonymous<T>(url: string, data: T): Observable<any> {
-   // const formData: any = new FormData();
-   // formData.append('RequestData', JSON.stringify(data));
+    // const formData: any = new FormData();
+    // formData.append('RequestData', JSON.stringify(data));
     const headers = new HttpHeaders()
       .set('Cache-control', 'no-cache')
-     // .set('Cache-control', 'no-store')
+      // .set('Cache-control', 'no-store')
       //.set('Expires', '0')
-    //  .set('Pragma', 'no-cache')
-      .set('Content-Type', 'application/json')
-     // .set('Access-Control-Expose-Headers', '*');
+      //  .set('Pragma', 'no-cache')
+      .set('Content-Type', 'application/json');
+    // .set('Access-Control-Expose-Headers', '*');
     return this.httpRequest(
       this.http.post(environment.api + url, data, {
         headers: headers,
@@ -85,11 +88,11 @@ export class HttpService {
     formData.append('RequestData', JSON.stringify(data));
     const headers = new HttpHeaders()
       .set('Cache-control', 'no-cache')
-     // .set('Cache-control', 'no-store')
-     // .set('Expires', '0')
+      // .set('Cache-control', 'no-store')
+      // .set('Expires', '0')
       //.set('Pragma', 'no-cache')
-      .set('Content-Type', 'application/json')
-     // .set('Access-Control-Expose-Headers', '*');
+      .set('Content-Type', 'application/json');
+    // .set('Access-Control-Expose-Headers', '*');
     return this.httpRequest(
       this.http.post(environment.api + url, formData, {
         headers: headers,
