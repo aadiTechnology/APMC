@@ -3,42 +3,27 @@
     <h3 class="mb-0">Indent Details</h3>
   </div>
   <div class="card-body">
-    <form
-      name="QRCodeReadDetailForm"
-      #QRCodeReadDetailForm="ngForm"
-      novalidate
-      autocomplete="off"
-      (ngSubmit)="GetIndentDetails(QRCodeReadDetailForm)"
-    >
-      <div class="row" [hidden]="actionType !== 'SCAN' && !qrCodeVerified">
+    <form name="QRCodeReadDetailForm" #QRCodeReadDetailForm="ngForm" novalidate autocomplete="off"
+      (ngSubmit)="GetIndentDetails(QRCodeReadDetailForm)" [hidden]="actionType !== 'SCAN' && !qrCodeVerified">
+      <div class="row" >
         <!-- <pre>{{IndentOrder | json}}</pre> -->
         <div class="col-12 col-sm-12 col-md-12 form-group">
           <label>Qr Code (Indent Id | Merchant Id | Driver Id)</label>
           <div class="input-group">
-            <input
-              type="text"
-              [specialCharacters]="[ '|' ]"
-              mask="00000|00000|00000"
-              class="form-control"
-              placeholder="Qr Code (Indent Id | Merchant Id | Driver Id)"
-              name="QrCodeField"
-              #QrCodeField="ngModel"
-              required
-              [(ngModel)]="qrCode"
-            />
+            <input type="text" [specialCharacters]="[ '|' ]" mask="00000|00000|00000" class="form-control"
+              placeholder="Qr Code (Indent Id | Merchant Id | Driver Id)" name="QrCodeField" #QrCodeField="ngModel"
+              required [(ngModel)]="qrCode" />
           </div>
           <div
             [ngClass]="{'d-block': QrCodeField.invalid && (QrCodeField.dirty || QrCodeField.touched || QRCodeReadDetailForm.submitted) }"
-            class="invalid-feedback"
-          >
+            class="invalid-feedback">
             <div [hidden]="!QrCodeField?.errors?.required">
               Enter qr code details.
             </div>
           </div>
           <div
             [ngClass]="{'d-block': qrCodeVerified && QrCodeField.invalid && (QrCodeField.dirty || QrCodeField.touched || QRCodeReadDetailForm.submitted) }"
-            class="invalid-feedback"
-          >
+            class="invalid-feedback">
             <div>
               Enter valid qr code details.
             </div>
@@ -48,130 +33,107 @@
           <button type="submit" class="btn btn-primary mr-2">
             Get Details
           </button>
-          <button
-            type="button"
-            value="Back"
-            class="btn btn-danger"
-            routerLink="/entryGateOperator/indentListRecord"
-          >
+          <button type="button" value="Back" class="btn btn-danger" routerLink="/entryGateOperator/indentListRecord">
             Back
           </button>
         </div>
       </div>
     </form>
     <div class="row" [hidden]="actionType === 'SCAN'">
+      <!-- <pre>{{IndentOrder|json}}</pre> -->
       <div class="col-6 col-sm-6 col-md-6">
         <div class="row">
           <div class="col-12 col-sm-12 col-md-12">
             <div>
-              <span class="card-text font-weight-bold"
-                >{{IndentOrder.stallName}}</span
-              ><br />
-              <label class="text-muted card-label">Stall Name</label>
+              <span class="card-text font-weight-bold">{{IndentOrder.indentDetails.id}}</span><br />
+              <label class="text-muted card-label">Indent Id</label>
             </div>
           </div>
           <div class="col-12 col-sm-12 col-md-12">
-            <div>
-              <span class="card-text font-weight-bold"
-                >{{IndentOrder.stallCreatedBy}}</span
-              ><br />
-              <label class="text-muted card-label">Merchant Name</label>
-            </div>
+          <div>
+            <span class="card-text font-weight-bold">{{IndentOrder.indentDetails.orderNo}}</span><br />
+            <label class="text-muted card-label">Order No</label>
           </div>
         </div>
-      </div>
-      <div class="col-6 col-sm-6 col-md-6">
-        <div>
-          <img width="100px" [src]="IndentOrder.qrId" />
+
         </div>
       </div>
       <div class="col-6 col-sm-6 col-md-6">
         <div>
-          <span class="card-text font-weight-bold">{{IndentOrder.orderNo}}</span
-          ><br />
-          <label class="text-muted card-label">Order No</label>
+          <img width="100px" [src]="IndentOrder.indentDetails.qrId" />
         </div>
       </div>
       <div class="col-6 col-sm-6 col-md-6">
         <div>
-          <span class="card-text font-weight-bold"
-            >{{IndentOrder.indentId}}</span
-          ><br />
-          <label class="text-muted card-label">Indent Id</label>
-        </div>
-      </div>
-      <div class="col-6 col-sm-6 col-md-6">
-        <div>
-          <span class="card-text font-weight-bold"
-            >{{IndentOrder.etaDate |date:'dd-MM-yyyy'}}</span
-          ><br />
+          <span class="card-text font-weight-bold">{{IndentOrder.indentDetails.etaDate |date:'dd-MM-yyyy'}}</span><br />
           <label class="text-muted card-label">Date</label>
         </div>
       </div>
       <div class="col-6 col-sm-6 col-md-6">
         <div>
-          <span class="card-text font-weight-bold">{{IndentOrder.etaTime}}</span
-          ><br />
+          <span class="card-text font-weight-bold">{{IndentOrder.indentDetails.etaTime}}</span><br />
           <label class="text-muted card-label">Time</label>
         </div>
       </div>
+      <div class="col-6 col-sm-6 col-md-6">
+        <div>
+          <span class="card-text font-weight-bold">{{IndentOrder.merchantDetails.id}}</span><br />
+          <label class="text-muted card-label">Merchant Id</label>
+        </div>
+      </div>
+      <div class="col-6 col-sm-6 col-md-6">
+        <div>
+          <span class="card-text font-weight-bold">{{IndentOrder.merchantDetails.firstName}} {{IndentOrder.merchantDetails.lastName}}</span><br />
+          <label class="text-muted card-label">Merchant Name</label>
+        </div>
+      </div>
+
     </div>
     <hr />
-    <form
-      [hidden]="actionType === 'SCAN'"
-      name="VerifyIndentForm"
-      #VerifyIndentForm="ngForm"
-      novalidate
-      (ngSubmit)="verifyIndent(VerifyIndentForm)"
-    >
+    <form [hidden]="actionType === 'SCAN'" name="VerifyIndentForm" #VerifyIndentForm="ngForm" novalidate
+      (ngSubmit)="verifyIndent(VerifyIndentForm)" *ngIf="actionType  === 'SCAN'">
       <div class="row form-group">
         <div class="col-6 col-sm-6 col-md-6">
           <div>
-            <span class="card-text font-weight-bold"
-              >{{IndentOrder.driverName}}</span
-            ><br />
+            <span class="card-text font-weight-bold">{{IndentOrder.driverDetails.id}}</span><br />
+            <label class="text-muted card-label">Driver Id</label>
+          </div>
+        </div>
+        <div class="col-6 col-sm-6 col-md-6">
+          <div>
+            <span class="card-text font-weight-bold">{{IndentOrder.driverDetails.firstName}} {{IndentOrder.driverDetails.lastName}}</span><br />
             <label class="text-muted card-label">Driver Name</label>
           </div>
         </div>
         <div class="col-6 col-sm-6 col-md-6">
           <div>
-            <span class="card-text font-weight-bold"
-              >{{IndentOrder.driverNo}}</span
-            ><br />
+            <span class="card-text font-weight-bold">{{IndentOrder.driverDetails.mobileNo}}</span><br />
             <label class="text-muted card-label">Driver Mobile Number</label>
           </div>
         </div>
 
         <div class="col-6 col-sm-6 col-md-6">
           <div>
-            <span class="card-text font-weight-bold text-uppercase"
-              >{{IndentOrder.vehicleNo}}</span
-            ><br />
+            <span class="card-text font-weight-bold text-uppercase">{{IndentOrder.indentDetails.vehicleNo}}</span><br />
             <label class="text-muted card-label">Vehicle No</label>
           </div>
         </div>
-        <div class="col-6 col-sm-6 col-md-6"></div>
 
         <div class="col-6 col-sm-6 col-md-6">
           <div>
-            <span class="card-text font-weight-bold"
-              >{{IndentOrder.supplierNo}}</span
-            ><br />
+            <span class="card-text font-weight-bold">{{IndentOrder.indentDetails.supplierNo}}</span><br />
             <label class="text-muted card-label">Supplier Mobile Number</label>
           </div>
         </div>
         <div class="col-6 col-sm-6 col-md-6">
           <div>
-            <span class="card-text font-weight-bold"
-              >{{IndentOrder.supplierName}}</span
-            ><br />
+            <span class="card-text font-weight-bold">{{IndentOrder.indentDetails.supplierName}}</span><br />
             <label class="text-muted card-label">Supplier Name</label>
           </div>
         </div>
         <div class="col-12 col-sm-12 col-md-12 form-group">
           <table
-            class="table table-responsive table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl"
-          >
+            class="table table-responsive table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl">
             <thead>
               <tr>
                 <th scope="col">Product Category</th>
@@ -180,7 +142,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let item of IndentOrder.products">
+              <tr *ngFor="let item of IndentOrder.indentProducts">
                 <td scope="col">{{item.productCategory}}</td>
                 <td scope="col">{{item.productName}}</td>
                 <td scope="col">{{item.productQuantity}} {{item.unit}}</td>
@@ -188,80 +150,45 @@
             </tbody>
           </table>
         </div>
-        <div
-          [hidden]="actionType !== 'SCAN'"
-          class="col-12 col-sm-12 col-md-12 form-group"
-        >
+        <div [hidden]="actionType !== 'SCAN'" class="col-12 col-sm-12 col-md-12 form-group">
           <div class="input-group">
-            <input
-              class="form-control"
-              matInput
-              aria-label="default time"
-              [ngxTimepicker]="defaultValue"
-              [value]="'0:00 am'"
-              [(ngModel)]="entryDetails.entryTime"
-              #FieldEntryTime="ngModel"
-              name="FieldEntryTime"
-              placeholder="Select time"
-              required
-              [ngClass]="{'is-invalid': FieldEntryTime.invalid && (FieldEntryTime.dirty || FieldEntryTime.touched || VerifyIndentForm.submitted) }"
-            />
+            <input class="form-control" matInput aria-label="default time" [ngxTimepicker]="defaultValue"
+              [value]="'0:00 am'" [(ngModel)]="entryDetails.entryTime" #FieldEntryTime="ngModel" name="FieldEntryTime"
+              placeholder="Select time" required
+              [ngClass]="{'is-invalid': FieldEntryTime.invalid && (FieldEntryTime.dirty || FieldEntryTime.touched || VerifyIndentForm.submitted) }" />
             <ngx-material-timepicker #defaultValue> </ngx-material-timepicker>
           </div>
           <div
             [ngClass]="{'d-block': FieldEntryTime.invalid && (FieldEntryTime.dirty || FieldEntryTime.touched || VerifyIndentForm.submitted) }"
-            class="invalid-feedback"
-          >
+            class="invalid-feedback">
             <div [hidden]="!FieldEntryTime?.errors?.required">
               Select time.
             </div>
           </div>
         </div>
-        <div
-          [hidden]="actionType !== 'SCAN'"
-          class="col-12 col-sm-12 col-md-12 form-group"
-        >
+        <div [hidden]="actionType !== 'SCAN'" class="col-12 col-sm-12 col-md-12 form-group">
           <div class="input-group">
-            <input
-              type="number"
-              class="form-control"
-              placeholder="Weight"
-              [(ngModel)]="entryDetails.weight"
-              #FieldWeight="ngModel"
-              name="FieldWeight"
-              required
-              [ngClass]="{'is-invalid': FieldWeight.invalid && (FieldWeight.dirty || FieldWeight.touched          || VerifyIndentForm.submitted) }"
-            />
+            <input type="number" class="form-control" placeholder="Weight" [(ngModel)]="entryDetails.weight"
+              #FieldWeight="ngModel" name="FieldWeight" required
+              [ngClass]="{'is-invalid': FieldWeight.invalid && (FieldWeight.dirty || FieldWeight.touched          || VerifyIndentForm.submitted) }" />
           </div>
           <div
             [ngClass]="{'d-block': FieldWeight.invalid && (FieldWeight.dirty || FieldWeight.touched || VerifyIndentForm.submitted) }"
-            class="invalid-feedback"
-          >
+            class="invalid-feedback">
             <div [hidden]="!FieldWeight?.errors?.required">
               Enter weight.
             </div>
           </div>
         </div>
-        <div
-          [hidden]="actionType !== 'SCAN'"
-          class="col-12 col-sm-12 col-md-12 form-group"
-        >
+        <div [hidden]="actionType !== 'SCAN'" class="col-12 col-sm-12 col-md-12 form-group">
           <div class="input-group">
-            <input
-              type="number"
-              class="form-control"
-              placeholder="Entry Fee"
-              [(ngModel)]="entryDetails.entryFee"
-              #FieldEntryFee="ngModel"
-              name="FieldEntryFee"
-              required
-              [ngClass]="{'is-invalid': FieldEntryFee.invalid && (FieldEntryFee.dirty || FieldEntryFee.touched          || VerifyIndentForm.submitted) }"
-            />
+            <input type="number" class="form-control" placeholder="Entry Fee" [(ngModel)]="entryDetails.entryFee"
+              #FieldEntryFee="ngModel" name="FieldEntryFee" required
+              [ngClass]="{'is-invalid': FieldEntryFee.invalid && (FieldEntryFee.dirty || FieldEntryFee.touched          || VerifyIndentForm.submitted) }" />
           </div>
           <div
             [ngClass]="{'d-block': FieldEntryFee.invalid && (FieldEntryFee.dirty || FieldEntryFee.touched || VerifyIndentForm.submitted) }"
-            class="invalid-feedback"
-          >
+            class="invalid-feedback">
             <div [hidden]="!FieldEntryFee?.errors?.required">
               Enter weight.
             </div>
@@ -269,26 +196,13 @@
         </div>
         <div class="col-12 col-sm-12 col-md-12 form-group">
           <div class="mx-auto text-center">
-            <button
-              [hidden]="actionType !== 'SCAN'"
-              type="submit"
-              class="btn btn-primary mr-2"
-            >
+            <button [hidden]="actionType !== 'SCAN'" type="submit" class="btn btn-primary mr-2">
               Save
             </button>
-            <button
-              [hidden]="actionType !== 'SCAN'"
-              type="reset"
-              class="btn btn-secondary mr-2"
-            >
+            <button [hidden]="actionType !== 'SCAN'" type="reset" class="btn btn-secondary mr-2">
               Reset
             </button>
-            <button
-              type="button"
-              value="Back"
-              class="btn btn-danger"
-              routerLink="/entryGateOperator/indentListRecord"
-            >
+            <button type="button" value="Back" class="btn btn-danger" routerLink="/entryGateOperator/indentListRecord">
               Back
             </button>
           </div>

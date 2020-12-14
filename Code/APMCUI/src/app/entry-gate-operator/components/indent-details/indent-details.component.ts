@@ -12,7 +12,7 @@ import { NgForm } from '@angular/forms';
 })
 export class IndentDetailsComponent implements OnInit {
   IndentList: Indent[];
-  IndentOrder: IndentDetail;
+  IndentOrder: any;
   orderNo: any;
   actionType: string;
   entryDetails: { entryTime: string; weight: number; entryFee: number };
@@ -26,7 +26,7 @@ export class IndentDetailsComponent implements OnInit {
     private spinner: NgxSpinnerService
   ) {
     this.IndentList = new Array<Indent>();
-    this.IndentOrder = new IndentDetail();
+    this.IndentOrder = null;
     this.entryDetails = { entryTime: null, weight: null, entryFee: null };
   }
 
@@ -56,11 +56,13 @@ export class IndentDetailsComponent implements OnInit {
 
   verifyIndent(VerifyIndentForm: NgForm): void {
     if (VerifyIndentForm.valid) {
+      debugger
     }
   }
 
   GetIndentDetails(form: NgForm): void {
     if (form.valid && this.qrCode) {
+debugger
       this.spinner.show();
       const qrData = this.qrCode.split('|');
       const qrCodeDetails = {
