@@ -62,7 +62,6 @@ export class IndentDetailsComponent implements OnInit {
 
   GetIndentDetails(form: NgForm): void {
     if (form.valid && this.qrCode) {
-debugger
       this.spinner.show();
       const qrData = this.qrCode.split('|');
       const qrCodeDetails = {
